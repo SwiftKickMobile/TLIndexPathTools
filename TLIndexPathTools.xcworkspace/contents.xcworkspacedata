@@ -54,6 +54,9 @@
             location = "group:TLNoResultsTableDataModel.m">
          </FileRef>
       </Group>
+      <FileRef
+         location = "group:Outline Example/Outline Example.xcodeproj">
+      </FileRef>
    </Group>
    <FileRef
       location = "group:SortExample/SortExample.xcodeproj">
