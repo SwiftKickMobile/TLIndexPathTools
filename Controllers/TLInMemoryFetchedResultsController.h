@@ -49,6 +49,7 @@
 @property (strong, nonatomic) NSPredicate *inMemoryPredicate;
 @property (strong, nonatomic) NSArray *inMemorySortDescriptors;
 @property (nonatomic) BOOL isFetched;
+- (void)setInMemoryPredicate:(NSPredicate *)inMemoryPredicate andInMemorySortDescriptors:(NSArray *)inMemorySortDescriptors;
 - (id)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString *)sectionNameKeyPath identifierKeyPath:(NSString *)identifierKeyPath cacheName:(NSString *)name;
 - (void)performBatchChanges:(void (^)(void))changes completion:(void (^)(BOOL finished))completion;
 @end

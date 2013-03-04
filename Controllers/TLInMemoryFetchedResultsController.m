@@ -77,16 +77,29 @@
 
 - (void)setInMemoryPredicate:(NSPredicate *)inMemoryPredicate
 {
-    if (_inMemoryPredicate != inMemoryPredicate) {
-        _inMemoryPredicate = inMemoryPredicate;
-        [self reloadDataModelWithOldDataModel:self.dataModel];
-    }
+    [self setInMemoryPredicate:inMemoryPredicate andInMemorySortDescriptors:self.inMemorySortDescriptors];
 }
 
 - (void)setInMemorySortDescriptors:(NSArray *)inMemorySortDescriptors
 {
+    [self setInMemoryPredicate:self.inMemoryPredicate andInMemorySortDescriptors:inMemorySortDescriptors];
+}
+
+- (void)setInMemoryPredicate:(NSPredicate *)inMemoryPredicate andInMemorySortDescriptors:(NSArray *)inMemorySortDescriptors
+{
+    BOOL changed = NO;
+
+    if (_inMemoryPredicate != inMemoryPredicate) {
+        _inMemoryPredicate = inMemoryPredicate;
+        changed = YES;
+    }
+
     if (![_inMemorySortDescriptors isEqualToArray:inMemorySortDescriptors]) {
         _inMemorySortDescriptors = inMemorySortDescriptors;
+        changed = YES;
+    }
+
+    if (changed) {
         [self reloadDataModelWithOldDataModel:self.dataModel];
     }
 }

@@ -24,11 +24,9 @@
 #import "TLCoreDataCollectionViewController.h"
 
 @interface TLCoreDataCollectionViewController ()
-{
-    NSMutableArray *_sectionChangeQueue;
-    NSMutableArray *_objectChangeQueue;
-    BOOL isEmptyFetch;
-}
+@property (strong, nonatomic) NSMutableArray *sectionChangeQueue;
+@property (strong, nonatomic) NSMutableArray *objectChangeQueue;
+@property (nonatomic) BOOL isEmptyFetch;
 @end
 
 @implementation TLCoreDataCollectionViewController
@@ -38,7 +36,7 @@
     if (_fetchedResultsController != fetchedResultsController) {
         _fetchedResultsController = fetchedResultsController;
         [fetchedResultsController setDelegate:self];
-        isEmptyFetch = [fetchedResultsController fetchedObjects].count == 0;
+        self.isEmptyFetch = [fetchedResultsController fetchedObjects].count == 0;
         [self.collectionView reloadData];
     }
 }
@@ -80,7 +78,7 @@
             break;
     }
 
-    [_sectionChangeQueue addObject:change];
+    [self.sectionChangeQueue addObject:change];
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
@@ -101,24 +99,24 @@
         change[@(type)] = @[indexPath, newIndexPath];
         break;
     }
-    [_objectChangeQueue addObject:change];
+    [self.objectChangeQueue addObject:change];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     // Workaround for UICollectionView bug(?) inserting item from empty state
-    if (isEmptyFetch) {
+    if (self.isEmptyFetch) {
         [self.collectionView reloadData];
-        isEmptyFetch = NO;
-        [_sectionChangeQueue removeAllObjects];
-        [_objectChangeQueue removeAllObjects];
+        self.isEmptyFetch = NO;
+        [self.sectionChangeQueue removeAllObjects];
+        [self.objectChangeQueue removeAllObjects];
         return;
     }
 
-    if ([_sectionChangeQueue count] > 0 || [_objectChangeQueue count] > 0) {
+    if ([self.sectionChangeQueue count] > 0 || [self.objectChangeQueue count] > 0) {
         [self.collectionView performBatchUpdates:^{
 
-            for (NSDictionary *change in _sectionChangeQueue) {
+            for (NSDictionary *change in self.sectionChangeQueue) {
                 [change enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, id obj, BOOL *stop) {
 
                     NSFetchedResultsChangeType type = [key unsignedIntegerValue];
@@ -136,7 +134,7 @@
                 }];
             }
 
-            for (NSDictionary *change in _objectChangeQueue) {
+            for (NSDictionary *change in self.objectChangeQueue) {
                 [change enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, id obj, BOOL *stop) {
                     NSFetchedResultsChangeType type = [key unsignedIntegerValue];
                     switch (type)
@@ -161,8 +159,8 @@
         } completion:nil];
     }
     
-    [_sectionChangeQueue removeAllObjects];
-    [_objectChangeQueue removeAllObjects];
+    [self.sectionChangeQueue removeAllObjects];
+    [self.objectChangeQueue removeAllObjects];
 }
 
 @end
