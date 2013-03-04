@@ -51,6 +51,7 @@
 extern NSString * TLIndexPathDataModelNilSectionName;
 
 @interface TLIndexPathDataModel : NSObject
+@property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic, readonly) NSString *identifierKeyPath;
 @property (strong, nonatomic, readonly) NSString *sectionNameKeyPath;
 @property (strong, nonatomic, readonly) NSString *cellIdentifierKeyPath;
