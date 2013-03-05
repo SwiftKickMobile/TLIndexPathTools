@@ -86,7 +86,7 @@
                         // TODO Not sure if this is correct when moves are combined with inserts and/or deletes
                         // Don't report as moved if the only change is the section
                         // has moved
-                        if (oldIndexPath.item == updatedIndexPath.item) {
+                        if (oldIndexPath.row == updatedIndexPath.row) {
                             NSString *oldSectionName = [oldDataModel sectionNameForSection:oldIndexPath.section];
                             NSString *updatedSectionName = [updatedDataModel sectionNameForSection:updatedIndexPath.section];
                             if ([oldSectionName isEqualToString:updatedSectionName]) continue;
