@@ -22,27 +22,7 @@
 //  THE SOFTWARE.
 
 /**
- A data model for building NSIndexPath-based components, such as UITableView
- and UICollectionView controllers. The main benefit of using TLIndexPathDataModel
- is that it greatly simplifies managing dyncamically changing tables while ensuring
- smooth animation between states.
- 
- TLIndexPathDataModelUpdates takes two instandes of TLIndexPathDataModel, computes
- the changes, and provides methods for applying the changes to a UITableView
- or UICollectionView as a batch update with smooth animations.
- 
- TLTableViewController is a base table view controller provided for quickly
- integrating TLIndexPathDataModel into a project.
- 
- TLInMemoryFetchedResultsController is a subclass of NSFetchedResultsController
- that uses TLIndexPathDataModel internally to provide in-memory filtering and
- sorting against the base Core Data fetch result with smooth animations
- (which NSFetchedResultsController can't do).
- 
- TLIndexPathItem can be used as the item class TLIndexPathDataModel. It has
- customizable identifier, sectionName, and cellIdentifier properties that
- TLIndexPathDataModel can use to manage the table. TLIndexPathItem is typically
- used when the table has heterogeneous rows (multiple cell or data types).
+ TODO
  */
 
 #import <Foundation/Foundation.h>
