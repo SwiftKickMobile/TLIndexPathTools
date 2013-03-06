@@ -30,16 +30,16 @@ by calling either of
 
 `TLIndexPathDataModel` provides several additional components:
 
-`TLTableViewController` is a base table view controller provided for quickly
+- `TLTableViewController` is a base table view controller provided for quickly
 integrating TLIndexPathDataModel into a project.
 
-`TLNoResultsTableDataModel` is a subclass of `TLTableViewController` that automatically
+- `TLNoResultsTableDataModel` is a subclass of `TLTableViewController` that automatically
 displays a "no result" message as a special row when there are no items.
 
-`TLInMemoryFetchedResultsController` is a subclass of `NSFetchedResultsController`
+- `TLInMemoryFetchedResultsController` is a subclass of `NSFetchedResultsController`
 that uses an internal data model to report batch updates when predicates or
 sort descriptors are modified. This allows for animated sorting and filtering UIs, which
 the base `NSFetchedResultsController` cannot do.
 
-`TLCoreDataCollectionViewController` is a base collection view controller class for
+- `TLCoreDataCollectionViewController` is a base collection view controller class for
 integrating with `NSFetchedResultsController` (or `TLInMemoryFetchedResultsController`).
