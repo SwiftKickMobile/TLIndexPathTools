@@ -42,7 +42,7 @@
 @end
 
 @interface TLInMemoryFetchedResultsController : NSFetchedResultsController <NSFetchedResultsControllerDelegate>
-@property(nonatomic, weak) id <NSFetchedResultsControllerDelegate> delegate;
+@property (nonatomic, weak) id<NSFetchedResultsControllerDelegate> delegate;
 @property (strong, nonatomic) TLIndexPathDataModel *dataModel;
 @property (strong, nonatomic, readonly) NSString *identifierKeyPath;
 @property (strong, nonatomic, readonly) NSArray *coreDataFetchedObjects;

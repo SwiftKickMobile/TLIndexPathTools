@@ -26,7 +26,6 @@
 @interface TLCoreDataCollectionViewController ()
 @property (strong, nonatomic) NSMutableArray *sectionChangeQueue;
 @property (strong, nonatomic) NSMutableArray *objectChangeQueue;
-@property (nonatomic) BOOL isEmptyFetch;
 @end
 
 @implementation TLCoreDataCollectionViewController
@@ -36,7 +35,6 @@
     if (_fetchedResultsController != fetchedResultsController) {
         _fetchedResultsController = fetchedResultsController;
         [fetchedResultsController setDelegate:self];
-        self.isEmptyFetch = [fetchedResultsController fetchedObjects].count == 0;
         [self.collectionView reloadData];
     }
 }
@@ -64,6 +62,11 @@
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    [self.sectionChangeQueue removeAllObjects];
+    [self.objectChangeQueue removeAllObjects];
+}
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeSection:(id<NSFetchedResultsSectionInfo>)sectionInfo atIndex:(NSUInteger)sectionIndex forChangeType:(NSFetchedResultsChangeType)type
 {
@@ -104,63 +107,94 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    // Workaround for UICollectionView bug(?) inserting item from empty state
-    if (self.isEmptyFetch) {
-        [self.collectionView reloadData];
-        self.isEmptyFetch = NO;
+    if ([self.sectionChangeQueue count] > 0 || [self.objectChangeQueue count] > 0) {
+        
+        if([self shouldReloadCollectionViewToPreventKnownIssue]) {
+            // This is to prevent a bug in UICollectionView from occurring.
+            // The bug presents itself when inserting the first object or deleting the last object in a collection view.
+            // http://stackoverflow.com/questions/12611292/uicollectionview-assertion-failure
+            // This code should be removed once the bug has been fixed, it is tracked in OpenRadar
+            // http://openradar.appspot.com/12954582
+            // Note - this may not be strictly necessary, but I'm putting it in to be sure
+            [self.collectionView reloadData];
+        } else {
+            [self.collectionView performBatchUpdates:^{
+                for (NSDictionary *change in self.sectionChangeQueue) {
+                    [change enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, id obj, BOOL *stop) {
+                        
+                        NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+                        switch (type) {
+                            case NSFetchedResultsChangeInsert:
+                                [self.collectionView insertSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                                break;
+                            case NSFetchedResultsChangeDelete:
+                                [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                                break;
+                            case NSFetchedResultsChangeUpdate:
+                                [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
+                                break;
+                        }
+                    }];
+                }
+                
+                for (NSDictionary *change in self.objectChangeQueue) {
+                    [change enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, id obj, BOOL *stop) {
+                        NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+                        switch (type)
+                        {
+                            case NSFetchedResultsChangeInsert:
+                                [self.collectionView insertItemsAtIndexPaths:@[obj]];
+                                break;
+                            case NSFetchedResultsChangeDelete:
+                                [self.collectionView deleteItemsAtIndexPaths:@[obj]];
+                                break;
+                            case NSFetchedResultsChangeUpdate:
+                                [self.collectionView reloadItemsAtIndexPaths:@[obj]];
+                                break;
+                            case NSFetchedResultsChangeMove:
+                                [self.collectionView moveItemAtIndexPath:obj[0] toIndexPath:obj[1]];
+                                break;
+                        }
+                    }];
+                    
+                }
+            } completion:nil];
+        }
         [self.sectionChangeQueue removeAllObjects];
         [self.objectChangeQueue removeAllObjects];
-        return;
     }
+}
 
-    if ([self.sectionChangeQueue count] > 0 || [self.objectChangeQueue count] > 0) {
-        [self.collectionView performBatchUpdates:^{
-
-            for (NSDictionary *change in self.sectionChangeQueue) {
-                [change enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, id obj, BOOL *stop) {
-
-                    NSFetchedResultsChangeType type = [key unsignedIntegerValue];
-                    switch (type) {
-                        case NSFetchedResultsChangeInsert:
-                        [self.collectionView insertSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
-                        break;
-                        case NSFetchedResultsChangeDelete:
-                        [self.collectionView deleteSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
-                        break;
-                        case NSFetchedResultsChangeUpdate:
-                        [self.collectionView reloadSections:[NSIndexSet indexSetWithIndex:[obj unsignedIntegerValue]]];
-                        break;
+- (BOOL)shouldReloadCollectionViewToPreventKnownIssue {
+    __block BOOL shouldReload = NO;
+    for (NSDictionary *change in self.objectChangeQueue) {
+        [change enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+            NSFetchedResultsChangeType type = [key unsignedIntegerValue];
+            NSIndexPath *indexPath = obj;
+            switch (type) {
+                case NSFetchedResultsChangeInsert:
+                    //note - do not call numberOfItemsInSection on the collectionview itself while doing
+                    //batch updates - it appears to cache the value and cause the collection view
+                    //to think it has more rows than are present, thus causing subsequent batch updates to fail
+                    if ([self collectionView:self.collectionView numberOfItemsInSection:indexPath.section] == 0) {
+                        shouldReload = YES;
                     }
-                }];
-            }
-
-            for (NSDictionary *change in self.objectChangeQueue) {
-                [change enumerateKeysAndObjectsUsingBlock:^(NSNumber *key, id obj, BOOL *stop) {
-                    NSFetchedResultsChangeType type = [key unsignedIntegerValue];
-                    switch (type)
-                    {
-                        case NSFetchedResultsChangeInsert:
-                        [self.collectionView insertItemsAtIndexPaths:@[obj]];
-                        break;
-                        case NSFetchedResultsChangeDelete:
-                        [self.collectionView deleteItemsAtIndexPaths:@[obj]];                        
-                        break;
-                        case NSFetchedResultsChangeUpdate:
-                        [self.collectionView reloadItemsAtIndexPaths:@[obj]];
-                        break;
-                        case NSFetchedResultsChangeMove:
-                        [self.collectionView moveItemAtIndexPath:obj[0] toIndexPath:obj[1]];
-                        break;
+                    break;
+                case NSFetchedResultsChangeDelete:
+                    if ([self collectionView:self.collectionView numberOfItemsInSection:indexPath.section] == 1) {
+                        shouldReload = YES;
                     }
-                }];
-                
+                    break;
+                case NSFetchedResultsChangeUpdate:
+                    shouldReload = NO;
+                    break;
+                case NSFetchedResultsChangeMove:
+                    shouldReload = NO;
+                    break;
             }
-            
-        } completion:nil];
+        }];
     }
-    
-    [self.sectionChangeQueue removeAllObjects];
-    [self.objectChangeQueue removeAllObjects];
+    return shouldReload;
 }
 
 @end
