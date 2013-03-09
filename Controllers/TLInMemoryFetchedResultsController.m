@@ -190,14 +190,17 @@
     @synchronized(self) {
         
         if (self.performingBatchUpdates) return;
-        
+
+        //the contract of controllerWillChangeContent states that the contents of the NSFetchedResultsController
+        //have not changed when it is called.
+        if ([(id)self.delegate respondsToSelector:@selector(controllerWillChangeContent:)]) {
+            [self.delegate controllerWillChangeContent:self];
+        }
+
         self.dataModel = nil;
         TLIndexPathDataModel *updatedDataModel = self.dataModel;
         TLIndexPathDataModelUpdates *updates = [[TLIndexPathDataModelUpdates alloc] initWithOldDataModel:oldDataModel updatedDataModel:updatedDataModel];
         
-        if ([(id)self.delegate respondsToSelector:@selector(controllerWillChangeContent:)]) {
-            [self.delegate controllerWillChangeContent:self];
-        }
 
         if ([(id)self.delegate respondsToSelector:@selector(controller:didChangeSection:atIndex:forChangeType:)]) {
             
@@ -272,6 +275,7 @@
 }
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+
 {
     switch (type) {
         case NSFetchedResultsChangeUpdate:
