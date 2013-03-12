@@ -122,25 +122,38 @@
             // Note - this may not be strictly necessary, but I'm putting it in to be sure
             [self.collectionView reloadData];
             //the following line is a workaround for a subtle but annoying problem with UICollectionView
-            //It looks like reloadData does *not* immediately reload the table, but rather
-            //does it lazily. When you call this method, the internal row count is set to undefined/zero.
-            //The *next* time that numberOfItemsInSection is called, the collection view will query the datasource
-            //and then use that as it's initial value. Unfortunately, the reloading of the table data can happen out of band.
-            //Under certain cases, this can cause the collection view to get confused and throw an exeption. An example of this is as follows -
+            //when the main thread is under very heavy load.
             //
-            //Fire a batch update with a single insert into this collection view. Since the collection view is empty, we need to do
-            //the above workaround to reset the table. State at this point
-            //Collection View row count - 0/undefined/uncached
-            //Data source row count - 1
+            //It looks like reloadData does *not* immediately reload the table, but rather on the very next
+            //run loop iteration, it does it lazily. Until then, the value is set as undefined, and the next call to either
+            //numberOfItemsInSection or the execution of the job placed on the main run loop will cause the value to
+            //be stored. From then on, the UICollectionView keeps track of it's item/section counts just by the number
+            //of calls to insert/delete/move section and item.
             //
-            //Immediately begin another sequence of calls to create a batch update transaction. At this point, the collection view
-            //has not reloaded itself or defined the number of rows in the table. At this point, when we do the check in
-            //shouldReloadCollectionViewToPreventKnownIssue to determine if we need to reload or batch process, the table
-            //calls to the datasource to get the current number of rows, since it's not yet cached/lazy loaded. The data source
-            //returns the (correct) count of two, and the table thinks that it has two rows. Unfortunately, we still
-            //have the batch of updates to process, which causes an internal consistency exception in the performBatchUpdates
-            //block - the table expects to have more rows after it than it did before.
-            //To see this in action, just comment out the line below and then start a batch update from an empty state.
+            //Unfortunately, if your main thread is under very heavy load and if that load mutates your data model,
+            //things can get out of sync. For example, imagine a situation like this
+            // 1) Changes from a background context are merged into the main thread's context. This will cause
+            //    the TLCoreDataCollectionViewController to recalulate the data model and send deltas to the delegate
+            //    methods on this class - note, TLInMemoryFetchedResultsController does all of this in one run-loop iteration
+            //    so that by the time controllerDidChangeContent has been invoked, there has been enough time for a background
+            //    thread to schedule another merge changes job (from a new change) onto the main runloop. The call to reloadData
+            //    above sets the item count to undefined, and schedules a job on the main runloop to intialize from the data
+            //    source on the main run loop. Unfortunately, this job is scheduled *after* the previous merge job that will
+            //    mutate the data model again.
+            // 2) The second merge changes job runs, and causes another sequence of calls to willChangeContent/didChangeContent.
+            //    The (unfortunately needed) workaround above in shouldReloadCollectionViewToPreventKnownIssue has to call
+            //    numberOfItemsInSection. This causes the collection view to set the item count as defined and at the current
+            //    count in the data model, which at this point is 2.
+            // 3) We attempt to insert items below. TLInMemoryFetchedResultsController (correctly) has computed that the delta
+            //    is to insert 1 row into the collection, since that's all that happened. Unfortunately, at this point
+            //    the collection view already thinks that we have two rows in it. Thus the call to performBatchUpdates
+            //    will cause an NSInternalInconsistencyException and the update fails.
+            //
+            // There are two solutions to this problem -
+            // 1) make sure that all jobs on the main thread run at a low
+            //  priority so that UI elements get a chance to update themselves before the job starts.
+            // 2) Immediately precache the contents of the table right here and now by calling numberOfItemsInSection
+            //
             for(int i=0;i<self.collectionView.numberOfSections;i++) {
                 [self.collectionView numberOfItemsInSection:i];
             }
@@ -201,9 +214,6 @@
             NSIndexPath *indexPath = obj;
             switch (type) {
                 case NSFetchedResultsChangeInsert: {
-                    //note - do not call numberOfItemsInSection on the collectionview itself while doing
-                    //batch updates - it appears to cache the value and cause the collection view
-                    //to think it has more rows than are present, thus causing subsequent batch updates to fail
                     NSUInteger count = [self.collectionView numberOfItemsInSection:indexPath.section];
                     if (count == 0) {
                         shouldReload = YES;
@@ -217,12 +227,6 @@
                         *stop = YES;
                     }
                     break;
-//                case NSFetchedResultsChangeUpdate:
-//                    shouldReload = NO;
-//                    break;
-//                case NSFetchedResultsChangeMove:
-//                    shouldReload = NO;
-//                    break;
             }
         }];
     }
