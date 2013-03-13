@@ -27,10 +27,16 @@
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 
-@interface TLInMemoryFetchedResultsController()
+@interface TLInMemoryFetchedResultsController() {
+    dispatch_queue_t _batchQueue;
+    
+    NSLock *_batchBarrier;
+}
+
 @property (strong, nonatomic) NSFetchedResultsController *backingFetchedResultsController;
-@property (nonatomic) BOOL performingBatchUpdates;
+
 @property (strong, nonatomic) NSMutableArray *updatedItems;
+
 @end
 
 @implementation TLInMemoryFetchedResultsController
@@ -38,16 +44,37 @@
 @synthesize sectionNameKeyPath = _sectionNameKeyPathLocal;
 @synthesize delegate = _delegateLocal;
 
+- (void)dealloc {
+    //dispatch_release(_batchQueue);
+}
+
+- (id)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)name
+{
+    return [self initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:sectionNameKeyPath identifierKeyPath:nil cacheName:name];
+}
+
+- (id)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString *)sectionNameKeyPath identifierKeyPath:(NSString *)identifierKeyPath cacheName:(NSString *)name
+{
+    if (self = [super init]) {
+        _sectionNameKeyPathLocal = sectionNameKeyPath;
+        _identifierKeyPath = identifierKeyPath;
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:name];
+        fetchedResultsController.delegate = self;
+        self.backingFetchedResultsController = fetchedResultsController;
+
+        _batchQueue = dispatch_queue_create("tl-fetched-results-controller-queue", DISPATCH_QUEUE_SERIAL);
+        _batchBarrier = [[NSLock alloc] init];
+    }
+    return self;
+}
+
 #pragma mark - Public APIs
 
 - (TLIndexPathDataModel *)dataModel
 {
     if (!self.isFetched) return nil;
     if (!_dataModel) {
-        NSArray *filteredItems = self.inMemoryPredicate ? [self.coreDataFetchedObjects filteredArrayUsingPredicate:self.inMemoryPredicate] : self.coreDataFetchedObjects;
-        NSArray *sortedFilteredItems = self.inMemorySortDescriptors ? [filteredItems sortedArrayUsingDescriptors:self.inMemorySortDescriptors] : filteredItems;
-        TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:sortedFilteredItems andSectionNameKeyPath:self.sectionNameKeyPath andIdentifierKeyPath:self.identifierKeyPath];
-        self.dataModel = dataModel;        
+        self.dataModel = [self convertFetchedObjectsToDataModel];
     }
     return _dataModel;
 }
@@ -100,7 +127,7 @@
     }
 
     if (changed) {
-        [self reloadDataModelWithOldDataModel:self.dataModel];
+        [self processBatchUpdateWithUpdatedObjects:nil];
     }
 }
 
@@ -129,28 +156,11 @@
     return nil;// TODO
 }
 
-- (id)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)name
-{
-    return [self initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:sectionNameKeyPath identifierKeyPath:nil cacheName:name];
-}
-
-- (id)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString *)sectionNameKeyPath identifierKeyPath:(NSString *)identifierKeyPath cacheName:(NSString *)name
-{
-    if (self = [super init]) {
-        _sectionNameKeyPathLocal = sectionNameKeyPath;
-        _identifierKeyPath = identifierKeyPath;
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:name];
-        fetchedResultsController.delegate = self;
-        self.backingFetchedResultsController = fetchedResultsController;
-    }
-    return self;
-}
-
 - (BOOL)performFetch:(NSError *__autoreleasing *)error
 {
     BOOL result = [self.backingFetchedResultsController performFetch:error];
     self.isFetched = result;
-    [self reloadDataModelWithOldDataModel:self.dataModel];
+    [self processBatchUpdateWithUpdatedObjects:nil];
     return result;
 }
 
@@ -174,97 +184,118 @@
     return sectionName;
 }
 
-- (void)performBatchChanges:(void (^)(void))changes completion:(void (^)(BOOL))completion
-{
-    self.performingBatchUpdates = YES;
-    if (changes) changes();
-    self.performingBatchUpdates = NO;
-    [self reloadDataModelWithOldDataModel:self.dataModel];
-    if (completion) completion(YES);
-}
-
 #pragma mark - Reload
 
-- (void) reloadDataModelWithOldDataModel:(TLIndexPathDataModel *)oldDataModel
-{
-    @synchronized(self) {
-        
-        if (self.performingBatchUpdates) return;
+- (TLIndexPathDataModel *)convertFetchedObjectsToDataModel {
+    NSArray *filteredItems = self.inMemoryPredicate ? [self.coreDataFetchedObjects filteredArrayUsingPredicate:self.inMemoryPredicate] : self.coreDataFetchedObjects;
+    NSArray *sortedFilteredItems = self.inMemorySortDescriptors ? [filteredItems sortedArrayUsingDescriptors:self.inMemorySortDescriptors] : filteredItems;
+    return [[TLIndexPathDataModel alloc] initWithItems:sortedFilteredItems andSectionNameKeyPath:self.sectionNameKeyPath andIdentifierKeyPath:self.identifierKeyPath];
+}
 
-        //the contract of controllerWillChangeContent states that the contents of the NSFetchedResultsController
-        //have not changed when it is called.
-        if ([(id)self.delegate respondsToSelector:@selector(controllerWillChangeContent:)]) {
-            [self.delegate controllerWillChangeContent:self];
-        }
 
-        self.dataModel = nil;
-        TLIndexPathDataModel *updatedDataModel = self.dataModel;
-        TLIndexPathDataModelUpdates *updates = [[TLIndexPathDataModelUpdates alloc] initWithOldDataModel:oldDataModel updatedDataModel:updatedDataModel];
-        
+- (void)processBatchUpdateWithUpdatedObjects:(NSArray *)updatedObjects {
+    
+    [_batchBarrier lock];
+    //send this to our updater serial queue
+    dispatch_async(_batchQueue, ^{
+       
+        dispatch_semaphore_t completeLock = dispatch_semaphore_create(0);
 
-        if ([(id)self.delegate respondsToSelector:@selector(controller:didChangeSection:atIndex:forChangeType:)]) {
-            
-            for (NSString *sectionName in updates.deletedSectionNames) {
-                NSInteger section = [oldDataModel sectionForSectionName:sectionName];
-                id<NSFetchedResultsSectionInfo> sectionInfo = [oldDataModel sections][section];
-                [self.delegate controller:self didChangeSection:sectionInfo atIndex:section forChangeType:NSFetchedResultsChangeDelete];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([(id)self.delegate respondsToSelector:@selector(controllerWillChangeContent:)]) {
+                [self.delegate controllerWillChangeContent:self];
             }
             
-            for (NSString *sectionName in updates.insertedSectionNames) {
-                NSInteger section = [updatedDataModel sectionForSectionName:sectionName];
-                id<NSFetchedResultsSectionInfo> sectionInfo = [updatedDataModel sections][section];
-                [self.delegate controller:self didChangeSection:sectionInfo atIndex:section forChangeType:NSFetchedResultsChangeInsert];
-            }
+            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                
+                TLIndexPathDataModel *oldModel = self.dataModel;
+                TLIndexPathDataModel *newModel = [self convertFetchedObjectsToDataModel];
+                
+                //compute the deltas between the old and the new
+                TLIndexPathDataModelUpdates *updates = [[TLIndexPathDataModelUpdates alloc] initWithOldDataModel:oldModel updatedDataModel:newModel];
+                
+                //we can switch our data model now that we're about to call out to the fine-grained change functions.
+                self.dataModel = newModel;
+                
+                //switch to the main queue
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    if ([(id)self.delegate respondsToSelector:@selector(controller:didChangeSection:atIndex:forChangeType:)]) {
+                        
+                        for (NSString *sectionName in updates.deletedSectionNames) {
+                            NSInteger section = [oldModel sectionForSectionName:sectionName];
+                            id<NSFetchedResultsSectionInfo> sectionInfo = [oldModel sections][section];
+                            [self.delegate controller:self didChangeSection:sectionInfo atIndex:section forChangeType:NSFetchedResultsChangeDelete];
+                        }
+                        
+                        for (NSString *sectionName in updates.insertedSectionNames) {
+                            NSInteger section = [newModel sectionForSectionName:sectionName];
+                            id<NSFetchedResultsSectionInfo> sectionInfo = [newModel sections][section];
+                            [self.delegate controller:self didChangeSection:sectionInfo atIndex:section forChangeType:NSFetchedResultsChangeInsert];
+                        }
+                        
+                        for (NSString *sectionName in updates.movedSectionNames) {
+                            NSInteger section = [newModel sectionForSectionName:sectionName];
+                            id<NSFetchedResultsSectionInfo> sectionInfo = [newModel sections][section];
+                            [self.delegate controller:self didChangeSection:sectionInfo atIndex:section forChangeType:NSFetchedResultsChangeMove];
+                        }
+                    }
+                    
+                    if ([(id)self.delegate respondsToSelector:@selector(controller:didChangeObject:atIndexPath:forChangeType:newIndexPath:)]) {
+                        
+                        for (id item in updates.deletedItems) {
+                            NSIndexPath *indexPath = [oldModel indexPathForItem:item];
+                            [self.delegate controller:self didChangeObject:item atIndexPath:indexPath forChangeType:NSFetchedResultsChangeDelete newIndexPath:nil];
+                        }
+                        
+                        for (id item in updates.insertedItems) {
+                            NSIndexPath *indexPath = [newModel indexPathForItem:item];
+                            [self.delegate controller:self didChangeObject:item atIndexPath:indexPath forChangeType:NSFetchedResultsChangeInsert newIndexPath:indexPath];
+                        }
+                        
+                        for (id item in updates.movedItems) {
+                            NSIndexPath *oldIndexPath = [oldModel indexPathForItem:item];
+                            NSIndexPath *updatedIndexPath = [newModel indexPathForItem:item];
+                            [self.delegate controller:self didChangeObject:item atIndexPath:oldIndexPath forChangeType:NSFetchedResultsChangeMove newIndexPath:updatedIndexPath];
+                        }
+                        
+                        for (id item in updatedObjects) {
+                            NSIndexPath *indexPath = [oldModel indexPathForItem:item];
+                            NSIndexPath *newIndexPath = [newModel indexPathForItem:item];
+                            // Don't report updates for items in inserted or deleted sections
+                            NSString *sectionName = [oldModel sectionNameForSection:indexPath.section];
+                            NSString *newSectionName = [newModel sectionNameForSection:newIndexPath.section];
+                            if (indexPath && [updates.deletedSectionNames containsObject:sectionName]) {
+                                continue;
+                            }
+                            if (newIndexPath && [updates.insertedSectionNames containsObject:newSectionName]) {
+                                continue;
+                            }
+                            if (indexPath) {
+                                [self.delegate controller:self didChangeObject:item atIndexPath:indexPath forChangeType:NSFetchedResultsChangeUpdate newIndexPath:newIndexPath];
+                            }
+                        }
+                    }
+                    
+                    //finish up
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                        if ([(id)self.delegate respondsToSelector:@selector(controllerDidChangeContent:)]) {
+                            [self.delegate controllerDidChangeContent:self];
+                        }
+                        dispatch_semaphore_signal(completeLock);
+                    });
+                });
+                
+            });
             
-            for (NSString *sectionName in updates.movedSectionNames) {
-                NSInteger section = [updatedDataModel sectionForSectionName:sectionName];
-                id<NSFetchedResultsSectionInfo> sectionInfo = [updatedDataModel sections][section];
-                [self.delegate controller:self didChangeSection:sectionInfo atIndex:section forChangeType:NSFetchedResultsChangeMove];
-            }
-        }
+        });
 
-        if ([(id)self.delegate respondsToSelector:@selector(controller:didChangeObject:atIndexPath:forChangeType:newIndexPath:)]) {
-            
-            for (id item in updates.deletedItems) {
-                NSIndexPath *indexPath = [oldDataModel indexPathForItem:item];
-                [self.delegate controller:self didChangeObject:item atIndexPath:indexPath forChangeType:NSFetchedResultsChangeDelete newIndexPath:nil];
-            }
-            
-            for (id item in updates.insertedItems) {
-                NSIndexPath *indexPath = [updatedDataModel indexPathForItem:item];
-                [self.delegate controller:self didChangeObject:item atIndexPath:indexPath forChangeType:NSFetchedResultsChangeInsert newIndexPath:indexPath];
-            }
-            
-            for (id item in updates.movedItems) {
-                NSIndexPath *oldIndexPath = [oldDataModel indexPathForItem:item];
-                NSIndexPath *updatedIndexPath = [updatedDataModel indexPathForItem:item];
-                [self.delegate controller:self didChangeObject:item atIndexPath:oldIndexPath forChangeType:NSFetchedResultsChangeMove newIndexPath:updatedIndexPath];
-            }
-            
-            for (id item in self.updatedItems) {
-                NSIndexPath *indexPath = [oldDataModel indexPathForItem:item];
-                NSIndexPath *newIndexPath = [updatedDataModel indexPathForItem:item];
-                // Don't report updates for items in inserted or deleted sections
-                NSString *sectionName = [oldDataModel sectionNameForSection:indexPath.section];
-                NSString *newSectionName = [updatedDataModel sectionNameForSection:newIndexPath.section];
-                if (indexPath && [updates.deletedSectionNames containsObject:sectionName]) {
-                    continue;
-                }
-                if (newIndexPath && [updates.insertedSectionNames containsObject:newSectionName]) {
-                    continue;
-                }
-                if (indexPath) {
-                    [self.delegate controller:self didChangeObject:item atIndexPath:indexPath forChangeType:NSFetchedResultsChangeUpdate newIndexPath:newIndexPath];
-                }
-            }
-        }
-
-        self.updatedItems = nil;
-
-        if ([(id)self.delegate respondsToSelector:@selector(controllerDidChangeContent:)]) {
-            [self.delegate controllerDidChangeContent:self];
-        }
-    }
+        //wait on the semaphore
+        dispatch_semaphore_wait(completeLock,  DISPATCH_TIME_FOREVER);
+        //dispatch_release(completeLock);
+    });
+    
+    [_batchBarrier unlock];
+    
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
@@ -288,7 +319,8 @@
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    [self reloadDataModelWithOldDataModel:self.dataModel];
+    [self processBatchUpdateWithUpdatedObjects:self.updatedItems];
+    self.updatedItems = nil;
 }
 
 - (NSString *)controller:(NSFetchedResultsController *)controller sectionIndexTitleForSectionName:(NSString *)sectionName
