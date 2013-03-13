@@ -206,7 +206,9 @@
                 [self.delegate controllerWillChangeContent:self];
             }
             
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            //need to do the next bit in the context of the managedobjectcontext
+            //since convertFetchedObjectsToDataModel accesses the objects in it
+            [self.backingFetchedResultsController.managedObjectContext performBlock:^{
                 
                 TLIndexPathDataModel *oldModel = self.dataModel;
                 TLIndexPathDataModel *newModel = [self convertFetchedObjectsToDataModel];
@@ -285,12 +287,12 @@
                     });
                 });
                 
-            });
+            }];
             
         });
 
         //wait on the semaphore
-        dispatch_semaphore_wait(completeLock,  DISPATCH_TIME_FOREVER);
+        dispatch_semaphore_wait(completeLock, DISPATCH_TIME_FOREVER);
         //dispatch_release(completeLock);
     });
     
