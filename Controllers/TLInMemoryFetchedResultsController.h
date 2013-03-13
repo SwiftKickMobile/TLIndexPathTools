@@ -34,6 +34,10 @@
 #import <CoreData/CoreData.h>
 #import "TLIndexPathDataModelUpdates.h"
 
+//sent whenever a TLDataModelController changes it's content for any reason
+extern NSString * const TLDataModelControllerChangedNotification;
+
+
 @class TLInMemoryFetchedResultsController;
 
 @protocol TLInMemoryFetchedResultsControllerDelegate <NSFetchedResultsControllerDelegate>

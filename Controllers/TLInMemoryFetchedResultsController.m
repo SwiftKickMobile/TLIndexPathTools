@@ -27,6 +27,8 @@
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 
+NSString * const TLDataModelControllerChangedNotification = @"TLDataModelControllerChangedNotification";
+
 @interface TLInMemoryFetchedResultsController() {
     dispatch_queue_t _batchQueue;
     
@@ -283,6 +285,7 @@
                         if ([(id)self.delegate respondsToSelector:@selector(controllerDidChangeContent:)]) {
                             [self.delegate controllerDidChangeContent:self];
                         }
+                        [[NSNotificationCenter defaultCenter] postNotificationName:TLDataModelControllerChangedNotification object:self];
                         dispatch_semaphore_signal(completeLock);
                     });
                 });
