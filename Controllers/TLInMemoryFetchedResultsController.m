@@ -47,7 +47,9 @@ NSString * const TLDataModelControllerChangedNotification = @"TLDataModelControl
 @synthesize delegate = _delegateLocal;
 
 - (void)dealloc {
-    //dispatch_release(_batchQueue);
+    //the delegate property is an 'assign' property
+    //not technically needed because the FRC will dealloc when we do, but it's a good idea.
+    self.backingFetchedResultsController.delegate = nil;
 }
 
 - (id)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString *)sectionNameKeyPath cacheName:(NSString *)name
