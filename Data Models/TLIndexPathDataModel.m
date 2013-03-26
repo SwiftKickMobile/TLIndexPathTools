@@ -94,9 +94,14 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath
 {
-    id identifier = [self.identifiersByIndexPath objectForKey:indexPath];
+    id identifier = [self identifierAtIndexPath:indexPath];
     id item = [self.itemsByIdentifier objectForKey:identifier];
     return item;
+}
+
+- (id)identifierAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.identifiersByIndexPath objectForKey:indexPath];
 }
 
 - (BOOL)containsItem:(id)item
@@ -109,6 +114,12 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
     id identifier = [self identifierForItem:item];
     NSIndexPath *indexPath = [self.indexPathsByIdentifier objectForKey:identifier];
     return indexPath;
+}
+
+- (NSIndexPath *)indexPathForIdentifier:(id)identifier
+{
+    id item = [self itemForIdentifier:identifier];
+    return [self indexPathForItem:item];
 }
 
 - (NSString *)cellIdentifierAtIndexPath:(NSIndexPath *)indexPath
