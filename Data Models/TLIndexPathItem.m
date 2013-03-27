@@ -36,6 +36,11 @@
     return self;
 }
 
++ (NSString *)keyPathForDataKeyPath:(NSString *)dataKeyPath
+{
+    return [NSString stringWithFormat:@"data.%@", dataKeyPath];
+}
+
 - (NSUInteger)hash
 {
     NSInteger hash = 0;
@@ -48,7 +53,7 @@
 
 - (BOOL)isEqual:(id)object
 {
-    if ([super isEqual:object]) return YES;
+    if (self == object) return YES;
     if (object == nil) return NO;
     if (![object isKindOfClass:[TLIndexPathItem class]]) return NO;
     TLIndexPathItem *other = (TLIndexPathItem *)object;

@@ -32,5 +32,12 @@
 @property (strong, nonatomic) NSString *sectionName;
 @property (strong, nonatomic) NSString *cellIdentifier;
 @property (strong, nonatomic) id data;
+
 - (id)initWithIdentifier:(id)identifier sectionName:(NSString *)sectionName cellIdentifier:(NSString *)cellIdentifier data:(id)data;
+
+/**
+ Prefixes "data." to the given keyPath.
+ */
++ (NSString *)keyPathForDataKeyPath:(NSString *)dataKeyPath;
+
 @end

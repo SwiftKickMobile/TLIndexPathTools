@@ -130,7 +130,24 @@
         [tableView reloadData];
         return;
     }
-    
+
+    //reloading modified rows in beginUpdates when there are other modifications
+    //being made results in an exception:
+    //  Terminating app due to uncaught exception 'NSInternalInconsistencyException',
+    //  reason: 'Attempt to create two animations for cell'
+    //this needs more investigation, but for the time being, modifications are done
+    //before the main beginUpdates and row without animation.
+    [tableView beginUpdates];
+    if (self.modifiedItems.count) {
+        NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+        for (id item in self.modifiedItems) {
+            NSIndexPath *indexPath = [self.updatedDataModel indexPathForItem:item];
+            [indexPaths addObject:indexPath];
+        }
+        [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+    }
+    [tableView endUpdates];
+
     [tableView beginUpdates];
 
     if (self.insertedSectionNames.count) {
@@ -187,8 +204,8 @@
             [tableView moveRowAtIndexPath:oldIndexPath toIndexPath:updatedIndexPath];
         }
     }
-
-    [tableView endUpdates];
+    
+    [tableView endUpdates];    
 }
 
 - (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView
@@ -251,6 +268,8 @@
                 [collectionView moveItemAtIndexPath:oldIndexPath toIndexPath:updatedIndexPath];
             }
         }
+        
+        // TODO update modified items
     
     } completion:^(BOOL finished) {
         // Completion
