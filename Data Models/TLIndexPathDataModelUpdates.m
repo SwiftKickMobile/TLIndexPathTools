@@ -131,22 +131,26 @@
         return;
     }
 
-    //reloading modified rows in beginUpdates when there are other modifications
-    //being made results in an exception:
+    //it turns out that reloading modified rows in the main beginUpdates section
+    //when there are inserts, deletes, or moves being made results in an exception:
+    //
     //  Terminating app due to uncaught exception 'NSInternalInconsistencyException',
     //  reason: 'Attempt to create two animations for cell'
-    //this needs more investigation, but for the time being, modifications are done
-    //before the main beginUpdates and row without animation.
-    [tableView beginUpdates];
+    //
+    //this needs to be investigated. But for the time being, the modified rows
+    //will be reloaded here before the main beginUpdates section and we won't
+    //use any row animation (because row animation seems to affect the performance
+    //of the row animations in the main beginUpdate section).
     if (self.modifiedItems.count) {
+        [tableView beginUpdates];
         NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
         for (id item in self.modifiedItems) {
             NSIndexPath *indexPath = [self.updatedDataModel indexPathForItem:item];
             [indexPaths addObject:indexPath];
         }
         [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+        [tableView endUpdates];
     }
-    [tableView endUpdates];
 
     [tableView beginUpdates];
 
