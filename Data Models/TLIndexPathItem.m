@@ -32,7 +32,6 @@
         _sectionName = sectionName;
         _cellIdentifier = cellIdentifier;
         _data = data;
-        _shouldCompareData = YES;// TODO
     }
     return self;
 }
