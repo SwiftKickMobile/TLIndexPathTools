@@ -137,23 +137,21 @@
     //  Terminating app due to uncaught exception 'NSInternalInconsistencyException',
     //  reason: 'Attempt to create two animations for cell'
     //
-    //this needs to be investigated. But for the time being, the modified rows
-    //will be reloaded here before the main beginUpdates section and we won't
+    //this needs to be investigated in more detail. But for the time being, the modified
+    //rows will be reloaded here before the main beginUpdates section and we won't
     //use any row animation (because row animation seems to affect the performance
     //of the row animations in the main beginUpdate section).
     if (self.modifiedItems.count) {
-        [tableView beginUpdates];
         NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
         for (id item in self.modifiedItems) {
             NSIndexPath *indexPath = [self.updatedDataModel indexPathForItem:item];
             [indexPaths addObject:indexPath];
         }
         [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
-        [tableView endUpdates];
     }
 
     [tableView beginUpdates];
-
+    
     if (self.insertedSectionNames.count) {
         NSMutableIndexSet *indexSet = [[NSMutableIndexSet alloc] init];
         for (NSString *sectionName in self.insertedSectionNames) {
@@ -162,7 +160,7 @@
         }
         [tableView insertSections:indexSet withRowAnimation:animation];
     }
-
+    
     if (self.deletedSectionNames.count) {
         NSMutableIndexSet *indexSet = [[NSMutableIndexSet alloc] init];
         for (NSString *sectionName in self.deletedSectionNames) {
@@ -171,17 +169,17 @@
         }
         [tableView deleteSections:indexSet withRowAnimation:animation];
     }
-
-// TODO Disable reordering sections because it may cause duplicate animations
-// when a item is inserted, deleted, or moved in that section. Need to figure
-// out how to avoid the duplicate animation.
-//    if (self.movedSectionNames.count) {
-//        for (NSString *sectionName in self.movedSectionNames) {
-//            NSInteger oldSection = [self.oldDataModel sectionForSectionName:sectionName];
-//            NSInteger updatedSection = [self.updatedDataModel sectionForSectionName:sectionName];
-//            [tableView moveSection:oldSection toSection:updatedSection];
-//        }
-//    }
+    
+    // TODO Disable reordering sections because it may cause duplicate animations
+    // when a item is inserted, deleted, or moved in that section. Need to figure
+    // out how to avoid the duplicate animation.
+    //    if (self.movedSectionNames.count) {
+    //        for (NSString *sectionName in self.movedSectionNames) {
+    //            NSInteger oldSection = [self.oldDataModel sectionForSectionName:sectionName];
+    //            NSInteger updatedSection = [self.updatedDataModel sectionForSectionName:sectionName];
+    //            [tableView moveSection:oldSection toSection:updatedSection];
+    //        }
+    //    }
     
     if (self.insertedItems.count) {
         NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
@@ -191,7 +189,7 @@
         }
         [tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:animation];
     }
-
+    
     if (self.deletedItems.count) {
         NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
         for (id item in self.deletedItems) {
@@ -200,7 +198,7 @@
         }
         [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:animation];
     }
-
+    
     if (self.movedItems.count) {
         for (id item in self.movedItems) {
             NSIndexPath *oldIndexPath = [self.oldDataModel indexPathForItem:item];
