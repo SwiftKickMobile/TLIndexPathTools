@@ -31,6 +31,7 @@
     if (self = [super initWithIdentifier:identifier sectionName:sectionName cellIdentifier:cellIdentifier data:data numberOfColumns:numberOfColumns]) {
         _sortColumn = sortColumn;
         _sortDirection = sortDirection;
+        self.shouldCompareData = YES;
     }
     return self;
 }

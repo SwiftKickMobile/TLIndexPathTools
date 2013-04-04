@@ -33,6 +33,14 @@
 @property (strong, nonatomic) NSString *cellIdentifier;
 @property (strong, nonatomic) id data;
 
+/**
+ Returns YES if the item should be considered modified if the data is modified.
+ This affects whether or not the corresponding cell is reloaded in a batch update.
+ Specifically, if the value is YES, the `hash` and `isEqual` methods take into
+ account the value of `data`. The default value is NO.
+ */
+@property (nonatomic) BOOL shouldCompareData;
+
 - (id)initWithIdentifier:(id)identifier sectionName:(NSString *)sectionName cellIdentifier:(NSString *)cellIdentifier data:(id)data;
 
 /**

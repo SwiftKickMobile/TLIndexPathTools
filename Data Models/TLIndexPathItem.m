@@ -47,7 +47,9 @@
     hash += 31 * hash + [self.identifier hash];
     hash += 31 * hash + [self.sectionName hash];
     hash += 31 * hash + [self.cellIdentifier hash];
-    hash += 31 * hash + [self.data hash];
+    if (self.shouldCompareData) {
+        hash += 31 * hash + [self.data hash];
+    }
     return hash;
 }
 
@@ -60,7 +62,9 @@
     if (![TLIndexPathItem nilSafeObject:self.identifier isEqual:other.identifier]) return NO;
     if (![TLIndexPathItem nilSafeObject:self.sectionName isEqual:other.sectionName]) return NO;
     if (![TLIndexPathItem nilSafeObject:self.cellIdentifier isEqual:other.cellIdentifier]) return NO;
-    if (![TLIndexPathItem nilSafeObject:self.data isEqual:other.data]) return NO;
+    if (self.shouldCompareData) {
+        if (![TLIndexPathItem nilSafeObject:self.data isEqual:other.data]) return NO;
+    }
     return YES;
 }
 

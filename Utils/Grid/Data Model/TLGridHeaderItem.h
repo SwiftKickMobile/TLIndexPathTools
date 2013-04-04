@@ -22,6 +22,10 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+/**
+ The default value of `shouldCompareData` is YES.
+ */
+
 #import "TLGridItem.h"
 #import "TLGridDataModel.h"
 
