@@ -52,6 +52,14 @@
     }
 }
 
+- (void)setRightViewHugsLabel:(BOOL)rightViewHugsLabel
+{
+    if (_rightViewHugsLabel != rightViewHugsLabel) {
+        _rightViewHugsLabel = rightViewHugsLabel;
+        [self setNeedsLayout];
+    }
+}
+
 - (void)setBackgroundView:(UIView *)backgroundView
 {
     if (_backgroundView != backgroundView) {
@@ -88,7 +96,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-
+    
     self.gridLayer.frame = self.bounds;
     
     CGRect contentRect = UIEdgeInsetsInsetRect(self.bounds, self.contentInsets);
@@ -100,11 +108,20 @@
         labelRect.size.width -= width;
         labelRect.origin.x += width;
     }
-
+    
     if (self.rightView) {
         CGFloat width = self.rightView.bounds.size.width;
-        self.rightView.center = CGPointMake(CGRectGetMaxX(contentRect) - width / 2.0, CGRectGetMidY(contentRect));
-        labelRect.size.width -= width;
+        if (self.rightViewHugsLabel) {
+            CGFloat maxLabelWidth = labelRect.size.width - width;
+            CGFloat labelHeight = labelRect.size.height;
+            [self.label sizeToFit];
+            labelRect.size.height = labelHeight;
+            labelRect.size.width = MIN(self.label.frame.size.width, maxLabelWidth);
+            self.rightView.center = CGPointMake(CGRectGetMaxX(labelRect) + self.labelInsets.right + width / 2.0, CGRectGetMidY(contentRect));
+        } else {
+            self.rightView.center = CGPointMake(CGRectGetMaxX(contentRect) - width / 2.0, CGRectGetMidY(contentRect));
+            labelRect.size.width -= width;
+        }
     }
     
     self.label.frame = labelRect;
@@ -113,7 +130,7 @@
 - (void)drawGridLayer:(CALayer *)layer inContext:(CGContextRef)ctx
 {
     CGFloat borderWidth = 1;
-
+    
     CGRect rect = layer.frame;
     
     CGContextSaveGState(ctx);
