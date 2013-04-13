@@ -53,11 +53,11 @@
     if (self = [super initWithIndexPathItems:items]) {
         _headerItem = headerItem;
         _rowItems = rowItems;
-    }
-    //set number of columns equal to the max number of columns across all items
-    _numberOfColumns = 0;
-    for (TLGridItem *item in items) {
-        _numberOfColumns = MAX(_numberOfColumns, item.numberOfColumns);
+        //set number of columns equal to the max number of columns across all items
+        _numberOfColumns = 0;
+        for (TLGridItem *item in items) {
+            _numberOfColumns = MAX(_numberOfColumns, item.numberOfColumns);
+        }
     }
     return self;
 }
