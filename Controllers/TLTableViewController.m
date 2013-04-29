@@ -23,9 +23,11 @@
 
 #import "TLTableViewController.h"
 #import "TLIndexPathDataModelUpdates.h"
+#import "TLIndexPathItem.h"
+#import "TLDynamicHeightView.h"
 
 @interface TLTableViewController ()
-
+@property (strong, nonatomic) NSMutableDictionary *prototypeCells;
 @end
 
 @implementation TLTableViewController
@@ -89,6 +91,32 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return [self.dataModel sectionTitleForSection:section];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    id item = [self.dataModel itemAtIndexPath:indexPath];
+    if ([item isKindOfClass:[TLIndexPathItem class]]) {
+        TLIndexPathItem *i = (TLIndexPathItem *)item;
+        if (i.cellIdentifier) {
+            UITableViewCell *cell = [self.prototypeCells objectForKey:i.cellIdentifier];
+            if (!cell) {
+                if (!self.prototypeCells) {
+                    self.prototypeCells = [[NSMutableDictionary alloc] init];
+                }
+                cell = [tableView dequeueReusableCellWithIdentifier:i.cellIdentifier];
+                [self.prototypeCells setObject:cell forKey:i.cellIdentifier];
+            }
+            if ([cell conformsToProtocol:@protocol(TLDynamicHeightView)]) {
+                id<TLDynamicHeightView> v = (id<TLDynamicHeightView>)cell;
+                return [v heightWithData:i.data];
+            } else {
+                return cell.bounds.size.height;
+            }
+        }
+    }
+    
+    return 44.0;
 }
 
 @end
