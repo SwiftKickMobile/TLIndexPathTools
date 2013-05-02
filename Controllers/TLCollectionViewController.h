@@ -21,13 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-/**
- Implemented by table view cells (or possibly their subviews) which have
- dynamic, data-driven height.
- */
+#import <UIKit/UIKit.h>
+#import "TLIndexPathDataModel.h"
 
-#import <Foundation/Foundation.h>
-
-@protocol TLDynamicHeightView <NSObject>
-- (CGFloat) heightWithData:(id)data;
+@interface TLCollectionViewController : UICollectionViewController
+@property (strong, nonatomic) TLIndexPathDataModel *dataModel;
+- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+- (void)reconfigureVisibleCells;
 @end
