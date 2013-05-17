@@ -69,7 +69,7 @@
  @param dataModel  the data model
  @return the index path controller with the given data model representation
  */
-- (instancetype)initWithDataModel:(NSArray *)dataModel;
+- (instancetype)initWithDataModel:(TLIndexPathDataModel *)dataModel;
 
 #pragma mark - Configuration information
 
