@@ -52,6 +52,18 @@
 - (instancetype)initWithItems:(NSArray *)items;
 
 /**
+ Returns an index path controller initialized with the given TLIndexPathItmes.
+ 
+ @param items  the array of TLIndexPathItems
+ @return the index path controller with a default data model representation of the given TLIndexPathItems
+ 
+ This initilizer differs from `initWithItems:` only in that the properties
+ `identifierKeyPath`, `sectionNameKeyPath` and `cellIdentifierKeyPath` are
+ not nil, but rather the appropriate values for TLIndexPathItem.
+ */
+- (instancetype)initWithIndexPathItems:(NSArray *)items;
+
+/**
  Returns an index path controller initialized with the given data model.
  
  @param dataModel  the data model
