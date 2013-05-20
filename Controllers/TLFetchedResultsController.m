@@ -13,6 +13,7 @@
 @property (strong, nonatomic) NSLock *batchBarrier;
 @property (strong, nonatomic) NSFetchedResultsController *backingController;
 @property (strong, nonatomic, readonly) NSString *identifierKeyPath;
+@property (nonatomic) BOOL isFetched;
 @end
 
 @implementation TLFetchedResultsController
@@ -45,6 +46,7 @@
         NSArray *fetchedItems =  self.backingController.fetchedObjects;
         TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:fetchedItems andSectionNameKeyPath:self.backingController.sectionNameKeyPath andIdentifierKeyPath:self.identifierKeyPath andCellIdentifierKeyPath:self.dataModel.cellIdentifierKeyPath];
         self.dataModel = dataModel;
+        self.isFetched = YES;
     }
     return result;
 }
@@ -53,12 +55,48 @@
 
 - (void)setFetchRequest:(NSFetchRequest *)fetchRequest
 {
-    // TODO
+    if (![self.fetchRequest isEqual:fetchRequest]) {
+        self.backingController = [[NSFetchedResultsController alloc]
+                                  initWithFetchRequest:fetchRequest
+                                  managedObjectContext:self.backingController.managedObjectContext
+                                  sectionNameKeyPath:self.backingController.sectionNameKeyPath
+                                  cacheName:self.backingController.cacheName];
+        self.backingController.delegate = self;
+    }
+}
+
+- (NSFetchRequest *)fetchRequest
+{
+    return self.backingController.fetchRequest;
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    // TODO
+    if (![self.managedObjectContext isEqual:managedObjectContext]) {
+        self.backingController = [[NSFetchedResultsController alloc]
+                                  initWithFetchRequest:self.backingController.fetchRequest
+                                  managedObjectContext:managedObjectContext
+                                  sectionNameKeyPath:self.backingController.sectionNameKeyPath
+                                  cacheName:self.backingController.cacheName];
+        self.backingController.delegate = self;
+    }
+}
+
+- (NSManagedObjectContext *)managedObjectContext
+{
+    return self.backingController.managedObjectContext;
+}
+
+- (void)setCacheName:(NSString *)cacheName
+{
+    if (![self.cacheName isEqual:cacheName]) {
+        self.backingController = [[NSFetchedResultsController alloc]
+                                  initWithFetchRequest:self.backingController.fetchRequest
+                                  managedObjectContext:self.backingController.managedObjectContext
+                                  sectionNameKeyPath:self.backingController.sectionNameKeyPath
+                                  cacheName:cacheName];
+        self.backingController.delegate = self;
+    }
 }
 
 - (NSString *)cacheName
@@ -74,17 +112,37 @@
 - (NSString *)identifierKeyPath
 {
     //fall back to objectID in case the data model doesn't have a value defined.
+    //This is necessary because managed objects themselves cannot be used as
+    //identifiers because identifiers are used as dictionary keys and therefore
+    //must implement NSCoding (which NSManagedObject does not).
     NSString *identifierKeyPath = self.dataModel.identifierKeyPath ? self.dataModel.identifierKeyPath : @"objectID";
     return identifierKeyPath;
+}
+
+- (void)setIgnoreIncrementalChanges:(BOOL)ignoreIncrementalChanges
+{
+    if (_ignoreIncrementalChanges != ignoreIncrementalChanges) {
+        _ignoreIncrementalChanges = ignoreIncrementalChanges;
+        //if fetch was ever performed, automatically re-perform fetch when
+        //ignoring is disabled.
+        //TODO we might want to consider queueing up the incremental changes
+        //that get reported by the backing controller while ignoring is enabled
+        //and not having to perform a full fetch.
+        if (NO == ignoreIncrementalChanges && self.isFetched) {
+            [self performFetch:nil];
+        }
+    }
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    NSArray *fetchedItems =  self.backingController.fetchedObjects;
-    TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:fetchedItems andSectionNameKeyPath:self.backingController.sectionNameKeyPath andIdentifierKeyPath:self.identifierKeyPath andCellIdentifierKeyPath:self.dataModel.cellIdentifierKeyPath];
-    self.dataModel = dataModel;
+    if (!self.ignoreIncrementalChanges) {
+        NSArray *fetchedItems =  self.backingController.fetchedObjects;
+        TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:fetchedItems andSectionNameKeyPath:self.backingController.sectionNameKeyPath andIdentifierKeyPath:self.identifierKeyPath andCellIdentifierKeyPath:self.dataModel.cellIdentifierKeyPath];
+        self.dataModel = dataModel;
+    }
 }
 
 - (NSString *)controller:(NSFetchedResultsController *)controller sectionIndexTitleForSectionName:(NSString *)sectionName

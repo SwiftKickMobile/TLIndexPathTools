@@ -40,27 +40,42 @@
  */
 - (BOOL)performFetch:(NSError *__autoreleasing *)error;
 
+/**
+ Determines whether incremental fetch request changes are ignored.
+ 
+ This property can be set to YES to temporarily ignore incremental fetch
+ request changes, such as when a table is in edit mode. This can also be useful
+ for explicitly setting the data model and not having the changes overwritten
+ by the fetch request.
+ */
+@property (nonatomic) BOOL ignoreIncrementalChanges;
+
 #pragma mark - Configuration information
 
 /**
  The controller's fetch request.
  
- Unlike, NSFetchedResultsController, this property is writeable. Once changed,
- calling `performFetch` causes a new data model to be created and any changes propagated to
- the controller's delegate.
+ Unlike, NSFetchedResultsController, this property is writeable. After changing
+ the fetch request, `performFetch:` must be called to trigger updates.
  */
-@property (nonatomic) NSFetchRequest *fetchRequest;
+@property (strong, nonatomic) NSFetchRequest *fetchRequest;
 
 /**
  The managed object context in which the fetch request is performed.
  
- Unlike, NSFetchedResultsController, this property is writeable. Once changed,
- calling `performFetch` causes a new data model to be created and any changes propagated to
- the controller's delegate.
+ Unlike, NSFetchedResultsController, this property is writeable. After changing
+ the fetch request, `performFetch:` must be called to trigger updates.
  */
-@property (nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-@property (nonatomic, readonly) NSString *cacheName;
+/**
+ The name of the file used by this classe's internal NSFetchedResultsController to cache
+ section information.
+ 
+ Unlike NSFetchedResultsController, this property is writeable. After changing
+ the fetch request, `performFetch:` must be called to trigger updates.
+ */
+@property (strong, nonatomic) NSString *cacheName;
 
 + (void)deleteCacheWithName:(NSString *)name;
 
