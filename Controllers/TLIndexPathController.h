@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "TLIndexPathDataModel.h"
-#import "TLIndexPathDataModelUpdates.h"
+#import "TLIndexPathUpdates.h"
 
 @class TLIndexPathController;
 
@@ -31,7 +31,7 @@
  @param updates  the updates object that can be used to perform batch updates on a table or collection view.
  
  */
-- (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathDataModelUpdates *)updates;
+- (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates;
 
 @end
 

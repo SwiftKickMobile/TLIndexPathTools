@@ -1,5 +1,5 @@
 //
-//  TLIndexPathDataModelUpdates.h
+//  TLIndexPathUpdates.h
 //
 //  Copyright (c) 2013 Tim Moose (http://tractablelabs.com)
 //
@@ -26,7 +26,7 @@
 
 // TODO Update modified items in performBatchUpdates
 
-@interface TLIndexPathDataModelUpdates : NSObject
+@interface TLIndexPathUpdates : NSObject
 @property (strong, nonatomic, readonly) TLIndexPathDataModel *oldDataModel;
 @property (strong, nonatomic, readonly) TLIndexPathDataModel *updatedDataModel;
 @property (strong, nonatomic, readonly) NSArray *insertedSectionNames;

@@ -23,7 +23,7 @@
 
 #import "TLInMemoryFetchedResultsController.h"
 #import "TLIndexPathDataModel.h"
-#import "TLIndexPathDataModelUpdates.h"
+#import "TLIndexPathUpdates.h"
 #include <mach/mach.h>
 #include <mach/mach_time.h>
 
@@ -218,7 +218,7 @@ NSString * const TLDataModelControllerChangedNotification = @"TLDataModelControl
                 TLIndexPathDataModel *newModel = [self convertFetchedObjectsToDataModel];
                 
                 //compute the deltas between the old and the new
-                TLIndexPathDataModelUpdates *updates = [[TLIndexPathDataModelUpdates alloc] initWithOldDataModel:oldModel updatedDataModel:newModel];
+                TLIndexPathUpdates *updates = [[TLIndexPathUpdates alloc] initWithOldDataModel:oldModel updatedDataModel:newModel];
                 
                 //we can switch our data model now that we're about to call out to the fine-grained change functions.
                 self.dataModel = newModel;

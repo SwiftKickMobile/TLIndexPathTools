@@ -32,7 +32,7 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
-#import "TLIndexPathDataModelUpdates.h"
+#import "TLIndexPathUpdates.h"
 
 //sent whenever a TLDataModelController changes it's content for any reason
 extern NSString * const TLDataModelControllerChangedNotification;
@@ -42,7 +42,7 @@ extern NSString * const TLDataModelControllerChangedNotification;
 
 @protocol TLInMemoryFetchedResultsControllerDelegate <NSFetchedResultsControllerDelegate>
 @optional
-- (void)controller:(TLInMemoryFetchedResultsController *)controller didChangeContentWithUpdates:(TLIndexPathDataModelUpdates *)updates;
+- (void)controller:(TLInMemoryFetchedResultsController *)controller didChangeContentWithUpdates:(TLIndexPathUpdates *)updates;
 @end
 
 @interface TLInMemoryFetchedResultsController : NSFetchedResultsController <NSFetchedResultsControllerDelegate>

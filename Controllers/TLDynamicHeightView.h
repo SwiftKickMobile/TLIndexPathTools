@@ -22,12 +22,21 @@
 //  THE SOFTWARE.
 
 /**
- Implemented by table view cells (or possibly their subviews) which have
- dynamic, data-driven height.
+ Table view cells (and possibly their subviews) can implement this protocol
+ to have TLTableViewController automatically calculate their dynamic height
+ by calling the `heightWithData:` method on a prototype instance of the cell.
  */
 
 #import <Foundation/Foundation.h>
 
 @protocol TLDynamicHeightView <NSObject>
+
+/**
+ Returns the computed height of the view for the given data.
+ 
+ @param data  data that affects the view's height
+ @return the computed height of the view
+ */
 - (CGFloat) heightWithData:(id)data;
+
 @end

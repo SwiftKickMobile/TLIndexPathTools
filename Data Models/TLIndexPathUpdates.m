@@ -1,5 +1,5 @@
 //
-//  TLIndexPathDataModelUpdates.m
+//  TLIndexPathUpdates.m
 //
 //  Copyright (c) 2013 Tim Moose (http://tractablelabs.com)
 //
@@ -21,9 +21,12 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "TLIndexPathDataModelUpdates.h"
+#import "TLIndexPathUpdates.h"
 
-@implementation TLIndexPathDataModelUpdates
+// TODO need to verify that this works with two data models having different
+// configuration properties
+
+@implementation TLIndexPathUpdates
 
 
 - (id)initWithOldDataModel:(TLIndexPathDataModel *)oldDataModel updatedDataModel:(TLIndexPathDataModel *)updatedDataModel
