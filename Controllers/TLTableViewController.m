@@ -78,6 +78,11 @@
     }
 }
 
+- (NSString *)cellIdentifierAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.dataModel cellIdentifierAtIndexPath:indexPath];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -92,7 +97,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellId = [self.dataModel cellIdentifierAtIndexPath:indexPath];
+    NSString *cellId = [self cellIdentifierAtIndexPath:indexPath];
     if (!cellId) {
         cellId = @"Cell";
     }
@@ -121,23 +126,28 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     id item = [self.dataModel itemAtIndexPath:indexPath];
-    if ([item isKindOfClass:[TLIndexPathItem class]]) {
-        TLIndexPathItem *i = (TLIndexPathItem *)item;
-        if (i.cellIdentifier) {
-            UITableViewCell *cell = [self.prototypeCells objectForKey:i.cellIdentifier];
-            if (!cell) {
-                if (!self.prototypeCells) {
-                    self.prototypeCells = [[NSMutableDictionary alloc] init];
-                }
-                cell = [tableView dequeueReusableCellWithIdentifier:i.cellIdentifier];
-                [self.prototypeCells setObject:cell forKey:i.cellIdentifier];
+    NSString *cellId = [self cellIdentifierAtIndexPath:indexPath];
+    if (cellId) {
+        UITableViewCell *cell = [self.prototypeCells objectForKey:cellId];
+        if (!cell) {
+            if (!self.prototypeCells) {
+                self.prototypeCells = [[NSMutableDictionary alloc] init];
             }
-            if ([cell conformsToProtocol:@protocol(TLDynamicHeightView)]) {
-                id<TLDynamicHeightView> v = (id<TLDynamicHeightView>)cell;
-                return [v heightWithData:i.data];
+            cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+            [self.prototypeCells setObject:cell forKey:cellId];
+        }
+        if ([cell conformsToProtocol:@protocol(TLDynamicHeightView)]) {
+            id<TLDynamicHeightView> v = (id<TLDynamicHeightView>)cell;
+            id data;
+            if ([item isKindOfClass:[TLIndexPathItem class]]) {
+                TLIndexPathItem *i = (TLIndexPathItem *)item;
+                data = i.data;
             } else {
-                return cell.bounds.size.height;
+                data = item;
             }
+            return [v heightWithData:data];
+        } else {
+            return cell.bounds.size.height;
         }
     }
     

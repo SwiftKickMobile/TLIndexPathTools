@@ -10,7 +10,7 @@
 
 #import "TLIndexPathController.h"
 
-@interface TLFetchedResultsController : TLIndexPathController
+@interface TLFetchedResultsController : TLIndexPathController <NSFetchedResultsControllerDelegate>
 
 #pragma mark - Initialization
 
@@ -28,6 +28,8 @@
  */
 - (id)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString *)sectionNameKeyPath identifierKeyPath:(NSString *)identifierKeyPath cacheName:(NSString *)name;
 
+#pragma mark - Fetchingd data
+
 /**
  Calling this method executes the fetch request and causes a new data model to be
  created with the fetch result and any changes propagated to the controller's
@@ -36,7 +38,7 @@
  request's predicate and/or sort descriptors and have the new fetch result be
  propagated as batch changes.
  */
-- (void)performFetch;
+- (BOOL)performFetch:(NSError *__autoreleasing *)error;
 
 #pragma mark - Configuration information
 

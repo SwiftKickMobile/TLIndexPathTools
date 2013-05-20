@@ -63,7 +63,7 @@
     if (![_dataModel isEqual:dataModel]) {
         TLIndexPathDataModel *oldDataModel = _dataModel;
         _dataModel = dataModel;
-        if (self.delegate) {
+        if ([self.delegate respondsToSelector:@selector(controller:didUpdateDataModel:)]) {
             TLIndexPathUpdates *updates = [[TLIndexPathUpdates alloc] initWithOldDataModel:oldDataModel updatedDataModel:dataModel];
             [self.delegate controller:self didUpdateDataModel:updates];
         }

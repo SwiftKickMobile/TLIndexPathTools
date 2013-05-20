@@ -12,6 +12,7 @@
 
 @interface TLTableViewController : UITableViewController <TLIndexPathControllerDelegate>
 @property (strong, nonatomic) TLIndexPathController *indexPathController;
+- (NSString *)cellIdentifierAtIndexPath:(NSIndexPath *)indexPath;
 - (void)configureCell:(UITableViewCell *)cell forIdentifier:(id)identifier andDataModel:(TLIndexPathDataModel *)dataModel;
 - (void)reconfigureVisibleCells;
 @end
