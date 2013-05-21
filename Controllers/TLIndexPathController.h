@@ -11,6 +11,9 @@
 #import "TLIndexPathDataModel.h"
 #import "TLIndexPathUpdates.h"
 
+//sent whenever a TLIndexPathController changes it's content for any reason
+extern NSString * const TLIndexPathControllerChangedNotification;
+
 @class TLIndexPathController;
 
 #pragma mark - TLIndexPathControllerDelegate

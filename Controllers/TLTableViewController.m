@@ -132,8 +132,8 @@
             cell = [tableView dequeueReusableCellWithIdentifier:cellId];
             [self.prototypeCells setObject:cell forKey:cellId];
         }
-        if ([cell conformsToProtocol:@protocol(TLDynamicHeightView)]) {
-            id<TLDynamicHeightView> v = (id<TLDynamicHeightView>)cell;
+        if ([cell conformsToProtocol:@protocol(TLDynamicSizeView)]) {
+            id<TLDynamicSizeView> v = (id<TLDynamicSizeView>)cell;
             id data;
             if ([item isKindOfClass:[TLIndexPathItem class]]) {
                 TLIndexPathItem *i = (TLIndexPathItem *)item;
@@ -141,7 +141,8 @@
             } else {
                 data = item;
             }
-            return [v heightWithData:data];
+            CGSize computedSize = [v sizeWithData:data];
+            return computedSize.height;
         } else {
             return cell.bounds.size.height;
         }

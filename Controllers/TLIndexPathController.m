@@ -10,6 +10,8 @@
 #import "TLIndexPathItem.h"
 #import "TLIndexPathUpdates.h"
 
+NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControllerChangedNotification";
+
 @implementation TLIndexPathController
 
 #pragma mark - Initilization
@@ -67,6 +69,7 @@
             TLIndexPathUpdates *updates = [[TLIndexPathUpdates alloc] initWithOldDataModel:oldDataModel updatedDataModel:dataModel];
             [self.delegate controller:self didUpdateDataModel:updates];
         }
+        [[NSNotificationCenter defaultCenter] postNotificationName:TLIndexPathControllerChangedNotification object:self];
     }
 }
 

@@ -1,5 +1,5 @@
 //
-//  TLTableViewController.h
+//  TLDynamicSizeView.h
 //
 //  Copyright (c) 2013 Tim Moose (http://tractablelabs.com)
 //
@@ -22,21 +22,21 @@
 //  THE SOFTWARE.
 
 /**
- Table view cells (and possibly their subviews) can implement this protocol
- to have TLTableViewController automatically calculate their dynamic height
- by calling the `heightWithData:` method on a prototype instance of the cell.
+ Cells (and possibly their subviews) can implement this protocol
+ to have the view controller automatically calculate their dynamic size
+ by calling the `sizeWithData:` method on a prototype instance of the cell.
  */
 
 #import <Foundation/Foundation.h>
 
-@protocol TLDynamicHeightView <NSObject>
+@protocol TLDynamicSizeView <NSObject>
 
 /**
- Returns the computed height of the view for the given data.
+ Returns the computed size of the view for the given data.
  
- @param data  data that affects the view's height
- @return the computed height of the view
+ @param data  data that affects the view's size
+ @return the computed size of the view
  */
-- (CGFloat) heightWithData:(id)data;
+- (CGSize) sizeWithData:(id)data;
 
 @end
