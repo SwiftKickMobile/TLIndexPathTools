@@ -8,7 +8,7 @@
 
 #import "TLTableViewController.h"
 #import "TLIndexPathItem.h"
-#import "TLDynamicHeightView.h"
+#import "TLDynamicSizeView.h"
 
 @interface TLTableViewController ()
 @property (strong, nonatomic) NSMutableDictionary *prototypeCells;
