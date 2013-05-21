@@ -64,17 +64,15 @@
 
 #pragma mark - Configuration
 
-- (void)configureCell:(UITableViewCell *)cell forIdentifier:(id)identifier andDataModel:(TLIndexPathDataModel *)dataModel
+- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
 }
 
 - (void)reconfigureVisibleCells
 {
-    TLIndexPathDataModel *dataModel = self.dataModel;
     for (UITableViewCell *cell in [self.tableView visibleCells]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        id identifier = [dataModel identifierAtIndexPath:indexPath];
-        [self configureCell:cell forIdentifier:identifier andDataModel:dataModel];
+        [self configureCell:cell atIndexPath:indexPath];
     }
 }
 
@@ -105,8 +103,7 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
     }
-    id identifier = [self.dataModel identifierAtIndexPath:indexPath];
-    [self configureCell:cell forIdentifier:identifier andDataModel:self.dataModel];
+    [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
@@ -114,8 +111,7 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id identifier = [self.dataModel identifierAtIndexPath:indexPath];
-    [self configureCell:cell forIdentifier:identifier andDataModel:self.dataModel];
+    [self configureCell:cell atIndexPath:indexPath];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
