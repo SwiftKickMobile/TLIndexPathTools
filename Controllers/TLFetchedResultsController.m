@@ -13,7 +13,6 @@
 @property (strong, nonatomic) NSLock *batchBarrier;
 @property (strong, nonatomic) NSFetchedResultsController *backingController;
 @property (strong, nonatomic, readonly) NSString *identifierKeyPath;
-@property (nonatomic) BOOL isFetched;
 @end
 
 @implementation TLFetchedResultsController

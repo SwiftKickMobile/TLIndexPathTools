@@ -41,6 +41,15 @@
 - (BOOL)performFetch:(NSError *__autoreleasing *)error;
 
 /**
+ Returns YES if `performFetch:` has ever been called.
+ 
+ This property does not indicate whether the fetched results are fresh or stale.
+ For example, if the `fetchRequest` is modified after `performFetch:` has been
+ called, the `isFetched` property will continue to return YES.
+ */
+@property (nonatomic) BOOL isFetched;
+
+/**
  Determines whether incremental fetch request changes are ignored.
  
  This property can be set to YES to temporarily ignore incremental fetch
