@@ -21,14 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "TLCoreDataCollectionViewController.h"
+#import "TLCoreDataCollectionViewControllerDeprecated.h"
 
-@interface TLCoreDataCollectionViewController ()
+@interface TLCoreDataCollectionViewControllerDeprecated ()
 @property (strong, nonatomic) NSMutableArray *sectionChangeQueue;
 @property (strong, nonatomic) NSMutableArray *objectChangeQueue;
 @end
 
-@implementation TLCoreDataCollectionViewController
+@implementation TLCoreDataCollectionViewControllerDeprecated
 
 - (void)setFetchedResultsController:(NSFetchedResultsController *)fetchedResultsController
 {

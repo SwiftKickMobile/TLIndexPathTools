@@ -28,6 +28,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreData/CoreData.h>
 
-@interface TLCoreDataCollectionViewController : UICollectionViewController <NSFetchedResultsControllerDelegate>
+@interface TLCoreDataCollectionViewControllerDeprecated : UICollectionViewController <NSFetchedResultsControllerDelegate>
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @end

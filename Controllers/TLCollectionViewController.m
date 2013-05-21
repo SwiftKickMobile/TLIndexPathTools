@@ -1,5 +1,5 @@
 //
-//  TLTableViewController.m
+//  TLCollectionViewController.m
 //
 //  Copyright (c) 2013 Tim Moose (http://tractablelabs.com)
 //
@@ -22,21 +22,56 @@
 //  THE SOFTWARE.
 
 #import "TLCollectionViewController.h"
-#import "TLIndexPathDataModelUpdates.h"
 
 @interface TLCollectionViewController ()
-
+@property (strong, nonatomic, readonly) TLIndexPathDataModel *dataModel;
 @end
 
 @implementation TLCollectionViewController
 
-- (void)setDataModel:(TLIndexPathDataModel *)dataModel
+#pragma mark - Initialization
+
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    if (_dataModel != dataModel) {
-        TLIndexPathDataModelUpdates *updates = [[TLIndexPathDataModelUpdates alloc] initWithOldDataModel:_dataModel updatedDataModel:dataModel];
-        _dataModel = dataModel;
-        [updates performBatchUpdatesOnCollectionView:self.collectionView];
+    if (self = [super initWithCoder:aDecoder]) {
+        _indexPathController = [[TLIndexPathController alloc] init];
+        _indexPathController.delegate = self;
     }
+    return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        _indexPathController = [[TLIndexPathController alloc] init];
+        _indexPathController.delegate = self;
+    }
+    return self;
+}
+
+- (id)initWithCollectionViewLayout:(UICollectionViewLayout *)layout
+{
+    if (self = [super initWithCollectionViewLayout:layout]) {
+        _indexPathController = [[TLIndexPathController alloc] init];
+        _indexPathController.delegate = self;
+    }
+    return self;
+}
+
+#pragma mark - Index path controller
+
+- (void)setIndexPathController:(TLIndexPathController *)indexPathController
+{
+    if (_indexPathController != indexPathController) {
+        _indexPathController = indexPathController;
+        _indexPathController.delegate = self;
+        [self.collectionView reloadData];
+    }
+}
+
+- (TLIndexPathDataModel *)dataModel
+{
+    return self.indexPathController.dataModel;
 }
 
 #pragma mark - Configuration
@@ -51,6 +86,11 @@
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
         [self configureCell:cell atIndexPath:indexPath];
     }
+}
+
+- (NSString *)cellIdentifierAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.dataModel cellIdentifierAtIndexPath:indexPath];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -77,6 +117,13 @@
     }
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
+}
+
+#pragma mark - TLIndexPathControllerDelegate
+
+- (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates
+{
+    [updates performBatchUpdatesOnCollectionView:self.collectionView];
 }
 
 @end

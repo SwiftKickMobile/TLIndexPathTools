@@ -1,5 +1,5 @@
 //
-//  TLTableViewController.h
+//  TLCollectionViewController.h
 //
 //  Copyright (c) 2013 Tim Moose (http://tractablelabs.com)
 //
@@ -22,10 +22,12 @@
 //  THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
-#import "TLIndexPathDataModel.h"
 
-@interface TLCollectionViewController : UICollectionViewController
-@property (strong, nonatomic) TLIndexPathDataModel *dataModel;
+#import "TLIndexPathController.h"
+
+@interface TLCollectionViewController : UICollectionViewController <TLIndexPathControllerDelegate>
+@property (strong, nonatomic) TLIndexPathController *indexPathController;
+- (NSString *)cellIdentifierAtIndexPath:(NSIndexPath *)indexPath;
 - (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)reconfigureVisibleCells;
 @end
