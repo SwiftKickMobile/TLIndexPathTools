@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <Group
-      location = "container:"
+      location = "group:TLIndexPathTools"
       name = "TLIndexPathTools">
       <Group
          location = "group:Controllers"
@@ -18,6 +18,34 @@
          </FileRef>
          <FileRef
             location = "group:TLIndexPathController.m">
+         </FileRef>
+      </Group>
+      <Group
+         location = "group:Data Models"
+         name = "Data Models">
+         <FileRef
+            location = "group:TLIndexPathDataModel.h">
+         </FileRef>
+         <FileRef
+            location = "group:TLIndexPathDataModel.m">
+         </FileRef>
+         <FileRef
+            location = "group:TLIndexPathItem.h">
+         </FileRef>
+         <FileRef
+            location = "group:TLIndexPathItem.m">
+         </FileRef>
+         <FileRef
+            location = "group:TLIndexPathUpdates.h">
+         </FileRef>
+         <FileRef
+            location = "group:TLIndexPathUpdates.m">
+         </FileRef>
+         <FileRef
+            location = "group:TLNoResultsTableDataModel.h">
+         </FileRef>
+         <FileRef
+            location = "group:TLNoResultsTableDataModel.m">
          </FileRef>
       </Group>
       <Group
@@ -103,39 +131,11 @@
             location = "group:TLTableViewController.m">
          </FileRef>
       </Group>
-      <Group
-         location = "group:Data Models"
-         name = "Data Models">
-         <FileRef
-            location = "group:TLIndexPathDataModel.h">
-         </FileRef>
-         <FileRef
-            location = "group:TLIndexPathDataModel.m">
-         </FileRef>
-         <FileRef
-            location = "group:TLIndexPathItem.h">
-         </FileRef>
-         <FileRef
-            location = "group:TLIndexPathItem.m">
-         </FileRef>
-         <FileRef
-            location = "group:TLIndexPathUpdates.h">
-         </FileRef>
-         <FileRef
-            location = "group:TLIndexPathUpdates.m">
-         </FileRef>
-         <FileRef
-            location = "group:TLNoResultsTableDataModel.h">
-         </FileRef>
-         <FileRef
-            location = "group:TLNoResultsTableDataModel.m">
-         </FileRef>
-      </Group>
    </Group>
    <FileRef
-      location = "group:Examples/Shuffle Example/Shuffle Example.xcodeproj">
+      location = "group:Examples/Shuffle/Shuffle.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Examples/Settings Example/Settings Example.xcodeproj">
+      location = "group:Examples/Settings/Settings.xcodeproj">
    </FileRef>
 </Workspace>
