@@ -135,4 +135,7 @@
    <FileRef
       location = "group:Examples/Shuffle Example/Shuffle Example.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Examples/Settings Example/Settings Example.xcodeproj">
+   </FileRef>
 </Workspace>
