@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "86C0AEAB16C1BDE5000A6BAA"
-               BuildableName = "Outline Example.app"
-               BlueprintName = "Outline Example"
-               ReferencedContainer = "container:Outline Example.xcodeproj">
+               BlueprintIdentifier = "86B4C840174D251B006E1A83"
+               BuildableName = "Shuffle Example.app"
+               BlueprintName = "Shuffle Example"
+               ReferencedContainer = "container:Shuffle Example.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,10 +32,10 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "86C0AEAB16C1BDE5000A6BAA"
-            BuildableName = "Outline Example.app"
-            BlueprintName = "Outline Example"
-            ReferencedContainer = "container:Outline Example.xcodeproj">
+            BlueprintIdentifier = "86B4C840174D251B006E1A83"
+            BuildableName = "Shuffle Example.app"
+            BlueprintName = "Shuffle Example"
+            ReferencedContainer = "container:Shuffle Example.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -51,10 +51,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "86C0AEAB16C1BDE5000A6BAA"
-            BuildableName = "Outline Example.app"
-            BlueprintName = "Outline Example"
-            ReferencedContainer = "container:Outline Example.xcodeproj">
+            BlueprintIdentifier = "86B4C840174D251B006E1A83"
+            BuildableName = "Shuffle Example.app"
+            BlueprintName = "Shuffle Example"
+            ReferencedContainer = "container:Shuffle Example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -69,10 +69,10 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "86C0AEAB16C1BDE5000A6BAA"
-            BuildableName = "Outline Example.app"
-            BlueprintName = "Outline Example"
-            ReferencedContainer = "container:Outline Example.xcodeproj">
+            BlueprintIdentifier = "86B4C840174D251B006E1A83"
+            BuildableName = "Shuffle Example.app"
+            BlueprintName = "Shuffle Example"
+            ReferencedContainer = "container:Shuffle Example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

@@ -1,8 +1,8 @@
 //
 //  AppDelegate.h
-//  Outline Example
+//  Shuffle Example
 //
-//  Created by Tim Moose on 2/5/13.
+//  Created by Tim Moose on 5/22/13.
 //  Copyright (c) 2013 Tractable Labs. All rights reserved.
 //
 

@@ -1,5 +1,5 @@
 //
-// Prefix header for all source files of the 'Outline Example' target in the 'Outline Example' project
+// Prefix header for all source files of the 'Shuffle Example' target in the 'Shuffle Example' project
 //
 
 #import <Availability.h>
