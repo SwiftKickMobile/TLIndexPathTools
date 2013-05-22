@@ -103,4 +103,43 @@
 
 + (void)deleteCacheWithName:(NSString *)name;
 
+#pragma mark - In-memory filtering and sorting
+
+/**
+ The in-memory predicate.
+ 
+ This optional predicate will be evaluated in-memory against the underlying fetched
+ result. If the controller is already fetched, it is not necessary to call
+ `performFetch:` again after setting this property because the batch updates
+ are processed immediately.
+ */
+@property (strong, nonatomic) NSPredicate *inMemoryPredicate;
+
+/**
+ The in-memory sort descriptors.
+ 
+ These optional sort descriptors will be applied in-memory against the
+ underlying fetched result. If the controller is already fetched, it is not necessary
+ to call `performFetch:` again after setting this property because the batch
+ updates are processed immediately.
+ */
+@property (strong, nonatomic) NSArray *inMemorySortDescriptors;
+
+/**
+ Set the in-memory predicate and sort descriptor
+ 
+ @param inMemoryPredicate
+ @param inMemorySortDescriptors
+
+ This method can be called to set both the in-memory predicate and sort descriptors
+ as a single batch update.
+ */
+- (void)setInMemoryPredicate:(NSPredicate *)inMemoryPredicate andInMemorySortDescriptors:(NSArray *)inMemorySortDescriptors;
+
+/**
+ Returns the underlying core data fetched objects without the application of in-memory
+ filtering or sorting.
+ */
+@property (strong, nonatomic, readonly) NSArray *coreDataFetchedObjects;
+
 @end

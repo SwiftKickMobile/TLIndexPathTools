@@ -57,9 +57,7 @@
 {
     BOOL result = [self.backingController performFetch:error];
     if (result) {
-        NSArray *fetchedItems =  self.backingController.fetchedObjects;
-        TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:fetchedItems andSectionNameKeyPath:self.backingController.sectionNameKeyPath andIdentifierKeyPath:self.identifierKeyPath andCellIdentifierKeyPath:self.dataModel.cellIdentifierKeyPath];
-        self.dataModel = dataModel;
+        self.dataModel = [self convertFetchedObjectsToDataModel];
         self.isFetched = YES;
     }
     return result;
@@ -148,14 +146,57 @@
     }
 }
 
+#pragma mark - In-memory filtering and sorting
+
+- (void)setInMemoryPredicate:(NSPredicate *)inMemoryPredicate
+{
+    [self setInMemoryPredicate:inMemoryPredicate andInMemorySortDescriptors:self.inMemorySortDescriptors];
+}
+
+- (void)setInMemorySortDescriptors:(NSArray *)inMemorySortDescriptors
+{
+    [self setInMemoryPredicate:self.inMemoryPredicate andInMemorySortDescriptors:inMemorySortDescriptors];
+}
+
+- (void)setInMemoryPredicate:(NSPredicate *)inMemoryPredicate andInMemorySortDescriptors:(NSArray *)inMemorySortDescriptors
+{
+    BOOL changed = NO;
+    
+    if (_inMemoryPredicate != inMemoryPredicate) {
+        _inMemoryPredicate = inMemoryPredicate;
+        changed = YES;
+    }
+    
+    if (![_inMemorySortDescriptors isEqualToArray:inMemorySortDescriptors]) {
+        _inMemorySortDescriptors = inMemorySortDescriptors;
+        changed = YES;
+    }
+    if (changed) {
+        self.dataModel = [self convertFetchedObjectsToDataModel];
+    }
+}
+
+
+- (NSArray *)coreDataFetchedObjects
+{
+    return self.backingController.fetchedObjects;
+}
+
+- (TLIndexPathDataModel *)convertFetchedObjectsToDataModel {
+    NSArray *filteredItems = self.inMemoryPredicate ? [self.coreDataFetchedObjects filteredArrayUsingPredicate:self.inMemoryPredicate] : self.coreDataFetchedObjects;
+    NSArray *sortedFilteredItems = self.inMemorySortDescriptors ? [filteredItems sortedArrayUsingDescriptors:self.inMemorySortDescriptors] : filteredItems;
+    return [[TLIndexPathDataModel alloc] initWithItems:sortedFilteredItems
+                                 andSectionNameKeyPath:self.backingController.sectionNameKeyPath
+                                  andIdentifierKeyPath:self.identifierKeyPath
+                              andCellIdentifierKeyPath:self.dataModel.cellIdentifierKeyPath];
+}
+
 #pragma mark - NSFetchedResultsControllerDelegate
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
     if (!self.ignoreIncrementalChanges) {
-        NSArray *fetchedItems =  self.backingController.fetchedObjects;
-        TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:fetchedItems andSectionNameKeyPath:self.backingController.sectionNameKeyPath andIdentifierKeyPath:self.identifierKeyPath andCellIdentifierKeyPath:self.dataModel.cellIdentifierKeyPath];
-        self.dataModel = dataModel;
+        self.dataModel = [self convertFetchedObjectsToDataModel];
     }
 }
 
