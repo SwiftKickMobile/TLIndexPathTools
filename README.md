@@ -6,7 +6,7 @@ of rich, dynamic table and collection views. Some awesome things you can do with
 `TLIndexPathTools` include:
 
 * Automatically calculate and perform animated batch updates
-* Perform animated sorting and filtering operations against an `NSFetchRequest`
+* Perform animated sorting and filtering operations against an array or `NSFetchRequest`
 * Easily manage multiple cell prototypes and/or multiple data types as the data model changes
 
 The central component of `TLIndexPathTools` is the `TLIndexPathController` class. This class
