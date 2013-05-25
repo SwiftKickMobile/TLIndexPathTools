@@ -1,15 +1,15 @@
 TLIndexPathTools
 ================
 
-`TLIndexPathTools` is a set of components designed to greatly simplify the building
+TLIndexPathTools is a set of components designed to greatly simplify the building
 of rich, dynamic table and collection views. Some awesome things you can do with
-`TLIndexPathTools` include:
+TLIndexPathTools include:
 
 * Automatically calculate and perform animated batch updates
 * Perform animated sorting and filtering operations against an array or `NSFetchRequest`
 * Easily manage multiple cell prototypes and/or multiple data types as the data model changes
 
-The central component of `TLIndexPathTools` is the `TLIndexPathController` class. This class
+The central component of TLIndexPathTools is the `TLIndexPathController` class. This class
 is a lot like Core Data's `NSFetchedResultsController` class in that it is responsible
 for tracking a data source and reporting changes to the client. The big difference is that, while
 `TLIndexPathController` does support `NSFetchRequest`, it does not require Core Data at all.
@@ -19,11 +19,17 @@ give the controller a new array of strings (perhaps a filtered or sorted version
 original array) and the table will automatically animate to the new state.
 See the "Shuffle" example project.
 
-`TLIndexPathTools` provides base view controller classes `TLTableViewController` and
-`TLCollectionViewController` for table and collection views, respectively, that implement the
+TLIndexPathTools provides base view controller classes `TLTableViewController` and
+`TLCollectionViewController` (for table and collection views, respectively) that implement the
 essential delegate methods to get you up-and-running as quickly as possible.
 
 Installation
 ------------
 
-TODO
+1. Download the TLIndexPathTools project
+2. Add the TLIndexPathTools sub-folder (sibling of the Examples folder) to your Xcode project.
+3. Link to QuartzCore.framework and CoreData.framework (on the Build Phases tab of your project's target).
+
+Getting Started
+---------------
+ToDo
