@@ -54,8 +54,12 @@
 
 - (NSNumber *)lengthOfCellLabelWithText:(NSString *)text
 {
+    //configure the prototype cell from the storyboard with the given
+    //text and return the label's width
     UITableViewCell *cell = [self prototypeForCellIdentifier:@"Cell"];
     cell.textLabel.text = text;
+    //size the label to fit. Note that the font metrics are defined in the storyboard
+    //so we don't need to hard code any here.
     [cell.textLabel sizeToFit];
     return @(cell.textLabel.bounds.size.width);
 }
