@@ -96,6 +96,24 @@
     return [self.dataModel cellIdentifierAtIndexPath:indexPath];
 }
 
+#pragma mark - Prototypes
+
+- (UITableViewCell *)prototypeForCellIdentifier:(NSString *)cellIdentifier
+{
+    UITableViewCell *cell;
+    if (cellIdentifier) {
+        cell = [self.prototypeCells objectForKey:cellIdentifier];
+        if (!cell) {
+            if (!self.prototypeCells) {
+                self.prototypeCells = [[NSMutableDictionary alloc] init];
+            }
+            cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            [self.prototypeCells setObject:cell forKey:cellIdentifier];
+        }
+    }
+    return cell;
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -139,14 +157,7 @@
     id item = [self.dataModel itemAtIndexPath:indexPath];
     NSString *cellId = [self cellIdentifierAtIndexPath:indexPath];
     if (cellId) {
-        UITableViewCell *cell = [self.prototypeCells objectForKey:cellId];
-        if (!cell) {
-            if (!self.prototypeCells) {
-                self.prototypeCells = [[NSMutableDictionary alloc] init];
-            }
-            cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-            [self.prototypeCells setObject:cell forKey:cellId];
-        }
+        UITableViewCell *cell = [self prototypeForCellIdentifier:cellId];
         if ([cell conformsToProtocol:@protocol(TLDynamicSizeView)]) {
             id<TLDynamicSizeView> v = (id<TLDynamicSizeView>)cell;
             id data;

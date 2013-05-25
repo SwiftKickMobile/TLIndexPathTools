@@ -20,7 +20,6 @@
 		8631AF2C174D321100D1B383 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8631AF2B174D321100D1B383 /* SettingsTableViewController.m */; };
 		8631AF67174D575800D1B383 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8631AF66174D575800D1B383 /* QuartzCore.framework */; };
 		8631AF69174D575E00D1B383 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8631AF68174D575E00D1B383 /* CoreData.framework */; };
-		8631AFD5174D7F5200D1B383 /* TLFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8631AFAF174D7F5200D1B383 /* TLFetchedResultsController.m */; };
 		8631AFD6174D7F5200D1B383 /* TLIndexPathController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8631AFB1174D7F5200D1B383 /* TLIndexPathController.m */; };
 		8631AFD7174D7F5200D1B383 /* TLIndexPathDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8631AFB4174D7F5200D1B383 /* TLIndexPathDataModel.m */; };
 		8631AFD8174D7F5200D1B383 /* TLIndexPathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8631AFB6174D7F5200D1B383 /* TLIndexPathItem.m */; };
@@ -61,8 +60,6 @@
 		8631AF2B174D321100D1B383 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		8631AF66174D575800D1B383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8631AF68174D575E00D1B383 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		8631AFAE174D7F5200D1B383 /* TLFetchedResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLFetchedResultsController.h; sourceTree = "<group>"; };
-		8631AFAF174D7F5200D1B383 /* TLFetchedResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLFetchedResultsController.m; sourceTree = "<group>"; };
 		8631AFB0174D7F5200D1B383 /* TLIndexPathController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathController.h; sourceTree = "<group>"; };
 		8631AFB1174D7F5200D1B383 /* TLIndexPathController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLIndexPathController.m; sourceTree = "<group>"; };
 		8631AFB3174D7F5200D1B383 /* TLIndexPathDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathDataModel.h; sourceTree = "<group>"; };
@@ -189,8 +186,6 @@
 		8631AFAD174D7F5200D1B383 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8631AFAE174D7F5200D1B383 /* TLFetchedResultsController.h */,
-				8631AFAF174D7F5200D1B383 /* TLFetchedResultsController.m */,
 				8631AFB0174D7F5200D1B383 /* TLIndexPathController.h */,
 				8631AFB1174D7F5200D1B383 /* TLIndexPathController.m */,
 			);
@@ -355,7 +350,6 @@
 				8631AF14174D31EE00D1B383 /* main.m in Sources */,
 				8631AF18174D31EE00D1B383 /* AppDelegate.m in Sources */,
 				8631AF2C174D321100D1B383 /* SettingsTableViewController.m in Sources */,
-				8631AFD5174D7F5200D1B383 /* TLFetchedResultsController.m in Sources */,
 				8631AFD6174D7F5200D1B383 /* TLIndexPathController.m in Sources */,
 				8631AFD7174D7F5200D1B383 /* TLIndexPathDataModel.m in Sources */,
 				8631AFD8174D7F5200D1B383 /* TLIndexPathItem.m in Sources */,

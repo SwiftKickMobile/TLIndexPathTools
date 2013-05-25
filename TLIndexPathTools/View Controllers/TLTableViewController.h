@@ -30,4 +30,5 @@
 - (NSString *)cellIdentifierAtIndexPath:(NSIndexPath *)indexPath;
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 - (void)reconfigureVisibleCells;
+- (UITableViewCell *)prototypeForCellIdentifier:(NSString *)cellIdentifier;
 @end

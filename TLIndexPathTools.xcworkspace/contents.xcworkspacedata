@@ -8,12 +8,6 @@
          location = "group:Controllers"
          name = "Controllers">
          <FileRef
-            location = "group:TLFetchedResultsController.h">
-         </FileRef>
-         <FileRef
-            location = "group:TLFetchedResultsController.m">
-         </FileRef>
-         <FileRef
             location = "group:TLIndexPathController.h">
          </FileRef>
          <FileRef
@@ -137,5 +131,8 @@
    </FileRef>
    <FileRef
       location = "group:Examples/Settings/Settings.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/Sort/Sort.xcodeproj">
    </FileRef>
 </Workspace>

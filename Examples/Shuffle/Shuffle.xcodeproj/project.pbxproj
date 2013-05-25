@@ -10,7 +10,6 @@
 		8631AEF7174D29D200D1B383 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8631AEF6174D29D200D1B383 /* CoreData.framework */; };
 		8631AEF9174D29FB00D1B383 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8631AEF8174D29FB00D1B383 /* QuartzCore.framework */; };
 		8631AEFA174D2A0300D1B383 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86B4C848174D251B006E1A83 /* CoreGraphics.framework */; };
-		8631AF9C174D7F4600D1B383 /* TLFetchedResultsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8631AF76174D7F4600D1B383 /* TLFetchedResultsController.m */; };
 		8631AF9D174D7F4600D1B383 /* TLIndexPathController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8631AF78174D7F4600D1B383 /* TLIndexPathController.m */; };
 		8631AF9E174D7F4600D1B383 /* TLIndexPathDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8631AF7B174D7F4600D1B383 /* TLIndexPathDataModel.m */; };
 		8631AF9F174D7F4600D1B383 /* TLIndexPathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8631AF7D174D7F4600D1B383 /* TLIndexPathItem.m */; };
@@ -41,8 +40,6 @@
 /* Begin PBXFileReference section */
 		8631AEF6174D29D200D1B383 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8631AEF8174D29FB00D1B383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		8631AF75174D7F4600D1B383 /* TLFetchedResultsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLFetchedResultsController.h; sourceTree = "<group>"; };
-		8631AF76174D7F4600D1B383 /* TLFetchedResultsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLFetchedResultsController.m; sourceTree = "<group>"; };
 		8631AF77174D7F4600D1B383 /* TLIndexPathController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathController.h; sourceTree = "<group>"; };
 		8631AF78174D7F4600D1B383 /* TLIndexPathController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLIndexPathController.m; sourceTree = "<group>"; };
 		8631AF7A174D7F4600D1B383 /* TLIndexPathDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathDataModel.h; sourceTree = "<group>"; };
@@ -123,8 +120,6 @@
 		8631AF74174D7F4600D1B383 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8631AF75174D7F4600D1B383 /* TLFetchedResultsController.h */,
-				8631AF76174D7F4600D1B383 /* TLFetchedResultsController.m */,
 				8631AF77174D7F4600D1B383 /* TLIndexPathController.h */,
 				8631AF78174D7F4600D1B383 /* TLIndexPathController.m */,
 			);
@@ -245,8 +240,7 @@
 				868CBEA0174D268C00478E49 /* ShuffleTableViewController.m */,
 				86B4C84B174D251B006E1A83 /* Supporting Files */,
 			);
-			name = Shuffle;
-			path = "Shuffle";
+			path = Shuffle;
 			sourceTree = "<group>";
 		};
 		86B4C84B174D251B006E1A83 /* Supporting Files */ = {
@@ -279,7 +273,7 @@
 			dependencies = (
 			);
 			name = Shuffle;
-			productName = "Shuffle";
+			productName = Shuffle;
 			productReference = 86B4C841174D251B006E1A83 /* Shuffle.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -332,7 +326,6 @@
 				86B4C851174D251B006E1A83 /* main.m in Sources */,
 				86B4C855174D251B006E1A83 /* AppDelegate.m in Sources */,
 				868CBEA1174D268C00478E49 /* ShuffleTableViewController.m in Sources */,
-				8631AF9C174D7F4600D1B383 /* TLFetchedResultsController.m in Sources */,
 				8631AF9D174D7F4600D1B383 /* TLIndexPathController.m in Sources */,
 				8631AF9E174D7F4600D1B383 /* TLIndexPathDataModel.m in Sources */,
 				8631AF9F174D7F4600D1B383 /* TLIndexPathItem.m in Sources */,
