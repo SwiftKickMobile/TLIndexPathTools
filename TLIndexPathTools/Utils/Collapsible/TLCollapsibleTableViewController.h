@@ -1,5 +1,5 @@
 //
-//  TLIndexPathSectionInfo.h
+//  TLCollapsibleTableViewController.h
 //
 //  Copyright (c) 2013 Tim Moose (http://tractablelabs.com)
 //
@@ -21,14 +21,35 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "TLTableViewController.h"
+#import "TLCollapsibleDataModel.h"
+#import "TLCollapsibleHeaderView.h"
 
-@interface TLIndexPathSectionInfo : NSObject <NSFetchedResultsSectionInfo>
-@property (nonatomic, readonly) NSString *name;
-@property (nonatomic, readonly) NSString *indexTitle;
-@property (nonatomic, readonly) NSUInteger numberOfObjects;
-@property (nonatomic, readonly) NSArray *objects;
-- (instancetype)initWithItems:(NSArray *)items andName:(NSString *)name;
-- (instancetype)initWithItems:(NSArray *)items andName:(NSString *)name andIndexTitle:(NSString *)indexTitle;
+@class TLCollapsibleTableViewController;
+
+@protocol TLCollapsibleTableViewControllerDelegate <NSObject>
+@optional
+- (void)controller:(TLCollapsibleTableViewController *)controller didChangeSection:(NSInteger)section collapsed:(BOOL)collapsed;
+@end
+
+@interface TLCollapsibleTableViewController : TLTableViewController
+
+@property (weak, nonatomic) id<TLCollapsibleTableViewControllerDelegate>delegate;
+
+/**
+ A type-safe shortcut for getting and setting the collapsible data model on the
+ underlying index path controller.
+ */
+@property (strong, nonatomic) TLCollapsibleDataModel *dataModel;
+
+/**
+ If YES, exanding a section collapses all other sections. The default value of NO
+ is recommended for better overall usability.
+ */
+@property (nonatomic) BOOL singleExpandedSection;
+
+/**
+ */
+- (void)configureHeaderView:(TLCollapsibleHeaderView *)headerView forSection:(NSInteger)section;
+
 @end

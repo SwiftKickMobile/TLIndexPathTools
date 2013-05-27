@@ -26,6 +26,11 @@
 
 @implementation TLIndexPathSectionInfo
 
+- (instancetype)initWithItems:(NSArray *)items andName:(NSString *)name
+{
+    return [self initWithItems:items andName:name andIndexTitle:name];
+}
+
 - (instancetype)initWithItems:(NSArray *)items andName:(NSString *)name andIndexTitle:(NSString *)indexTitle
 {
     if (self = [super init]) {

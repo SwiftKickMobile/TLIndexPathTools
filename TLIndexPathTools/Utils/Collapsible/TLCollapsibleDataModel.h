@@ -1,5 +1,5 @@
 //
-//  TLIndexPathSectionInfo.h
+//  TLCollapsibleDataModel.h
 //
 //  Copyright (c) 2013 Tim Moose (http://tractablelabs.com)
 //
@@ -21,14 +21,11 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "TLIndexPathDataModel.h"
 
-@interface TLIndexPathSectionInfo : NSObject <NSFetchedResultsSectionInfo>
-@property (nonatomic, readonly) NSString *name;
-@property (nonatomic, readonly) NSString *indexTitle;
-@property (nonatomic, readonly) NSUInteger numberOfObjects;
-@property (nonatomic, readonly) NSArray *objects;
-- (instancetype)initWithItems:(NSArray *)items andName:(NSString *)name;
-- (instancetype)initWithItems:(NSArray *)items andName:(NSString *)name andIndexTitle:(NSString *)indexTitle;
+@interface TLCollapsibleDataModel : TLIndexPathDataModel
+@property (copy, nonatomic, readonly) NSArray *collapsedSectionNames;
+@property (strong, nonatomic, readonly) TLIndexPathDataModel *backingDataModel;
+- (BOOL)isSectionCollapsed:(NSInteger)section;
+- (id)initWithBackingDataModel:(TLIndexPathDataModel *)backingDataModel collapsedSectionNames:(NSArray *)collapsedSectionNames;
 @end

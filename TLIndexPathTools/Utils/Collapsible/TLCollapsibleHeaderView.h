@@ -1,5 +1,5 @@
 //
-//  TLIndexPathSectionInfo.h
+//  TLCollapsibleHeaderView.h
 //
 //  Copyright (c) 2013 Tim Moose (http://tractablelabs.com)
 //
@@ -21,14 +21,14 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import <UIKit/UIKit.h>
 
-@interface TLIndexPathSectionInfo : NSObject <NSFetchedResultsSectionInfo>
-@property (nonatomic, readonly) NSString *name;
-@property (nonatomic, readonly) NSString *indexTitle;
-@property (nonatomic, readonly) NSUInteger numberOfObjects;
-@property (nonatomic, readonly) NSArray *objects;
-- (instancetype)initWithItems:(NSArray *)items andName:(NSString *)name;
-- (instancetype)initWithItems:(NSArray *)items andName:(NSString *)name andIndexTitle:(NSString *)indexTitle;
+@interface TLCollapsibleHeaderView : UIView
+@property (nonatomic) UIEdgeInsets contentInsets;
+@property (strong, nonatomic) UIColor *separatorColor;
+@property (strong, nonatomic) UIImageView *iconView;
+@property (strong, nonatomic, readonly) UILabel *titleLabel;
+@property (strong, nonatomic) UIView *backgroundView;
+@property (nonatomic, readonly) NSInteger section;
+- (id)initWithFrame:(CGRect)frame andSection:(NSInteger)section;
 @end

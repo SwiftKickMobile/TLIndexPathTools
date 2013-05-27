@@ -93,7 +93,11 @@
 
 - (NSString *)cellIdentifierAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.dataModel cellIdentifierAtIndexPath:indexPath];
+    NSString *cellId = [self.dataModel cellIdentifierAtIndexPath:indexPath];
+    if (!cellId) {
+        cellId = @"Cell";
+    }
+    return cellId;
 }
 
 #pragma mark - Prototypes
@@ -129,9 +133,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *cellId = [self cellIdentifierAtIndexPath:indexPath];
-    if (!cellId) {
-        cellId = @"Cell";
-    }
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];

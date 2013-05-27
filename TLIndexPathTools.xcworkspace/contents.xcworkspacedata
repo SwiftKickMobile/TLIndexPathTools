@@ -52,6 +52,28 @@
          location = "group:Utils"
          name = "Utils">
          <Group
+            location = "group:Collapsible"
+            name = "Collapsible">
+            <FileRef
+               location = "group:TLCollapsibleDataModel.h">
+            </FileRef>
+            <FileRef
+               location = "group:TLCollapsibleDataModel.m">
+            </FileRef>
+            <FileRef
+               location = "group:TLCollapsibleHeaderView.h">
+            </FileRef>
+            <FileRef
+               location = "group:TLCollapsibleHeaderView.m">
+            </FileRef>
+            <FileRef
+               location = "group:TLCollapsibleTableViewController.h">
+            </FileRef>
+            <FileRef
+               location = "group:TLCollapsibleTableViewController.m">
+            </FileRef>
+         </Group>
+         <Group
             location = "group:Grid"
             name = "Grid">
             <Group
@@ -137,6 +159,9 @@
    </FileRef>
    <FileRef
       location = "group:Examples/Settings/Settings.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/Collapse/Collapse.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Examples/Sort/Sort.xcodeproj">

@@ -36,6 +36,9 @@
 		86B4C85B174D251B006E1A83 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86B4C85A174D251B006E1A83 /* Default-568h@2x.png */; };
 		86B4C85E174D251B006E1A83 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B4C85C174D251B006E1A83 /* MainStoryboard.storyboard */; };
 		86C841231753173C0051BB48 /* TLIndexPathSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C841221753173C0051BB48 /* TLIndexPathSectionInfo.m */; };
+		86C841AA1754133D0051BB48 /* TLCollapsibleDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C841A51754133D0051BB48 /* TLCollapsibleDataModel.m */; };
+		86C841AB1754133D0051BB48 /* TLCollapsibleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C841A71754133D0051BB48 /* TLCollapsibleHeaderView.m */; };
+		86C841AC1754133D0051BB48 /* TLCollapsibleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C841A91754133D0051BB48 /* TLCollapsibleTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,6 +93,12 @@
 		86B4C85D174D251B006E1A83 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		86C841211753173C0051BB48 /* TLIndexPathSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathSectionInfo.h; sourceTree = "<group>"; };
 		86C841221753173C0051BB48 /* TLIndexPathSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLIndexPathSectionInfo.m; sourceTree = "<group>"; };
+		86C841A41754133D0051BB48 /* TLCollapsibleDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollapsibleDataModel.h; sourceTree = "<group>"; };
+		86C841A51754133D0051BB48 /* TLCollapsibleDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollapsibleDataModel.m; sourceTree = "<group>"; };
+		86C841A61754133D0051BB48 /* TLCollapsibleHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollapsibleHeaderView.h; sourceTree = "<group>"; };
+		86C841A71754133D0051BB48 /* TLCollapsibleHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollapsibleHeaderView.m; sourceTree = "<group>"; };
+		86C841A81754133D0051BB48 /* TLCollapsibleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollapsibleTableViewController.h; sourceTree = "<group>"; };
+		86C841A91754133D0051BB48 /* TLCollapsibleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollapsibleTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +158,7 @@
 		8631AF82174D7F4600D1B383 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				86C841A31754133D0051BB48 /* Collapsible */,
 				8631AF83174D7F4600D1B383 /* Grid */,
 				8631AF94174D7F4600D1B383 /* TLDynamicSizeView.h */,
 				8631AF95174D7F4600D1B383 /* TLLayerDelegate.h */,
@@ -262,6 +272,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		86C841A31754133D0051BB48 /* Collapsible */ = {
+			isa = PBXGroup;
+			children = (
+				86C841A41754133D0051BB48 /* TLCollapsibleDataModel.h */,
+				86C841A51754133D0051BB48 /* TLCollapsibleDataModel.m */,
+				86C841A61754133D0051BB48 /* TLCollapsibleHeaderView.h */,
+				86C841A71754133D0051BB48 /* TLCollapsibleHeaderView.m */,
+				86C841A81754133D0051BB48 /* TLCollapsibleTableViewController.h */,
+				86C841A91754133D0051BB48 /* TLCollapsibleTableViewController.m */,
+			);
+			path = Collapsible;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -347,6 +370,9 @@
 				8631AFAA174D7F4600D1B383 /* TLCollectionViewController.m in Sources */,
 				8631AFAB174D7F4600D1B383 /* TLTableViewController.m in Sources */,
 				86C841231753173C0051BB48 /* TLIndexPathSectionInfo.m in Sources */,
+				86C841AA1754133D0051BB48 /* TLCollapsibleDataModel.m in Sources */,
+				86C841AB1754133D0051BB48 /* TLCollapsibleHeaderView.m in Sources */,
+				86C841AC1754133D0051BB48 /* TLCollapsibleTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
