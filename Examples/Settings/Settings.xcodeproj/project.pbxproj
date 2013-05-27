@@ -39,6 +39,7 @@
 		8631AFEB174D83D900D1B383 /* gear_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8631AFE7174D83D900D1B383 /* gear_press@2x.png */; };
 		8631AFEC174D83D900D1B383 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 8631AFE8174D83D900D1B383 /* gear.png */; };
 		8631AFED174D83D900D1B383 /* gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8631AFE9174D83D900D1B383 /* gear@2x.png */; };
+		86C84126175317480051BB48 /* TLIndexPathSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C84125175317480051BB48 /* TLIndexPathSectionInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -95,6 +96,8 @@
 		8631AFE7174D83D900D1B383 /* gear_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear_press@2x.png"; sourceTree = "<group>"; };
 		8631AFE8174D83D900D1B383 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
 		8631AFE9174D83D900D1B383 /* gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear@2x.png"; sourceTree = "<group>"; };
+		86C84124175317480051BB48 /* TLIndexPathSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathSectionInfo.h; sourceTree = "<group>"; };
+		86C84125175317480051BB48 /* TLIndexPathSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLIndexPathSectionInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -195,6 +198,8 @@
 		8631AFB2174D7F5200D1B383 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				86C84124175317480051BB48 /* TLIndexPathSectionInfo.h */,
+				86C84125175317480051BB48 /* TLIndexPathSectionInfo.m */,
 				8631AFB3174D7F5200D1B383 /* TLIndexPathDataModel.h */,
 				8631AFB4174D7F5200D1B383 /* TLIndexPathDataModel.m */,
 				8631AFB5174D7F5200D1B383 /* TLIndexPathItem.h */,
@@ -365,6 +370,7 @@
 				8631AFE2174D7F5200D1B383 /* TLLayerDelegate.m in Sources */,
 				8631AFE3174D7F5200D1B383 /* TLCollectionViewController.m in Sources */,
 				8631AFE4174D7F5200D1B383 /* TLTableViewController.m in Sources */,
+				86C84126175317480051BB48 /* TLIndexPathSectionInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

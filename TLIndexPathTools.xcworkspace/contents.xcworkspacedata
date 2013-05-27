@@ -30,6 +30,12 @@
             location = "group:TLIndexPathItem.m">
          </FileRef>
          <FileRef
+            location = "group:TLIndexPathSectionInfo.h">
+         </FileRef>
+         <FileRef
+            location = "group:TLIndexPathSectionInfo.m">
+         </FileRef>
+         <FileRef
             location = "group:TLIndexPathUpdates.h">
          </FileRef>
          <FileRef

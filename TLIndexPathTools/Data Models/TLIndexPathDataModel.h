@@ -56,4 +56,6 @@ extern NSString * TLIndexPathDataModelNilSectionName;
 - (id)initWithItems:(NSArray *)items andSectionNameKeyPath:(NSString *)sectionNameKeyPath andIdentifierKeyPath:(NSString *)identifierKeyPath;
 - (id)initWithItems:(NSArray *)items andSectionNameKeyPath:(NSString *)sectionNameKeyPath andIdentifierKeyPath:(NSString *)identifierKeyPath andCellIdentifierKeyPath:(NSString *)cellIdentifierKeyPath;
 - (id)initWithIndexPathItems:(NSArray *)items;
+- (id)initWithSectionInfos:(NSArray *)sectionInfos andIdentifierKeyPath:(NSString *)identifierKeyPath andCellIdentifierKeyPath:(NSString *)cellIdentifierKeyPath;
+- (id)initWithIndexPathItemSectionInfos:(NSArray *)sectionInfos;
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86C841291753175B0051BB48 /* TLIndexPathSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C841281753175B0051BB48 /* TLIndexPathSectionInfo.m */; };
 		86CCA0C9175105C800360297 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86CCA0C8175105C800360297 /* UIKit.framework */; };
 		86CCA0CB175105C800360297 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86CCA0CA175105C800360297 /* Foundation.framework */; };
 		86CCA0CD175105C800360297 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86CCA0CC175105C800360297 /* CoreGraphics.framework */; };
@@ -38,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		86C841271753175B0051BB48 /* TLIndexPathSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathSectionInfo.h; sourceTree = "<group>"; };
+		86C841281753175B0051BB48 /* TLIndexPathSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLIndexPathSectionInfo.m; sourceTree = "<group>"; };
 		86CCA0C5175105C800360297 /* Sort.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sort.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86CCA0C8175105C800360297 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		86CCA0CA175105C800360297 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -186,6 +189,8 @@
 		86CCA0F8175106C800360297 /* Data Models */ = {
 			isa = PBXGroup;
 			children = (
+				86C841271753175B0051BB48 /* TLIndexPathSectionInfo.h */,
+				86C841281753175B0051BB48 /* TLIndexPathSectionInfo.m */,
 				86CCA0F9175106C800360297 /* TLIndexPathDataModel.h */,
 				86CCA0FA175106C800360297 /* TLIndexPathDataModel.m */,
 				86CCA0FB175106C800360297 /* TLIndexPathItem.h */,
@@ -341,6 +346,7 @@
 				86CCA127175106C800360297 /* TLLayerDelegate.m in Sources */,
 				86CCA128175106C800360297 /* TLCollectionViewController.m in Sources */,
 				86CCA129175106C800360297 /* TLTableViewController.m in Sources */,
+				86C841291753175B0051BB48 /* TLIndexPathSectionInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
