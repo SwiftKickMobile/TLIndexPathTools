@@ -142,21 +142,21 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
         id identifier = [TLIndexPathDataModel identifierForItem:item andIdentifierKeyPath:identifierKeyPath];
         if (!identifier || [itemsByIdentifier objectForKey:identifier]) continue;
         NSString *sectionName = [TLIndexPathDataModel sectionNameForItem:item andSectionNameKeyPath:sectionNameKeyPath];
-        NSMutableArray *items = [itemsBySectionName objectForKey:sectionName];
-        if (!items) {
-            items = [NSMutableArray array];
-            [itemsBySectionName setObject:items forKey:sectionName];
+        NSMutableArray *sectionItems = [itemsBySectionName objectForKey:sectionName];
+        if (!sectionItems) {
+            sectionItems = [NSMutableArray array];
+            [itemsBySectionName setObject:sectionItems forKey:sectionName];
             [sectionNames addObject:sectionName];
         }
-        [items addObject:item];
+        [sectionItems addObject:item];
         [itemsByIdentifier setObject:item forKey:identifier];
     }
     
     //create section infos
     NSMutableArray *sectionInfos = [NSMutableArray arrayWithCapacity:sectionNames.count];
     for (NSString *sectionName in sectionNames) {
-        NSArray *items = [itemsBySectionName objectForKey:sectionName];
-        TLIndexPathSectionInfo *sectionInfo = [[TLIndexPathSectionInfo alloc] initWithItems:items andName:sectionName andIndexTitle:sectionName];
+        NSArray *sectionItems = [itemsBySectionName objectForKey:sectionName];
+        TLIndexPathSectionInfo *sectionInfo = [[TLIndexPathSectionInfo alloc] initWithItems:sectionItems andName:sectionName andIndexTitle:sectionName];
         [sectionInfos addObject:sectionInfo];
     }
     
