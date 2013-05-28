@@ -9,6 +9,5 @@
 #import "TLCollapsibleTableViewController.h"
 
 @interface CollapseTableViewController : TLCollapsibleTableViewController
-
 - (IBAction)toggleSingleSectionExpanded:(UISwitch *)sender;
 @end

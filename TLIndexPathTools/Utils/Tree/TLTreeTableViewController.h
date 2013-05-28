@@ -1,5 +1,5 @@
 //
-//  TLCollapsibleDataModel.h
+//  TLTreeTableViewController.h
 //
 //  Copyright (c) 2013 Tim Moose (http://tractablelabs.com)
 //
@@ -21,11 +21,25 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "TLIndexPathDataModel.h"
+#import "TLTableViewController.h"
+#import "TLTreeDataModel.h"
+#import "TLIndexPathTreeItem.h"
 
-@interface TLCollapsibleDataModel : TLIndexPathDataModel
-@property (copy, nonatomic, readonly) NSSet *collapsedSectionNames;
-@property (strong, nonatomic, readonly) TLIndexPathDataModel *backingDataModel;
-- (BOOL)isSectionCollapsed:(NSInteger)section;
-- (id)initWithBackingDataModel:(TLIndexPathDataModel *)backingDataModel collapsedSectionNames:(NSSet *)collapsedSectionNames;
+@class TLTreeTableViewController;
+
+@protocol TLTreeTableViewControllerDelegate <NSObject>
+@optional
+- (void)controller:(TLTreeTableViewController *)controller didChangeNode:(TLIndexPathTreeItem *)treeItem collapsed:(BOOL)collapsed;
+@end
+
+@interface TLTreeTableViewController : TLTableViewController
+
+@property (weak, nonatomic) id<TLTreeTableViewControllerDelegate>delegate;
+
+/**
+ A type-safe shortcut for getting and setting the tree data model on the
+ underlying index path controller.
+ */
+@property (strong, nonatomic) TLTreeDataModel *dataModel;
+
 @end

@@ -1,5 +1,5 @@
 //
-//  TLCollapsibleDataModel.h
+//  TLTreeDataModel.m
 //
 //  Copyright (c) 2013 Tim Moose (http://tractablelabs.com)
 //
@@ -21,11 +21,34 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
-#import "TLIndexPathDataModel.h"
+#import "TLTreeDataModel.h"
+#import "TLIndexPathTreeItem.h"
 
-@interface TLCollapsibleDataModel : TLIndexPathDataModel
-@property (copy, nonatomic, readonly) NSSet *collapsedSectionNames;
-@property (strong, nonatomic, readonly) TLIndexPathDataModel *backingDataModel;
-- (BOOL)isSectionCollapsed:(NSInteger)section;
-- (id)initWithBackingDataModel:(TLIndexPathDataModel *)backingDataModel collapsedSectionNames:(NSSet *)collapsedSectionNames;
+@implementation TLTreeDataModel
+
+- (instancetype)initWithTreeItems:(NSArray *)treeItems collapsedNodeIdentifiers:(NSSet *)collapsedNodeIdentifiers
+{
+    NSMutableArray *items = [NSMutableArray array];
+    for (TLIndexPathTreeItem *item in treeItems) {
+        [self flattenTreeItem:item intoArray:items withCollapsedNodeIdentifiers:collapsedNodeIdentifiers];
+    }
+    if (self = [super initWithIndexPathItems:items]) {
+        _collapsedNodeIdentifiers = collapsedNodeIdentifiers;
+        _treeItems = treeItems;
+    }
+    return self;
+}
+
+- (void)flattenTreeItem:(TLIndexPathTreeItem *)item intoArray:(NSMutableArray *)items withCollapsedNodeIdentifiers:(NSSet *)collapsedNodeIdentifiers
+{
+    if (item) {
+        [items addObject:item];
+        if (![collapsedNodeIdentifiers containsObject:item.identifier]) {
+            for (TLIndexPathTreeItem *childItem in item.childItems) {
+                [self flattenTreeItem:childItem intoArray:items withCollapsedNodeIdentifiers:collapsedNodeIdentifiers];
+            }
+        }
+    }
+}
+
 @end

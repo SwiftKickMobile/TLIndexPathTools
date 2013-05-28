@@ -28,7 +28,7 @@
 
 #pragma mark - Initialization
 
-- (id)initWithBackingDataModel:(TLIndexPathDataModel *)backingDataModel collapsedSectionNames:(NSArray *)collapsedSectionNames
+- (id)initWithBackingDataModel:(TLIndexPathDataModel *)backingDataModel collapsedSectionNames:(NSSet *)collapsedSectionNames
 {
     NSMutableArray *sectionInfos = [NSMutableArray arrayWithCapacity:backingDataModel.numberOfSections];
     for (id<NSFetchedResultsSectionInfo>backingSectionInfo in backingDataModel.sections) {

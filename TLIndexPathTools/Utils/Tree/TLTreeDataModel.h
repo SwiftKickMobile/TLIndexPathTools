@@ -1,5 +1,5 @@
 //
-//  TLCollapsibleDataModel.h
+//  TLTreeDataModel.h
 //
 //  Copyright (c) 2013 Tim Moose (http://tractablelabs.com)
 //
@@ -23,9 +23,8 @@
 
 #import "TLIndexPathDataModel.h"
 
-@interface TLCollapsibleDataModel : TLIndexPathDataModel
-@property (copy, nonatomic, readonly) NSSet *collapsedSectionNames;
-@property (strong, nonatomic, readonly) TLIndexPathDataModel *backingDataModel;
-- (BOOL)isSectionCollapsed:(NSInteger)section;
-- (id)initWithBackingDataModel:(TLIndexPathDataModel *)backingDataModel collapsedSectionNames:(NSSet *)collapsedSectionNames;
+@interface TLTreeDataModel : TLIndexPathDataModel
+@property (copy, nonatomic, readonly) NSSet *collapsedNodeIdentifiers;
+@property (copy, nonatomic, readonly) NSArray *treeItems;
+- (instancetype)initWithTreeItems:(NSArray *)treeItems collapsedNodeIdentifiers:(NSSet *)collapsedNodeIdentifiers;
 @end

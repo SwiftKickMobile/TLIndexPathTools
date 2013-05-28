@@ -136,6 +136,34 @@
          <FileRef
             location = "group:TLLayerDelegate.m">
          </FileRef>
+         <Group
+            location = "group:Tree"
+            name = "Tree">
+            <FileRef
+               location = "group:TLIndexPathTreeItem.h">
+            </FileRef>
+            <FileRef
+               location = "group:TLIndexPathTreeItem.m">
+            </FileRef>
+            <FileRef
+               location = "group:TLTreeDataModel.h">
+            </FileRef>
+            <FileRef
+               location = "group:TLTreeDataModel.m">
+            </FileRef>
+            <FileRef
+               location = "group:TLTreeTableViewController.h">
+            </FileRef>
+            <FileRef
+               location = "group:TLTreeTableViewController.m">
+            </FileRef>
+         </Group>
+         <FileRef
+            location = "group:UITableViewController+ScrollOptimizer.h">
+         </FileRef>
+         <FileRef
+            location = "group:UITableViewController+ScrollOptimizer.m">
+         </FileRef>
       </Group>
       <Group
          location = "group:View Controllers"
@@ -165,5 +193,8 @@
    </FileRef>
    <FileRef
       location = "group:Examples/Sort/Sort.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/Outline/Outline.xcodeproj">
    </FileRef>
 </Workspace>
