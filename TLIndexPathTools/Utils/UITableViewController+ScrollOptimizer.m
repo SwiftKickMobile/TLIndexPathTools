@@ -12,7 +12,6 @@
 
 - (void)optimizeScrollPositionForSection:(NSInteger)section headerView:(UIView *)headerView dataModel:(TLIndexPathDataModel *)dataModel animated:(BOOL)animated
 {
-    return;
     // TODO Why is headerViewForSection: returning nil??? Shouldn't need to pass it in
     //    UIView *headerView = [self.tableView headerViewForSection:section];
     //    if (!headerView) {

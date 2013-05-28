@@ -67,14 +67,15 @@
     if ([self.delegate respondsToSelector:@selector(controller:didChangeNode:collapsed:)]) {
         [self.delegate controller:self didChangeNode:item collapsed:collapsed];
     }
-    
-    if (!collapsed) {
-        UIView *headerView = [tableView cellForRowAtIndexPath:indexPath];
-        [self optimizeScrollPositionForSection:indexPath.section
-                                    headerView:headerView
-                                     dataModel:self.dataModel
-                                      animated:YES];
-    }
+
+//TODO redesign scroll optimizer to work with tree controller
+//    if (!collapsed) {
+//        UIView *headerView = [tableView cellForRowAtIndexPath:indexPath];
+//        [self optimizeScrollPositionForSection:indexPath.section
+//                                    headerView:headerView
+//                                     dataModel:self.dataModel
+//                                      animated:YES];
+//    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
