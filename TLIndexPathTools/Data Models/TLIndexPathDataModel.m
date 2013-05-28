@@ -263,10 +263,8 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
     NSString *sectionName;
     if (sectionNameKeyPath) {
         sectionName = [item valueForKeyPath:sectionNameKeyPath];
-    } else {
-        sectionName = [TLIndexPathDataModelNilSectionName copy];
     }
-    return sectionName;
+    return sectionName ? sectionName : [TLIndexPathDataModelNilSectionName copy];
 }
 
 @end
