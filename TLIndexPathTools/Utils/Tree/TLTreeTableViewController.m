@@ -65,7 +65,7 @@
                                        collapsedNodeIdentifiers:collapsedNodeIdentifiers];
     
     if ([self.delegate respondsToSelector:@selector(controller:didChangeNode:collapsed:)]) {
-        [self.delegate controller:self didChangeNode:item.identifier collapsed:collapsed];
+        [self.delegate controller:self didChangeNode:item collapsed:collapsed];
     }
     
     if (!collapsed) {
