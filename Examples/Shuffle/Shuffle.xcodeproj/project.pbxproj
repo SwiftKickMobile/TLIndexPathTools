@@ -33,7 +33,7 @@
 		86387863175486BD0070FD6F /* UITableViewController+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 86387849175486BD0070FD6F /* UITableViewController+ScrollOptimizer.m */; };
 		86387864175486BD0070FD6F /* TLCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8638784C175486BD0070FD6F /* TLCollectionViewController.m */; };
 		86387865175486BD0070FD6F /* TLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8638784E175486BD0070FD6F /* TLTableViewController.m */; };
-		868CBEA1174D268C00478E49 /* ShuffleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 868CBEA0174D268C00478E49 /* ShuffleTableViewController.m */; };
+		86387B8C1756B1550070FD6F /* ShuffleCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86387B8B1756B1550070FD6F /* ShuffleCollectionViewController.m */; };
 		86B4C845174D251B006E1A83 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86B4C844174D251B006E1A83 /* UIKit.framework */; };
 		86B4C847174D251B006E1A83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86B4C846174D251B006E1A83 /* Foundation.framework */; };
 		86B4C84F174D251B006E1A83 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86B4C84D174D251B006E1A83 /* InfoPlist.strings */; };
@@ -95,8 +95,8 @@
 		8638784C175486BD0070FD6F /* TLCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewController.m; sourceTree = "<group>"; };
 		8638784D175486BD0070FD6F /* TLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewController.h; sourceTree = "<group>"; };
 		8638784E175486BD0070FD6F /* TLTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableViewController.m; sourceTree = "<group>"; };
-		868CBE9F174D268C00478E49 /* ShuffleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuffleTableViewController.h; sourceTree = "<group>"; };
-		868CBEA0174D268C00478E49 /* ShuffleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuffleTableViewController.m; sourceTree = "<group>"; };
+		86387B8A1756B1550070FD6F /* ShuffleCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuffleCollectionViewController.h; sourceTree = "<group>"; };
+		86387B8B1756B1550070FD6F /* ShuffleCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuffleCollectionViewController.m; sourceTree = "<group>"; };
 		86B4C841174D251B006E1A83 /* Shuffle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Shuffle.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86B4C844174D251B006E1A83 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		86B4C846174D251B006E1A83 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -292,9 +292,9 @@
 				86B4C853174D251B006E1A83 /* AppDelegate.h */,
 				86B4C854174D251B006E1A83 /* AppDelegate.m */,
 				86B4C85C174D251B006E1A83 /* MainStoryboard.storyboard */,
-				868CBE9F174D268C00478E49 /* ShuffleTableViewController.h */,
-				868CBEA0174D268C00478E49 /* ShuffleTableViewController.m */,
 				86B4C84B174D251B006E1A83 /* Supporting Files */,
+				86387B8A1756B1550070FD6F /* ShuffleCollectionViewController.h */,
+				86387B8B1756B1550070FD6F /* ShuffleCollectionViewController.m */,
 			);
 			path = Shuffle;
 			sourceTree = "<group>";
@@ -381,7 +381,6 @@
 			files = (
 				86B4C851174D251B006E1A83 /* main.m in Sources */,
 				86B4C855174D251B006E1A83 /* AppDelegate.m in Sources */,
-				868CBEA1174D268C00478E49 /* ShuffleTableViewController.m in Sources */,
 				8638784F175486BD0070FD6F /* TLIndexPathController.m in Sources */,
 				86387850175486BD0070FD6F /* TLIndexPathDataModel.m in Sources */,
 				86387851175486BD0070FD6F /* TLIndexPathItem.m in Sources */,
@@ -405,6 +404,7 @@
 				86387863175486BD0070FD6F /* UITableViewController+ScrollOptimizer.m in Sources */,
 				86387864175486BD0070FD6F /* TLCollectionViewController.m in Sources */,
 				86387865175486BD0070FD6F /* TLTableViewController.m in Sources */,
+				86387B8C1756B1550070FD6F /* ShuffleCollectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

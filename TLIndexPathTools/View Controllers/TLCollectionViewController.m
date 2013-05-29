@@ -119,6 +119,22 @@
     return cell;
 }
 
+/**
+ The default implementation supports single header and footer views for flow layouts. Override this is needed.
+ */
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *identifier;
+    //TODO Support multiple possible header and footer views
+    if ([UICollectionElementKindSectionHeader isEqualToString:kind]) {
+        identifier = @"Header";
+    } else if ([UICollectionElementKindSectionFooter isEqualToString:kind]) {
+        identifier = @"Footer";
+    }
+    UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
+    return view;
+}
+
 #pragma mark - TLIndexPathControllerDelegate
 
 - (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates
