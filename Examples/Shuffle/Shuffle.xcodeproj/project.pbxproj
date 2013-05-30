@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		862FF81A1757E06100381869 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 862FF8191757E06100381869 /* UIColor+Hex.m */; };
 		8631AEF7174D29D200D1B383 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8631AEF6174D29D200D1B383 /* CoreData.framework */; };
 		8631AEF9174D29FB00D1B383 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8631AEF8174D29FB00D1B383 /* QuartzCore.framework */; };
 		8631AEFA174D2A0300D1B383 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86B4C848174D251B006E1A83 /* CoreGraphics.framework */; };
@@ -46,6 +47,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		862FF8181757E06100381869 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		862FF8191757E06100381869 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		8631AEF6174D29D200D1B383 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8631AEF8174D29FB00D1B383 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		86387818175486BD0070FD6F /* TLIndexPathController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathController.h; sourceTree = "<group>"; };
@@ -292,9 +295,11 @@
 				86B4C853174D251B006E1A83 /* AppDelegate.h */,
 				86B4C854174D251B006E1A83 /* AppDelegate.m */,
 				86B4C85C174D251B006E1A83 /* MainStoryboard.storyboard */,
-				86B4C84B174D251B006E1A83 /* Supporting Files */,
 				86387B8A1756B1550070FD6F /* ShuffleCollectionViewController.h */,
 				86387B8B1756B1550070FD6F /* ShuffleCollectionViewController.m */,
+				86B4C84B174D251B006E1A83 /* Supporting Files */,
+				862FF8181757E06100381869 /* UIColor+Hex.h */,
+				862FF8191757E06100381869 /* UIColor+Hex.m */,
 			);
 			path = Shuffle;
 			sourceTree = "<group>";
@@ -405,6 +410,7 @@
 				86387864175486BD0070FD6F /* TLCollectionViewController.m in Sources */,
 				86387865175486BD0070FD6F /* TLTableViewController.m in Sources */,
 				86387B8C1756B1550070FD6F /* ShuffleCollectionViewController.m in Sources */,
+				862FF81A1757E06100381869 /* UIColor+Hex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

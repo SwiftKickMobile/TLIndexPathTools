@@ -9,20 +9,16 @@
 #import "OutlineTableViewController.h"
 #import "TLIndexPathTreeItem.h"
 
-#define CELL_ID_LEVEL1 @"Level1"
-#define CELL_ID_LEVEL2 @"Level2"
-#define CELL_ID_LEVEL3 @"Level3"
-
-#define SECTION_1 @"Section 1"
-#define SUBSECTION_1_1 @"Subsection 1.1"
-#define LEAF_ITEM_1_1_1 @"Leaf Item 1.1.1"
-#define LEAF_ITEM_1_1_2 @"Leaf Item 1.1.2"
-#define SUBSECTION_1_2 @"Subsection 1.2"
-#define LEAF_ITEM_1_2_1 @"Leaf Item 1.2.1"
-#define SECTION_2 @"Section 2"
-#define SUBSECTION_2_1 @"Subsection 2.1"
-#define LEAF_ITEM_2_1_1 @"Leaf Item 2.1.1"
-#define LEAF_ITEM_2_1_2 @"Leaf Item 2.1.2"
+#define ITEM_1 @"Heading 1"
+#define ITEM_1_1 @"Heading 1.1"
+#define ITEM_1_1_1 @"Heading 1.1.1"
+#define ITEM_1_1_2 @"Heading 1.1.2"
+#define ITEM_1_2 @"Heading 1.2"
+#define ITEM_1_2_1 @"Heading 1.2.1"
+#define ITEM_2 @"Heading 2"
+#define ITEM_2_1 @"Heading 2.1"
+#define ITEM_2_1_1 @"Heading 2.1.1"
+#define ITEM_2_1_2 @"Heading 2.1.2"
 
 @interface OutlineTableViewController ()
 @property (strong, nonatomic) NSArray *treeItems;
@@ -35,63 +31,18 @@
     [super viewDidLoad];
     
     //setup item heirarchy for data model
-    
-    TLIndexPathTreeItem *leaf111 = [[TLIndexPathTreeItem alloc] initWithIdentifier:LEAF_ITEM_1_1_1
-                                                                       sectionName:nil
-                                                                    cellIdentifier:CELL_ID_LEVEL3
-                                                                              data:nil];
+    TLIndexPathTreeItem *item111 = [self itemWithId:ITEM_1_1_1 level:2 children:nil];
+    TLIndexPathTreeItem *item112 = [self itemWithId:ITEM_1_1_2 level:2 children:nil];
+    TLIndexPathTreeItem *item11 = [self itemWithId:ITEM_1_1  level:1 children:@[item111, item112]];
+    TLIndexPathTreeItem *item121 = [self itemWithId:ITEM_1_2_1 level:2 children:nil];
+    TLIndexPathTreeItem *item12 = [self itemWithId:ITEM_1_2 level:1 children:@[item121]];
+    TLIndexPathTreeItem *item1 = [self itemWithId:ITEM_1 level:0 children:@[item11, item12]];
+    TLIndexPathTreeItem *item211 = [self itemWithId:ITEM_2_1_1 level:2 children:nil];
+    TLIndexPathTreeItem *item212 = [self itemWithId:ITEM_2_1_2 level:2 children:nil];
+    TLIndexPathTreeItem *item21 = [self itemWithId:ITEM_2_1 level:1 children:@[item211, item212]];
+    TLIndexPathTreeItem *item2 = [self itemWithId:ITEM_2 level:0 children:@[item21]];
 
-    TLIndexPathTreeItem *leaf112 = [[TLIndexPathTreeItem alloc] initWithIdentifier:LEAF_ITEM_1_1_2
-                                                                       sectionName:nil
-                                                                    cellIdentifier:CELL_ID_LEVEL3
-                                                                              data:nil];
-    
-    TLIndexPathTreeItem *subsection11 = [[TLIndexPathTreeItem alloc] initWithIdentifier:SUBSECTION_1_1
-                                                                            sectionName:nil
-                                                                         cellIdentifier:CELL_ID_LEVEL2
-                                                                                   data:nil
-                                                                          andChildItems:@[leaf111, leaf112]];
-
-    TLIndexPathTreeItem *leaf121 = [[TLIndexPathTreeItem alloc] initWithIdentifier:LEAF_ITEM_1_2_1
-                                                                       sectionName:nil
-                                                                    cellIdentifier:CELL_ID_LEVEL3
-                                                                              data:nil];
-    
-    TLIndexPathTreeItem *subsection12 = [[TLIndexPathTreeItem alloc] initWithIdentifier:SUBSECTION_1_2
-                                                                            sectionName:nil
-                                                                         cellIdentifier:CELL_ID_LEVEL2
-                                                                                   data:nil
-                                                                          andChildItems:@[leaf121]];
-
-    TLIndexPathTreeItem *section1 = [[TLIndexPathTreeItem alloc] initWithIdentifier:SECTION_1
-                                                                            sectionName:nil
-                                                                         cellIdentifier:CELL_ID_LEVEL1
-                                                                                   data:nil
-                                                                          andChildItems:@[subsection11, subsection12]];
-    
-    TLIndexPathTreeItem *leaf211 = [[TLIndexPathTreeItem alloc] initWithIdentifier:LEAF_ITEM_2_1_1
-                                                                       sectionName:nil
-                                                                    cellIdentifier:CELL_ID_LEVEL3
-                                                                              data:nil];
-    
-    TLIndexPathTreeItem *leaf212 = [[TLIndexPathTreeItem alloc] initWithIdentifier:LEAF_ITEM_2_1_2
-                                                                       sectionName:nil
-                                                                    cellIdentifier:CELL_ID_LEVEL3
-                                                                              data:nil];
-
-    TLIndexPathTreeItem *subsection21 = [[TLIndexPathTreeItem alloc] initWithIdentifier:SUBSECTION_2_1
-                                                                            sectionName:nil
-                                                                         cellIdentifier:CELL_ID_LEVEL2
-                                                                                   data:nil
-                                                                          andChildItems:@[leaf211, leaf212]];
-
-    TLIndexPathTreeItem *section2 = [[TLIndexPathTreeItem alloc] initWithIdentifier:SECTION_2
-                                                                        sectionName:nil
-                                                                     cellIdentifier:CELL_ID_LEVEL1
-                                                                               data:nil
-                                                                      andChildItems:@[subsection21]];
-    
-    self.treeItems = @[section1, section2];
+    self.treeItems = @[item1, item2];
 
     //set data model with top-level items collapsed
     
@@ -101,6 +52,15 @@
     }
     
     self.dataModel = [[TLTreeDataModel alloc] initWithTreeItems:self.treeItems collapsedNodeIdentifiers:[NSSet setWithArray:topLevelIdentifiers]];
+}
+
+//shorcut method for generating tree items
+- (TLIndexPathTreeItem *)itemWithId:(NSString *)identifier level:(NSInteger)level children:(NSArray *)children
+{
+    return [[TLIndexPathTreeItem alloc] initWithIdentifier:identifier
+                                               sectionName:nil
+                                            cellIdentifier:[NSString stringWithFormat:@"Level%d", level]
+                                                      data:nil andChildItems:children];
 }
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
