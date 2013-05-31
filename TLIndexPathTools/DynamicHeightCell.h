@@ -12,4 +12,5 @@
 
 @interface DynamicHeightCell : UITableViewCell <TLDynamicSizeView>
 @property (strong, nonatomic) IBOutlet UILabel *label;
+- (void)configureWithText:(NSString *)text;
 @end

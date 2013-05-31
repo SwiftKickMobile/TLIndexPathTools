@@ -22,12 +22,17 @@
     self.originalLabelSize = self.label.bounds.size;
 }
 
+- (void)configureWithText:(NSString *)text
+{
+    self.label.text = text;
+    [self.label sizeToFit];
+}
+
 #pragma mark - TLDynamicSizeView
 
 - (CGSize)sizeWithData:(id)data
 {
-    self.label.text = data;
-    [self.label sizeToFit];
+    [self configureWithText:data];
     CGSize labelSize = self.label.bounds.size;
     CGSize size = self.originalSize;
     size.width += labelSize.width - self.originalLabelSize.width;

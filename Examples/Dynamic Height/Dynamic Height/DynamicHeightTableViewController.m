@@ -27,7 +27,7 @@
 {
     NSString *item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
     DynamicHeightCell *dynamicCell = (DynamicHeightCell *)cell;
-    dynamicCell.label.text = item;
+    [dynamicCell configureWithText:item];
 }
 
 @end
