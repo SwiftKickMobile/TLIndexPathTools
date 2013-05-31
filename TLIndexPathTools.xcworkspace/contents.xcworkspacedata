@@ -197,4 +197,7 @@
    <FileRef
       location = "group:Examples/Outline/Outline.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Examples/Dynamic Height/Dynamic Height.xcodeproj">
+   </FileRef>
 </Workspace>
