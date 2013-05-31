@@ -33,6 +33,8 @@
 - (CGSize)sizeWithData:(id)data
 {
     [self configureWithText:data];
+    //the dynamic size is calculated by taking the original size and incrementing
+    //by the change in the label's size after configuring
     CGSize labelSize = self.label.bounds.size;
     CGSize size = self.originalSize;
     size.width += labelSize.width - self.originalLabelSize.width;
