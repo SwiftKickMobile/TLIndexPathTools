@@ -14,7 +14,7 @@
 #import "UIColor+Hex.h"
 
 #define MAX_ITEMS 20
-#define DELAY_SECONDS .5
+#define DELAY_SECONDS .35
 
 @interface CoreDataCollectionViewController ()
 @property (strong, nonatomic) UIManagedDocument *document;
@@ -38,8 +38,8 @@
         NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:@"Item"];
         fetch.sortDescriptors = @[];
         self.indexPathController = [[TLIndexPathController alloc] initWithFetchRequest:fetch managedObjectContext:doc.managedObjectContext sectionNameKeyPath:nil identifierKeyPath:nil cacheName:nil];
-        [self insertItem];
         [self.indexPathController performFetch:nil];
+        [self insertItem];
     }];
 }
 

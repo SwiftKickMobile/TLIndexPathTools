@@ -29,7 +29,6 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
 
 @interface TLIndexPathController ()
 @property (strong, nonatomic) NSFetchedResultsController *backingController;
-@property (strong, nonatomic, readonly) NSString *identifierKeyPath;
 @end
 
 @implementation TLIndexPathController
@@ -64,8 +63,11 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
 
 - (id)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString *)sectionNameKeyPath identifierKeyPath:(NSString *)identifierKeyPath cacheName:(NSString *)name
 {
-    if (self = [super init]) {
-        _backingController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:sectionNameKeyPath cacheName:name];
+    TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:nil andSectionNameKeyPath:sectionNameKeyPath andIdentifierKeyPath:identifierKeyPath];
+    if (self = [self initWithDataModel:dataModel]) {
+        //initialize the backing controller with nil sectionNameKeyPath because we don't require
+        //items to be sorted by section, but NSFetchedResultsController does.
+        _backingController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:name];
         _backingController.delegate = self;
     }
     return self;
@@ -127,16 +129,6 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
 + (void)deleteCacheWithName:(NSString *)name
 {
     [NSFetchedResultsController deleteCacheWithName:name];
-}
-
-- (NSString *)identifierKeyPath
-{
-    //fall back to objectID in case the data model doesn't have a value defined.
-    //This is necessary because managed objects themselves cannot be used as
-    //identifiers because identifiers are used as dictionary keys and therefore
-    //must implement NSCoding (which NSManagedObject does not).
-    NSString *identifierKeyPath = self.dataModel.identifierKeyPath ? self.dataModel.identifierKeyPath : @"objectID";
-    return identifierKeyPath;
 }
 
 - (void)setIgnoreFetchedResultsChanges:(BOOL)ignoreFetchedResultsChanges
@@ -242,9 +234,14 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
 - (TLIndexPathDataModel *)convertFetchedObjectsToDataModel {
     NSArray *filteredItems = self.inMemoryPredicate ? [self.coreDataFetchedObjects filteredArrayUsingPredicate:self.inMemoryPredicate] : self.coreDataFetchedObjects;
     NSArray *sortedFilteredItems = self.inMemorySortDescriptors ? [filteredItems sortedArrayUsingDescriptors:self.inMemorySortDescriptors] : filteredItems;
+    //fall back to objectID in case the data model doesn't have a value defined.
+    //This is necessary because managed objects themselves cannot be used as
+    //identifiers because identifiers are used as dictionary keys and therefore
+    //must implement NSCoding (which NSManagedObject does not).
+    NSString *identifierKeyPath = self.dataModel.identifierKeyPath ? self.dataModel.identifierKeyPath : @"objectID";
     return [[TLIndexPathDataModel alloc] initWithItems:sortedFilteredItems
-                                 andSectionNameKeyPath:self.backingController.sectionNameKeyPath
-                                  andIdentifierKeyPath:self.identifierKeyPath
+                                 andSectionNameKeyPath:self.dataModel.sectionNameKeyPath
+                                  andIdentifierKeyPath:identifierKeyPath
                               andCellIdentifierKeyPath:self.dataModel.cellIdentifierKeyPath];
 }
 

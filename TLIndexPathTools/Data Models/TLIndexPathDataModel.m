@@ -169,7 +169,19 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 }
 
 - (id)initWithSectionInfos:(NSArray *)sectionInfos andIdentifierKeyPath:(NSString *)identifierKeyPath andCellIdentifierKeyPath:(NSString *)cellIdentifierKeyPath
-{    
+{        
+    //if there are no sections, insert an empty section to keep UICollectionView
+    //happy. If we don't do this, UICollectionView will crash on the first
+    //update because it internally thinks there is 1 section when the
+    //UICollectionView controller reports zero sections.
+    if (sectionInfos.count == 0) {
+        TLIndexPathSectionInfo *sectionInfo = [[TLIndexPathSectionInfo alloc]
+                                               initWithItems:nil
+                                               andName:[TLIndexPathDataModelNilSectionName copy]
+                                               andIndexTitle:nil];
+        sectionInfos = @[sectionInfo];
+    }
+
     if (self = [super init]) {
         
         NSMutableArray *identifiedItems = [[NSMutableArray alloc] init];
@@ -184,7 +196,7 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
         _sectionNames = sectionNames;
         _sections = sectionInfos;
         _items = identifiedItems;
-
+        
         NSInteger section = 0;
         for (id<NSFetchedResultsSectionInfo>sectionInfo in sectionInfos) {
 

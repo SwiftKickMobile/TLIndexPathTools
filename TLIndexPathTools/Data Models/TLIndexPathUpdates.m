@@ -215,7 +215,11 @@
 
 - (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView
 {
-    if (!self.oldDataModel) {
+    if (self.oldDataModel.items.count == 0 && self.updatedDataModel.items.count == 0) {
+        return;
+    }
+    
+    if (self.oldDataModel.items.count == 0) {
         [collectionView reloadData];
         return;
     }
