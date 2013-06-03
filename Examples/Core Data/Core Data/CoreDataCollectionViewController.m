@@ -19,6 +19,7 @@
 @interface CoreDataCollectionViewController ()
 @property (strong, nonatomic) UIManagedDocument *document;
 @property (strong, nonatomic) NSArray *colors;
+@property (strong, nonatomic) Item *lastModifiedItem;
 @end
 
 @implementation CoreDataCollectionViewController
@@ -44,6 +45,7 @@
 
 - (void)insertItem
 {
+    //in case MAX_ITEMS gets changed, this bit will promptly delete extra items
     if (self.indexPathController.items.count > MAX_ITEMS) {
         NSInteger randomItemIdx = rand() % self.indexPathController.items.count;
         Item *item = self.indexPathController.items[randomItemIdx];
@@ -54,25 +56,28 @@
         return;
     }
     
-    else {
-        
-        Item *item;
-        if (self.indexPathController.items.count == MAX_ITEMS) {
-            item = self.indexPathController.items[rand() % MAX_ITEMS];
-        } else {
-            item = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:self.document.managedObjectContext];
-        }
-
-        //insert item with random letter and color
-        item.text = [NSString stringWithFormat:@"%c", 'A' + rand() % 26];
-        item.color = @(rand() % self.colors.count);
-        
-        NSIndexPath *indexPath = [self.indexPathController.dataModel indexPathForItem:item];
-        UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
-        [self configureCell:cell atIndexPath:indexPath];
-
+    Item *item;
+    //if we've reached max items, randomly select an existing item
+    if (self.indexPathController.items.count == MAX_ITEMS) {
+        item = self.indexPathController.items[rand() % MAX_ITEMS];
+        self.lastModifiedItem = item;
     }
+    //otherwise, insert a new item
+    else {
+        item = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:self.document.managedObjectContext];
+        self.lastModifiedItem = nil;
+    }
+
+    //set a random letter and color on the item
+    item.text = [NSString stringWithFormat:@"%c", 'A' + rand() % 26];
+    item.color = @(rand() % self.colors.count);
     
+    //reconfigure the cell to reflect the new data if it existing and is visible
+    NSIndexPath *indexPath = [self.indexPathController.dataModel indexPathForItem:item];
+    UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
+    [self configureCell:cell atIndexPath:indexPath];
+    
+    //save the document so that changes will be propagated to the table's index path controller
     [self.document savePresentedItemChangesWithCompletionHandler:^(NSError *errorOrNil) {
         [self performSelector:@selector(insertItem) withObject:self afterDelay:DELAY_SECONDS];
     }];
@@ -82,10 +87,16 @@
 {
     Item *item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
     UILabel *label = (UILabel *)[cell viewWithTag:1];
-    label.text = item.text;
+    //if this is an existing item being modified, do a flip animation.
+    BOOL animated = self.lastModifiedItem == item;
+    CGFloat duration = animated ? 0.35 : 0;
+    UIViewAnimationOptions animationOption = animated ? UIViewAnimationOptionTransitionFlipFromBottom : UIViewAnimationOptionTransitionNone;
     cell.backgroundColor = self.colors[[item.color integerValue]];
-    label.center = CGPointMake(CGRectGetMidX(cell.bounds), CGRectGetMidY(cell.bounds));
-    cell.layer.cornerRadius = 10;
+    [UIView transitionWithView:cell duration:duration options:animationOption animations:^{
+        label.text = item.text;
+        label.center = CGPointMake(CGRectGetMidX(cell.bounds), CGRectGetMidY(cell.bounds));
+        cell.layer.cornerRadius = 10;
+    } completion:nil];
 }
 
 - (IBAction)sortAlphabetically:(id)sender {
