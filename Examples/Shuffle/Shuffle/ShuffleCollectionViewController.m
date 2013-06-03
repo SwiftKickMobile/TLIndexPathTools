@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Tractable Labs. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
+
 #import "ShuffleCollectionViewController.h"
 #import "TLIndexPathDataModel.h"
 #import "UIColor+Hex.h"
@@ -39,6 +41,7 @@
     UILabel *label = (UILabel *)[cell viewWithTag:1];
     label.text = item[IDX_TEXT];
     cell.backgroundColor = item[IDX_COLOR];
+    cell.layer.cornerRadius = 10;
 }
 
 - (void)shuffle
