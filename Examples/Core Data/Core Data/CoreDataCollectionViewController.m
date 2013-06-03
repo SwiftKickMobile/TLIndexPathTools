@@ -8,6 +8,7 @@
 
 #import <CoreData/CoreData.h>
 #import <QuartzCore/QuartzCore.h>
+#import "AppDelegate.h"
 
 #import "CoreDataCollectionViewController.h"
 #import "Item.h"
@@ -17,7 +18,6 @@
 #define DELAY_SECONDS .35
 
 @interface CoreDataCollectionViewController ()
-@property (strong, nonatomic) UIManagedDocument *document;
 @property (strong, nonatomic) NSArray *colors;
 @property (strong, nonatomic) Item *lastModifiedItem;
 @end
@@ -34,7 +34,7 @@
                     [UIColor colorWithHexRGB:0x127A97],
                     [UIColor colorWithHexRGB:0x452B72],
                     ];
-    [self documentWithHandler:^(UIManagedDocument *doc) {
+    [((AppDelegate *)[UIApplication sharedApplication].delegate) documentWithHandler:^(UIManagedDocument *doc) {
         NSFetchRequest *fetch = [NSFetchRequest fetchRequestWithEntityName:@"Item"];
         fetch.sortDescriptors = @[];
         self.indexPathController = [[TLIndexPathController alloc] initWithFetchRequest:fetch managedObjectContext:doc.managedObjectContext sectionNameKeyPath:nil identifierKeyPath:nil cacheName:nil];
@@ -45,16 +45,7 @@
 
 - (void)insertItem
 {
-    //in case MAX_ITEMS gets changed, this bit will promptly delete extra items
-    if (self.indexPathController.items.count > MAX_ITEMS) {
-        NSInteger randomItemIdx = rand() % self.indexPathController.items.count;
-        Item *item = self.indexPathController.items[randomItemIdx];
-        [self.document.managedObjectContext deleteObject:item];
-        [self.document savePresentedItemChangesWithCompletionHandler:^(NSError *errorOrNil) {
-            [self insertItem];
-        }];
-        return;
-    }
+    UIManagedDocument *doc = ((AppDelegate *)[UIApplication sharedApplication].delegate).document;
     
     Item *item;
     //if we've reached max items, randomly select an existing item
@@ -64,7 +55,7 @@
     }
     //otherwise, insert a new item
     else {
-        item = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:self.document.managedObjectContext];
+        item = [NSEntityDescription insertNewObjectForEntityForName:@"Item" inManagedObjectContext:doc.managedObjectContext];
         self.lastModifiedItem = nil;
     }
 
@@ -72,13 +63,13 @@
     item.text = [NSString stringWithFormat:@"%c", 'A' + rand() % 26];
     item.color = @(rand() % self.colors.count);
     
-    //reconfigure the cell to reflect the new data if it existing and is visible
+    //reconfigure the cell (if it existing and is visible) to reflect the new data
     NSIndexPath *indexPath = [self.indexPathController.dataModel indexPathForItem:item];
     UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
     [self configureCell:cell atIndexPath:indexPath];
     
     //save the document so that changes will be propagated to the table's index path controller
-    [self.document savePresentedItemChangesWithCompletionHandler:^(NSError *errorOrNil) {
+    [doc savePresentedItemChangesWithCompletionHandler:^(NSError *errorOrNil) {
         [self performSelector:@selector(insertItem) withObject:self afterDelay:DELAY_SECONDS];
     }];
 }
@@ -114,33 +105,5 @@
     self.indexPathController.fetchRequest = fetch;
     [self.indexPathController performFetch:nil];
 }
-
-#pragma mark - Accessing the managed document
-
-- (void)documentWithHandler:(void (^)(UIManagedDocument *doc))block
-{
-    if (self.document) {
-        block(self.document);
-    } else {
-        
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        NSURL *docURL = [[fileManager URLsForDirectory:NSDocumentDirectory
-                                             inDomains:NSUserDomainMask] lastObject];
-        docURL = [docURL URLByAppendingPathComponent:@"CodeDataDoc"];
-        self.document = [[UIManagedDocument alloc] initWithFileURL:docURL];
-        
-        if ([[NSFileManager defaultManager] fileExistsAtPath:[docURL path]]) {
-            [self.document openWithCompletionHandler:^(BOOL success){
-                block(self.document);
-            }];
-        }
-        else {
-            [self.document saveToURL:docURL forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success){
-                block(self.document);
-            }];
-        }
-    }
-}
-
 
 @end
