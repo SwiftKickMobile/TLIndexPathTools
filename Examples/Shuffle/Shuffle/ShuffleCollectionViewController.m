@@ -23,12 +23,12 @@
     //initialize the controller with a list data items. To keep it simple, we'll
     //just use two element arrays (text and color) for our items.
     NSArray *items = @[
-           @[@"A" ,[UIColor colorWithHexRGB:0x96D6C1]],
-           @[@"B" ,[UIColor colorWithHexRGB:0xD696A3]],
-           @[@"C" ,[UIColor colorWithHexRGB:0xFACB96]],
-           @[@"D" ,[UIColor colorWithHexRGB:0xFAED96]],
-           @[@"E" ,[UIColor colorWithHexRGB:0x96FAC3]],
-           @[@"F" ,[UIColor colorWithHexRGB:0x6AA9CF]],
+           @[@"A", [UIColor colorWithHexRGB:0x96D6C1]],
+           @[@"B", [UIColor colorWithHexRGB:0xD696A3]],
+           @[@"C", [UIColor colorWithHexRGB:0xFACB96]],
+           @[@"D", [UIColor colorWithHexRGB:0xFAED96]],
+           @[@"E", [UIColor colorWithHexRGB:0x96FAC3]],
+           @[@"F", [UIColor colorWithHexRGB:0x6AA9CF]],
            ];
     self.indexPathController.items = items;
 }

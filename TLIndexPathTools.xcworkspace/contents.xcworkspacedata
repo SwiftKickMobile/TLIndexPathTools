@@ -203,4 +203,7 @@
    <FileRef
       location = "group:Examples/Dynamic Height/Dynamic Height.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Examples/JSON/JSON.xcodeproj">
+   </FileRef>
 </Workspace>
