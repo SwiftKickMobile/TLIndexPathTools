@@ -249,9 +249,11 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController *)controller
 {
-    if (!self.ignoreFetchedResultsChanges) {
-        self.dataModel = [self convertFetchedObjectsToDataModel];
-    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        if (!self.ignoreFetchedResultsChanges) {
+            self.dataModel = [self convertFetchedObjectsToDataModel];
+        }
+    });
 }
 
 - (NSString *)controller:(NSFetchedResultsController *)controller sectionIndexTitleForSectionName:(NSString *)sectionName
