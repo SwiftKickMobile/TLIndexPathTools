@@ -43,7 +43,7 @@
 		862FF89E175932CE00381869 /* UITableViewController+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 862FF884175932CE00381869 /* UITableViewController+ScrollOptimizer.m */; };
 		862FF89F175932CE00381869 /* TLCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 862FF887175932CE00381869 /* TLCollectionViewController.m */; };
 		862FF8A0175932CE00381869 /* TLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 862FF889175932CE00381869 /* TLTableViewController.m */; };
-		862FF8A3175932F900381869 /* DynamicHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 862FF8A2175932F900381869 /* DynamicHeightCell.m */; };
+		86BBB1B51771156900CFA35C /* DynamicHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BBB1B41771156900CFA35C /* DynamicHeightCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,8 +112,8 @@
 		862FF887175932CE00381869 /* TLCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewController.m; sourceTree = "<group>"; };
 		862FF888175932CE00381869 /* TLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewController.h; sourceTree = "<group>"; };
 		862FF889175932CE00381869 /* TLTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableViewController.m; sourceTree = "<group>"; };
-		862FF8A1175932F900381869 /* DynamicHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynamicHeightCell.h; path = ../../../TLIndexPathTools/DynamicHeightCell.h; sourceTree = "<group>"; };
-		862FF8A2175932F900381869 /* DynamicHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DynamicHeightCell.m; path = ../../../TLIndexPathTools/DynamicHeightCell.m; sourceTree = "<group>"; };
+		86BBB1B31771156900CFA35C /* DynamicHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicHeightCell.h; sourceTree = "<group>"; };
+		86BBB1B41771156900CFA35C /* DynamicHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicHeightCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,8 +165,8 @@
 		862FF82D1759328400381869 /* Dynamic Height */ = {
 			isa = PBXGroup;
 			children = (
-				862FF8A1175932F900381869 /* DynamicHeightCell.h */,
-				862FF8A2175932F900381869 /* DynamicHeightCell.m */,
+				86BBB1B31771156900CFA35C /* DynamicHeightCell.h */,
+				86BBB1B41771156900CFA35C /* DynamicHeightCell.m */,
 				862FF8361759328400381869 /* AppDelegate.h */,
 				862FF8371759328400381869 /* AppDelegate.m */,
 				862FF83F1759328400381869 /* MainStoryboard.storyboard */,
@@ -410,7 +410,7 @@
 				862FF89E175932CE00381869 /* UITableViewController+ScrollOptimizer.m in Sources */,
 				862FF89F175932CE00381869 /* TLCollectionViewController.m in Sources */,
 				862FF8A0175932CE00381869 /* TLTableViewController.m in Sources */,
-				862FF8A3175932F900381869 /* DynamicHeightCell.m in Sources */,
+				86BBB1B51771156900CFA35C /* DynamicHeightCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -25,7 +25,6 @@
 		862FF9151759803800381869 /* TLIndexPathSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 862FF8E11759803800381869 /* TLIndexPathSectionInfo.m */; };
 		862FF9161759803800381869 /* TLIndexPathUpdates.m in Sources */ = {isa = PBXBuildFile; fileRef = 862FF8E31759803800381869 /* TLIndexPathUpdates.m */; };
 		862FF9171759803800381869 /* TLNoResultsTableDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 862FF8E51759803800381869 /* TLNoResultsTableDataModel.m */; };
-		862FF9181759803800381869 /* DynamicHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 862FF8E71759803800381869 /* DynamicHeightCell.m */; };
 		862FF9191759803800381869 /* TLCollapsibleDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 862FF8EB1759803800381869 /* TLCollapsibleDataModel.m */; };
 		862FF91A1759803800381869 /* TLCollapsibleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 862FF8ED1759803800381869 /* TLCollapsibleHeaderView.m */; };
 		862FF91B1759803800381869 /* TLCollapsibleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 862FF8EF1759803800381869 /* TLCollapsibleTableViewController.m */; };
@@ -78,8 +77,6 @@
 		862FF8E31759803800381869 /* TLIndexPathUpdates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLIndexPathUpdates.m; sourceTree = "<group>"; };
 		862FF8E41759803800381869 /* TLNoResultsTableDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLNoResultsTableDataModel.h; sourceTree = "<group>"; };
 		862FF8E51759803800381869 /* TLNoResultsTableDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLNoResultsTableDataModel.m; sourceTree = "<group>"; };
-		862FF8E61759803800381869 /* DynamicHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicHeightCell.h; sourceTree = "<group>"; };
-		862FF8E71759803800381869 /* DynamicHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicHeightCell.m; sourceTree = "<group>"; };
 		862FF8EA1759803800381869 /* TLCollapsibleDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollapsibleDataModel.h; sourceTree = "<group>"; };
 		862FF8EB1759803800381869 /* TLCollapsibleDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollapsibleDataModel.m; sourceTree = "<group>"; };
 		862FF8EC1759803800381869 /* TLCollapsibleHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollapsibleHeaderView.h; sourceTree = "<group>"; };
@@ -207,8 +204,6 @@
 			children = (
 				862FF8D81759803800381869 /* Controllers */,
 				862FF8DB1759803800381869 /* Data Models */,
-				862FF8E61759803800381869 /* DynamicHeightCell.h */,
-				862FF8E71759803800381869 /* DynamicHeightCell.m */,
 				862FF8E81759803800381869 /* Utils */,
 				862FF90D1759803800381869 /* View Controllers */,
 			);
@@ -405,7 +400,6 @@
 				862FF9151759803800381869 /* TLIndexPathSectionInfo.m in Sources */,
 				862FF9161759803800381869 /* TLIndexPathUpdates.m in Sources */,
 				862FF9171759803800381869 /* TLNoResultsTableDataModel.m in Sources */,
-				862FF9181759803800381869 /* DynamicHeightCell.m in Sources */,
 				862FF9191759803800381869 /* TLCollapsibleDataModel.m in Sources */,
 				862FF91A1759803800381869 /* TLCollapsibleHeaderView.m in Sources */,
 				862FF91B1759803800381869 /* TLCollapsibleTableViewController.m in Sources */,
