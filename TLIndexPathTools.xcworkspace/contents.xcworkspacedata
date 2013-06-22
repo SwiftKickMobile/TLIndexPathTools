@@ -16,41 +16,45 @@
       </Group>
       <Group
          location = "group:Data Models"
-         name = "Data Models">
+         name = "Data Model">
          <FileRef
-            location = "group:TLIndexPathDataModel.h">
+            location = "group:../Data Model/TLIndexPathUpdates.m">
          </FileRef>
          <FileRef
-            location = "group:TLIndexPathDataModel.m">
+            location = "group:../Data Model/TLIndexPathDataModel.m">
          </FileRef>
          <FileRef
-            location = "group:TLIndexPathItem.h">
+            location = "group:../Data Model/TLIndexPathDataModel.h">
          </FileRef>
          <FileRef
-            location = "group:TLIndexPathItem.m">
+            location = "group:../Data Model/TLIndexPathSectionInfo.h">
          </FileRef>
          <FileRef
-            location = "group:TLIndexPathSectionInfo.h">
+            location = "group:../Data Model/TLIndexPathSectionInfo.m">
          </FileRef>
          <FileRef
-            location = "group:TLIndexPathSectionInfo.m">
+            location = "group:../Data Model/TLIndexPathItem.h">
          </FileRef>
          <FileRef
-            location = "group:TLIndexPathUpdates.h">
+            location = "group:../Data Model/TLIndexPathItem.m">
          </FileRef>
          <FileRef
-            location = "group:TLIndexPathUpdates.m">
-         </FileRef>
-         <FileRef
-            location = "group:TLNoResultsTableDataModel.h">
-         </FileRef>
-         <FileRef
-            location = "group:TLNoResultsTableDataModel.m">
+            location = "group:../Data Model/TLIndexPathUpdates.h">
          </FileRef>
       </Group>
       <Group
          location = "group:Utils"
          name = "Utils">
+         <Group
+            location = "container:"
+            name = "No Results">
+            <FileRef
+               location = "group:TLIndexPathTools/Utils/No Results/TLNoResultsTableDataModel.h">
+            </FileRef>
+            <FileRef
+               location = "group:TLIndexPathTools/Utils/No Results/TLNoResultsTableDataModel.m">
+            </FileRef>
+         </Group>
          <Group
             location = "group:Collapsible"
             name = "Collapsible">

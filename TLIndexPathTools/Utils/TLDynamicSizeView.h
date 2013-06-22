@@ -23,7 +23,7 @@
 
 /**
  Cells (and possibly their subviews) can implement this protocol
- to have the view controller automatically calculate their dynamic size
+ to have the table view controller automatically calculate their dynamic size
  by calling the `sizeWithData:` method on a prototype instance of the cell.
  */
 
