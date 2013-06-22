@@ -24,7 +24,6 @@
 #import "TLCollectionViewController.h"
 
 @interface TLCollectionViewController ()
-@property (strong, nonatomic, readonly) TLIndexPathDataModel *dataModel;
 @end
 
 @implementation TLCollectionViewController
@@ -34,8 +33,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
-        _indexPathController = [[TLIndexPathController alloc] init];
-        _indexPathController.delegate = self;
+        [self initialize];
     }
     return self;
 }
@@ -43,8 +41,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        _indexPathController = [[TLIndexPathController alloc] init];
-        _indexPathController.delegate = self;
+        [self initialize];
     }
     return self;
 }
@@ -52,10 +49,20 @@
 - (id)initWithCollectionViewLayout:(UICollectionViewLayout *)layout
 {
     if (self = [super initWithCollectionViewLayout:layout]) {
-        _indexPathController = [[TLIndexPathController alloc] init];
-        _indexPathController.delegate = self;
+        [self initialize];
     }
     return self;
+}
+
+- (void)initialize
+{
+    _indexPathController = [[TLIndexPathController alloc] init];
+    _indexPathController.delegate = self;
+    _delegateImpl = [[TLCollectionViewDelegateImpl alloc] init];
+    __weak TLCollectionViewController *weakSelf = self;
+    [_delegateImpl setDataModelProvider:^TLIndexPathDataModel *(UICollectionView *collectionView) {
+        return weakSelf.indexPathController.dataModel;
+    }];
 }
 
 #pragma mark - Index path controller
@@ -69,14 +76,9 @@
     }
 }
 
-- (TLIndexPathDataModel *)dataModel
-{
-    return self.indexPathController.dataModel;
-}
-
 #pragma mark - Configuration
 
-- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
 }
 
@@ -84,55 +86,39 @@
 {
     for (UICollectionViewCell *cell in [self.collectionView visibleCells]) {
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
-        [self configureCell:cell atIndexPath:indexPath];
+        [self collectionView:self.collectionView configureCell:cell atIndexPath:indexPath];
     }
 }
 
-- (NSString *)cellIdentifierAtIndexPath:(NSIndexPath *)indexPath
+- (NSString *)collectionView:(UICollectionView *)collectionView cellIdentifierAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.dataModel cellIdentifierAtIndexPath:indexPath];
+    return [self.delegateImpl collectionView:collectionView cellIdentifierAtIndexPath:indexPath];
 }
 
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return [self.dataModel numberOfSections];
+    NSInteger number = [self.delegateImpl numberOfSectionsInCollectionView:collectionView];
+    return number;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.dataModel numberOfRowsInSection:section];
+    NSInteger number = [self.delegateImpl collectionView:collectionView numberOfItemsInSection:section];
+    return number;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = [self.dataModel cellIdentifierAtIndexPath:indexPath];
-    if (!identifier) {
-        identifier = @"Cell";
-    }
-    UICollectionViewCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-    if (!cell) {
-        cell = [[UICollectionViewCell alloc] init];
-    }
-    [self configureCell:cell atIndexPath:indexPath];
+    UICollectionViewCell *cell = [self.delegateImpl collectionView:collectionView cellForItemAtIndexPath:indexPath];
+    [self collectionView:collectionView configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
-/**
- The default implementation supports single header and footer views for flow layouts. Override this is needed.
- */
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier;
-    //TODO Support multiple possible header and footer views
-    if ([UICollectionElementKindSectionHeader isEqualToString:kind]) {
-        identifier = @"Header";
-    } else if ([UICollectionElementKindSectionFooter isEqualToString:kind]) {
-        identifier = @"Footer";
-    }
-    UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
-    return view;
+    return [self.delegateImpl collectionView:collectionView viewForSupplementaryElementOfKind:kind atIndexPath:indexPath];
 }
 
 #pragma mark - TLIndexPathControllerDelegate

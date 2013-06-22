@@ -172,6 +172,22 @@
       <Group
          location = "group:View Controllers"
          name = "View Controllers">
+         <Group
+            location = "group:Delegate Impl"
+            name = "Delegate Impl">
+            <FileRef
+               location = "group:TLCollectionViewDelegateImpl.h">
+            </FileRef>
+            <FileRef
+               location = "group:TLCollectionViewDelegateImpl.m">
+            </FileRef>
+            <FileRef
+               location = "group:TLTableViewDelegateImpl.h">
+            </FileRef>
+            <FileRef
+               location = "group:TLTableViewDelegateImpl.m">
+            </FileRef>
+         </Group>
          <FileRef
             location = "group:TLCollectionViewController.h">
          </FileRef>

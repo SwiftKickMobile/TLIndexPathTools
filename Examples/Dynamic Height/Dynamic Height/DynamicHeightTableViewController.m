@@ -23,7 +23,7 @@
           ];
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSString *item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
     DynamicHeightCell *dynamicCell = (DynamicHeightCell *)cell;

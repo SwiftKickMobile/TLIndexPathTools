@@ -63,7 +63,7 @@
                                                       data:nil andChildItems:children];
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSString *identifier = [self.dataModel identifierAtIndexPath:indexPath];
     cell.textLabel.text = identifier;

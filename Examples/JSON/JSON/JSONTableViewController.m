@@ -50,7 +50,7 @@
                                                              andIdentifierKeyPath:@"id"];
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *dict = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
     cell.textLabel.text = dict[@"title"];

@@ -110,7 +110,7 @@
 
 #pragma mark - Cell configuration
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     TLIndexPathItem *item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
     
@@ -163,7 +163,7 @@
         for (id itemId in @[ITEM_ID_DIFFICULTY_EASY, ITEM_ID_DIFFICULTY_NORMAL, ITEM_ID_DIFFICULTY_HARD]) {
             NSIndexPath *indexPath = [self.indexPathController.dataModel indexPathForIdentifier:itemId];
             UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            [self configureCell:cell atIndexPath:indexPath];
+            [self tableView:tableView configureCell:cell atIndexPath:indexPath];
         }
         [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     }
@@ -183,7 +183,7 @@
     //updated the volumeLevel property)
     NSIndexPath *indexPath = [self.indexPathController.dataModel indexPathForIdentifier:ITEM_ID_VOLUME_LEVEL];
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
-    [self configureCell:cell atIndexPath:indexPath];
+    [self tableView:self.tableView configureCell:cell atIndexPath:indexPath];
 }
 
 @end

@@ -66,7 +66,7 @@
     //reconfigure the cell (if it existing and is visible) to reflect the new data
     NSIndexPath *indexPath = [self.indexPathController.dataModel indexPathForItem:item];
     UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:indexPath];
-    [self configureCell:cell atIndexPath:indexPath];
+    [self collectionView:self.collectionView configureCell:cell atIndexPath:indexPath];
     
     //save the document so that changes will be propagated to the table's index path controller
     [doc savePresentedItemChangesWithCompletionHandler:^(NSError *errorOrNil) {
@@ -74,7 +74,7 @@
     }];
 }
 
-- (void)configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)collectionView:(UICollectionView *)collectionView configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     Item *item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
     UILabel *label = (UILabel *)[cell viewWithTag:1];

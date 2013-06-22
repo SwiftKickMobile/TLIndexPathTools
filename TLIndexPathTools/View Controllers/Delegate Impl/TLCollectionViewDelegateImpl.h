@@ -1,5 +1,5 @@
 //
-//  TLCollectionViewController.h
+//  TLCollectionViewDelegateImpl.h
 //
 //  Copyright (c) 2013 Tim Moose (http://tractablelabs.com)
 //
@@ -22,28 +22,21 @@
 //  THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
-
-#import "TLIndexPathController.h"
-#import "TLCollectionViewDelegateImpl.h"
-
-@interface TLCollectionViewController : UICollectionViewController <TLIndexPathControllerDelegate>
+#import "TLIndexPathDataModel.h"
 
 /**
- The collection view's index path controller. A default controller is
- created automatically with `nil` for `identifierKeyPath`, `sectionNameKeyPath`
- and `cellIdentifierKeyPath`. It is not uncommon to replace this default instance
- with a custom controller. For example, if Core Data is being used, one would
- typically provide a controller created with the
- `initWithFetchRequest:managedObjectContext:sectionNameKeyPath:identifierKeyPath:cacheName:`
- initializer.
+ Minimal implementation of `UICollectionViewDataSource` & `UICollectionViewDelegate`. Can
+ be set as the delegate and data source directly or other delegates and data sources
+ can forward messages (see, for example `TLCollectionViewController`).
  */
-@property (strong, nonatomic) TLIndexPathController *indexPathController;
+
+@interface TLCollectionViewDelegateImpl : NSObject <UICollectionViewDataSource, UICollectionViewDelegate>
 
 /**
- The delegate/data source implementation object. For the most part, this controller
- forwards messages to this object. The default value can be replaced by a subclass.
+ Client code must set this block before any delegate methods are called. The block
+ is responsible for returning the data model for the given tableView.
  */
-@property (strong, nonatomic) TLCollectionViewDelegateImpl *delegateImpl;
+@property (strong, nonatomic) TLIndexPathDataModel *(^dataModelProvider)(UICollectionView *collectionView);
 
 /**
  The implementation of `collectionView:cellForItemAtIndexPath:` calls this method
@@ -65,7 +58,5 @@
  the cell directly.
  */
 - (void)collectionView:(UICollectionView *)collectionView configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
-
-- (void)reconfigureVisibleCells;
 
 @end

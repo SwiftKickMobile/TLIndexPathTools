@@ -48,7 +48,7 @@
     [self collapseAll];
 }
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSString *item = [self.dataModel itemAtIndexPath:indexPath];
     cell.textLabel.text = item;

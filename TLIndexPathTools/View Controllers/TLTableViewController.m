@@ -22,11 +22,8 @@
 //  THE SOFTWARE.
 
 #import "TLTableViewController.h"
-#import "TLIndexPathItem.h"
-#import "TLDynamicSizeView.h"
 
 @interface TLTableViewController ()
-@property (strong, nonatomic) NSMutableDictionary *prototypeCells;
 @property (strong, nonatomic, readonly) TLIndexPathDataModel *dataModel;
 @end
 
@@ -37,8 +34,7 @@
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if (self = [super initWithCoder:aDecoder]) {
-        _indexPathController = [[TLIndexPathController alloc] init];
-        _indexPathController.delegate = self;
+        [self initialize];
     }
     return self;
 }
@@ -46,8 +42,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        _indexPathController = [[TLIndexPathController alloc] init];
-        _indexPathController.delegate = self;
+        [self initialize];
     }
     return self;
 }
@@ -55,10 +50,20 @@
 - (id)initWithStyle:(UITableViewStyle)style
 {
     if (self = [super initWithStyle:style]) {
-        _indexPathController = [[TLIndexPathController alloc] init];
-        _indexPathController.delegate = self;
+        [self initialize];
     }
     return self;
+}
+
+- (void)initialize
+{
+    _indexPathController = [[TLIndexPathController alloc] init];
+    _indexPathController.delegate = self;
+    _delegateImpl = [[TLTableViewDelegateImpl alloc] init];
+    __weak TLTableViewController *weakSelf = self;
+    [_delegateImpl setDataModelProvider:^TLIndexPathDataModel *(UITableView *tableView) {
+        return weakSelf.indexPathController.dataModel;
+    }];
 }
 
 #pragma mark - Index path controller
@@ -72,14 +77,14 @@
     }
 }
 
-- (TLIndexPathDataModel *)dataModel
-{
-    return self.indexPathController.dataModel;
-}
-
 #pragma mark - Configuration
 
-- (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (NSString *)tableView:(UITableView *)tableView cellIdentifierAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.delegateImpl tableView:tableView cellIdentifierAtIndexPath:indexPath];
+}
+
+- (void)tableView:(UITableView *)tableView configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
 }
 
@@ -87,57 +92,35 @@
 {
     for (UITableViewCell *cell in [self.tableView visibleCells]) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-        [self configureCell:cell atIndexPath:indexPath];
+        [self tableView:self.tableView configureCell:cell atIndexPath:indexPath];
     }
-}
-
-- (NSString *)cellIdentifierAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSString *cellId = [self.dataModel cellIdentifierAtIndexPath:indexPath];
-    if (!cellId) {
-        cellId = @"Cell";
-    }
-    return cellId;
 }
 
 #pragma mark - Prototypes
 
-- (UITableViewCell *)prototypeForCellIdentifier:(NSString *)cellIdentifier
+- (UITableViewCell *)tableView:(UITableView *)tableView prototypeForCellIdentifier:(NSString *)cellIdentifier
 {
-    UITableViewCell *cell;
-    if (cellIdentifier) {
-        cell = [self.prototypeCells objectForKey:cellIdentifier];
-        if (!cell) {
-            if (!self.prototypeCells) {
-                self.prototypeCells = [[NSMutableDictionary alloc] init];
-            }
-            cell = [self.tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-            [self.prototypeCells setObject:cell forKey:cellIdentifier];
-        }
-    }
-    return cell;
+    return [self.delegateImpl tableView:tableView prototypeForCellIdentifier:cellIdentifier];
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [self.dataModel numberOfSections];
+    NSInteger number = [self.delegateImpl numberOfSectionsInTableView:tableView];
+    return number;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.dataModel numberOfRowsInSection:section];
+    NSInteger number = [self.delegateImpl tableView:tableView numberOfRowsInSection:section];
+    return number;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellId = [self cellIdentifierAtIndexPath:indexPath];
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellId];
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-    }
-    [self configureCell:cell atIndexPath:indexPath];
+    UITableViewCell *cell = [self.delegateImpl tableView:tableView cellForRowAtIndexPath:indexPath];
+    [self tableView:tableView configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
@@ -145,37 +128,18 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self configureCell:cell atIndexPath:indexPath];
+    [self.delegateImpl tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
+    [self tableView:tableView configureCell:cell atIndexPath:indexPath];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [self.dataModel sectionTitleForSection:section];
+    return [self.delegateImpl tableView:tableView titleForHeaderInSection:section];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    id item = [self.dataModel itemAtIndexPath:indexPath];
-    NSString *cellId = [self cellIdentifierAtIndexPath:indexPath];
-    if (cellId) {
-        UITableViewCell *cell = [self prototypeForCellIdentifier:cellId];
-        if ([cell conformsToProtocol:@protocol(TLDynamicSizeView)]) {
-            id<TLDynamicSizeView> v = (id<TLDynamicSizeView>)cell;
-            id data;
-            if ([item isKindOfClass:[TLIndexPathItem class]]) {
-                TLIndexPathItem *i = (TLIndexPathItem *)item;
-                data = i.data;
-            } else {
-                data = item;
-            }
-            CGSize computedSize = [v sizeWithData:data];
-            return computedSize.height;
-        } else {
-            return cell.bounds.size.height;
-        }
-    }
-    
-    return 44.0;
+    return [self.delegateImpl tableView:tableView heightForRowAtIndexPath:indexPath];
 }
 
 #pragma mark - TLIndexPathControllerDelegate
