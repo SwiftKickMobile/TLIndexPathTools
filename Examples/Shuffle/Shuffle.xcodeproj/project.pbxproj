@@ -324,7 +324,7 @@
 		86C923251775937E009E0324 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				86C923261775937E009E0324 /* Delegate Impl */,
+				86C923261775937E009E0324 /* Delegate */,
 				86C9232B1775937E009E0324 /* TLCollectionViewController.h */,
 				86C9232C1775937E009E0324 /* TLCollectionViewController.m */,
 				86C9232D1775937E009E0324 /* TLTableViewController.h */,
@@ -333,7 +333,7 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		86C923261775937E009E0324 /* Delegate Impl */ = {
+		86C923261775937E009E0324 /* Delegate */ = {
 			isa = PBXGroup;
 			children = (
 				86C923271775937E009E0324 /* TLCollectionViewDelegateImpl.h */,
@@ -341,6 +341,7 @@
 				86C923291775937E009E0324 /* TLTableViewDelegateImpl.h */,
 				86C9232A1775937E009E0324 /* TLTableViewDelegateImpl.m */,
 			);
+			name = Delegate;
 			path = "Delegate Impl";
 			sourceTree = "<group>";
 		};

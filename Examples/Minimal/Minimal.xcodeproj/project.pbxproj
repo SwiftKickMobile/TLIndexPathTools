@@ -1,0 +1,562 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		86C926DB177897CB009E0324 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C926DA177897CB009E0324 /* UIKit.framework */; };
+		86C926DD177897CB009E0324 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C926DC177897CB009E0324 /* Foundation.framework */; };
+		86C926DF177897CB009E0324 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C926DE177897CB009E0324 /* CoreGraphics.framework */; };
+		86C926E5177897CB009E0324 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 86C926E3177897CB009E0324 /* InfoPlist.strings */; };
+		86C926E7177897CB009E0324 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C926E6177897CB009E0324 /* main.m */; };
+		86C926EB177897CB009E0324 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C926EA177897CB009E0324 /* AppDelegate.m */; };
+		86C926ED177897CB009E0324 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 86C926EC177897CB009E0324 /* Default.png */; };
+		86C926EF177897CB009E0324 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86C926EE177897CB009E0324 /* Default@2x.png */; };
+		86C926F1177897CB009E0324 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86C926F0177897CB009E0324 /* Default-568h@2x.png */; };
+		86C926F4177897CB009E0324 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86C926F2177897CB009E0324 /* MainStoryboard.storyboard */; };
+		86C926F7177897CB009E0324 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C926F6177897CB009E0324 /* ViewController.m */; };
+		86C926FE177897D8009E0324 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C926FD177897D8009E0324 /* CoreData.framework */; };
+		86C92700177897E1009E0324 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C926FF177897E1009E0324 /* QuartzCore.framework */; };
+		86C92740177897F2009E0324 /* TLIndexPathController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92704177897F2009E0324 /* TLIndexPathController.m */; };
+		86C92741177897F2009E0324 /* TLIndexPathDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92707177897F2009E0324 /* TLIndexPathDataModel.m */; };
+		86C92742177897F2009E0324 /* TLIndexPathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92709177897F2009E0324 /* TLIndexPathItem.m */; };
+		86C92743177897F2009E0324 /* TLIndexPathSectionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9270B177897F2009E0324 /* TLIndexPathSectionInfo.m */; };
+		86C92744177897F2009E0324 /* TLIndexPathUpdates.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9270D177897F2009E0324 /* TLIndexPathUpdates.m */; };
+		86C92745177897F2009E0324 /* TLCollapsibleDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92711177897F2009E0324 /* TLCollapsibleDataModel.m */; };
+		86C92746177897F2009E0324 /* TLCollapsibleHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92713177897F2009E0324 /* TLCollapsibleHeaderView.m */; };
+		86C92747177897F2009E0324 /* TLCollapsibleTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92715177897F2009E0324 /* TLCollapsibleTableViewController.m */; };
+		86C92748177897F2009E0324 /* TLGridDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92719177897F2009E0324 /* TLGridDataModel.m */; };
+		86C92749177897F2009E0324 /* TLGridHeaderItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9271B177897F2009E0324 /* TLGridHeaderItem.m */; };
+		86C9274A177897F2009E0324 /* TLGridItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9271D177897F2009E0324 /* TLGridItem.m */; };
+		86C9274B177897F2009E0324 /* TLGridCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92720177897F2009E0324 /* TLGridCellView.m */; };
+		86C9274C177897F2009E0324 /* TLGridHeaderCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92722177897F2009E0324 /* TLGridHeaderCellView.m */; };
+		86C9274D177897F2009E0324 /* TLGridHeaderRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92724177897F2009E0324 /* TLGridHeaderRowView.m */; };
+		86C9274E177897F2009E0324 /* TLGridRowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92726177897F2009E0324 /* TLGridRowView.m */; };
+		86C9274F177897F2009E0324 /* TLNoResultsTableDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92729177897F2009E0324 /* TLNoResultsTableDataModel.m */; };
+		86C92750177897F2009E0324 /* TLLayerDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9272C177897F2009E0324 /* TLLayerDelegate.m */; };
+		86C92751177897F2009E0324 /* TLIndexPathTreeItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9272F177897F2009E0324 /* TLIndexPathTreeItem.m */; };
+		86C92752177897F2009E0324 /* TLTreeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92731177897F2009E0324 /* TLTreeDataModel.m */; };
+		86C92753177897F2009E0324 /* TLTreeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92733177897F2009E0324 /* TLTreeTableViewController.m */; };
+		86C92754177897F2009E0324 /* UITableViewController+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92735177897F2009E0324 /* UITableViewController+ScrollOptimizer.m */; };
+		86C92755177897F2009E0324 /* TLCollectionViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92739177897F2009E0324 /* TLCollectionViewDelegateImpl.m */; };
+		86C92756177897F2009E0324 /* TLTableViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9273B177897F2009E0324 /* TLTableViewDelegateImpl.m */; };
+		86C92757177897F2009E0324 /* TLCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9273D177897F2009E0324 /* TLCollectionViewController.m */; };
+		86C92758177897F2009E0324 /* TLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9273F177897F2009E0324 /* TLTableViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		86C926D7177897CB009E0324 /* Minimal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minimal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		86C926DA177897CB009E0324 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		86C926DC177897CB009E0324 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		86C926DE177897CB009E0324 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		86C926E2177897CB009E0324 /* Minimal-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Minimal-Info.plist"; sourceTree = "<group>"; };
+		86C926E4177897CB009E0324 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		86C926E6177897CB009E0324 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		86C926E8177897CB009E0324 /* Minimal-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Minimal-Prefix.pch"; sourceTree = "<group>"; };
+		86C926E9177897CB009E0324 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		86C926EA177897CB009E0324 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		86C926EC177897CB009E0324 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		86C926EE177897CB009E0324 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		86C926F0177897CB009E0324 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		86C926F3177897CB009E0324 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		86C926F5177897CB009E0324 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		86C926F6177897CB009E0324 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		86C926FD177897D8009E0324 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		86C926FF177897E1009E0324 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		86C92703177897F2009E0324 /* TLIndexPathController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathController.h; sourceTree = "<group>"; };
+		86C92704177897F2009E0324 /* TLIndexPathController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLIndexPathController.m; sourceTree = "<group>"; };
+		86C92706177897F2009E0324 /* TLIndexPathDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathDataModel.h; sourceTree = "<group>"; };
+		86C92707177897F2009E0324 /* TLIndexPathDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLIndexPathDataModel.m; sourceTree = "<group>"; };
+		86C92708177897F2009E0324 /* TLIndexPathItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathItem.h; sourceTree = "<group>"; };
+		86C92709177897F2009E0324 /* TLIndexPathItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLIndexPathItem.m; sourceTree = "<group>"; };
+		86C9270A177897F2009E0324 /* TLIndexPathSectionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathSectionInfo.h; sourceTree = "<group>"; };
+		86C9270B177897F2009E0324 /* TLIndexPathSectionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLIndexPathSectionInfo.m; sourceTree = "<group>"; };
+		86C9270C177897F2009E0324 /* TLIndexPathUpdates.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathUpdates.h; sourceTree = "<group>"; };
+		86C9270D177897F2009E0324 /* TLIndexPathUpdates.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLIndexPathUpdates.m; sourceTree = "<group>"; };
+		86C92710177897F2009E0324 /* TLCollapsibleDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollapsibleDataModel.h; sourceTree = "<group>"; };
+		86C92711177897F2009E0324 /* TLCollapsibleDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollapsibleDataModel.m; sourceTree = "<group>"; };
+		86C92712177897F2009E0324 /* TLCollapsibleHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollapsibleHeaderView.h; sourceTree = "<group>"; };
+		86C92713177897F2009E0324 /* TLCollapsibleHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollapsibleHeaderView.m; sourceTree = "<group>"; };
+		86C92714177897F2009E0324 /* TLCollapsibleTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollapsibleTableViewController.h; sourceTree = "<group>"; };
+		86C92715177897F2009E0324 /* TLCollapsibleTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollapsibleTableViewController.m; sourceTree = "<group>"; };
+		86C92718177897F2009E0324 /* TLGridDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLGridDataModel.h; sourceTree = "<group>"; };
+		86C92719177897F2009E0324 /* TLGridDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLGridDataModel.m; sourceTree = "<group>"; };
+		86C9271A177897F2009E0324 /* TLGridHeaderItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLGridHeaderItem.h; sourceTree = "<group>"; };
+		86C9271B177897F2009E0324 /* TLGridHeaderItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLGridHeaderItem.m; sourceTree = "<group>"; };
+		86C9271C177897F2009E0324 /* TLGridItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLGridItem.h; sourceTree = "<group>"; };
+		86C9271D177897F2009E0324 /* TLGridItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLGridItem.m; sourceTree = "<group>"; };
+		86C9271F177897F2009E0324 /* TLGridCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLGridCellView.h; sourceTree = "<group>"; };
+		86C92720177897F2009E0324 /* TLGridCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLGridCellView.m; sourceTree = "<group>"; };
+		86C92721177897F2009E0324 /* TLGridHeaderCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLGridHeaderCellView.h; sourceTree = "<group>"; };
+		86C92722177897F2009E0324 /* TLGridHeaderCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLGridHeaderCellView.m; sourceTree = "<group>"; };
+		86C92723177897F2009E0324 /* TLGridHeaderRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLGridHeaderRowView.h; sourceTree = "<group>"; };
+		86C92724177897F2009E0324 /* TLGridHeaderRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLGridHeaderRowView.m; sourceTree = "<group>"; };
+		86C92725177897F2009E0324 /* TLGridRowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLGridRowView.h; sourceTree = "<group>"; };
+		86C92726177897F2009E0324 /* TLGridRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLGridRowView.m; sourceTree = "<group>"; };
+		86C92728177897F2009E0324 /* TLNoResultsTableDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLNoResultsTableDataModel.h; sourceTree = "<group>"; };
+		86C92729177897F2009E0324 /* TLNoResultsTableDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLNoResultsTableDataModel.m; sourceTree = "<group>"; };
+		86C9272A177897F2009E0324 /* TLDynamicSizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDynamicSizeView.h; sourceTree = "<group>"; };
+		86C9272B177897F2009E0324 /* TLLayerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLLayerDelegate.h; sourceTree = "<group>"; };
+		86C9272C177897F2009E0324 /* TLLayerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLLayerDelegate.m; sourceTree = "<group>"; };
+		86C9272E177897F2009E0324 /* TLIndexPathTreeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathTreeItem.h; sourceTree = "<group>"; };
+		86C9272F177897F2009E0324 /* TLIndexPathTreeItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLIndexPathTreeItem.m; sourceTree = "<group>"; };
+		86C92730177897F2009E0324 /* TLTreeDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTreeDataModel.h; sourceTree = "<group>"; };
+		86C92731177897F2009E0324 /* TLTreeDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTreeDataModel.m; sourceTree = "<group>"; };
+		86C92732177897F2009E0324 /* TLTreeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTreeTableViewController.h; sourceTree = "<group>"; };
+		86C92733177897F2009E0324 /* TLTreeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTreeTableViewController.m; sourceTree = "<group>"; };
+		86C92734177897F2009E0324 /* UITableViewController+ScrollOptimizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+ScrollOptimizer.h"; sourceTree = "<group>"; };
+		86C92735177897F2009E0324 /* UITableViewController+ScrollOptimizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+ScrollOptimizer.m"; sourceTree = "<group>"; };
+		86C92738177897F2009E0324 /* TLCollectionViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollectionViewDelegateImpl.h; sourceTree = "<group>"; };
+		86C92739177897F2009E0324 /* TLCollectionViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewDelegateImpl.m; sourceTree = "<group>"; };
+		86C9273A177897F2009E0324 /* TLTableViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewDelegateImpl.h; sourceTree = "<group>"; };
+		86C9273B177897F2009E0324 /* TLTableViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableViewDelegateImpl.m; sourceTree = "<group>"; };
+		86C9273C177897F2009E0324 /* TLCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollectionViewController.h; sourceTree = "<group>"; };
+		86C9273D177897F2009E0324 /* TLCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewController.m; sourceTree = "<group>"; };
+		86C9273E177897F2009E0324 /* TLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewController.h; sourceTree = "<group>"; };
+		86C9273F177897F2009E0324 /* TLTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		86C926D4177897CB009E0324 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86C92700177897E1009E0324 /* QuartzCore.framework in Frameworks */,
+				86C926FE177897D8009E0324 /* CoreData.framework in Frameworks */,
+				86C926DB177897CB009E0324 /* UIKit.framework in Frameworks */,
+				86C926DD177897CB009E0324 /* Foundation.framework in Frameworks */,
+				86C926DF177897CB009E0324 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		86C926CE177897CB009E0324 = {
+			isa = PBXGroup;
+			children = (
+				86C92701177897F2009E0324 /* TLIndexPathTools */,
+				86C926FF177897E1009E0324 /* QuartzCore.framework */,
+				86C926FD177897D8009E0324 /* CoreData.framework */,
+				86C926E0177897CB009E0324 /* Minimal */,
+				86C926D9177897CB009E0324 /* Frameworks */,
+				86C926D8177897CB009E0324 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		86C926D8177897CB009E0324 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				86C926D7177897CB009E0324 /* Minimal.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		86C926D9177897CB009E0324 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				86C926DA177897CB009E0324 /* UIKit.framework */,
+				86C926DC177897CB009E0324 /* Foundation.framework */,
+				86C926DE177897CB009E0324 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		86C926E0177897CB009E0324 /* Minimal */ = {
+			isa = PBXGroup;
+			children = (
+				86C926E9177897CB009E0324 /* AppDelegate.h */,
+				86C926EA177897CB009E0324 /* AppDelegate.m */,
+				86C926F2177897CB009E0324 /* MainStoryboard.storyboard */,
+				86C926F5177897CB009E0324 /* ViewController.h */,
+				86C926F6177897CB009E0324 /* ViewController.m */,
+				86C926E1177897CB009E0324 /* Supporting Files */,
+			);
+			path = Minimal;
+			sourceTree = "<group>";
+		};
+		86C926E1177897CB009E0324 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				86C926E2177897CB009E0324 /* Minimal-Info.plist */,
+				86C926E3177897CB009E0324 /* InfoPlist.strings */,
+				86C926E6177897CB009E0324 /* main.m */,
+				86C926E8177897CB009E0324 /* Minimal-Prefix.pch */,
+				86C926EC177897CB009E0324 /* Default.png */,
+				86C926EE177897CB009E0324 /* Default@2x.png */,
+				86C926F0177897CB009E0324 /* Default-568h@2x.png */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		86C92701177897F2009E0324 /* TLIndexPathTools */ = {
+			isa = PBXGroup;
+			children = (
+				86C92702177897F2009E0324 /* Controllers */,
+				86C92705177897F2009E0324 /* Data Model */,
+				86C9270E177897F2009E0324 /* Utils */,
+				86C92736177897F2009E0324 /* View Controllers */,
+			);
+			name = TLIndexPathTools;
+			path = ../../TLIndexPathTools;
+			sourceTree = "<group>";
+		};
+		86C92702177897F2009E0324 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				86C92703177897F2009E0324 /* TLIndexPathController.h */,
+				86C92704177897F2009E0324 /* TLIndexPathController.m */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		86C92705177897F2009E0324 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				86C92706177897F2009E0324 /* TLIndexPathDataModel.h */,
+				86C92707177897F2009E0324 /* TLIndexPathDataModel.m */,
+				86C92708177897F2009E0324 /* TLIndexPathItem.h */,
+				86C92709177897F2009E0324 /* TLIndexPathItem.m */,
+				86C9270A177897F2009E0324 /* TLIndexPathSectionInfo.h */,
+				86C9270B177897F2009E0324 /* TLIndexPathSectionInfo.m */,
+				86C9270C177897F2009E0324 /* TLIndexPathUpdates.h */,
+				86C9270D177897F2009E0324 /* TLIndexPathUpdates.m */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		86C9270E177897F2009E0324 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				86C9270F177897F2009E0324 /* Collapsible */,
+				86C92716177897F2009E0324 /* Grid */,
+				86C92727177897F2009E0324 /* No Results */,
+				86C9272A177897F2009E0324 /* TLDynamicSizeView.h */,
+				86C9272B177897F2009E0324 /* TLLayerDelegate.h */,
+				86C9272C177897F2009E0324 /* TLLayerDelegate.m */,
+				86C9272D177897F2009E0324 /* Tree */,
+				86C92734177897F2009E0324 /* UITableViewController+ScrollOptimizer.h */,
+				86C92735177897F2009E0324 /* UITableViewController+ScrollOptimizer.m */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		86C9270F177897F2009E0324 /* Collapsible */ = {
+			isa = PBXGroup;
+			children = (
+				86C92710177897F2009E0324 /* TLCollapsibleDataModel.h */,
+				86C92711177897F2009E0324 /* TLCollapsibleDataModel.m */,
+				86C92712177897F2009E0324 /* TLCollapsibleHeaderView.h */,
+				86C92713177897F2009E0324 /* TLCollapsibleHeaderView.m */,
+				86C92714177897F2009E0324 /* TLCollapsibleTableViewController.h */,
+				86C92715177897F2009E0324 /* TLCollapsibleTableViewController.m */,
+			);
+			path = Collapsible;
+			sourceTree = "<group>";
+		};
+		86C92716177897F2009E0324 /* Grid */ = {
+			isa = PBXGroup;
+			children = (
+				86C92717177897F2009E0324 /* Data Model */,
+				86C9271E177897F2009E0324 /* Views */,
+			);
+			path = Grid;
+			sourceTree = "<group>";
+		};
+		86C92717177897F2009E0324 /* Data Model */ = {
+			isa = PBXGroup;
+			children = (
+				86C92718177897F2009E0324 /* TLGridDataModel.h */,
+				86C92719177897F2009E0324 /* TLGridDataModel.m */,
+				86C9271A177897F2009E0324 /* TLGridHeaderItem.h */,
+				86C9271B177897F2009E0324 /* TLGridHeaderItem.m */,
+				86C9271C177897F2009E0324 /* TLGridItem.h */,
+				86C9271D177897F2009E0324 /* TLGridItem.m */,
+			);
+			path = "Data Model";
+			sourceTree = "<group>";
+		};
+		86C9271E177897F2009E0324 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				86C9271F177897F2009E0324 /* TLGridCellView.h */,
+				86C92720177897F2009E0324 /* TLGridCellView.m */,
+				86C92721177897F2009E0324 /* TLGridHeaderCellView.h */,
+				86C92722177897F2009E0324 /* TLGridHeaderCellView.m */,
+				86C92723177897F2009E0324 /* TLGridHeaderRowView.h */,
+				86C92724177897F2009E0324 /* TLGridHeaderRowView.m */,
+				86C92725177897F2009E0324 /* TLGridRowView.h */,
+				86C92726177897F2009E0324 /* TLGridRowView.m */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		86C92727177897F2009E0324 /* No Results */ = {
+			isa = PBXGroup;
+			children = (
+				86C92728177897F2009E0324 /* TLNoResultsTableDataModel.h */,
+				86C92729177897F2009E0324 /* TLNoResultsTableDataModel.m */,
+			);
+			path = "No Results";
+			sourceTree = "<group>";
+		};
+		86C9272D177897F2009E0324 /* Tree */ = {
+			isa = PBXGroup;
+			children = (
+				86C9272E177897F2009E0324 /* TLIndexPathTreeItem.h */,
+				86C9272F177897F2009E0324 /* TLIndexPathTreeItem.m */,
+				86C92730177897F2009E0324 /* TLTreeDataModel.h */,
+				86C92731177897F2009E0324 /* TLTreeDataModel.m */,
+				86C92732177897F2009E0324 /* TLTreeTableViewController.h */,
+				86C92733177897F2009E0324 /* TLTreeTableViewController.m */,
+			);
+			path = Tree;
+			sourceTree = "<group>";
+		};
+		86C92736177897F2009E0324 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				86C92737177897F2009E0324 /* Delegate Impl */,
+				86C9273C177897F2009E0324 /* TLCollectionViewController.h */,
+				86C9273D177897F2009E0324 /* TLCollectionViewController.m */,
+				86C9273E177897F2009E0324 /* TLTableViewController.h */,
+				86C9273F177897F2009E0324 /* TLTableViewController.m */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		86C92737177897F2009E0324 /* Delegate Impl */ = {
+			isa = PBXGroup;
+			children = (
+				86C92738177897F2009E0324 /* TLCollectionViewDelegateImpl.h */,
+				86C92739177897F2009E0324 /* TLCollectionViewDelegateImpl.m */,
+				86C9273A177897F2009E0324 /* TLTableViewDelegateImpl.h */,
+				86C9273B177897F2009E0324 /* TLTableViewDelegateImpl.m */,
+			);
+			path = "Delegate Impl";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		86C926D6177897CB009E0324 /* Minimal */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 86C926FA177897CB009E0324 /* Build configuration list for PBXNativeTarget "Minimal" */;
+			buildPhases = (
+				86C926D3177897CB009E0324 /* Sources */,
+				86C926D4177897CB009E0324 /* Frameworks */,
+				86C926D5177897CB009E0324 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Minimal;
+			productName = Minimal;
+			productReference = 86C926D7177897CB009E0324 /* Minimal.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		86C926CF177897CB009E0324 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "wtm@tractablelabs.com";
+			};
+			buildConfigurationList = 86C926D2177897CB009E0324 /* Build configuration list for PBXProject "Minimal" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 86C926CE177897CB009E0324;
+			productRefGroup = 86C926D8177897CB009E0324 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				86C926D6177897CB009E0324 /* Minimal */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		86C926D5177897CB009E0324 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86C926E5177897CB009E0324 /* InfoPlist.strings in Resources */,
+				86C926ED177897CB009E0324 /* Default.png in Resources */,
+				86C926EF177897CB009E0324 /* Default@2x.png in Resources */,
+				86C926F1177897CB009E0324 /* Default-568h@2x.png in Resources */,
+				86C926F4177897CB009E0324 /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		86C926D3177897CB009E0324 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				86C926E7177897CB009E0324 /* main.m in Sources */,
+				86C926EB177897CB009E0324 /* AppDelegate.m in Sources */,
+				86C926F7177897CB009E0324 /* ViewController.m in Sources */,
+				86C92740177897F2009E0324 /* TLIndexPathController.m in Sources */,
+				86C92741177897F2009E0324 /* TLIndexPathDataModel.m in Sources */,
+				86C92742177897F2009E0324 /* TLIndexPathItem.m in Sources */,
+				86C92743177897F2009E0324 /* TLIndexPathSectionInfo.m in Sources */,
+				86C92744177897F2009E0324 /* TLIndexPathUpdates.m in Sources */,
+				86C92745177897F2009E0324 /* TLCollapsibleDataModel.m in Sources */,
+				86C92746177897F2009E0324 /* TLCollapsibleHeaderView.m in Sources */,
+				86C92747177897F2009E0324 /* TLCollapsibleTableViewController.m in Sources */,
+				86C92748177897F2009E0324 /* TLGridDataModel.m in Sources */,
+				86C92749177897F2009E0324 /* TLGridHeaderItem.m in Sources */,
+				86C9274A177897F2009E0324 /* TLGridItem.m in Sources */,
+				86C9274B177897F2009E0324 /* TLGridCellView.m in Sources */,
+				86C9274C177897F2009E0324 /* TLGridHeaderCellView.m in Sources */,
+				86C9274D177897F2009E0324 /* TLGridHeaderRowView.m in Sources */,
+				86C9274E177897F2009E0324 /* TLGridRowView.m in Sources */,
+				86C9274F177897F2009E0324 /* TLNoResultsTableDataModel.m in Sources */,
+				86C92750177897F2009E0324 /* TLLayerDelegate.m in Sources */,
+				86C92751177897F2009E0324 /* TLIndexPathTreeItem.m in Sources */,
+				86C92752177897F2009E0324 /* TLTreeDataModel.m in Sources */,
+				86C92753177897F2009E0324 /* TLTreeTableViewController.m in Sources */,
+				86C92754177897F2009E0324 /* UITableViewController+ScrollOptimizer.m in Sources */,
+				86C92755177897F2009E0324 /* TLCollectionViewDelegateImpl.m in Sources */,
+				86C92756177897F2009E0324 /* TLTableViewDelegateImpl.m in Sources */,
+				86C92757177897F2009E0324 /* TLCollectionViewController.m in Sources */,
+				86C92758177897F2009E0324 /* TLTableViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		86C926E3177897CB009E0324 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86C926E4177897CB009E0324 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		86C926F2177897CB009E0324 /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				86C926F3177897CB009E0324 /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		86C926F8177897CB009E0324 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		86C926F9177897CB009E0324 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		86C926FB177897CB009E0324 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Minimal/Minimal-Prefix.pch";
+				INFOPLIST_FILE = "Minimal/Minimal-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		86C926FC177897CB009E0324 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Minimal/Minimal-Prefix.pch";
+				INFOPLIST_FILE = "Minimal/Minimal-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		86C926D2177897CB009E0324 /* Build configuration list for PBXProject "Minimal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86C926F8177897CB009E0324 /* Debug */,
+				86C926F9177897CB009E0324 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		86C926FA177897CB009E0324 /* Build configuration list for PBXNativeTarget "Minimal" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				86C926FB177897CB009E0324 /* Debug */,
+				86C926FC177897CB009E0324 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 86C926CF177897CB009E0324 /* Project object */;
+}

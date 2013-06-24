@@ -174,7 +174,7 @@
          name = "View Controllers">
          <Group
             location = "group:Delegate Impl"
-            name = "Delegate Impl">
+            name = "Delegate">
             <FileRef
                location = "group:TLCollectionViewDelegateImpl.h">
             </FileRef>
@@ -225,5 +225,8 @@
    </FileRef>
    <FileRef
       location = "group:Examples/JSON/JSON.xcodeproj">
+   </FileRef>
+   <FileRef
+      location = "group:Examples/Minimal/Minimal.xcodeproj">
    </FileRef>
 </Workspace>
