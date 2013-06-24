@@ -119,7 +119,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [self.delegateImpl tableView:tableView cellForRowAtIndexPath:indexPath];
+    NSString *cellId = [self tableView:tableView cellIdentifierAtIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+    }
     [self tableView:tableView configureCell:cell atIndexPath:indexPath];
     return cell;
 }

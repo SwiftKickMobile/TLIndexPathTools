@@ -111,7 +111,11 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UICollectionViewCell *cell = [self.delegateImpl collectionView:collectionView cellForItemAtIndexPath:indexPath];
+    NSString *identifier = [self collectionView:collectionView cellIdentifierAtIndexPath:indexPath];
+    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+    if (!cell) {
+        cell = [[UICollectionViewCell alloc] init];
+    }
     [self collectionView:collectionView configureCell:cell atIndexPath:indexPath];
     return cell;
 }

@@ -29,7 +29,11 @@
 
 - (NSString *)collectionView:(UICollectionView *)collectionView cellIdentifierAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.dataModelProvider(collectionView) cellIdentifierAtIndexPath:indexPath];
+    NSString *cellId = [self.dataModelProvider(collectionView) cellIdentifierAtIndexPath:indexPath];
+    if (!cellId) {
+        cellId = @"Cell";
+    }
+    return cellId;
 }
 
 - (void)collectionView:(UICollectionView *)collectionView configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -50,10 +54,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *identifier = [self.dataModelProvider(collectionView) cellIdentifierAtIndexPath:indexPath];
-    if (!identifier) {
-        identifier = @"Cell";
-    }
+    NSString *identifier = [self collectionView:collectionView cellIdentifierAtIndexPath:indexPath];
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     if (!cell) {
         cell = [[UICollectionViewCell alloc] init];
