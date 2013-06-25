@@ -33,8 +33,9 @@
     self.indexPathController.items = items;
 }
 
-- (void)collectionView:(UICollectionView *)collectionView configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    UICollectionViewCell *cell = [super collectionView:collectionView cellForItemAtIndexPath:indexPath];
     //retrieve the cell data for the given index path from the controller
     //and set the cell's text label and background color
     NSArray *item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
@@ -42,6 +43,7 @@
     label.text = item[IDX_TEXT];
     cell.backgroundColor = item[IDX_COLOR];
     cell.layer.cornerRadius = 10;
+    return cell;
 }
 
 - (void)shuffle
