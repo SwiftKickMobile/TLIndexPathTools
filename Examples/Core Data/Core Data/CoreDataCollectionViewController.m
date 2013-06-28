@@ -76,6 +76,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
+    //normally, we configure the cell in `cellForItemAtIndexPath`, but in this example, we use the
+    //`configureCell` hook so we can reload cells with our own animation style, rather than
+    //the default cross-fade we would get by callind `reloadItemsAtIndexPaths`.
     Item *item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
     UILabel *label = (UILabel *)[cell viewWithTag:1];
     //if this is an existing item being modified, do a flip animation.

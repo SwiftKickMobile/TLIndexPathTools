@@ -26,12 +26,14 @@
                                        @"Cellar Door"];
 }
 
-- (void)tableView:(UITableView *)tableView configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     //retrieve the string for the given index path from the controller
     //and set the cell's text label.
     NSString *item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
     cell.textLabel.text = item;
+    return cell;
 }
 
 - (void)sortAlphabetically

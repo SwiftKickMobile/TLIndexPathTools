@@ -112,6 +112,9 @@
 
 - (void)tableView:(UITableView *)tableView configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
+    //normally, we configure the cell in `cellForItemAtIndexPath`, but in this example, we use the
+    //`configureCell` hook so we can more easily update the state of cells as selections are made.
+
     TLIndexPathItem *item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
     
     if ([ITEM_ID_SOUND_ENABLED isEqualToString:item.identifier]) {

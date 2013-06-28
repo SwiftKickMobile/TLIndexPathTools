@@ -48,10 +48,12 @@
     [self collapseAll];
 }
 
-- (void)tableView:(UITableView *)tableView configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     NSString *item = [self.dataModel itemAtIndexPath:indexPath];
     cell.textLabel.text = item;
+    return cell;
 }
 
 - (IBAction)toggleSingleSectionExpanded:(UISwitch *)sender {

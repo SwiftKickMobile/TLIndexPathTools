@@ -50,11 +50,13 @@
                                                              andIdentifierKeyPath:@"id"];
 }
 
-- (void)tableView:(UITableView *)tableView configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     NSDictionary *dict = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
     cell.textLabel.text = dict[@"title"];
     cell.detailTextLabel.text = dict[@"summary"];
+    return cell;
 }
 
 @end
