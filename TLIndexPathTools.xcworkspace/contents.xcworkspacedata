@@ -176,16 +176,16 @@
             location = "group:Delegate Impl"
             name = "Delegate">
             <FileRef
-               location = "group:TLCollectionViewDelegateImpl.h">
+               location = "group:../Delegate/TLCollectionViewDelegateImpl.h">
             </FileRef>
             <FileRef
-               location = "group:TLCollectionViewDelegateImpl.m">
+               location = "group:../Delegate/TLCollectionViewDelegateImpl.m">
             </FileRef>
             <FileRef
-               location = "group:TLTableViewDelegateImpl.h">
+               location = "group:../Delegate/TLTableViewDelegateImpl.h">
             </FileRef>
             <FileRef
-               location = "group:TLTableViewDelegateImpl.m">
+               location = "group:../Delegate/TLTableViewDelegateImpl.m">
             </FileRef>
          </Group>
          <FileRef
