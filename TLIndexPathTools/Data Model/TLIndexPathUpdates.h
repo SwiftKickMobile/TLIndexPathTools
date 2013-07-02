@@ -38,5 +38,6 @@
 @property (strong, nonatomic, readonly) NSArray *modifiedItems;
 - (void)performBatchUpdatesOnTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation;
 - (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView;
+- (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView completion:(void(^)(BOOL finished))completion;
 - (id)initWithOldDataModel:(TLIndexPathDataModel *)oldDataModel updatedDataModel:(TLIndexPathDataModel *)updatedDataModel;
 @end

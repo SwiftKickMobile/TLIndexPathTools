@@ -215,6 +215,11 @@
 
 - (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView
 {
+    [self performBatchUpdatesOnCollectionView:collectionView completion:nil];
+}
+
+- (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView completion:(void(^)(BOOL finished))completion
+{
     if (self.oldDataModel.items.count == 0 && self.updatedDataModel.items.count == 0) {
         return;
     }
@@ -281,7 +286,9 @@
         // TODO update modified items
     
     } completion:^(BOOL finished) {
-        // Completion
+        if (completion) {
+            completion(finished);
+        }
     }];    
 }
 
