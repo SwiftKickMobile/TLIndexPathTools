@@ -44,7 +44,8 @@
     ];
     //initialize index path controller with a data model containing JSON data.
     //using "datetime" as the `sectionNameKeyPath` automatically groups items
-    //by "datetime".
+    //by "datetime". For asynchronous fetch from a server, this statement would
+    //be done in the completion block of the fetch (on the main thread)
     self.indexPathController.dataModel = [[TLIndexPathDataModel alloc] initWithItems:jsonData
                                                             andSectionNameKeyPath:@"datetime"
                                                              andIdentifierKeyPath:@"id"];
