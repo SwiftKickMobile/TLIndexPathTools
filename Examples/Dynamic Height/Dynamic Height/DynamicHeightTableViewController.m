@@ -16,10 +16,14 @@
     [super viewDidLoad];
     
     self.indexPathController.items = @[
+          @"Quisque tincidunt rhoncus.",
           @"Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
           @"Fusce ac erat at lectus pulvinar porttitor vitae in mauris. Nam non eleifend tortor.",
           @"Quisque tincidunt rhoncus pellentesque.",
           @"Duis mauris nunc, fringilla nec elementum nec, lacinia at turpis. Duis mauris nunc, fringilla nec elementum nec, lacinia at turpis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
+          @"Lorem ipsum dolor sit amet, consectetur.",
+          @"Fusce ac erat at lectus pulvinar porttitor.",
+          @"Duis mauris nunc, fringilla nec elementum nec, lacinia at turpis. Duis mauris nunc, fringilla nec elementum nec, lacinia at turpis. Class aptent taciti.",
           ];
 }
 
