@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>52D8F09D-C072-4B0A-90CA-9288E8A0C4E7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>TLIndexPathTools</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>695CB944-A801-471F-B7FC-05F01FF7EA0D</key>
+		<string>https://github.com/wtmoose/TLIndexPathTools.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>TLIndexPathTools.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>695CB944-A801-471F-B7FC-05F01FF7EA0D</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/wtmoose/TLIndexPathTools.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>695CB944-A801-471F-B7FC-05F01FF7EA0D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>695CB944-A801-471F-B7FC-05F01FF7EA0D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TLIndexPathTools</string>
+		</dict>
+	</array>
+</dict>
+</plist>

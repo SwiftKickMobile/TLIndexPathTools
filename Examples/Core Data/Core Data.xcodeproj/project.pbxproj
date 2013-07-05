@@ -23,6 +23,8 @@
 		862FF92F1759869700381869 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 862FF92D1759869700381869 /* Model.xcdatamodeld */; };
 		862FF932175986CF00381869 /* Item.m in Sources */ = {isa = PBXBuildFile; fileRef = 862FF931175986CF00381869 /* Item.m */; };
 		862FF93817599FE200381869 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 862FF93717599FE200381869 /* UIColor+Hex.m */; };
+		8682A48A1787411F0023C036 /* TLCollectionViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8682A4871787411F0023C036 /* TLCollectionViewDelegateImpl.m */; };
+		8682A48B1787411F0023C036 /* TLTableViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8682A4891787411F0023C036 /* TLTableViewDelegateImpl.m */; };
 		86C925971775996C009E0324 /* TLIndexPathController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9255B1775996C009E0324 /* TLIndexPathController.m */; };
 		86C925981775996C009E0324 /* TLIndexPathDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9255E1775996C009E0324 /* TLIndexPathDataModel.m */; };
 		86C925991775996C009E0324 /* TLIndexPathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C925601775996C009E0324 /* TLIndexPathItem.m */; };
@@ -44,8 +46,6 @@
 		86C925A91775996C009E0324 /* TLTreeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C925881775996C009E0324 /* TLTreeDataModel.m */; };
 		86C925AA1775996C009E0324 /* TLTreeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9258A1775996C009E0324 /* TLTreeTableViewController.m */; };
 		86C925AB1775996C009E0324 /* UITableViewController+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9258C1775996C009E0324 /* UITableViewController+ScrollOptimizer.m */; };
-		86C925AC1775996C009E0324 /* TLCollectionViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C925901775996C009E0324 /* TLCollectionViewDelegateImpl.m */; };
-		86C925AD1775996C009E0324 /* TLTableViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C925921775996C009E0324 /* TLTableViewDelegateImpl.m */; };
 		86C925AE1775996C009E0324 /* TLCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C925941775996C009E0324 /* TLCollectionViewController.m */; };
 		86C925AF1775996C009E0324 /* TLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C925961775996C009E0324 /* TLTableViewController.m */; };
 /* End PBXBuildFile section */
@@ -74,6 +74,10 @@
 		862FF931175986CF00381869 /* Item.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Item.m; sourceTree = "<group>"; };
 		862FF93617599FE200381869 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
 		862FF93717599FE200381869 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		8682A4861787411F0023C036 /* TLCollectionViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollectionViewDelegateImpl.h; sourceTree = "<group>"; };
+		8682A4871787411F0023C036 /* TLCollectionViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewDelegateImpl.m; sourceTree = "<group>"; };
+		8682A4881787411F0023C036 /* TLTableViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewDelegateImpl.h; sourceTree = "<group>"; };
+		8682A4891787411F0023C036 /* TLTableViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableViewDelegateImpl.m; sourceTree = "<group>"; };
 		86C9255A1775996C009E0324 /* TLIndexPathController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathController.h; sourceTree = "<group>"; };
 		86C9255B1775996C009E0324 /* TLIndexPathController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLIndexPathController.m; sourceTree = "<group>"; };
 		86C9255D1775996C009E0324 /* TLIndexPathDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathDataModel.h; sourceTree = "<group>"; };
@@ -117,10 +121,6 @@
 		86C9258A1775996C009E0324 /* TLTreeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTreeTableViewController.m; sourceTree = "<group>"; };
 		86C9258B1775996C009E0324 /* UITableViewController+ScrollOptimizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+ScrollOptimizer.h"; sourceTree = "<group>"; };
 		86C9258C1775996C009E0324 /* UITableViewController+ScrollOptimizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+ScrollOptimizer.m"; sourceTree = "<group>"; };
-		86C9258F1775996C009E0324 /* TLCollectionViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollectionViewDelegateImpl.h; sourceTree = "<group>"; };
-		86C925901775996C009E0324 /* TLCollectionViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewDelegateImpl.m; sourceTree = "<group>"; };
-		86C925911775996C009E0324 /* TLTableViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewDelegateImpl.h; sourceTree = "<group>"; };
-		86C925921775996C009E0324 /* TLTableViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableViewDelegateImpl.m; sourceTree = "<group>"; };
 		86C925931775996C009E0324 /* TLCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollectionViewController.h; sourceTree = "<group>"; };
 		86C925941775996C009E0324 /* TLCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewController.m; sourceTree = "<group>"; };
 		86C925951775996C009E0324 /* TLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewController.h; sourceTree = "<group>"; };
@@ -203,6 +203,17 @@
 				862FF8C61759800C00381869 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8682A4851787411F0023C036 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				8682A4861787411F0023C036 /* TLCollectionViewDelegateImpl.h */,
+				8682A4871787411F0023C036 /* TLCollectionViewDelegateImpl.m */,
+				8682A4881787411F0023C036 /* TLTableViewDelegateImpl.h */,
+				8682A4891787411F0023C036 /* TLTableViewDelegateImpl.m */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 		86C925581775996C009E0324 /* TLIndexPathTools */ = {
@@ -332,25 +343,13 @@
 		86C9258D1775996C009E0324 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				86C9258E1775996C009E0324 /* Delegate */,
+				8682A4851787411F0023C036 /* Delegate */,
 				86C925931775996C009E0324 /* TLCollectionViewController.h */,
 				86C925941775996C009E0324 /* TLCollectionViewController.m */,
 				86C925951775996C009E0324 /* TLTableViewController.h */,
 				86C925961775996C009E0324 /* TLTableViewController.m */,
 			);
 			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		86C9258E1775996C009E0324 /* Delegate */ = {
-			isa = PBXGroup;
-			children = (
-				86C9258F1775996C009E0324 /* TLCollectionViewDelegateImpl.h */,
-				86C925901775996C009E0324 /* TLCollectionViewDelegateImpl.m */,
-				86C925911775996C009E0324 /* TLTableViewDelegateImpl.h */,
-				86C925921775996C009E0324 /* TLTableViewDelegateImpl.m */,
-			);
-			name = Delegate;
-			path = "Delegate Impl";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -446,10 +445,10 @@
 				86C925A91775996C009E0324 /* TLTreeDataModel.m in Sources */,
 				86C925AA1775996C009E0324 /* TLTreeTableViewController.m in Sources */,
 				86C925AB1775996C009E0324 /* UITableViewController+ScrollOptimizer.m in Sources */,
-				86C925AC1775996C009E0324 /* TLCollectionViewDelegateImpl.m in Sources */,
-				86C925AD1775996C009E0324 /* TLTableViewDelegateImpl.m in Sources */,
 				86C925AE1775996C009E0324 /* TLCollectionViewController.m in Sources */,
 				86C925AF1775996C009E0324 /* TLTableViewController.m in Sources */,
+				8682A48A1787411F0023C036 /* TLCollectionViewDelegateImpl.m in Sources */,
+				8682A48B1787411F0023C036 /* TLTableViewDelegateImpl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

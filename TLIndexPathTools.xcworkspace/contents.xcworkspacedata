@@ -47,6 +47,10 @@
          name = "Utils">
          <Group
             location = "container:"
+            name = "NSFetchedResultsController">
+         </Group>
+         <Group
+            location = "container:"
             name = "No Results">
             <FileRef
                location = "group:TLIndexPathTools/Utils/No Results/TLNoResultsTableDataModel.h">
@@ -173,19 +177,19 @@
          location = "group:View Controllers"
          name = "View Controllers">
          <Group
-            location = "group:Delegate Impl"
+            location = "group:Delegate"
             name = "Delegate">
             <FileRef
-               location = "group:../Delegate/TLCollectionViewDelegateImpl.h">
+               location = "group:TLCollectionViewDelegateImpl.h">
             </FileRef>
             <FileRef
-               location = "group:../Delegate/TLCollectionViewDelegateImpl.m">
+               location = "group:TLCollectionViewDelegateImpl.m">
             </FileRef>
             <FileRef
-               location = "group:../Delegate/TLTableViewDelegateImpl.h">
+               location = "group:TLTableViewDelegateImpl.h">
             </FileRef>
             <FileRef
-               location = "group:../Delegate/TLTableViewDelegateImpl.m">
+               location = "group:TLTableViewDelegateImpl.m">
             </FileRef>
          </Group>
          <FileRef

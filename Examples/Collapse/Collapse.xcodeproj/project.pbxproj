@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8682A491178741340023C036 /* TLCollectionViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8682A48E178741340023C036 /* TLCollectionViewDelegateImpl.m */; };
+		8682A492178741340023C036 /* TLTableViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8682A490178741340023C036 /* TLTableViewDelegateImpl.m */; };
 		86C841371753EC0B0051BB48 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C841361753EC0B0051BB48 /* UIKit.framework */; };
 		86C841391753EC0B0051BB48 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C841381753EC0B0051BB48 /* Foundation.framework */; };
 		86C8413B1753EC0B0051BB48 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C8413A1753EC0B0051BB48 /* CoreGraphics.framework */; };
@@ -41,13 +43,15 @@
 		86C923F1177596D4009E0324 /* TLTreeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C923D0177596D4009E0324 /* TLTreeDataModel.m */; };
 		86C923F2177596D4009E0324 /* TLTreeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C923D2177596D4009E0324 /* TLTreeTableViewController.m */; };
 		86C923F3177596D4009E0324 /* UITableViewController+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C923D4177596D4009E0324 /* UITableViewController+ScrollOptimizer.m */; };
-		86C923F4177596D4009E0324 /* TLCollectionViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C923D8177596D4009E0324 /* TLCollectionViewDelegateImpl.m */; };
-		86C923F5177596D4009E0324 /* TLTableViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C923DA177596D4009E0324 /* TLTableViewDelegateImpl.m */; };
 		86C923F6177596D4009E0324 /* TLCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C923DC177596D4009E0324 /* TLCollectionViewController.m */; };
 		86C923F7177596D4009E0324 /* TLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C923DE177596D4009E0324 /* TLTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8682A48D178741340023C036 /* TLCollectionViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollectionViewDelegateImpl.h; sourceTree = "<group>"; };
+		8682A48E178741340023C036 /* TLCollectionViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewDelegateImpl.m; sourceTree = "<group>"; };
+		8682A48F178741340023C036 /* TLTableViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewDelegateImpl.h; sourceTree = "<group>"; };
+		8682A490178741340023C036 /* TLTableViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableViewDelegateImpl.m; sourceTree = "<group>"; };
 		86C841331753EC0B0051BB48 /* Collapse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Collapse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C841361753EC0B0051BB48 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		86C841381753EC0B0051BB48 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -109,10 +113,6 @@
 		86C923D2177596D4009E0324 /* TLTreeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTreeTableViewController.m; sourceTree = "<group>"; };
 		86C923D3177596D4009E0324 /* UITableViewController+ScrollOptimizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+ScrollOptimizer.h"; sourceTree = "<group>"; };
 		86C923D4177596D4009E0324 /* UITableViewController+ScrollOptimizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+ScrollOptimizer.m"; sourceTree = "<group>"; };
-		86C923D7177596D4009E0324 /* TLCollectionViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollectionViewDelegateImpl.h; sourceTree = "<group>"; };
-		86C923D8177596D4009E0324 /* TLCollectionViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewDelegateImpl.m; sourceTree = "<group>"; };
-		86C923D9177596D4009E0324 /* TLTableViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewDelegateImpl.h; sourceTree = "<group>"; };
-		86C923DA177596D4009E0324 /* TLTableViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableViewDelegateImpl.m; sourceTree = "<group>"; };
 		86C923DB177596D4009E0324 /* TLCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollectionViewController.h; sourceTree = "<group>"; };
 		86C923DC177596D4009E0324 /* TLCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewController.m; sourceTree = "<group>"; };
 		86C923DD177596D4009E0324 /* TLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewController.h; sourceTree = "<group>"; };
@@ -135,6 +135,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8682A48C178741340023C036 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				8682A48D178741340023C036 /* TLCollectionViewDelegateImpl.h */,
+				8682A48E178741340023C036 /* TLCollectionViewDelegateImpl.m */,
+				8682A48F178741340023C036 /* TLTableViewDelegateImpl.h */,
+				8682A490178741340023C036 /* TLTableViewDelegateImpl.m */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		86C8412A1753EC0B0051BB48 = {
 			isa = PBXGroup;
 			children = (
@@ -319,24 +330,13 @@
 		86C923D5177596D4009E0324 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				86C923D6177596D4009E0324 /* Delegate Impl */,
+				8682A48C178741340023C036 /* Delegate */,
 				86C923DB177596D4009E0324 /* TLCollectionViewController.h */,
 				86C923DC177596D4009E0324 /* TLCollectionViewController.m */,
 				86C923DD177596D4009E0324 /* TLTableViewController.h */,
 				86C923DE177596D4009E0324 /* TLTableViewController.m */,
 			);
 			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		86C923D6177596D4009E0324 /* Delegate Impl */ = {
-			isa = PBXGroup;
-			children = (
-				86C923D7177596D4009E0324 /* TLCollectionViewDelegateImpl.h */,
-				86C923D8177596D4009E0324 /* TLCollectionViewDelegateImpl.m */,
-				86C923D9177596D4009E0324 /* TLTableViewDelegateImpl.h */,
-				86C923DA177596D4009E0324 /* TLTableViewDelegateImpl.m */,
-			);
-			path = "Delegate Impl";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -429,10 +429,10 @@
 				86C923F1177596D4009E0324 /* TLTreeDataModel.m in Sources */,
 				86C923F2177596D4009E0324 /* TLTreeTableViewController.m in Sources */,
 				86C923F3177596D4009E0324 /* UITableViewController+ScrollOptimizer.m in Sources */,
-				86C923F4177596D4009E0324 /* TLCollectionViewDelegateImpl.m in Sources */,
-				86C923F5177596D4009E0324 /* TLTableViewDelegateImpl.m in Sources */,
 				86C923F6177596D4009E0324 /* TLCollectionViewController.m in Sources */,
 				86C923F7177596D4009E0324 /* TLTableViewController.m in Sources */,
+				8682A491178741340023C036 /* TLCollectionViewDelegateImpl.m in Sources */,
+				8682A492178741340023C036 /* TLTableViewDelegateImpl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

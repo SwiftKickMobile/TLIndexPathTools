@@ -24,6 +24,8 @@
 		8631AFEB174D83D900D1B383 /* gear_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8631AFE7174D83D900D1B383 /* gear_press@2x.png */; };
 		8631AFEC174D83D900D1B383 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 8631AFE8174D83D900D1B383 /* gear.png */; };
 		8631AFED174D83D900D1B383 /* gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8631AFE9174D83D900D1B383 /* gear@2x.png */; };
+		8682A483178741060023C036 /* TLCollectionViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8682A480178741060023C036 /* TLCollectionViewDelegateImpl.m */; };
+		8682A484178741060023C036 /* TLTableViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8682A482178741060023C036 /* TLTableViewDelegateImpl.m */; };
 		86C92387177594FA009E0324 /* TLIndexPathController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9234B177594FA009E0324 /* TLIndexPathController.m */; };
 		86C92388177594FA009E0324 /* TLIndexPathDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9234E177594FA009E0324 /* TLIndexPathDataModel.m */; };
 		86C92389177594FA009E0324 /* TLIndexPathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92350177594FA009E0324 /* TLIndexPathItem.m */; };
@@ -45,8 +47,6 @@
 		86C92399177594FA009E0324 /* TLTreeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92378177594FA009E0324 /* TLTreeDataModel.m */; };
 		86C9239A177594FA009E0324 /* TLTreeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9237A177594FA009E0324 /* TLTreeTableViewController.m */; };
 		86C9239B177594FA009E0324 /* UITableViewController+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9237C177594FA009E0324 /* UITableViewController+ScrollOptimizer.m */; };
-		86C9239C177594FA009E0324 /* TLCollectionViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92380177594FA009E0324 /* TLCollectionViewDelegateImpl.m */; };
-		86C9239D177594FA009E0324 /* TLTableViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92382177594FA009E0324 /* TLTableViewDelegateImpl.m */; };
 		86C9239E177594FA009E0324 /* TLCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92384177594FA009E0324 /* TLCollectionViewController.m */; };
 		86C9239F177594FA009E0324 /* TLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C92386177594FA009E0324 /* TLTableViewController.m */; };
 /* End PBXBuildFile section */
@@ -74,6 +74,10 @@
 		8631AFE7174D83D900D1B383 /* gear_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear_press@2x.png"; sourceTree = "<group>"; };
 		8631AFE8174D83D900D1B383 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
 		8631AFE9174D83D900D1B383 /* gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear@2x.png"; sourceTree = "<group>"; };
+		8682A47F178741060023C036 /* TLCollectionViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollectionViewDelegateImpl.h; sourceTree = "<group>"; };
+		8682A480178741060023C036 /* TLCollectionViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewDelegateImpl.m; sourceTree = "<group>"; };
+		8682A481178741060023C036 /* TLTableViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewDelegateImpl.h; sourceTree = "<group>"; };
+		8682A482178741060023C036 /* TLTableViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableViewDelegateImpl.m; sourceTree = "<group>"; };
 		86C9234A177594FA009E0324 /* TLIndexPathController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathController.h; sourceTree = "<group>"; };
 		86C9234B177594FA009E0324 /* TLIndexPathController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLIndexPathController.m; sourceTree = "<group>"; };
 		86C9234D177594FA009E0324 /* TLIndexPathDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathDataModel.h; sourceTree = "<group>"; };
@@ -117,10 +121,6 @@
 		86C9237A177594FA009E0324 /* TLTreeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTreeTableViewController.m; sourceTree = "<group>"; };
 		86C9237B177594FA009E0324 /* UITableViewController+ScrollOptimizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+ScrollOptimizer.h"; sourceTree = "<group>"; };
 		86C9237C177594FA009E0324 /* UITableViewController+ScrollOptimizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+ScrollOptimizer.m"; sourceTree = "<group>"; };
-		86C9237F177594FA009E0324 /* TLCollectionViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollectionViewDelegateImpl.h; sourceTree = "<group>"; };
-		86C92380177594FA009E0324 /* TLCollectionViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewDelegateImpl.m; sourceTree = "<group>"; };
-		86C92381177594FA009E0324 /* TLTableViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewDelegateImpl.h; sourceTree = "<group>"; };
-		86C92382177594FA009E0324 /* TLTableViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableViewDelegateImpl.m; sourceTree = "<group>"; };
 		86C92383177594FA009E0324 /* TLCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollectionViewController.h; sourceTree = "<group>"; };
 		86C92384177594FA009E0324 /* TLCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewController.m; sourceTree = "<group>"; };
 		86C92385177594FA009E0324 /* TLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewController.h; sourceTree = "<group>"; };
@@ -210,6 +210,17 @@
 				8631AFE9174D83D900D1B383 /* gear@2x.png */,
 			);
 			path = images;
+			sourceTree = "<group>";
+		};
+		8682A47E178741060023C036 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				8682A47F178741060023C036 /* TLCollectionViewDelegateImpl.h */,
+				8682A480178741060023C036 /* TLCollectionViewDelegateImpl.m */,
+				8682A481178741060023C036 /* TLTableViewDelegateImpl.h */,
+				8682A482178741060023C036 /* TLTableViewDelegateImpl.m */,
+			);
+			path = Delegate;
 			sourceTree = "<group>";
 		};
 		86C92348177594FA009E0324 /* TLIndexPathTools */ = {
@@ -339,25 +350,13 @@
 		86C9237D177594FA009E0324 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				86C9237E177594FA009E0324 /* Delegate */,
+				8682A47E178741060023C036 /* Delegate */,
 				86C92383177594FA009E0324 /* TLCollectionViewController.h */,
 				86C92384177594FA009E0324 /* TLCollectionViewController.m */,
 				86C92385177594FA009E0324 /* TLTableViewController.h */,
 				86C92386177594FA009E0324 /* TLTableViewController.m */,
 			);
 			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		86C9237E177594FA009E0324 /* Delegate */ = {
-			isa = PBXGroup;
-			children = (
-				86C9237F177594FA009E0324 /* TLCollectionViewDelegateImpl.h */,
-				86C92380177594FA009E0324 /* TLCollectionViewDelegateImpl.m */,
-				86C92381177594FA009E0324 /* TLTableViewDelegateImpl.h */,
-				86C92382177594FA009E0324 /* TLTableViewDelegateImpl.m */,
-			);
-			name = Delegate;
-			path = "Delegate Impl";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -454,10 +453,10 @@
 				86C92399177594FA009E0324 /* TLTreeDataModel.m in Sources */,
 				86C9239A177594FA009E0324 /* TLTreeTableViewController.m in Sources */,
 				86C9239B177594FA009E0324 /* UITableViewController+ScrollOptimizer.m in Sources */,
-				86C9239C177594FA009E0324 /* TLCollectionViewDelegateImpl.m in Sources */,
-				86C9239D177594FA009E0324 /* TLTableViewDelegateImpl.m in Sources */,
 				86C9239E177594FA009E0324 /* TLCollectionViewController.m in Sources */,
 				86C9239F177594FA009E0324 /* TLTableViewController.m in Sources */,
+				8682A483178741060023C036 /* TLCollectionViewDelegateImpl.m in Sources */,
+				8682A484178741060023C036 /* TLTableViewDelegateImpl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

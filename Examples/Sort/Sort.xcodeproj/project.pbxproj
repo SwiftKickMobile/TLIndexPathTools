@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8682A4981787414A0023C036 /* TLCollectionViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8682A4951787414A0023C036 /* TLCollectionViewDelegateImpl.m */; };
+		8682A4991787414A0023C036 /* TLTableViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 8682A4971787414A0023C036 /* TLTableViewDelegateImpl.m */; };
 		86C9243717759768009E0324 /* TLIndexPathController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C923FB17759768009E0324 /* TLIndexPathController.m */; };
 		86C9243817759768009E0324 /* TLIndexPathDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C923FE17759768009E0324 /* TLIndexPathDataModel.m */; };
 		86C9243917759768009E0324 /* TLIndexPathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9240017759768009E0324 /* TLIndexPathItem.m */; };
@@ -28,8 +30,6 @@
 		86C9244917759769009E0324 /* TLTreeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9242817759768009E0324 /* TLTreeDataModel.m */; };
 		86C9244A17759769009E0324 /* TLTreeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9242A17759768009E0324 /* TLTreeTableViewController.m */; };
 		86C9244B17759769009E0324 /* UITableViewController+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9242C17759768009E0324 /* UITableViewController+ScrollOptimizer.m */; };
-		86C9244C17759769009E0324 /* TLCollectionViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9243017759768009E0324 /* TLCollectionViewDelegateImpl.m */; };
-		86C9244D17759769009E0324 /* TLTableViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9243217759768009E0324 /* TLTableViewDelegateImpl.m */; };
 		86C9244E17759769009E0324 /* TLCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9243417759768009E0324 /* TLCollectionViewController.m */; };
 		86C9244F17759769009E0324 /* TLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C9243617759768009E0324 /* TLTableViewController.m */; };
 		86CCA0C9175105C800360297 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86CCA0C8175105C800360297 /* UIKit.framework */; };
@@ -48,6 +48,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8682A4941787414A0023C036 /* TLCollectionViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollectionViewDelegateImpl.h; sourceTree = "<group>"; };
+		8682A4951787414A0023C036 /* TLCollectionViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewDelegateImpl.m; sourceTree = "<group>"; };
+		8682A4961787414A0023C036 /* TLTableViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewDelegateImpl.h; sourceTree = "<group>"; };
+		8682A4971787414A0023C036 /* TLTableViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableViewDelegateImpl.m; sourceTree = "<group>"; };
 		86C923FA17759768009E0324 /* TLIndexPathController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathController.h; sourceTree = "<group>"; };
 		86C923FB17759768009E0324 /* TLIndexPathController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLIndexPathController.m; sourceTree = "<group>"; };
 		86C923FD17759768009E0324 /* TLIndexPathDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathDataModel.h; sourceTree = "<group>"; };
@@ -91,10 +95,6 @@
 		86C9242A17759768009E0324 /* TLTreeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTreeTableViewController.m; sourceTree = "<group>"; };
 		86C9242B17759768009E0324 /* UITableViewController+ScrollOptimizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+ScrollOptimizer.h"; sourceTree = "<group>"; };
 		86C9242C17759768009E0324 /* UITableViewController+ScrollOptimizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+ScrollOptimizer.m"; sourceTree = "<group>"; };
-		86C9242F17759768009E0324 /* TLCollectionViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollectionViewDelegateImpl.h; sourceTree = "<group>"; };
-		86C9243017759768009E0324 /* TLCollectionViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewDelegateImpl.m; sourceTree = "<group>"; };
-		86C9243117759768009E0324 /* TLTableViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewDelegateImpl.h; sourceTree = "<group>"; };
-		86C9243217759768009E0324 /* TLTableViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableViewDelegateImpl.m; sourceTree = "<group>"; };
 		86C9243317759768009E0324 /* TLCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollectionViewController.h; sourceTree = "<group>"; };
 		86C9243417759768009E0324 /* TLCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewController.m; sourceTree = "<group>"; };
 		86C9243517759768009E0324 /* TLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewController.h; sourceTree = "<group>"; };
@@ -135,6 +135,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8682A4931787414A0023C036 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				8682A4941787414A0023C036 /* TLCollectionViewDelegateImpl.h */,
+				8682A4951787414A0023C036 /* TLCollectionViewDelegateImpl.m */,
+				8682A4961787414A0023C036 /* TLTableViewDelegateImpl.h */,
+				8682A4971787414A0023C036 /* TLTableViewDelegateImpl.m */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
 		86C923F817759768009E0324 /* TLIndexPathTools */ = {
 			isa = PBXGroup;
 			children = (
@@ -262,24 +273,13 @@
 		86C9242D17759768009E0324 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				86C9242E17759768009E0324 /* Delegate Impl */,
+				8682A4931787414A0023C036 /* Delegate */,
 				86C9243317759768009E0324 /* TLCollectionViewController.h */,
 				86C9243417759768009E0324 /* TLCollectionViewController.m */,
 				86C9243517759768009E0324 /* TLTableViewController.h */,
 				86C9243617759768009E0324 /* TLTableViewController.m */,
 			);
 			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		86C9242E17759768009E0324 /* Delegate Impl */ = {
-			isa = PBXGroup;
-			children = (
-				86C9242F17759768009E0324 /* TLCollectionViewDelegateImpl.h */,
-				86C9243017759768009E0324 /* TLCollectionViewDelegateImpl.m */,
-				86C9243117759768009E0324 /* TLTableViewDelegateImpl.h */,
-				86C9243217759768009E0324 /* TLTableViewDelegateImpl.m */,
-			);
-			path = "Delegate Impl";
 			sourceTree = "<group>";
 		};
 		86CCA0BC175105C800360297 = {
@@ -429,10 +429,10 @@
 				86C9244917759769009E0324 /* TLTreeDataModel.m in Sources */,
 				86C9244A17759769009E0324 /* TLTreeTableViewController.m in Sources */,
 				86C9244B17759769009E0324 /* UITableViewController+ScrollOptimizer.m in Sources */,
-				86C9244C17759769009E0324 /* TLCollectionViewDelegateImpl.m in Sources */,
-				86C9244D17759769009E0324 /* TLTableViewDelegateImpl.m in Sources */,
 				86C9244E17759769009E0324 /* TLCollectionViewController.m in Sources */,
 				86C9244F17759769009E0324 /* TLTableViewController.m in Sources */,
+				8682A4981787414A0023C036 /* TLCollectionViewDelegateImpl.m in Sources */,
+				8682A4991787414A0023C036 /* TLTableViewDelegateImpl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
