@@ -5,6 +5,34 @@
       location = "group:TLIndexPathTools"
       name = "TLIndexPathTools">
       <Group
+         location = "group:Data Model"
+         name = "Data Model">
+         <FileRef
+            location = "group:TLIndexPathDataModel.h">
+         </FileRef>
+         <FileRef
+            location = "group:TLIndexPathDataModel.m">
+         </FileRef>
+         <FileRef
+            location = "group:TLIndexPathItem.h">
+         </FileRef>
+         <FileRef
+            location = "group:TLIndexPathItem.m">
+         </FileRef>
+         <FileRef
+            location = "group:TLIndexPathSectionInfo.h">
+         </FileRef>
+         <FileRef
+            location = "group:TLIndexPathSectionInfo.m">
+         </FileRef>
+         <FileRef
+            location = "group:TLIndexPathUpdates.h">
+         </FileRef>
+         <FileRef
+            location = "group:TLIndexPathUpdates.m">
+         </FileRef>
+      </Group>
+      <Group
          location = "group:Controllers"
          name = "Controllers">
          <FileRef
@@ -12,34 +40,6 @@
          </FileRef>
          <FileRef
             location = "group:TLIndexPathController.m">
-         </FileRef>
-      </Group>
-      <Group
-         location = "group:Data Models"
-         name = "Data Model">
-         <FileRef
-            location = "group:../Data Model/TLIndexPathUpdates.m">
-         </FileRef>
-         <FileRef
-            location = "group:../Data Model/TLIndexPathDataModel.m">
-         </FileRef>
-         <FileRef
-            location = "group:../Data Model/TLIndexPathDataModel.h">
-         </FileRef>
-         <FileRef
-            location = "group:../Data Model/TLIndexPathSectionInfo.h">
-         </FileRef>
-         <FileRef
-            location = "group:../Data Model/TLIndexPathSectionInfo.m">
-         </FileRef>
-         <FileRef
-            location = "group:../Data Model/TLIndexPathItem.h">
-         </FileRef>
-         <FileRef
-            location = "group:../Data Model/TLIndexPathItem.m">
-         </FileRef>
-         <FileRef
-            location = "group:../Data Model/TLIndexPathUpdates.h">
          </FileRef>
       </Group>
       <Group
