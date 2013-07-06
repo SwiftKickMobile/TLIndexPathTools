@@ -32,6 +32,9 @@
     self.indexPathController.dataModel = [[TLIndexPathDataModel alloc] initWithSectionInfos:@[section1, section2, section3]
                                                                        andIdentifierKeyPath:nil
                                                                    andCellIdentifierKeyPath:nil];
+    
+    UILabel *headerLabel = (UILabel *)self.tableView.tableHeaderView;
+    headerLabel.text = [NSString stringWithFormat:@"%d total items in table.", self.indexPathController.items.count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
