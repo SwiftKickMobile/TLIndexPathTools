@@ -233,4 +233,7 @@
    <FileRef
       location = "group:Examples/Minimal/Minimal.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Examples/Section Info/Section Info.xcodeproj">
+   </FileRef>
 </Workspace>
