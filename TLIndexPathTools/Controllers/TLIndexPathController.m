@@ -175,7 +175,7 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
     if (![_dataModel isEqual:dataModel]) {
         TLIndexPathDataModel *oldDataModel = _dataModel;
         _dataModel = dataModel;
-        if ([self.delegate respondsToSelector:@selector(controller:didUpdateDataModel:)]) {
+        if ([self.delegate respondsToSelector:@selector(controller:didUpdateDataModel:)] && !self.ignoreDataModelChanges) {
             TLIndexPathUpdates *updates = [[TLIndexPathUpdates alloc] initWithOldDataModel:oldDataModel updatedDataModel:dataModel];
             [self.delegate controller:self didUpdateDataModel:updates];
         }

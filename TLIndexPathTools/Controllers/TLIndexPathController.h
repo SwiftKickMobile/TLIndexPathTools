@@ -137,6 +137,16 @@ extern NSString * const TLIndexPathControllerChangedNotification;
 
 + (void)deleteCacheWithName:(NSString *)name;
 
+/**
+ Determines whether data model changes are ignored.
+ 
+ This property can be set to YES to prevent calling the `didUpdateDataModel`
+ delegate method when the data model changes. This can be useful if the view
+ controller wants to reload the table without animation by calling `reloadData`,
+ rather than having the batch updates performed.
+ */
+@property (nonatomic) BOOL ignoreDataModelChanges;
+
 #pragma mark - Accessing data
 
 /**
