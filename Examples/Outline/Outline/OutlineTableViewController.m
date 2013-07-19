@@ -31,15 +31,14 @@
     [super viewDidLoad];
     
     //setup item heirarchy for data model
-    TLIndexPathTreeItem *item111 = [self itemWithId:ITEM_1_1_1 level:2 children:nil];
-    TLIndexPathTreeItem *item112 = [self itemWithId:ITEM_1_1_2 level:2 children:nil];
-    TLIndexPathTreeItem *item11 = [self itemWithId:ITEM_1_1  level:1 children:@[item111, item112]];
+    
+    //lazy loaded node. `childNodes == nil` indicates leaf node, so provide an empty array.
+    TLIndexPathTreeItem *item11 = [self itemWithId:ITEM_1_1  level:1 children:@[]];
+    
     TLIndexPathTreeItem *item121 = [self itemWithId:ITEM_1_2_1 level:2 children:nil];
     TLIndexPathTreeItem *item12 = [self itemWithId:ITEM_1_2 level:1 children:@[item121]];
     TLIndexPathTreeItem *item1 = [self itemWithId:ITEM_1 level:0 children:@[item11, item12]];
-    TLIndexPathTreeItem *item211 = [self itemWithId:ITEM_2_1_1 level:2 children:nil];
-    TLIndexPathTreeItem *item212 = [self itemWithId:ITEM_2_1_2 level:2 children:nil];
-    TLIndexPathTreeItem *item21 = [self itemWithId:ITEM_2_1 level:1 children:@[item211, item212]];
+    TLIndexPathTreeItem *item21 = [self itemWithId:ITEM_2_1 level:1 children:@[]];
     TLIndexPathTreeItem *item2 = [self itemWithId:ITEM_2 level:0 children:@[item21]];
 
     self.treeItems = @[item1, item2];
@@ -52,6 +51,8 @@
     }
     
     self.dataModel = [[TLTreeDataModel alloc] initWithTreeItems:self.treeItems collapsedNodeIdentifiers:[NSSet setWithArray:topLevelIdentifiers]];
+    
+    self.delegate = self;
 }
 
 //shorcut method for generating tree items
@@ -69,6 +70,42 @@
     NSString *identifier = [self.dataModel identifierAtIndexPath:indexPath];
     cell.textLabel.text = identifier;
     return cell;
+}
+
+#pragma mark - TLTreeTableViewControllerDelegate
+
+- (TLIndexPathTreeItem *)controller:(TLTreeTableViewController *)controller willChangeNode:(TLIndexPathTreeItem *)treeItem collapsed:(BOOL)collapsed
+{
+    //try to lazy insert children the first time a node is expanded
+    if (collapsed == NO && [treeItem.childItems count] == 0) {
+
+        //example of inserting children synchronously
+        if ([ITEM_1_1 isEqualToString:treeItem.identifier]) {
+            
+            TLIndexPathTreeItem *item111 = [self itemWithId:ITEM_1_1_1 level:2 children:nil];
+            TLIndexPathTreeItem *item112 = [self itemWithId:ITEM_1_1_2 level:2 children:nil];
+            TLIndexPathTreeItem *item11 = [treeItem copyWithChildren:@[item111, item112]];
+            return item11;
+            
+        }
+        
+        //example of inserting children asynchronously
+        else if ([ITEM_2_1 isEqualToString:treeItem.identifier]) {
+
+            //typically, one would fetch child data on a background thread and then
+            //set new version of item on main thread in the completion handler of the fetch
+            //(for simplicity, not actually fetching items here)
+            dispatch_async(dispatch_get_main_queue(), ^{
+                TLIndexPathTreeItem *item211 = [self itemWithId:ITEM_2_1_1 level:2 children:nil];
+                TLIndexPathTreeItem *item212 = [self itemWithId:ITEM_2_1_2 level:2 children:nil];
+                TLIndexPathTreeItem *item21 = [treeItem copyWithChildren:@[item211, item212]];
+                [self setNewVersionOfItem:item21];
+            });
+            
+        }
+    }
+    
+    return treeItem;
 }
 
 @end

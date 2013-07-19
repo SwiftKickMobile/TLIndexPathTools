@@ -25,7 +25,6 @@
 #import "UITableViewController+ScrollOptimizer.h"
 
 @interface TLTreeTableViewController ()
-
 @end
 
 @implementation TLTreeTableViewController
@@ -39,17 +38,72 @@
     self.indexPathController.dataModel = dataModel;
 }
 
+//- (void)addItem:(TLIndexPathTreeItem *)item
+//{
+//    TLIndexPathTreeItem *oldItem = [self.indexPathController.dataModel itemForIdentifier:item.identifier];
+//    NSMutableArray *items = [NSMutableArray arrayWithArray:self.indexPathController.dataModel.items];
+//    NSInteger index = [items indexOfObject:oldItem];
+//    if (index == NSNotFound) {
+//        [items addObject:item];
+//    } else {
+//        [items replaceObjectAtIndex:index withObject:item];
+//    }
+//    
+//    self.dataModel = [[TLTreeDataModel alloc] initWithTreeItems:items
+//                                       collapsedNodeIdentifiers:self.dataModel.collapsedNodeIdentifiers];
+//}
+
+#pragma mark - Manipulating the tree
+
+- (void)setNewVersionOfItem:(TLIndexPathTreeItem *)item
+{
+    if ([self.dataModel itemForIdentifier:item.identifier]) {
+        NSArray *treeItems = [self rebuildTreeItems:self.dataModel.treeItems withNewVersionOfItem:item];
+        self.dataModel = [[TLTreeDataModel alloc] initWithTreeItems:treeItems
+                                           collapsedNodeIdentifiers:self.dataModel.collapsedNodeIdentifiers];
+    }
+}
+
+- (NSArray *)rebuildTreeItems:(NSArray *)treeItems withNewVersionOfItem:(TLIndexPathTreeItem *)newVersionOfItem
+{
+    NSMutableArray *newTreeItems = [[NSMutableArray alloc] initWithCapacity:treeItems.count];
+    for (TLIndexPathTreeItem *item in treeItems) {
+        if ([newVersionOfItem.identifier isEqual:item.identifier]) {
+            [newTreeItems addObject:newVersionOfItem];
+        } else {
+            NSArray *newChildItems = [self rebuildTreeItems:item.childItems withNewVersionOfItem:newVersionOfItem];
+            TLIndexPathTreeItem *newItem = [item copyWithChildren:newChildItems];
+            [newTreeItems addObject:newItem];
+        }
+    }
+    return newTreeItems;
+}
+
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TLIndexPathTreeItem *item = [self.dataModel itemAtIndexPath:indexPath];
     NSMutableSet *collapsedNodeIdentifiers = [NSMutableSet setWithSet:self.dataModel.collapsedNodeIdentifiers];
-    BOOL collapsed = NO;
-    if ([collapsedNodeIdentifiers containsObject:item.identifier]) {
+    //`collapsed` represents the __new__ state
+    BOOL collapsed = ![collapsedNodeIdentifiers containsObject:item.identifier];
+
+    TLIndexPathTreeItem *newItem;
+    if ([self.delegate respondsToSelector:@selector(controller:willChangeNode:collapsed:)]) {
+        newItem = [self.delegate controller:self willChangeNode:item collapsed:collapsed];
+    }
+    NSArray *treeItems;
+    if ([self.dataModel itemForIdentifier:newItem.identifier]) {
+        treeItems = [self rebuildTreeItems:self.dataModel.treeItems withNewVersionOfItem:newItem];
+    } else {
+        treeItems = self.dataModel.treeItems;
+    }
+    
+    if (collapsed == NO) {
         [collapsedNodeIdentifiers removeObject:item.identifier];
         for (TLIndexPathTreeItem *child in item.childItems) {
-            if (child.childItems.count) {
+            //use the convention that `childItems==nil` indicates a leaf node
+            if (child.childItems) {
                 [collapsedNodeIdentifiers addObject:child.identifier];
             }
         }
@@ -58,10 +112,9 @@
             [collapsedNodeIdentifiers removeObject:child.identifier];
         }
         [collapsedNodeIdentifiers addObject:item.identifier];
-        collapsed = YES;
     }
-    
-    self.dataModel = [[TLTreeDataModel alloc] initWithTreeItems:self.dataModel.treeItems
+
+    self.dataModel = [[TLTreeDataModel alloc] initWithTreeItems:treeItems
                                        collapsedNodeIdentifiers:collapsedNodeIdentifiers];
     
     if ([self.delegate respondsToSelector:@selector(controller:didChangeNode:collapsed:)]) {

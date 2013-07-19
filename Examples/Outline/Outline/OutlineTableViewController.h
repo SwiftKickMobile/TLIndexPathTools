@@ -8,6 +8,6 @@
 
 #import "TLTreeTableViewController.h"
 
-@interface OutlineTableViewController : TLTreeTableViewController
+@interface OutlineTableViewController : TLTreeTableViewController <TLTreeTableViewControllerDelegate>
 
 @end

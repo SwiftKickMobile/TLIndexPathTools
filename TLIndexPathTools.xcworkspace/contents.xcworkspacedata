@@ -47,10 +47,6 @@
          name = "Utils">
          <Group
             location = "container:"
-            name = "NSFetchedResultsController">
-         </Group>
-         <Group
-            location = "container:"
             name = "No Results">
             <FileRef
                location = "group:TLIndexPathTools/Utils/No Results/TLNoResultsTableDataModel.h">

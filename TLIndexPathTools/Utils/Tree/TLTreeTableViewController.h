@@ -25,16 +25,49 @@
 #import "TLTreeDataModel.h"
 #import "TLIndexPathTreeItem.h"
 
+/**
+ Basic view controller implementation for `TLTreeDataModel` with support for expanding
+ and collapsing rows. Also supports lazy loading child items. The controller treats
+ a `TLIndexPathTreeItem` with `childItems == nil` as a leaf node and will not attempt
+ to expand or collapse the item. So for items that will have lazy loaded children,
+ the child items should be set to an empty array.
+ */
+
 @class TLTreeTableViewController;
 
 @protocol TLTreeTableViewControllerDelegate <NSObject>
 @optional
+
+/**
+ Gives the delegate an opportunity to replace the tree item before it is expanded or collapsed.
+ This can be used to lazy populate child items on expand or prune child items on collapse.
+ If a new tree items is returned, it will replace the existing item before the node changes.
+ Return `nil` or the existing item if there are no changes.
+ 
+ If the app needs to get children asynchronously, this method should be used to initiate
+ the fetch and, when the fetch is complete, call the `addItem:` method to replace the
+ existing item.
+ */
+- (TLIndexPathTreeItem *)controller:(TLTreeTableViewController *)controller willChangeNode:(TLIndexPathTreeItem *)treeItem collapsed:(BOOL)collapsed;
+
+/**
+ Called after a node is expanded or collapsed so the delegate can make any needed updates,
+ such as toggling an expand/collapse icon.
+ */
 - (void)controller:(TLTreeTableViewController *)controller didChangeNode:(TLIndexPathTreeItem *)treeItem collapsed:(BOOL)collapsed;
+
 @end
 
 @interface TLTreeTableViewController : TLTableViewController
 
 @property (weak, nonatomic) id<TLTreeTableViewControllerDelegate>delegate;
+
+/**
+ Replaces an existing item with a new version. If there is no item in the existing
+ tree with a matching identifier, no change is made. Use this method to lazy load child
+ nodes asynchrnously when a node is expanded.
+ */
+- (void)setNewVersionOfItem:(TLIndexPathTreeItem *)item;
 
 /**
  A type-safe shortcut for getting and setting the tree data model on the

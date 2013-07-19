@@ -29,4 +29,5 @@
           cellIdentifier:(NSString *)cellIdentifier
                     data:(id)data
            andChildItems:(NSArray *)childItems;
+- (TLIndexPathTreeItem *)copyWithChildren:(NSArray *)children;
 @end

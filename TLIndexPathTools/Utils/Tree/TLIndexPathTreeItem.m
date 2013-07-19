@@ -36,4 +36,10 @@
     return self;
 }
 
+- (TLIndexPathTreeItem *)copyWithChildren:(NSArray *)children
+{
+    TLIndexPathTreeItem *copy = [[TLIndexPathTreeItem alloc] initWithIdentifier:self.identifier sectionName:self.sectionName cellIdentifier:self.cellIdentifier data:self.data andChildItems:children];
+    return copy;
+}
+
 @end
