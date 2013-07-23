@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'TLIndexPathTools' target in the 'TLIndexPathTools' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif

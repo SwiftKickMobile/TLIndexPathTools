@@ -2,234 +2,40 @@
 <Workspace
    version = "1.0">
    <Group
-      location = "group:TLIndexPathTools"
-      name = "TLIndexPathTools">
-      <Group
-         location = "group:Data Model"
-         name = "Data Model">
-         <FileRef
-            location = "group:TLIndexPathDataModel.h">
-         </FileRef>
-         <FileRef
-            location = "group:TLIndexPathDataModel.m">
-         </FileRef>
-         <FileRef
-            location = "group:TLIndexPathItem.h">
-         </FileRef>
-         <FileRef
-            location = "group:TLIndexPathItem.m">
-         </FileRef>
-         <FileRef
-            location = "group:TLIndexPathSectionInfo.h">
-         </FileRef>
-         <FileRef
-            location = "group:TLIndexPathSectionInfo.m">
-         </FileRef>
-         <FileRef
-            location = "group:TLIndexPathUpdates.h">
-         </FileRef>
-         <FileRef
-            location = "group:TLIndexPathUpdates.m">
-         </FileRef>
-      </Group>
-      <Group
-         location = "group:Controllers"
-         name = "Controllers">
-         <FileRef
-            location = "group:TLIndexPathController.h">
-         </FileRef>
-         <FileRef
-            location = "group:TLIndexPathController.m">
-         </FileRef>
-      </Group>
-      <Group
-         location = "group:Utils"
-         name = "Utils">
-         <Group
-            location = "container:"
-            name = "No Results">
-            <FileRef
-               location = "group:TLIndexPathTools/Utils/No Results/TLNoResultsTableDataModel.h">
-            </FileRef>
-            <FileRef
-               location = "group:TLIndexPathTools/Utils/No Results/TLNoResultsTableDataModel.m">
-            </FileRef>
-         </Group>
-         <Group
-            location = "group:Collapsible"
-            name = "Collapsible">
-            <FileRef
-               location = "group:TLCollapsibleDataModel.h">
-            </FileRef>
-            <FileRef
-               location = "group:TLCollapsibleDataModel.m">
-            </FileRef>
-            <FileRef
-               location = "group:TLCollapsibleHeaderView.h">
-            </FileRef>
-            <FileRef
-               location = "group:TLCollapsibleHeaderView.m">
-            </FileRef>
-            <FileRef
-               location = "group:TLCollapsibleTableViewController.h">
-            </FileRef>
-            <FileRef
-               location = "group:TLCollapsibleTableViewController.m">
-            </FileRef>
-         </Group>
-         <Group
-            location = "group:Grid"
-            name = "Grid">
-            <Group
-               location = "group:Data Model"
-               name = "Data Model">
-               <FileRef
-                  location = "group:TLGridDataModel.h">
-               </FileRef>
-               <FileRef
-                  location = "group:TLGridDataModel.m">
-               </FileRef>
-               <FileRef
-                  location = "group:TLGridHeaderItem.h">
-               </FileRef>
-               <FileRef
-                  location = "group:TLGridHeaderItem.m">
-               </FileRef>
-               <FileRef
-                  location = "group:TLGridItem.h">
-               </FileRef>
-               <FileRef
-                  location = "group:TLGridItem.m">
-               </FileRef>
-            </Group>
-            <Group
-               location = "group:Views"
-               name = "Views">
-               <FileRef
-                  location = "group:TLGridCellView.h">
-               </FileRef>
-               <FileRef
-                  location = "group:TLGridCellView.m">
-               </FileRef>
-               <FileRef
-                  location = "group:TLGridHeaderCellView.h">
-               </FileRef>
-               <FileRef
-                  location = "group:TLGridHeaderCellView.m">
-               </FileRef>
-               <FileRef
-                  location = "group:TLGridHeaderRowView.h">
-               </FileRef>
-               <FileRef
-                  location = "group:TLGridHeaderRowView.m">
-               </FileRef>
-               <FileRef
-                  location = "group:TLGridRowView.h">
-               </FileRef>
-               <FileRef
-                  location = "group:TLGridRowView.m">
-               </FileRef>
-            </Group>
-         </Group>
-         <FileRef
-            location = "group:TLDynamicSizeView.h">
-         </FileRef>
-         <FileRef
-            location = "group:TLLayerDelegate.h">
-         </FileRef>
-         <FileRef
-            location = "group:TLLayerDelegate.m">
-         </FileRef>
-         <Group
-            location = "group:Tree"
-            name = "Tree">
-            <FileRef
-               location = "group:TLIndexPathTreeItem.h">
-            </FileRef>
-            <FileRef
-               location = "group:TLIndexPathTreeItem.m">
-            </FileRef>
-            <FileRef
-               location = "group:TLTreeDataModel.h">
-            </FileRef>
-            <FileRef
-               location = "group:TLTreeDataModel.m">
-            </FileRef>
-            <FileRef
-               location = "group:TLTreeTableViewController.h">
-            </FileRef>
-            <FileRef
-               location = "group:TLTreeTableViewController.m">
-            </FileRef>
-         </Group>
-         <FileRef
-            location = "group:UITableViewController+ScrollOptimizer.h">
-         </FileRef>
-         <FileRef
-            location = "group:UITableViewController+ScrollOptimizer.m">
-         </FileRef>
-      </Group>
-      <Group
-         location = "group:View Controllers"
-         name = "View Controllers">
-         <Group
-            location = "group:Delegate"
-            name = "Delegate">
-            <FileRef
-               location = "group:TLCollectionViewDelegateImpl.h">
-            </FileRef>
-            <FileRef
-               location = "group:TLCollectionViewDelegateImpl.m">
-            </FileRef>
-            <FileRef
-               location = "group:TLTableViewDelegateImpl.h">
-            </FileRef>
-            <FileRef
-               location = "group:TLTableViewDelegateImpl.m">
-            </FileRef>
-         </Group>
-         <FileRef
-            location = "group:TLCollectionViewController.h">
-         </FileRef>
-         <FileRef
-            location = "group:TLCollectionViewController.m">
-         </FileRef>
-         <FileRef
-            location = "group:TLTableViewController.h">
-         </FileRef>
-         <FileRef
-            location = "group:TLTableViewController.m">
-         </FileRef>
-      </Group>
+      location = "container:"
+      name = "Examples">
+      <FileRef
+         location = "group:Examples/Shuffle/Shuffle.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Examples/Settings/Settings.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Examples/Core Data/Core Data.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Examples/Collapse/Collapse.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Examples/Sort/Sort.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Examples/Outline/Outline.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Examples/Dynamic Height/Dynamic Height.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Examples/JSON/JSON.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Examples/Minimal/Minimal.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Examples/Section Info/Section Info.xcodeproj">
+      </FileRef>
    </Group>
    <FileRef
-      location = "group:Examples/Shuffle/Shuffle.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Examples/Settings/Settings.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Examples/Core Data/Core Data.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Examples/Collapse/Collapse.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Examples/Sort/Sort.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Examples/Outline/Outline.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Examples/Dynamic Height/Dynamic Height.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Examples/JSON/JSON.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Examples/Minimal/Minimal.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:Examples/Section Info/Section Info.xcodeproj">
+      location = "group:TLIndexPathTools.xcodeproj">
    </FileRef>
 </Workspace>
