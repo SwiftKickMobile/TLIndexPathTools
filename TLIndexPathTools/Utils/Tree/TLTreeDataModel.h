@@ -24,7 +24,7 @@
 #import "TLIndexPathDataModel.h"
 
 @interface TLTreeDataModel : TLIndexPathDataModel
-@property (copy, nonatomic, readonly) NSSet *collapsedNodeIdentifiers;
+@property (copy, nonatomic, readonly) NSArray *collapsedNodeIdentifiers;
 @property (copy, nonatomic, readonly) NSArray *treeItems;
-- (instancetype)initWithTreeItems:(NSArray *)treeItems collapsedNodeIdentifiers:(NSSet *)collapsedNodeIdentifiers;
+- (instancetype)initWithTreeItems:(NSArray *)treeItems collapsedNodeIdentifiers:(NSArray *)collapsedNodeIdentifiers;
 @end

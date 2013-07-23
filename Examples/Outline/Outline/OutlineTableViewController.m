@@ -45,12 +45,8 @@
 
     //set data model with top-level items collapsed
     
-    NSMutableArray *topLevelIdentifiers = [[NSMutableArray alloc] initWithCapacity:self.treeItems.count];
-    for (TLIndexPathTreeItem *treeItem in self.treeItems) {
-        [topLevelIdentifiers addObject:treeItem.identifier];
-    }
-    
-    self.dataModel = [[TLTreeDataModel alloc] initWithTreeItems:self.treeItems collapsedNodeIdentifiers:[NSSet setWithArray:topLevelIdentifiers]];
+    NSArray *topLevelIdentifiers = [TLIndexPathItem identifiersForIndexPathItems:self.treeItems];
+    self.dataModel = [[TLTreeDataModel alloc] initWithTreeItems:self.treeItems collapsedNodeIdentifiers:topLevelIdentifiers];
     
     self.delegate = self;
 }
@@ -74,7 +70,7 @@
 
 #pragma mark - TLTreeTableViewControllerDelegate
 
-- (TLIndexPathTreeItem *)controller:(TLTreeTableViewController *)controller willChangeNode:(TLIndexPathTreeItem *)treeItem collapsed:(BOOL)collapsed
+- (void)controller:(TLTreeTableViewController *)controller willChangeNode:(TLIndexPathTreeItem *)treeItem collapsed:(BOOL)collapsed
 {
     //try to lazy insert children the first time a node is expanded
     if (collapsed == NO && [treeItem.childItems count] == 0) {
@@ -85,8 +81,7 @@
             TLIndexPathTreeItem *item111 = [self itemWithId:ITEM_1_1_1 level:2 children:nil];
             TLIndexPathTreeItem *item112 = [self itemWithId:ITEM_1_1_2 level:2 children:nil];
             TLIndexPathTreeItem *item11 = [treeItem copyWithChildren:@[item111, item112]];
-            return item11;
-            
+            [self setNewVersionOfItem:item11 collapsedChildNodeIdentifiers:[TLIndexPathItem identifiersForIndexPathItems:item11.childItems]];
         }
         
         //example of inserting children asynchronously
@@ -94,18 +89,18 @@
 
             //typically, one would fetch child data on a background thread and then
             //set new version of item on main thread in the completion handler of the fetch
-            //(for simplicity, not actually fetching items here)
-            dispatch_async(dispatch_get_main_queue(), ^{
+            //(for simplicity, not actually fetching items here. just inserting items
+            //after a 1 second delay to simulate a fetch response)
+            double delayInSeconds = 1.0;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                 TLIndexPathTreeItem *item211 = [self itemWithId:ITEM_2_1_1 level:2 children:nil];
                 TLIndexPathTreeItem *item212 = [self itemWithId:ITEM_2_1_2 level:2 children:nil];
                 TLIndexPathTreeItem *item21 = [treeItem copyWithChildren:@[item211, item212]];
-                [self setNewVersionOfItem:item21];
-            });
-            
+                [self setNewVersionOfItem:item21 collapsedChildNodeIdentifiers:[TLIndexPathItem identifiersForIndexPathItems:item21.childItems]];
+            });            
         }
     }
-    
-    return treeItem;
 }
 
 @end

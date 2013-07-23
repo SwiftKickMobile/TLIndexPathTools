@@ -26,7 +26,7 @@
 
 @implementation TLTreeDataModel
 
-- (instancetype)initWithTreeItems:(NSArray *)treeItems collapsedNodeIdentifiers:(NSSet *)collapsedNodeIdentifiers
+- (instancetype)initWithTreeItems:(NSArray *)treeItems collapsedNodeIdentifiers:(NSArray *)collapsedNodeIdentifiers
 {
     NSMutableArray *items = [NSMutableArray array];
     for (TLIndexPathTreeItem *item in treeItems) {
@@ -39,7 +39,7 @@
     return self;
 }
 
-- (void)flattenTreeItem:(TLIndexPathTreeItem *)item intoArray:(NSMutableArray *)items withCollapsedNodeIdentifiers:(NSSet *)collapsedNodeIdentifiers
+- (void)flattenTreeItem:(TLIndexPathTreeItem *)item intoArray:(NSMutableArray *)items withCollapsedNodeIdentifiers:(NSArray *)collapsedNodeIdentifiers
 {
     if (item) {
         [items addObject:item];

@@ -25,6 +25,7 @@
 #import "UITableViewController+ScrollOptimizer.h"
 
 @interface TLTreeTableViewController ()
+@property (nonatomic) BOOL changingNode;
 @end
 
 @implementation TLTreeTableViewController
@@ -38,34 +39,32 @@
     self.indexPathController.dataModel = dataModel;
 }
 
-//- (void)addItem:(TLIndexPathTreeItem *)item
-//{
-//    TLIndexPathTreeItem *oldItem = [self.indexPathController.dataModel itemForIdentifier:item.identifier];
-//    NSMutableArray *items = [NSMutableArray arrayWithArray:self.indexPathController.dataModel.items];
-//    NSInteger index = [items indexOfObject:oldItem];
-//    if (index == NSNotFound) {
-//        [items addObject:item];
-//    } else {
-//        [items replaceObjectAtIndex:index withObject:item];
-//    }
-//    
-//    self.dataModel = [[TLTreeDataModel alloc] initWithTreeItems:items
-//                                       collapsedNodeIdentifiers:self.dataModel.collapsedNodeIdentifiers];
-//}
-
 #pragma mark - Manipulating the tree
 
-- (void)setNewVersionOfItem:(TLIndexPathTreeItem *)item
+- (void)setNewVersionOfItem:(TLIndexPathTreeItem *)item collapsedChildNodeIdentifiers:(NSArray *)collapsedChildNodeIdentifiers
 {
     if ([self.dataModel itemForIdentifier:item.identifier]) {
         NSArray *treeItems = [self rebuildTreeItems:self.dataModel.treeItems withNewVersionOfItem:item];
+        BOOL currentignoreDataModelChanges = self.indexPathController.ignoreDataModelChanges;
+        if (self.changingNode) {
+            self.indexPathController.ignoreDataModelChanges = YES;
+        }
+        //TODO to make this more robust, we should remove any existing children from the
+        //current set of collapsed items. But what we've done here should work for
+        //the simple case of lazy loading children.
+        NSMutableArray *mergedCollapsed = [[NSMutableArray alloc] initWithArray:self.dataModel.collapsedNodeIdentifiers];
+        [mergedCollapsed addObjectsFromArray:collapsedChildNodeIdentifiers];
         self.dataModel = [[TLTreeDataModel alloc] initWithTreeItems:treeItems
-                                           collapsedNodeIdentifiers:self.dataModel.collapsedNodeIdentifiers];
+                                           collapsedNodeIdentifiers:mergedCollapsed];
+        self.indexPathController.ignoreDataModelChanges = currentignoreDataModelChanges;
     }
 }
 
 - (NSArray *)rebuildTreeItems:(NSArray *)treeItems withNewVersionOfItem:(TLIndexPathTreeItem *)newVersionOfItem
 {
+    if (!treeItems) {
+        return nil;
+    }
     NSMutableArray *newTreeItems = [[NSMutableArray alloc] initWithCapacity:treeItems.count];
     for (TLIndexPathTreeItem *item in treeItems) {
         if ([newVersionOfItem.identifier isEqual:item.identifier]) {
@@ -84,53 +83,60 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TLIndexPathTreeItem *item = [self.dataModel itemAtIndexPath:indexPath];
-    NSMutableSet *collapsedNodeIdentifiers = [NSMutableSet setWithSet:self.dataModel.collapsedNodeIdentifiers];
-    //`collapsed` represents the __new__ state
-    BOOL collapsed = ![collapsedNodeIdentifiers containsObject:item.identifier];
 
-    TLIndexPathTreeItem *newItem;
-    if ([self.delegate respondsToSelector:@selector(controller:willChangeNode:collapsed:)]) {
-        newItem = [self.delegate controller:self willChangeNode:item collapsed:collapsed];
-    }
-    NSArray *treeItems;
-    if ([self.dataModel itemForIdentifier:newItem.identifier]) {
-        treeItems = [self rebuildTreeItems:self.dataModel.treeItems withNewVersionOfItem:newItem];
-    } else {
-        treeItems = self.dataModel.treeItems;
-    }
-    
-    if (collapsed == NO) {
-        [collapsedNodeIdentifiers removeObject:item.identifier];
-        for (TLIndexPathTreeItem *child in item.childItems) {
-            //use the convention that `childItems==nil` indicates a leaf node
-            if (child.childItems) {
-                [collapsedNodeIdentifiers addObject:child.identifier];
+    //use the convention that `childItems==nil` indicates a leaf node and only
+    //perform the expand/collapse logic on non-leaf nodes
+    if (item.childItems) {
+        
+        self.changingNode = YES;
+        
+        NSMutableArray *collapsedNodeIdentifiers = [NSMutableArray arrayWithArray:self.dataModel.collapsedNodeIdentifiers];
+        //`collapsed` represents the __new__ state
+        BOOL collapsed = ![collapsedNodeIdentifiers containsObject:item.identifier];
+        
+        if ([self.delegate respondsToSelector:@selector(controller:willChangeNode:collapsed:)]) {
+            [self.delegate controller:self willChangeNode:item collapsed:collapsed];
+        }
+        
+        //reassign variables in case changes were made by the delegate
+        item = [self.dataModel itemAtIndexPath:indexPath];
+        collapsedNodeIdentifiers = [NSMutableArray arrayWithArray:self.dataModel.collapsedNodeIdentifiers];
+        collapsed = ![collapsedNodeIdentifiers containsObject:item.identifier];
+        
+        NSArray *treeItems = self.dataModel.treeItems;
+        
+        if (collapsed == NO) {
+            [collapsedNodeIdentifiers removeObject:item.identifier];
+            for (TLIndexPathTreeItem *child in item.childItems) {
+                if (child.childItems) {
+                    [collapsedNodeIdentifiers addObject:child.identifier];
+                }
             }
+        } else {
+            for (TLIndexPathTreeItem *child in item.childItems) {
+                [collapsedNodeIdentifiers removeObject:child.identifier];
+            }
+            [collapsedNodeIdentifiers addObject:item.identifier];
         }
-    } else {
-        for (TLIndexPathTreeItem *child in item.childItems) {
-            [collapsedNodeIdentifiers removeObject:child.identifier];
+        
+        self.dataModel = [[TLTreeDataModel alloc] initWithTreeItems:treeItems
+                                           collapsedNodeIdentifiers:collapsedNodeIdentifiers];
+        
+        if ([self.delegate respondsToSelector:@selector(controller:didChangeNode:collapsed:)]) {
+            [self.delegate controller:self didChangeNode:item collapsed:collapsed];
         }
-        [collapsedNodeIdentifiers addObject:item.identifier];
+        
+        //TODO redesign scroll optimizer to work with tree controller
+        //    if (!collapsed) {
+        //        UIView *headerView = [tableView cellForRowAtIndexPath:indexPath];
+        //        [self optimizeScrollPositionForSection:indexPath.section
+        //                                    headerView:headerView
+        //                                     dataModel:self.dataModel
+        //                                      animated:YES];
+        //    }
+        
+        self.changingNode = NO;
     }
-
-    self.dataModel = [[TLTreeDataModel alloc] initWithTreeItems:treeItems
-                                       collapsedNodeIdentifiers:collapsedNodeIdentifiers];
-    
-    if ([self.delegate respondsToSelector:@selector(controller:didChangeNode:collapsed:)]) {
-        [self.delegate controller:self didChangeNode:item collapsed:collapsed];
-    }
-
-//TODO redesign scroll optimizer to work with tree controller
-//    if (!collapsed) {
-//        UIView *headerView = [tableView cellForRowAtIndexPath:indexPath];
-//        [self optimizeScrollPositionForSection:indexPath.section
-//                                    headerView:headerView
-//                                     dataModel:self.dataModel
-//                                      animated:YES];
-//    }
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

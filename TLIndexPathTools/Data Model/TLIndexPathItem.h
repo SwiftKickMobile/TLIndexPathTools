@@ -48,4 +48,9 @@
  */
 + (NSString *)keyPathForDataKeyPath:(NSString *)dataKeyPath;
 
+/**
+ Returns the array of identifiers for the given `NSIndexPathItems`
+ */
++ (NSArray *)identifiersForIndexPathItems:(NSArray *)indexPathItems;
+
 @end

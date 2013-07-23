@@ -41,6 +41,12 @@
     return [NSString stringWithFormat:@"data.%@", dataKeyPath];
 }
 
++ (NSArray *)identifiersForIndexPathItems:(NSArray *)indexPathItems
+{
+    NSArray *identifiers = [indexPathItems valueForKeyPath:@"@distinctUnionOfObjects.identifier"];
+    return identifiers;
+}
+
 - (NSUInteger)hash
 {
     NSInteger hash = 0;

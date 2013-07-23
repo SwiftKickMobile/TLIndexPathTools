@@ -39,16 +39,15 @@
 @optional
 
 /**
- Gives the delegate an opportunity to replace the tree item before it is expanded or collapsed.
- This can be used to lazy populate child items on expand or prune child items on collapse.
- If a new tree items is returned, it will replace the existing item before the node changes.
- Return `nil` or the existing item if there are no changes.
+ Gives the delegate an opportunity to make changes before the node is expanded.
+ This can be used to lazy load child items on expand or prune child items on collapse
+ with a call to `setNewVersionOfItem:collapsedChildNodeIdentifiers`.
  
- If the app needs to get children asynchronously, this method should be used to initiate
- the fetch and, when the fetch is complete, call the `addItem:` method to replace the
- existing item.
+ If the app needs to load child nodes asynchronously, this method should be used to initiate
+ the fetch and then call `setNewVersionOfItem:collapsedChildNodeIdentifiers` in the
+ completion handler of the fetch.
  */
-- (TLIndexPathTreeItem *)controller:(TLTreeTableViewController *)controller willChangeNode:(TLIndexPathTreeItem *)treeItem collapsed:(BOOL)collapsed;
+- (void)controller:(TLTreeTableViewController *)controller willChangeNode:(TLIndexPathTreeItem *)treeItem collapsed:(BOOL)collapsed;
 
 /**
  Called after a node is expanded or collapsed so the delegate can make any needed updates,
@@ -67,7 +66,7 @@
  tree with a matching identifier, no change is made. Use this method to lazy load child
  nodes asynchrnously when a node is expanded.
  */
-- (void)setNewVersionOfItem:(TLIndexPathTreeItem *)item;
+- (void)setNewVersionOfItem:(TLIndexPathTreeItem *)item collapsedChildNodeIdentifiers:(NSArray *)collapsedChildNodeIdentifiers;
 
 /**
  A type-safe shortcut for getting and setting the tree data model on the
