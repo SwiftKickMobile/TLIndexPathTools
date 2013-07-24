@@ -16,4 +16,9 @@
 
 @interface TLForwardingIndexPathController : TLIndexPathController
 
+/**
+ Must call this initializer
+ */
+- initWithController:(TLIndexPathController *)controller;
+
 @end
