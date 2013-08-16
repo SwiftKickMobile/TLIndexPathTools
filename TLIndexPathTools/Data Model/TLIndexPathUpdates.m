@@ -224,8 +224,24 @@
         return;
     }
     
+    //TODO this entire block of code seems to be unnecessary as of iOS 6.1.3 (it is
+    //here to work around a crash on the first batch update when the collection view is
+    //starting with zero items). Need to do more testing before removing.
     if (self.oldDataModel.items.count == 0) {
         [collectionView reloadData];
+        //asking the collection view how many items it has in each section
+        //resolves a bug where the collection view can sometimes be confused
+        //about the number of items it has after reloadData, leading to an
+        //internal inconsistency exception on subsequent batch updates. (The scenario
+        //that this fixed for me was when the first insert had only 1 item. On the next
+        //insert, however many items were being inserted, the collection view thought
+        //it already had that many items, causing the next insert to crash.)
+        for (int i = 0; i < collectionView.numberOfSections; i++) {
+            [collectionView numberOfItemsInSection:i];
+        }
+        if (completion) {
+            completion(YES);
+        }
         return;
     }
 
