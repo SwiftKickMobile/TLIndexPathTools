@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TLDynamicSizeView.h"
+#import "TLIndexPathTools/TLDynamicSizeView.h"
 
 @interface DynamicHeightCell : UITableViewCell <TLDynamicSizeView>
 @property (strong, nonatomic) IBOutlet UILabel *label;
