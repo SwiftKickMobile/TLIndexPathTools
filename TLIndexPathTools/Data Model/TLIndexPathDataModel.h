@@ -39,6 +39,7 @@ extern NSString * TLIndexPathDataModelNilSectionName;
 @property (strong, nonatomic, readonly) NSArray *sectionNames;
 @property (strong, nonatomic, readonly) NSArray *sections;
 @property (strong, nonatomic, readonly) NSArray *items;
+@property (strong, nonatomic, readonly) NSArray *indexPaths;
 - (NSInteger)numberOfRowsInSection:(NSInteger)section;
 - (NSString *)sectionNameForSection:(NSInteger)section;
 - (NSInteger)sectionForSectionName:(NSString *)sectionName;

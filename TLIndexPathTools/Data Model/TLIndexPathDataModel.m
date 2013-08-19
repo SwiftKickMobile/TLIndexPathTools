@@ -44,8 +44,15 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 @synthesize identifiersByIndexPath = _identifiersByIndexPath;
 @synthesize indexPathsByIdentifier = _indexPathsByIdentifier;
 @synthesize items = _items;
+@synthesize indexPaths = _indexPaths;
 @synthesize sectionNames = _sectionNames;
 @synthesize sections = _sections;
+
+- (NSArray *)indexPaths
+{
+    //TODO maybe sort this?
+    return [self.indexPathsByIdentifier allValues];
+}
 
 - (NSInteger)numberOfRowsInSection:(NSInteger)section
 {
