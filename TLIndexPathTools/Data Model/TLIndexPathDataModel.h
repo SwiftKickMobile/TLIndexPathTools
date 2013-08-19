@@ -31,6 +31,14 @@
 extern NSString * TLIndexPathDataModelNilSectionName;
 
 @interface TLIndexPathDataModel : NSObject
+
+- (id)initWithItems:(NSArray *)items;
+- (id)initWithItems:(NSArray *)items andSectionNameKeyPath:(NSString *)sectionNameKeyPath andIdentifierKeyPath:(NSString *)identifierKeyPath;
+- (id)initWithItems:(NSArray *)items andSectionNameKeyPath:(NSString *)sectionNameKeyPath andIdentifierKeyPath:(NSString *)identifierKeyPath andCellIdentifierKeyPath:(NSString *)cellIdentifierKeyPath;
+- (id)initWithIndexPathItems:(NSArray *)items;
+- (id)initWithSectionInfos:(NSArray *)sectionInfos andIdentifierKeyPath:(NSString *)identifierKeyPath andCellIdentifierKeyPath:(NSString *)cellIdentifierKeyPath;
+- (id)initWithIndexPathItemSectionInfos:(NSArray *)sectionInfos;
+
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic, readonly) NSString *identifierKeyPath;
 @property (strong, nonatomic, readonly) NSString *sectionNameKeyPath;
@@ -54,9 +62,4 @@ extern NSString * TLIndexPathDataModelNilSectionName;
 - (id)itemForIdentifier:(id)identifier;
 - (id)currentVersionOfItem:(id)anotherVersionOfItem;
 - (NSString *)cellIdentifierAtIndexPath:(NSIndexPath *)indexPath;
-- (id)initWithItems:(NSArray *)items andSectionNameKeyPath:(NSString *)sectionNameKeyPath andIdentifierKeyPath:(NSString *)identifierKeyPath;
-- (id)initWithItems:(NSArray *)items andSectionNameKeyPath:(NSString *)sectionNameKeyPath andIdentifierKeyPath:(NSString *)identifierKeyPath andCellIdentifierKeyPath:(NSString *)cellIdentifierKeyPath;
-- (id)initWithIndexPathItems:(NSArray *)items;
-- (id)initWithSectionInfos:(NSArray *)sectionInfos andIdentifierKeyPath:(NSString *)identifierKeyPath andCellIdentifierKeyPath:(NSString *)cellIdentifierKeyPath;
-- (id)initWithIndexPathItemSectionInfos:(NSArray *)sectionInfos;
 @end

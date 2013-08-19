@@ -133,6 +133,16 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
     return [self initWithItems:items andSectionNameKeyPath:TLIndexPathItemSectionName andIdentifierKeyPath:TLIndexPathItemIdentifier andCellIdentifierKeyPath:TLIndexPathItemCellIdentifier];
 }
 
+- (id)init
+{
+    return [self initWithItems:nil andSectionNameKeyPath:nil andIdentifierKeyPath:nil andCellIdentifierKeyPath:nil];
+}
+
+- (id)initWithItems:(NSArray *)items
+{
+    return [self initWithItems:items andSectionNameKeyPath:nil andIdentifierKeyPath:nil andCellIdentifierKeyPath:nil];
+}
+
 - (id)initWithItems:(NSArray *)items andSectionNameKeyPath:(NSString *)sectionNameKeyPath andIdentifierKeyPath:(NSString *)identifierKeyPath
 {
     return [self initWithItems:items andSectionNameKeyPath:sectionNameKeyPath andIdentifierKeyPath:identifierKeyPath andCellIdentifierKeyPath:nil];

@@ -1,95 +1,114 @@
 TLIndexPathTools
 ================
 
-TLIndexPathTools is a set of components designed to greatly simplify the building
-of rich, dynamic table and collection views. Some awesome things you can do with
-TLIndexPathTools include:
+TLIndexPathTools is a set of components designed to greatly simplify building
+rich, dynamic table and collection views. Here are some of the awesome things that TLIndexPathTools does:
 
-* Automatically calculate and perform animated batch updates
-* Perform animated sorting and filtering operations against an array or `NSFetchRequest`
-* Easily manage multiple cell prototypes and/or multiple data types as the data model changes
+* Automatically calculate and perform animated inserts, deletes and moves.
+* Automatically organize the data model into sections.
+* Simplify implementing data source and delegate methods via rich data model APIs.
+* Provide a simpler alternative to Core Data's `NSFetchedResultsController`
 
-The central component of TLIndexPathTools is the `TLIndexPathController` class. This class
-is a lot like Core Data's `NSFetchedResultsController` class in that it is responsible
-for tracking a data source and reporting changes to the client. The big difference is that, while
-`TLIndexPathController` does support `NSFetchRequest`, it does not require Core Data at all.
-`TLIndexPathController` can just as easily work with an array of strings. For example, you can
-initialize a `TLIndexPathController` with an array of strings to display as table rows and then
-give the controller a new array of strings (perhaps a filtered or sorted version of the
-original array) and the table will automatically animate to the new state.
-See the "Shuffle" example project.
+##Overview
 
-TLIndexPathTools provides base view controller classes `TLTableViewController` and
-`TLCollectionViewController` (for table and collection views, respectively) that implement the
-essential delegate methods to get you up-and-running as quickly as possible.
+Table and collection view batch updates are great. Users love apps that animate smoothly between states. But if you've done any non-trivial batch updates, you've probably found that they can be very cumbersome (and confusing) to calculate and manage. TLIndexPathTools makes all of this very easy by providing two simple classes `TLIndexPathDataModel` and `TLIndexPathUpdates`.
 
-Installation
-------------
+###TLIndexPathDataModel
 
-1. Download the TLIndexPathTools project
-2. Add the TLIndexPathTools sub-folder (sibling of the Examples folder) to your Xcode project.
-3. Link to QuartzCore.framework and CoreData.framework (on the Build Phases tab of your project's target).
+`TLIndexPathDataModel` is an immutable object you use in your view controller to hold your data items instead of an array. There are several initializers, some of which can automatically organize your data into sections:
 
-Getting Started
----------------
+```Objective-C
+// single section
+TLIndexPathDataModel dataModel1 = [TLIndexPathDataModel alloc] initWithItems:items];
 
-The basic usage is as follows:
+// multiple sections defined by item's key path
+TLIndexPathDataModel dataModel2 = [TLIndexPathDataModel alloc] initWithItems:items andSectionNameKeyPath:@"someKeyPath" andIdentifierKeyPath:nil];
 
-	#import <UIKit/UIKit.h>
-	#import "TLIndexPathController.h"
-	@interface ViewController : TLTableViewController
-	@end
+// multiple explicitly defined sections (including an empty section)
+NSArray *section1Items = @[@"Item 1.1"];
+NSArray *section2Items = @[@"Item 2.1", @"Item 2.2"];
+TLIndexPathSectionInfo section1 = [TLIndexPathSectionInfo alloc] initWithItems:section1Items];
+TLIndexPathSectionInfo section2 = [TLIndexPathSectionInfo alloc] initWithItems:section2Items];
+TLIndexPathSectionInfo section3 = [TLIndexPathSectionInfo alloc] init];
+TLIndexPathDataModel dataModel3 = [TLIndexPathDataModel alloc] initWithSectionInfos:@[section1, section2, section3] andIdentifierKeyPath:nil andCellIdentifierKeyPath:nil];
 
-	#import "ViewController.h"
-	@implementation ViewController
+```
 
-	- (void)viewDidLoad
-	{
-		[super viewDidLoad];
-		self.indexPathController.items = @[@"Chevrolet", @"Bubble Gum", @"Chalkboard"]];
-	}
+And there are numerous APIs to simplify delegate and data source implementations:
 
-	- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-	{
-		UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
-		NSString *title = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
-		cell.textLabel.text = title;
-		return cell;
-	}
+```Objective-C
+dataModel.items;
+dataModel.sections;
+[dataModel numberOfSections];
+[dataModel numberOfRowsInSection:section];
+[dataModel itemAtIndexPath:indexPath];
+[dataModel indexPathForItem:item];
+```    
 
-This yields a table view with rows "Chevrolet", "Bubble Gum" and "Chalkboard". Note that by default, as in this example, TLIndexPathTools assumes the cell's reuse identifier is "Cell".
+As an immutable object, all of the properties and methods in `TLIndexPathDataModel` are read-only. So using the data model is very straightforward once you've selected the appropriate initializer.
 
-Things get interesting when we add dynamic behavior, such as a method that shuffles rows (which we can wire into a button):
+###TLIndexPathUpdates
 
-    - (IBAction)shuffle
-    {
-        NSMutableArray *shuffledItems = [NSMutableArray arrayWithArray:self.indexPathController.items];
-        NSInteger count = shuffledItems.count;
-        for (int i = 0; i < count; i++) {
-            [shuffledItems exchangeObjectAtIndex:i withObjectAtIndex:arc4random() % count];
-        }
-        self.indexPathController.items = shuffledItems;
-    }
-    
-Thats all it takes to generate a nice, smooth animated shuffle effect. Try running the [Shuffle][1] sample project to see the same effect in action with a `UICollectionView`.
+`TLIndexPathUpdates` is where the real magic happens. You provide two versions of your data model to the initializer of `TLIndexPathUpdates` and the inserts, deletes, and moves are calculated right then and there. Then call either `performBatchUpdatesOnTableView:` or `performBatchUpdatesOnCollectionView:` and see the batch updates performed in all their animated glory.
 
-Now, lets pull back the curtain a bit and see what this looks like without the help of `TLTableViewController`. Here is what the app looks like when done as a direct subclass of `UITableViewController` (unchanged lines are gray):
+```Objective-C
+// initialize collection view with unordered items
+self.dataModel = [TLIndexPathDataModel alloc] initWithItems:@[@"B", @"A", @"C"];
+[self.collectionView reloadData];
 
-<pre><code><span style="color:gray">#import &lt;UIKit/UIKit.h&gt;
+// sort items and update data model (perhaps when a sort button it tapped)
+TLIndexPathDataModel *oldDataModel = self.dataModel;
+NSArray *sortedItems = [self.dataModel.items sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+self.dataModel = [TLIndexPathDataModel alloc] initWithItems:sortedItems];
+
+// perform batch updates
+TLIndexPathUpdates *updates = [TLIndexPathUpdates alloc] initWithOldDataModel:oldDataModel updatedDataModel:self.dataModel];
+[updates performBatchUpdatesOnCollectionView:self.collectionView];
+```
+
+Thats all it takes! Most of the functionality of TLIndexPathTools can be accomplished with just `TLIndexPathDataModel` and `TLIndexPathUpdates` classes. However, there are a number of additional classes that build on these components to make life a little bit easier.
+
+* `TLIndexPathController` provides a common programming interface for building view controllers that work interchangeably with Core Data fetch requests or plain arrays.
+* `TLTableViewController` and `TLCollectionViewController` are base  table and collection view implementations that provide the essential data source and delegate methods to get you up and running quickly with a few bells and whistles, like data-driven table cell height calculation, thrown in for good measure.
+* `TLTableViewDelegateImpl` and `TLCollectionViewDelegateImpl` are base implementations of the delegate and data source methods. These classes exist to support the design pattern where an object other than the view controller implements these methods, perhaps providing more modularity and reusability. You can extend these classes and have the view controller wire them into your views.
+* `TLIndexPathItem` is a wrapper class for your data items, useful for things like heterogenous data or multiple cell prototypes. Take a look at the [Settings sample project][1], for example.
+* The `utils` folder contains a number of extensions for things like [collapsable sections][2] and [expandable tree views][3]. This is a good resource to see how `TLIndexPathDataModel` can be easily extended for special data structures.
+* And last, but not least, the `Examples` folder contains numerous sample projects demonstrating various use cases and features of the framework. [Shuffle][4] is a good starting point and be sure to try [Core Data][5].
+
+###TLIndexPathController
+
+`TLIndexPathController` is TLIndexPathTools' version of `NSFetchedResultsController`. Therefore, you must use this class in your view controller if you want to integrate with Core Data.
+
+Although it primarily exists for Core Data integration, `TLIndexPathController` works interchangeably with Core Data fetch requests or plain arrays of any data type. Thus, by always using `TLIndexPathController`, it is possible to work with a common interface across all of your table and collection views.
+
+`TLIndexPathController` also makes a few nice improvements over `NSFetchedResultsController`:
+
+* Items do not need to be presorted by section. The data model handles organizing sections.
+* Changes to your fetch request are animated. So you can get animated sorting and filtering.
+* There is only one delegate method to implement (versus `NSFetchedResultsController`'s five).
+
+The basic template for using `TLIndexPathController` in a (table) view controller is as follows:
+
+```Objective-C
+#import <UIKit/UIKit.h>
 #import "TLIndexPathController.h"
-@interface ViewController : </span>UITableViewController
-@property (strong, nonatomic) TLIndexPathController *indexPathController;
-<span style="color:gray">@end
+@interface ViewController : UITableViewController <TLIndexPathControllerDelegate>
+@end
 
 #import "ViewController.h"
+@interface ViewController ()
+@property (strong, nonatomic) TLIndexPathController *indexPathController;
+@end
+
 @implementation ViewController
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];</span>
+    [super viewDidLoad];
     self.indexPathController = [[TLIndexPathController alloc] init];
-	<span style="color:gray">self.indexPathController.items = @[@"Chevrolet", @"Bubble Gum", @"Chalkboard"]];
-}</span>
+}
+
+#pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -101,23 +120,13 @@ Now, lets pull back the curtain a bit and see what this looks like without the h
     return [self.indexPathController.dataModel numberOfRowsInSection:section];
 }
 
-<span style="color:gray">- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{</span>
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
-    <span style="color:gray">NSString *title = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
-    cell.textLabel.text = title;
-    return cell;
-}</span>
-
-<span style="color:gray">- (IBAction)shuffle
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSMutableArray *shuffledItems = [NSMutableArray arrayWithArray:self.indexPathController.items];
-    NSInteger count = shuffledItems.count;
-    for (int i = 0; i < count; i++) {
-        [shuffledItems exchangeObjectAtIndex:i withObjectAtIndex:arc4random() % count];
-    }
-    self.indexPathController.items = shuffledItems;
-}</span>
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    id item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
+    //configure cell using data item
+    return cell;
+}
 
 #pragma mark - TLIndexPathControllerDelegate
 
@@ -126,41 +135,42 @@ Now, lets pull back the curtain a bit and see what this looks like without the h
     [updates performBatchUpdatesOnTableView:self.tableView withRowAnimation:UITableViewRowAnimationFade];    
 }
 
-<span style="color:gray">@end</span>
-</code></pre>
+@end
+```
 
-As you can see, `TLTableViewController` is just adding some simple boiler plate methods. It is completely fine to not use `TLTableViewController` or `TLCollectionViewController`, though the former does provide some nice bells and whistles like automatic (dynamic) row height calculations (see the [Dynamic Height][2] sample project).
+This template will work with plain arrays or an `NSFetchRequest`. With plain arrays, you simply set the `dataModel` property of the controller (or set the `items` property and get a default data model). With `NSFetchRequest`, set the `fetchRequest` property and call `performFetch:` to get things started. The controller creates the data model for you from the fetch result. The controller holds an instance of `NSFetchedResultsController` internally and anytime this controller calls `controllerDidChangeContent`, the index path controller updates the data model.
 
-Now lets step through the code for a brief introduction to some basic APIs.
+In either case, whether you explicitly set the data model or the controller converts the fetch result into a data model, the delegate method gets called to give you an opportunity to perform the batch updates:
 
-###TLIndexPathController
-
-<pre><code><span style="color:gray">@interface ViewController : </span>UITableViewController
-@property (strong, nonatomic) TLIndexPathController *indexPathController;
-<span style="color:gray">@end</span>
-</code></pre>
-
-`TLIndexPathController` is the primary API access point, so we have a public property to get or set a controller. If you're familiar with Core Data's `NSFetchedResultsController`, `TLIndexPathController` plays a similar role except that it work with regular arrays. It also works with Core Data and can do things that `NSFetchedResultsController` can't do, such as animated sorting and filtering (more on that later).
-
-Both `TLTableViewController` and `TLCollectionViewController` provide default index path controllers, but it is normal to replace this instance with a custom one (see the selection of initializers in [TLIndexPathController.h][3]).
-
-<pre><code><span style="color:gray">- (void)viewDidLoad
+```Objective-C
+- (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates
 {
-    [super viewDidLoad];</span>
-    self.indexPathController = [[TLIndexPathController alloc] init];
-	<span style="color:gray">self.indexPathController.items = @[@"Chevrolet", @"Bubble Gum", @"Chalkboard"]];
-}</span>
-</code></pre>
+    [updates performBatchUpdatesOnTableView:self.tableView withRowAnimation:UITableViewRowAnimationFade];    
+}
+```
 
-Here we create a default index path controller just as `TLTableViewController` does. Then we populate the controller with our data by setting the `items` array property. Data items can be any type of object from `NSString`s as we have here to `NSDictionarie`s (see the [JSON][4] sample project) to `NSManagedObject`s (see the [Core Data][5] sample project).
+###TLTableViewController & TLCollectionViewController
 
-###TLIndexPathDataModel
+`TLTableViewController` and `TLCollectionViewController` are base table and collection view implementations, providing the essential data source and delegate methods to get you up and running quickly. Both classes look much like the code outlined above for integrating with `TLIndexPathController` with a few bells and whistles thrown in.
 
-TODO...
+Most notably, `TLTableViewController` includes a default implementation of `heightForRowAtIndexPath` that calculates static or data-driven cell heights using prototype cell instances. For example, if you're using storyboards, the cell heights specified in the storyboard are automatically used. And if your cell implements the `TLDynamicSizeView` protocol, the height will be determined by calling the `sizeWithData:` method on the prototype cell. This is a great way to handle data-driven height because the `sizeWithData:` method can use the actual layout logic of the cell itself, rather than duplicating the layout logic in the view controller.
 
-[1]:https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Shuffle/Shuffle/ShuffleCollectionViewController.m
-[2]:https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Dynamic%20Height/Dynamic%20Height/DynamicHeightTableViewController.m
-[3]:https://github.com/wtmoose/TLIndexPathTools/blob/master/TLIndexPathTools/Controllers/TLIndexPathController.h
-[4]:https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/JSON/JSON/JSONTableViewController.m
+Most of the sample projects are based on `TLTableViewController` or `TLCollectionViewController`, so a brief perusal will give you a good idea what can be accomplished with a few lines of code.
+
+<!--###TLTableViewDelegateImpl and TLCollectionViewDelegateImpl
+
+TODO
+
+###TLIndexPathItem
+
+TODO
+
+###TLDynamicSizeView
+
+TODO-->
+
+[1]:https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Settings/Settings/SettingsTableViewController.m
+[2]:https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Collapse/Collapse/CollapseTableViewController.m
+[3]:https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Outline/Outline/OutlineTableViewController.m
+[4]:https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Outline/Outline/OutlineTableViewController.m
 [5]:https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Core%20Data/Core%20Data/CoreDataCollectionViewController.m
-
