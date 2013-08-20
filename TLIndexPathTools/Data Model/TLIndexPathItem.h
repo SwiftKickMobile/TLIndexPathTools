@@ -23,10 +23,6 @@
 
 #import <Foundation/Foundation.h>
 
-#define TLIndexPathItemIdentifier @"identifier"
-#define TLIndexPathItemSectionName @"sectionName"
-#define TLIndexPathItemCellIdentifier @"cellIdentifier"
-
 @interface TLIndexPathItem : NSObject
 @property (strong, nonatomic) id identifier;
 @property (strong, nonatomic) NSString *sectionName;

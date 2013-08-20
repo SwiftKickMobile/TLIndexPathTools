@@ -29,6 +29,7 @@
 const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNilSectionName__";
 
 @interface TLIndexPathDataModel ()
+//@property (strong, nonatomic, readonly) NSString *cellIdentifierKeyPath;
 @property (strong, nonatomic) NSMutableDictionary *itemsByIdentifier;
 @property (strong, nonatomic) NSMutableDictionary *sectionInfosBySectionName;
 @property (strong, nonatomic) NSMutableDictionary *identifiersByIndexPath;
@@ -47,6 +48,125 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 @synthesize indexPaths = _indexPaths;
 @synthesize sectionNames = _sectionNames;
 @synthesize sections = _sections;
+
+#pragma mark - Initializing data models
+
+- (id)init
+{
+    return [self initWithItems:nil sectionNameKeyPath:nil identifierKeyPath:nil];
+}
+
+- (id)initWithItems:(NSArray *)items
+{
+    return [self initWithItems:items sectionNameKeyPath:nil identifierKeyPath:nil];
+}
+
+- (id)initWithItems:(NSArray *)items sectionNameKeyPath:(NSString *)sectionNameKeyPath identifierKeyPath:(NSString *)identifierKeyPath
+{
+    NSMutableDictionary *itemsByIdentifier = [[NSMutableDictionary alloc] init];
+    NSMutableDictionary *itemsBySectionName = [[NSMutableDictionary alloc] init];
+    NSMutableArray *sectionNames = [NSMutableArray array];
+    
+    //group items by section name and remove any duplicate identifiers
+    for (id item in items) {
+        id identifier = [TLIndexPathDataModel identifierForItem:item andIdentifierKeyPath:identifierKeyPath];
+        if (!identifier || [itemsByIdentifier objectForKey:identifier]) continue;
+        NSString *sectionName = [TLIndexPathDataModel sectionNameForItem:item andSectionNameKeyPath:sectionNameKeyPath];
+        NSMutableArray *sectionItems = [itemsBySectionName objectForKey:sectionName];
+        if (!sectionItems) {
+            sectionItems = [NSMutableArray array];
+            [itemsBySectionName setObject:sectionItems forKey:sectionName];
+            [sectionNames addObject:sectionName];
+        }
+        [sectionItems addObject:item];
+        [itemsByIdentifier setObject:item forKey:identifier];
+    }
+    
+    //create section infos
+    NSMutableArray *sectionInfos = [NSMutableArray arrayWithCapacity:sectionNames.count];
+    for (NSString *sectionName in sectionNames) {
+        NSArray *sectionItems = [itemsBySectionName objectForKey:sectionName];
+        TLIndexPathSectionInfo *sectionInfo = [[TLIndexPathSectionInfo alloc] initWithItems:sectionItems name:sectionName indexTitle:sectionName];
+        [sectionInfos addObject:sectionInfo];
+    }
+    
+    if (self = [self initWithSectionInfos:sectionInfos identifierKeyPath:identifierKeyPath]) {
+        _sectionNameKeyPath = sectionNameKeyPath;
+    }
+    return self;
+    
+    return [self initWithSectionInfos:sectionInfos identifierKeyPath:identifierKeyPath];
+}
+
+- (id)initWithSectionInfos:(NSArray *)sectionInfos
+{
+    return [self initWithSectionInfos:sectionInfos identifierKeyPath:nil];
+}
+
+- (id)initWithSectionInfos:(NSArray *)sectionInfos identifierKeyPath:(NSString *)identifierKeyPath
+{
+    //if there are no sections, insert an empty section to keep UICollectionView
+    //happy. If we don't do this, UICollectionView will crash on the first
+    //update because it internally thinks there is 1 section when the
+    //UICollectionView controller reports zero sections.
+    if (sectionInfos.count == 0) {
+        TLIndexPathSectionInfo *sectionInfo = [[TLIndexPathSectionInfo alloc]
+                                               initWithItems:nil
+                                               name:[TLIndexPathDataModelNilSectionName copy]
+                                               indexTitle:nil];
+        sectionInfos = @[sectionInfo];
+    }
+    
+    if (self = [super init]) {
+        
+        NSMutableArray *identifiedItems = [[NSMutableArray alloc] init];
+        NSMutableArray *sectionNames = [[NSMutableArray alloc] init];
+        
+        _identifierKeyPath = identifierKeyPath;
+        _itemsByIdentifier = [[NSMutableDictionary alloc] init];
+        _identifiersByIndexPath = [[NSMutableDictionary alloc] init];
+        _indexPathsByIdentifier = [[NSMutableDictionary alloc] init];
+        _sectionInfosBySectionName = [[NSMutableDictionary alloc] init];
+        _sectionNames = sectionNames;
+        _sections = sectionInfos;
+        _items = identifiedItems;
+        
+        NSInteger section = 0;
+        for (id<NSFetchedResultsSectionInfo>sectionInfo in sectionInfos) {
+            
+            NSInteger row = 0;
+            
+            for (id item in sectionInfo.objects) {
+                
+                id identifier = [self identifierForItem:item];
+                //we can't remove duplicate items because section infos are
+                //immutable. So the strategy will be to make duplicate items behave
+                //just like any other item with the exception that they cannot be
+                //looked up by identifier. TODO this needs to be tested.
+                if (identifier && ![_itemsByIdentifier objectForKey:identifier]) {
+                    [identifiedItems addObject:item];
+                    [_itemsByIdentifier setObject:item forKey:identifier];
+                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
+                    [_identifiersByIndexPath setObject:identifier forKey:indexPath];
+                    [_indexPathsByIdentifier setObject:indexPath forKey:identifier];
+                };
+                
+                row++;
+            }
+            
+            [_sectionInfosBySectionName setObject:sectionInfo forKey:sectionInfo.name];
+            [sectionNames addObject:sectionInfo.name];
+            
+            section++;
+        }
+        
+        _sectionCount = sectionInfos.count;
+    }
+    
+    return self;
+}
+
+#pragma mark - Data model attributes
 
 - (NSArray *)indexPaths
 {
@@ -119,141 +239,6 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
     return [self indexPathForItem:item];
 }
 
-- (NSString *)cellIdentifierAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (self.cellIdentifierKeyPath) {
-        id item = [self itemAtIndexPath:indexPath];
-        return [item valueForKeyPath:self.cellIdentifierKeyPath];
-    }
-    return nil;
-}
-
-- (id)initWithIndexPathItems:(NSArray *)items
-{
-    return [self initWithItems:items andSectionNameKeyPath:TLIndexPathItemSectionName andIdentifierKeyPath:TLIndexPathItemIdentifier andCellIdentifierKeyPath:TLIndexPathItemCellIdentifier];
-}
-
-- (id)init
-{
-    return [self initWithItems:nil andSectionNameKeyPath:nil andIdentifierKeyPath:nil andCellIdentifierKeyPath:nil];
-}
-
-- (id)initWithItems:(NSArray *)items
-{
-    return [self initWithItems:items andSectionNameKeyPath:nil andIdentifierKeyPath:nil andCellIdentifierKeyPath:nil];
-}
-
-- (id)initWithItems:(NSArray *)items andSectionNameKeyPath:(NSString *)sectionNameKeyPath andIdentifierKeyPath:(NSString *)identifierKeyPath
-{
-    return [self initWithItems:items andSectionNameKeyPath:sectionNameKeyPath andIdentifierKeyPath:identifierKeyPath andCellIdentifierKeyPath:nil];
-}
-
-- (id)initWithItems:(NSArray *)items andSectionNameKeyPath:(NSString *)sectionNameKeyPath andIdentifierKeyPath:(NSString *)identifierKeyPath andCellIdentifierKeyPath:(NSString *)cellIdentifierKeyPath
-{
-    NSMutableDictionary *itemsByIdentifier = [[NSMutableDictionary alloc] init];
-    NSMutableDictionary *itemsBySectionName = [[NSMutableDictionary alloc] init];
-    NSMutableArray *sectionNames = [NSMutableArray array];
-    
-    //group items by section name and remove any duplicate identifiers
-    for (id item in items) {
-        id identifier = [TLIndexPathDataModel identifierForItem:item andIdentifierKeyPath:identifierKeyPath];
-        if (!identifier || [itemsByIdentifier objectForKey:identifier]) continue;
-        NSString *sectionName = [TLIndexPathDataModel sectionNameForItem:item andSectionNameKeyPath:sectionNameKeyPath];
-        NSMutableArray *sectionItems = [itemsBySectionName objectForKey:sectionName];
-        if (!sectionItems) {
-            sectionItems = [NSMutableArray array];
-            [itemsBySectionName setObject:sectionItems forKey:sectionName];
-            [sectionNames addObject:sectionName];
-        }
-        [sectionItems addObject:item];
-        [itemsByIdentifier setObject:item forKey:identifier];
-    }
-    
-    //create section infos
-    NSMutableArray *sectionInfos = [NSMutableArray arrayWithCapacity:sectionNames.count];
-    for (NSString *sectionName in sectionNames) {
-        NSArray *sectionItems = [itemsBySectionName objectForKey:sectionName];
-        TLIndexPathSectionInfo *sectionInfo = [[TLIndexPathSectionInfo alloc] initWithItems:sectionItems andName:sectionName andIndexTitle:sectionName];
-        [sectionInfos addObject:sectionInfo];
-    }
-    
-    if (self = [self initWithSectionInfos:sectionInfos andIdentifierKeyPath:identifierKeyPath andCellIdentifierKeyPath:cellIdentifierKeyPath]) {
-        _sectionNameKeyPath = sectionNameKeyPath;
-    }
-    return self;
-    
-    return [self initWithSectionInfos:sectionInfos andIdentifierKeyPath:identifierKeyPath andCellIdentifierKeyPath:cellIdentifierKeyPath];
-}
-
-- (id)initWithSectionInfos:(NSArray *)sectionInfos andIdentifierKeyPath:(NSString *)identifierKeyPath andCellIdentifierKeyPath:(NSString *)cellIdentifierKeyPath
-{        
-    //if there are no sections, insert an empty section to keep UICollectionView
-    //happy. If we don't do this, UICollectionView will crash on the first
-    //update because it internally thinks there is 1 section when the
-    //UICollectionView controller reports zero sections.
-    if (sectionInfos.count == 0) {
-        TLIndexPathSectionInfo *sectionInfo = [[TLIndexPathSectionInfo alloc]
-                                               initWithItems:nil
-                                               andName:[TLIndexPathDataModelNilSectionName copy]
-                                               andIndexTitle:nil];
-        sectionInfos = @[sectionInfo];
-    }
-
-    if (self = [super init]) {
-        
-        NSMutableArray *identifiedItems = [[NSMutableArray alloc] init];
-        NSMutableArray *sectionNames = [[NSMutableArray alloc] init];
-        
-        _identifierKeyPath = identifierKeyPath;
-        _cellIdentifierKeyPath = cellIdentifierKeyPath;
-        _itemsByIdentifier = [[NSMutableDictionary alloc] init];
-        _identifiersByIndexPath = [[NSMutableDictionary alloc] init];
-        _indexPathsByIdentifier = [[NSMutableDictionary alloc] init];
-        _sectionInfosBySectionName = [[NSMutableDictionary alloc] init];
-        _sectionNames = sectionNames;
-        _sections = sectionInfos;
-        _items = identifiedItems;
-        
-        NSInteger section = 0;
-        for (id<NSFetchedResultsSectionInfo>sectionInfo in sectionInfos) {
-
-            NSInteger row = 0;
-            
-            for (id item in sectionInfo.objects) {
-
-                id identifier = [self identifierForItem:item];
-                //we can't remove duplicate items because section infos are
-                //immutable. So the strategy will be to make duplicate items behave
-                //just like any other item with the exception that they cannot be
-                //looked up by identifier. TODO this needs to be tested.
-                if (identifier && ![_itemsByIdentifier objectForKey:identifier]) {
-                    [identifiedItems addObject:item];
-                    [_itemsByIdentifier setObject:item forKey:identifier];
-                    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
-                    [_identifiersByIndexPath setObject:identifier forKey:indexPath];
-                    [_indexPathsByIdentifier setObject:indexPath forKey:identifier];
-                };
-
-                row++;                
-            }
-                        
-            [_sectionInfosBySectionName setObject:sectionInfo forKey:sectionInfo.name];
-            [sectionNames addObject:sectionInfo.name];
-            
-            section++;
-        }
-        
-        _sectionCount = sectionInfos.count;
-    }
-    
-    return self;
-}
-
-- (id)initWithIndexPathItemSectionInfos:(NSArray *)sectionInfos
-{
-    return [self initWithSectionInfos:sectionInfos andIdentifierKeyPath:TLIndexPathItemIdentifier andCellIdentifierKeyPath:TLIndexPathItemCellIdentifier];
-}
-
 - (id)identifierForItem:(id)item
 {
     return [[self class] identifierForItem:item andIdentifierKeyPath:self.identifierKeyPath];
@@ -263,9 +248,23 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 {
     id identifier;
     if (identifierKeyPath) {
-        identifier = [item valueForKeyPath:identifierKeyPath];
-    } else {
+        @try {
+            identifier = [item valueForKeyPath:identifierKeyPath];
+        }
+        @catch (NSException *exception) {
+        }
+    }
+    if (!identifier && [item isKindOfClass:[TLIndexPathItem class]]) {
+        identifier = ((TLIndexPathItem *)item).identifier;
+    }
+    if (!identifier && [item isKindOfClass:[NSManagedObject class]]) {
+        identifier = ((NSManagedObject *)item).objectID;
+    }
+    if (!identifier && [item conformsToProtocol:@protocol(NSCopying)]) {
         identifier = item;
+    }
+    if (!identifier) {
+        identifier = [NSString stringWithFormat:@"%p", item];
     }
     return identifier;
 }
@@ -291,9 +290,18 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 {
     NSString *sectionName;
     if (sectionNameKeyPath) {
-        sectionName = [item valueForKeyPath:sectionNameKeyPath];
+        @try {
+            sectionName = [item valueForKeyPath:sectionNameKeyPath];
+        } @catch(NSException *e) {
+        }
     }
-    return sectionName ? sectionName : [TLIndexPathDataModelNilSectionName copy];
+    if (!sectionName && [item isKindOfClass:[TLIndexPathItem class]]) {
+        sectionName = ((TLIndexPathItem *)item).sectionName;
+    }
+    if (!sectionName) {
+        sectionName = [TLIndexPathDataModelNilSectionName copy];
+    }
+    return sectionName;
 }
 
 @end

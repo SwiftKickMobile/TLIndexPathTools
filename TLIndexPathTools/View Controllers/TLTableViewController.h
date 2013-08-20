@@ -23,7 +23,6 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TLTableViewDelegateImpl.h"
 #import "TLIndexPathController.h"
 
 @interface TLTableViewController : UITableViewController <TLIndexPathControllerDelegate>
@@ -38,12 +37,6 @@
  initializer.
  */
 @property (strong, nonatomic) TLIndexPathController *indexPathController;
-
-/**
- The delegate/data source implementation object. For the most part, this controller
- forwards messages to this object. The default value can be replaced by a subclass.
- */
-@property (strong, nonatomic) TLTableViewDelegateImpl *delegateImpl;
 
 /**
  The implementation of `tableView:cellForRowAtIndexPath:` calls this method

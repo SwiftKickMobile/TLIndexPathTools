@@ -32,7 +32,7 @@
     for (TLIndexPathTreeItem *item in treeItems) {
         [self flattenTreeItem:item intoArray:items withCollapsedNodeIdentifiers:collapsedNodeIdentifiers];
     }
-    if (self = [super initWithIndexPathItems:items]) {
+    if (self = [super initWithItems:items]) {
         _collapsedNodeIdentifiers = collapsedNodeIdentifiers;
         _treeItems = treeItems;
     }

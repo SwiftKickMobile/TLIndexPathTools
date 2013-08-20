@@ -47,8 +47,8 @@
     //by "datetime". For asynchronous fetch from a server, this statement would
     //be done in the completion block of the fetch (on the main thread)
     self.indexPathController.dataModel = [[TLIndexPathDataModel alloc] initWithItems:jsonData
-                                                            andSectionNameKeyPath:@"datetime"
-                                                             andIdentifierKeyPath:@"id"];
+                                                            sectionNameKeyPath:@"datetime"
+                                                             identifierKeyPath:@"id"];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

@@ -26,12 +26,11 @@
 {
     [super viewDidLoad];
     
-    TLIndexPathSectionInfo *section1 = [[TLIndexPathSectionInfo alloc] initWithItems:@[@"Item 1.1", @"Item 1.2"] andName:@"Section 1"];
-    TLIndexPathSectionInfo *section2 = [[TLIndexPathSectionInfo alloc] initWithItems:@[@"Item 2.1"] andName:@"Section 2"];
-    TLIndexPathSectionInfo *section3 = [[TLIndexPathSectionInfo alloc] initWithItems:nil andName:@"Section 3"];
+    TLIndexPathSectionInfo *section1 = [[TLIndexPathSectionInfo alloc] initWithItems:@[@"Item 1.1", @"Item 1.2"] name:@"Section 1"];
+    TLIndexPathSectionInfo *section2 = [[TLIndexPathSectionInfo alloc] initWithItems:@[@"Item 2.1"] name:@"Section 2"];
+    TLIndexPathSectionInfo *section3 = [[TLIndexPathSectionInfo alloc] initWithItems:nil name:@"Section 3"];
     self.indexPathController.dataModel = [[TLIndexPathDataModel alloc] initWithSectionInfos:@[section1, section2, section3]
-                                                                       andIdentifierKeyPath:nil
-                                                                   andCellIdentifierKeyPath:nil];
+                                                                       identifierKeyPath:nil];
     
     UILabel *headerLabel = (UILabel *)self.tableView.tableHeaderView;
     headerLabel.text = [NSString stringWithFormat:@"%d total items in table.", self.indexPathController.items.count];

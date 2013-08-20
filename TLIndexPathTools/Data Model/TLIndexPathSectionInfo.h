@@ -29,6 +29,6 @@
 @property (nonatomic, readonly) NSString *indexTitle;
 @property (nonatomic, readonly) NSUInteger numberOfObjects;
 @property (nonatomic, readonly) NSArray *objects;
-- (instancetype)initWithItems:(NSArray *)items andName:(NSString *)name;
-- (instancetype)initWithItems:(NSArray *)items andName:(NSString *)name andIndexTitle:(NSString *)indexTitle;
+- (instancetype)initWithItems:(NSArray *)items name:(NSString *)name;
+- (instancetype)initWithItems:(NSArray *)items name:(NSString *)name indexTitle:(NSString *)indexTitle;
 @end

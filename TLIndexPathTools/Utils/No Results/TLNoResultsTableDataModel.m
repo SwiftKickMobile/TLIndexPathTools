@@ -40,7 +40,7 @@
             [items addObject:item];
         }
     }
-    return [self initWithIndexPathItems:items];
+    return [self initWithItems:items];
 }
 
 @end
