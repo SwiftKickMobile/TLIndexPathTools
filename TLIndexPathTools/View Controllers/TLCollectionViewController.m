@@ -22,6 +22,7 @@
 //  THE SOFTWARE.
 
 #import "TLCollectionViewController.h"
+#import "TLIndexPathItem.h"
 
 @interface TLCollectionViewController ()
 @end
@@ -58,11 +59,6 @@
 {
     _indexPathController = [[TLIndexPathController alloc] init];
     _indexPathController.delegate = self;
-    _delegateImpl = [[TLCollectionViewDelegateImpl alloc] init];
-    __weak TLCollectionViewController *weakSelf = self;
-    [_delegateImpl setDataModelProvider:^TLIndexPathDataModel *(UICollectionView *collectionView) {
-        return weakSelf.indexPathController.dataModel;
-    }];
 }
 
 #pragma mark - Index path controller
@@ -92,21 +88,28 @@
 
 - (NSString *)collectionView:(UICollectionView *)collectionView cellIdentifierAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.delegateImpl collectionView:collectionView cellIdentifierAtIndexPath:indexPath];
+    id item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
+    NSString *cellId;
+    if ([item isKindOfClass:[TLIndexPathItem class]]) {
+        TLIndexPathItem *i = item;
+        cellId = i.cellIdentifier;
+    }
+    if (cellId.length == 0) {
+        cellId = @"Cell";
+    }
+    return cellId;
 }
 
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    NSInteger number = [self.delegateImpl numberOfSectionsInCollectionView:collectionView];
-    return number;
+    return self.indexPathController.dataModel.numberOfSections;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSInteger number = [self.delegateImpl collectionView:collectionView numberOfItemsInSection:section];
-    return number;
+    return [self.indexPathController.dataModel numberOfRowsInSection:section];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -120,9 +123,21 @@
     return cell;
 }
 
+/**
+ The default implementation supports single header and footer views for flow layouts.
+ Override this as needed.
+ */
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.delegateImpl collectionView:collectionView viewForSupplementaryElementOfKind:kind atIndexPath:indexPath];
+    NSString *identifier;
+    //TODO Support multiple possible header and footer views
+    if ([UICollectionElementKindSectionHeader isEqualToString:kind]) {
+        identifier = @"Header";
+    } else if ([UICollectionElementKindSectionFooter isEqualToString:kind]) {
+        identifier = @"Footer";
+    }
+    UICollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
+    return view;
 }
 
 #pragma mark - TLIndexPathControllerDelegate

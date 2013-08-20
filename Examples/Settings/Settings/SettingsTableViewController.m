@@ -105,7 +105,7 @@
         [items addObject:difficultyItem];
     }
     
-    return [[TLIndexPathDataModel alloc] initWithIndexPathItems:items];
+    return [[TLIndexPathDataModel alloc] initWithItems:items];
 }
 
 #pragma mark - Cell configuration

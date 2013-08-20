@@ -22,9 +22,11 @@
 //  THE SOFTWARE.
 
 #import "TLTableViewController.h"
+#import "TLIndexPathItem.h"
+#import "TLDynamicSizeView.h"
 
 @interface TLTableViewController ()
-@property (strong, nonatomic, readonly) TLIndexPathDataModel *dataModel;
+@property (strong, nonatomic) NSMutableDictionary *prototypeCells;
 @end
 
 @implementation TLTableViewController
@@ -59,11 +61,6 @@
 {
     _indexPathController = [[TLIndexPathController alloc] init];
     _indexPathController.delegate = self;
-    _delegateImpl = [[TLTableViewDelegateImpl alloc] init];
-    __weak TLTableViewController *weakSelf = self;
-    [_delegateImpl setDataModelProvider:^TLIndexPathDataModel *(UITableView *tableView) {
-        return weakSelf.indexPathController.dataModel;
-    }];
 }
 
 #pragma mark - Index path controller
@@ -81,7 +78,17 @@
 
 - (NSString *)tableView:(UITableView *)tableView cellIdentifierAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.delegateImpl tableView:tableView cellIdentifierAtIndexPath:indexPath];
+    id item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
+    NSString *cellId;
+    if ([item isKindOfClass:[TLIndexPathItem class]]) {
+        TLIndexPathItem *i = item;
+        cellId = i.cellIdentifier;
+    }
+    if (cellId.length == 0) {
+        cellId = @"Cell";
+    }
+    return cellId;
+
 }
 
 - (void)tableView:(UITableView *)tableView configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
@@ -100,21 +107,33 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView prototypeForCellIdentifier:(NSString *)cellIdentifier
 {
-    return [self.delegateImpl tableView:tableView prototypeForCellIdentifier:cellIdentifier];
+    UITableViewCell *cell;
+    if (cellIdentifier) {
+        cell = [self.prototypeCells objectForKey:cellIdentifier];
+        if (!cell) {
+            if (!self.prototypeCells) {
+                self.prototypeCells = [[NSMutableDictionary alloc] init];
+            }
+            cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            //TODO this will fail if multiple tables are being used and they have
+            //overlapping identifiers. The key needs to be unique to the table
+            [self.prototypeCells setObject:cell forKey:cellIdentifier];
+        }
+    }
+    return cell;
+
 }
 
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    NSInteger number = [self.delegateImpl numberOfSectionsInTableView:tableView];
-    return number;
+    return self.indexPathController.dataModel.numberOfSections;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger number = [self.delegateImpl tableView:tableView numberOfRowsInSection:section];
-    return number;
+    return [self.indexPathController.dataModel numberOfRowsInSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -132,18 +151,44 @@
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.delegateImpl tableView:tableView willDisplayCell:cell forRowAtIndexPath:indexPath];
     [self tableView:tableView configureCell:cell atIndexPath:indexPath];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return [self.delegateImpl tableView:tableView titleForHeaderInSection:section];
+    return [self.indexPathController.dataModel sectionTitleForSection:section];
 }
 
+/**
+ Automatically calculate cell height by retrieving a prototype and either a)
+ returning the existing height or b) if the cell implements the `TLDynamicHeightView`
+ protocol, returning the value of sizeWithData:. For (b), the data passed to the
+ cell will be the item returned by the data model or, if the item is an instance
+ of `TLIndexPathItem`, the value of the item's `data` property.
+ */
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.delegateImpl tableView:tableView heightForRowAtIndexPath:indexPath];
+    id item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
+    NSString *cellId = [self tableView:tableView cellIdentifierAtIndexPath:indexPath];
+    if (cellId) {
+        UITableViewCell *cell = [self tableView:tableView prototypeForCellIdentifier:cellId];
+        if ([cell conformsToProtocol:@protocol(TLDynamicSizeView)]) {
+            id<TLDynamicSizeView> v = (id<TLDynamicSizeView>)cell;
+            id data;
+            if ([item isKindOfClass:[TLIndexPathItem class]]) {
+                TLIndexPathItem *i = (TLIndexPathItem *)item;
+                data = i.data;
+            } else {
+                data = item;
+            }
+            CGSize computedSize = [v sizeWithData:data];
+            return computedSize.height;
+        } else {
+            return cell.bounds.size.height;
+        }
+    }
+    
+    return 44.0;
 }
 
 #pragma mark - TLIndexPathControllerDelegate

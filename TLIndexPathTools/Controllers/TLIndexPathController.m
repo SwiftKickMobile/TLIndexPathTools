@@ -43,13 +43,13 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
 
 - (instancetype)initWithItems:(NSArray *)items
 {
-    TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:items andSectionNameKeyPath:nil andIdentifierKeyPath:nil];
+    TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:items sectionNameKeyPath:nil identifierKeyPath:nil];
     return [self initWithDataModel:dataModel];
 }
 
 - (instancetype)initWithIndexPathItems:(NSArray *)items
 {
-    TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithIndexPathItems:items];
+    TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:items];
     return [self initWithDataModel:dataModel];
 }
 
@@ -63,7 +63,7 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
 
 - (id)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString *)sectionNameKeyPath identifierKeyPath:(NSString *)identifierKeyPath cacheName:(NSString *)name
 {
-    TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:nil andSectionNameKeyPath:sectionNameKeyPath andIdentifierKeyPath:identifierKeyPath];
+    TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:nil sectionNameKeyPath:sectionNameKeyPath identifierKeyPath:identifierKeyPath];
     if (self = [self initWithDataModel:dataModel]) {
         //initialize the backing controller with nil sectionNameKeyPath because we don't require
         //items to be sorted by section, but NSFetchedResultsController does.
@@ -159,12 +159,11 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
         id last = [items lastObject];
         TLIndexPathDataModel *dataModel;
         if ([last isKindOfClass:[TLIndexPathItem class]]) {
-            dataModel = [[TLIndexPathDataModel alloc] initWithIndexPathItems:items];
+            dataModel = [[TLIndexPathDataModel alloc] initWithItems:items];
         } else {
             dataModel = [[TLIndexPathDataModel alloc] initWithItems:items
-                                              andSectionNameKeyPath:self.dataModel.sectionNameKeyPath
-                                               andIdentifierKeyPath:self.dataModel.identifierKeyPath
-                                           andCellIdentifierKeyPath:self.dataModel.cellIdentifierKeyPath];
+                                              sectionNameKeyPath:self.dataModel.sectionNameKeyPath
+                                               identifierKeyPath:self.dataModel.identifierKeyPath];
         }
         self.dataModel = dataModel;
     }
@@ -234,15 +233,9 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
 - (TLIndexPathDataModel *)convertFetchedObjectsToDataModel {
     NSArray *filteredItems = self.inMemoryPredicate ? [self.coreDataFetchedObjects filteredArrayUsingPredicate:self.inMemoryPredicate] : self.coreDataFetchedObjects;
     NSArray *sortedFilteredItems = self.inMemorySortDescriptors ? [filteredItems sortedArrayUsingDescriptors:self.inMemorySortDescriptors] : filteredItems;
-    //fall back to objectID in case the data model doesn't have a value defined.
-    //This is necessary because managed objects themselves cannot be used as
-    //identifiers because identifiers are used as dictionary keys and therefore
-    //must implement NSCoding (which NSManagedObject does not).
-    NSString *identifierKeyPath = self.dataModel.identifierKeyPath ? self.dataModel.identifierKeyPath : @"objectID";
     return [[TLIndexPathDataModel alloc] initWithItems:sortedFilteredItems
-                                 andSectionNameKeyPath:self.dataModel.sectionNameKeyPath
-                                  andIdentifierKeyPath:identifierKeyPath
-                              andCellIdentifierKeyPath:self.dataModel.cellIdentifierKeyPath];
+                                 sectionNameKeyPath:self.dataModel.sectionNameKeyPath
+                                  identifierKeyPath:self.dataModel.identifierKeyPath];
 }
 
 #pragma mark - NSFetchedResultsControllerDelegate

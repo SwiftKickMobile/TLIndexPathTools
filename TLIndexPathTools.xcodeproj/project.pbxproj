@@ -25,8 +25,6 @@
 		B1229A0217C2943100C6B6F0 /* TLTreeDataModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B145DB70179EEB3900CF270E /* TLTreeDataModel.h */; };
 		B1229A0317C2943100C6B6F0 /* TLTreeTableViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B145DB72179EEB3900CF270E /* TLTreeTableViewController.h */; };
 		B1229A0417C2943100C6B6F0 /* UITableViewController+ScrollOptimizer.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B145DB74179EEB3900CF270E /* UITableViewController+ScrollOptimizer.h */; };
-		B1229A0517C2943100C6B6F0 /* TLCollectionViewDelegateImpl.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B145DB78179EEB3900CF270E /* TLCollectionViewDelegateImpl.h */; };
-		B1229A0617C2943100C6B6F0 /* TLTableViewDelegateImpl.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B145DB7A179EEB3900CF270E /* TLTableViewDelegateImpl.h */; };
 		B1229A0717C2943100C6B6F0 /* TLCollectionViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B145DB7C179EEB3900CF270E /* TLCollectionViewController.h */; };
 		B1229A0817C2943100C6B6F0 /* TLTableViewController.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B145DB7E179EEB3900CF270E /* TLTableViewController.h */; };
 		B1229A0917C2943B00C6B6F0 /* TLGridCellView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = B145DB5F179EEB3900CF270E /* TLGridCellView.h */; };
@@ -55,8 +53,6 @@
 		B145DBA6179EEB3900CF270E /* TLTreeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B145DB71179EEB3900CF270E /* TLTreeDataModel.m */; };
 		B145DBA8179EEB3900CF270E /* TLTreeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B145DB73179EEB3900CF270E /* TLTreeTableViewController.m */; };
 		B145DBAA179EEB3900CF270E /* UITableViewController+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = B145DB75179EEB3900CF270E /* UITableViewController+ScrollOptimizer.m */; };
-		B145DBAC179EEB3900CF270E /* TLCollectionViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = B145DB79179EEB3900CF270E /* TLCollectionViewDelegateImpl.m */; };
-		B145DBAE179EEB3900CF270E /* TLTableViewDelegateImpl.m in Sources */ = {isa = PBXBuildFile; fileRef = B145DB7B179EEB3900CF270E /* TLTableViewDelegateImpl.m */; };
 		B145DBB0179EEB3900CF270E /* TLCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B145DB7D179EEB3900CF270E /* TLCollectionViewController.m */; };
 		B145DBB2179EEB3900CF270E /* TLTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B145DB7F179EEB3900CF270E /* TLTableViewController.m */; };
 		B145DBB4179EEC5000CF270E /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B145DBB3179EEC5000CF270E /* CoreData.framework */; };
@@ -93,8 +89,6 @@
 				B1229A0217C2943100C6B6F0 /* TLTreeDataModel.h in CopyFiles */,
 				B1229A0317C2943100C6B6F0 /* TLTreeTableViewController.h in CopyFiles */,
 				B1229A0417C2943100C6B6F0 /* UITableViewController+ScrollOptimizer.h in CopyFiles */,
-				B1229A0517C2943100C6B6F0 /* TLCollectionViewDelegateImpl.h in CopyFiles */,
-				B1229A0617C2943100C6B6F0 /* TLTableViewDelegateImpl.h in CopyFiles */,
 				B1229A0717C2943100C6B6F0 /* TLCollectionViewController.h in CopyFiles */,
 				B1229A0817C2943100C6B6F0 /* TLTableViewController.h in CopyFiles */,
 			);
@@ -138,7 +132,7 @@
 		B145DB66179EEB3900CF270E /* TLGridRowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLGridRowView.m; sourceTree = "<group>"; };
 		B145DB68179EEB3900CF270E /* TLNoResultsTableDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLNoResultsTableDataModel.h; sourceTree = "<group>"; };
 		B145DB69179EEB3900CF270E /* TLNoResultsTableDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLNoResultsTableDataModel.m; sourceTree = "<group>"; };
-		B145DB6A179EEB3900CF270E /* TLDynamicSizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDynamicSizeView.h; sourceTree = "<group>"; };
+		B145DB6A179EEB3900CF270E /* TLDynamicSizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TLDynamicSizeView.h; path = ../Utils/TLDynamicSizeView.h; sourceTree = "<group>"; };
 		B145DB6B179EEB3900CF270E /* TLLayerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLLayerDelegate.h; sourceTree = "<group>"; };
 		B145DB6C179EEB3900CF270E /* TLLayerDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLLayerDelegate.m; sourceTree = "<group>"; };
 		B145DB6E179EEB3900CF270E /* TLIndexPathTreeItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathTreeItem.h; sourceTree = "<group>"; };
@@ -149,10 +143,6 @@
 		B145DB73179EEB3900CF270E /* TLTreeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTreeTableViewController.m; sourceTree = "<group>"; };
 		B145DB74179EEB3900CF270E /* UITableViewController+ScrollOptimizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+ScrollOptimizer.h"; sourceTree = "<group>"; };
 		B145DB75179EEB3900CF270E /* UITableViewController+ScrollOptimizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+ScrollOptimizer.m"; sourceTree = "<group>"; };
-		B145DB78179EEB3900CF270E /* TLCollectionViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollectionViewDelegateImpl.h; sourceTree = "<group>"; };
-		B145DB79179EEB3900CF270E /* TLCollectionViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewDelegateImpl.m; sourceTree = "<group>"; };
-		B145DB7A179EEB3900CF270E /* TLTableViewDelegateImpl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewDelegateImpl.h; sourceTree = "<group>"; };
-		B145DB7B179EEB3900CF270E /* TLTableViewDelegateImpl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTableViewDelegateImpl.m; sourceTree = "<group>"; };
 		B145DB7C179EEB3900CF270E /* TLCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLCollectionViewController.h; sourceTree = "<group>"; };
 		B145DB7D179EEB3900CF270E /* TLCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLCollectionViewController.m; sourceTree = "<group>"; };
 		B145DB7E179EEB3900CF270E /* TLTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLTableViewController.h; sourceTree = "<group>"; };
@@ -210,9 +200,9 @@
 			children = (
 				B145DB42179EEB3900CF270E /* Controllers */,
 				B145DB45179EEB3900CF270E /* Data Model */,
-				B145DB4E179EEB3900CF270E /* Utils */,
-				B145DB76179EEB3900CF270E /* View Controllers */,
+				B145DB4E179EEB3900CF270E /* Extensions */,
 				B145DABF179EE94300CF270E /* Supporting Files */,
+				B145DB76179EEB3900CF270E /* View Controllers */,
 			);
 			path = TLIndexPathTools;
 			sourceTree = "<group>";
@@ -249,19 +239,19 @@
 			path = "Data Model";
 			sourceTree = "<group>";
 		};
-		B145DB4E179EEB3900CF270E /* Utils */ = {
+		B145DB4E179EEB3900CF270E /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				B145DB4F179EEB3900CF270E /* Collapsible */,
 				B145DB56179EEB3900CF270E /* Grid */,
 				B145DB67179EEB3900CF270E /* No Results */,
-				B145DB6A179EEB3900CF270E /* TLDynamicSizeView.h */,
 				B145DB6B179EEB3900CF270E /* TLLayerDelegate.h */,
 				B145DB6C179EEB3900CF270E /* TLLayerDelegate.m */,
 				B145DB6D179EEB3900CF270E /* Tree */,
 				B145DB74179EEB3900CF270E /* UITableViewController+ScrollOptimizer.h */,
 				B145DB75179EEB3900CF270E /* UITableViewController+ScrollOptimizer.m */,
 			);
+			name = Extensions;
 			path = Utils;
 			sourceTree = "<group>";
 		};
@@ -340,24 +330,13 @@
 		B145DB76179EEB3900CF270E /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B145DB77179EEB3900CF270E /* Delegate */,
+				B145DB6A179EEB3900CF270E /* TLDynamicSizeView.h */,
 				B145DB7C179EEB3900CF270E /* TLCollectionViewController.h */,
 				B145DB7D179EEB3900CF270E /* TLCollectionViewController.m */,
 				B145DB7E179EEB3900CF270E /* TLTableViewController.h */,
 				B145DB7F179EEB3900CF270E /* TLTableViewController.m */,
 			);
 			path = "View Controllers";
-			sourceTree = "<group>";
-		};
-		B145DB77179EEB3900CF270E /* Delegate */ = {
-			isa = PBXGroup;
-			children = (
-				B145DB78179EEB3900CF270E /* TLCollectionViewDelegateImpl.h */,
-				B145DB79179EEB3900CF270E /* TLCollectionViewDelegateImpl.m */,
-				B145DB7A179EEB3900CF270E /* TLTableViewDelegateImpl.h */,
-				B145DB7B179EEB3900CF270E /* TLTableViewDelegateImpl.m */,
-			);
-			path = Delegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -443,8 +422,6 @@
 				B145DBA6179EEB3900CF270E /* TLTreeDataModel.m in Sources */,
 				B145DBA8179EEB3900CF270E /* TLTreeTableViewController.m in Sources */,
 				B145DBAA179EEB3900CF270E /* UITableViewController+ScrollOptimizer.m in Sources */,
-				B145DBAC179EEB3900CF270E /* TLCollectionViewDelegateImpl.m in Sources */,
-				B145DBAE179EEB3900CF270E /* TLTableViewDelegateImpl.m in Sources */,
 				B145DBB0179EEB3900CF270E /* TLCollectionViewController.m in Sources */,
 				B145DBB2179EEB3900CF270E /* TLTableViewController.m in Sources */,
 			);

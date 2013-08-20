@@ -47,7 +47,6 @@ extern NSString * const TLIndexPathControllerChangedNotification;
  
  @param controller  the index path controller that sent the message.
  @param updates  the updates object that can be used to perform batch updates on a table or collection view.
- 
  */
 - (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates;
 
@@ -64,8 +63,7 @@ extern NSString * const TLIndexPathControllerChangedNotification;
  @return the index path controller with a default data model representation of the given items
  
  A default data model is initialized with items where the properties `identifierKeyPath`,
- `sectionNameKeyPath` and `cellIdentifierKeyPath` are all `nil`. If any of
- these are required, use `initWithDataModel:` instead.
+ `sectionNameKeyPath` are all `nil`. If any of these are required, use `initWithDataModel:` instead.
  */
 - (instancetype)initWithItems:(NSArray *)items;
 
@@ -76,8 +74,8 @@ extern NSString * const TLIndexPathControllerChangedNotification;
  @return the index path controller with a default data model representation of the given TLIndexPathItems
  
  This initilizer differs from `initWithItems:` only in that the properties
- `identifierKeyPath`, `sectionNameKeyPath` and `cellIdentifierKeyPath` are
- not nil, but rather the appropriate values for TLIndexPathItem.
+ `identifierKeyPath`, `sectionNameKeyPath` are not nil, but rather the appropriate
+ values for TLIndexPathItem.
  */
 - (instancetype)initWithIndexPathItems:(NSArray *)items;
 

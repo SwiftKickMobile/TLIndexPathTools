@@ -24,26 +24,19 @@
 #import <UIKit/UIKit.h>
 
 #import "TLIndexPathController.h"
-#import "TLCollectionViewDelegateImpl.h"
 
 @interface TLCollectionViewController : UICollectionViewController <TLIndexPathControllerDelegate>
 
 /**
  The collection view's index path controller. A default controller is
- created automatically with `nil` for `identifierKeyPath`, `sectionNameKeyPath`
- and `cellIdentifierKeyPath`. It is not uncommon to replace this default instance
- with a custom controller. For example, if Core Data is being used, one would
+ created automatically with `nil` for `identifierKeyPath`, `sectionNameKeyPath`.
+ It is not uncommon to replace this default instance with a custom 
+ controller. For example, if Core Data is being used, one would
  typically provide a controller created with the
  `initWithFetchRequest:managedObjectContext:sectionNameKeyPath:identifierKeyPath:cacheName:`
  initializer.
  */
 @property (strong, nonatomic) TLIndexPathController *indexPathController;
-
-/**
- The delegate/data source implementation object. For the most part, this controller
- forwards messages to this object. The default value can be replaced by a subclass.
- */
-@property (strong, nonatomic) TLCollectionViewDelegateImpl *delegateImpl;
 
 /**
  The implementation of `collectionView:cellForItemAtIndexPath:` calls this method

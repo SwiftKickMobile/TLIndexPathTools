@@ -50,7 +50,7 @@
         [items addObject:headerItem];
     }
     [items addObjectsFromArray:rowItems];
-    if (self = [super initWithIndexPathItems:items]) {
+    if (self = [super initWithItems:items]) {
         _headerItem = headerItem;
         _rowItems = rowItems;
         //set number of columns equal to the max number of columns across all items
