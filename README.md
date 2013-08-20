@@ -53,6 +53,7 @@ As an immutable object, all of the properties and methods in `TLIndexPathDataMod
 
 ```Objective-C
 // initialize collection view with unordered items
+// (assuming the view controller uses a dataModel property)
 self.dataModel = [TLIndexPathDataModel alloc] initWithItems:@[@"B", @"A", @"C"];
 [self.collectionView reloadData];
 
@@ -68,7 +69,7 @@ TLIndexPathUpdates *updates = [TLIndexPathUpdates alloc] initWithOldDataModel:ol
 
 Thats all it takes! Most of the functionality of TLIndexPathTools can be accomplished with just `TLIndexPathDataModel` and `TLIndexPathUpdates` classes. However, there are a number of additional classes that build on these components to make life a little bit easier.
 
-* `TLIndexPathController` provides a common programming interface for building view controllers that work interchangeably with Core Data fetch requests or plain arrays.
+* `TLIndexPathController` provides a common interface for building view controllers that work interchangeably with Core Data `NSFetchRequest`s or plain arrays. One controller to rule them all.
 * `TLTableViewController` and `TLCollectionViewController` are base  table and collection view implementations that provide the essential data source and delegate methods to get you up and running quickly with a few bells and whistles, like data-driven table cell height calculation, thrown in for good measure.
 * `TLTableViewDelegateImpl` and `TLCollectionViewDelegateImpl` are base implementations of the delegate and data source methods. These classes exist to support the design pattern where an object other than the view controller implements these methods, perhaps providing more modularity and reusability. You can extend these classes and have the view controller wire them into your views.
 * `TLIndexPathItem` is a wrapper class for your data items, useful for things like heterogenous data or multiple cell prototypes. Take a look at the [Settings sample project][1], for example.
@@ -77,11 +78,11 @@ Thats all it takes! Most of the functionality of TLIndexPathTools can be accompl
 
 ###TLIndexPathController
 
-`TLIndexPathController` is TLIndexPathTools' version of `NSFetchedResultsController`. Therefore, you must use this class in your view controller if you want to integrate with Core Data.
+`TLIndexPathController` is TLIndexPathTools' version of `NSFetchedResultsController`. It should not come as a surprise, then, that you must use this class if you want to integrate with Core Data.
 
-Although it primarily exists for Core Data integration, `TLIndexPathController` works interchangeably with Core Data fetch requests or plain arrays of any data type. Thus, by always using `TLIndexPathController`, it is possible to work with a common interface across all of your table and collection views.
+Although it primarily exists for Core Data integration, `TLIndexPathController` works interchangeably with `NSFetchRequest` or plain arrays containing any type of data. Thus, if you choose to standardize on using `TLIndexPathController` everywhere, it is possible to have a common programming model across all table and collection views.
 
-`TLIndexPathController` also makes a few nice improvements over `NSFetchedResultsController`:
+`TLIndexPathController` also makes a few nice improvements relative to `NSFetchedResultsController`:
 
 * Items do not need to be presorted by section. The data model handles organizing sections.
 * Changes to your fetch request are animated. So you can get animated sorting and filtering.
@@ -138,9 +139,9 @@ The basic template for using `TLIndexPathController` in a (table) view controlle
 @end
 ```
 
-This template will work with plain arrays or an `NSFetchRequest`. With plain arrays, you simply set the `dataModel` property of the controller (or set the `items` property and get a default data model). With `NSFetchRequest`, set the `fetchRequest` property and call `performFetch:` to get things started. The controller creates the data model for you from the fetch result. The controller holds an instance of `NSFetchedResultsController` internally and anytime this controller calls `controllerDidChangeContent`, the index path controller updates the data model.
+This template works with plain arrays or `NSFetchRequests`. With plain arrays, you simply set the `dataModel` property of the controller (or set the `items` property and get a default data model). With `NSFetchRequests`, you set the `fetchRequest` property and call `performFetch:`. From then on, the controller updates the data model interinally every time the fetch results change (using an internal instance of `NSFetchedResultsController` and responding to `controllerDidChangeContent` messages).
 
-In either case, whether you explicitly set the data model or the controller converts the fetch result into a data model, the delegate method gets called to give you an opportunity to perform the batch updates:
+In either case, whether you explicitly set a data model or the controller converts a fetch result into a data model, the controller creates the `TLIndexPathUpdates` object for you and passes it to the delegate, giving you an opportunity to perform batch updates:
 
 ```Objective-C
 - (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates
