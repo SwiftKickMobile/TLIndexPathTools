@@ -47,12 +47,6 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
     return [self initWithDataModel:dataModel];
 }
 
-- (instancetype)initWithIndexPathItems:(NSArray *)items
-{
-    TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:items];
-    return [self initWithDataModel:dataModel];
-}
-
 - (instancetype)initWithDataModel:(TLIndexPathDataModel *)dataModel
 {
     if (self = [super init]) {
