@@ -29,14 +29,12 @@ Most of the functionality of TLIndexPathTools can be accomplished with just `TLI
 // single section initializer
 TLIndexPathDataModel dataModel1 = [TLIndexPathDataModel alloc] initWithItems:items];
 
-// multiple sections defined by item's key path
+// multiple sections defined by item key path
 TLIndexPathDataModel dataModel2 = [TLIndexPathDataModel alloc] initWithItems:items sectionNameKeyPath:@"someKeyPath" identifierKeyPath:nil];
 
 // multiple explicitly defined sections (including an empty section)
-NSArray *section1Items = @[@"Item 1.1"];
-NSArray *section2Items = @[@"Item 2.1", @"Item 2.2"];
-TLIndexPathSectionInfo section1 = [TLIndexPathSectionInfo alloc] initWithItems:section1Items];
-TLIndexPathSectionInfo section2 = [TLIndexPathSectionInfo alloc] initWithItems:section2Items];
+TLIndexPathSectionInfo section1 = [TLIndexPathSectionInfo alloc] initWithItems:@[@"Item 1.1"]];
+TLIndexPathSectionInfo section2 = [TLIndexPathSectionInfo alloc] initWithItems:@[@"Item 2.1", @"Item 2.2"]];
 TLIndexPathSectionInfo section3 = [TLIndexPathSectionInfo alloc] init];
 TLIndexPathDataModel dataModel3 = [TLIndexPathDataModel alloc] initWithSectionInfos:@[section1, section2, section3] identifierKeyPath:nil];
 
