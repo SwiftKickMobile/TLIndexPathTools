@@ -69,7 +69,7 @@ As an immutable object, all of the properties and methods in `TLIndexPathDataMod
 
 ```Objective-C
 // initialize collection view with unordered items
-// (assuming the view controller uses a dataModel property)
+// (assuming view controller has a self.dataModel property)
 self.dataModel = [TLIndexPathDataModel alloc] initWithItems:@[@"B", @"A", @"C"];
 [self.collectionView reloadData];
 
