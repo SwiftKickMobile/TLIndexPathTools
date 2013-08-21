@@ -89,7 +89,7 @@ Thats all it takes!
 
 `TLIndexPathController` is TLIndexPathTools' version of `NSFetchedResultsController`. It should not come as a surprise, then, that you must use this class if you want to integrate with Core Data.
 
-Although it primarily exists for Core Data integration, `TLIndexPathController` works interchangeably with `NSFetchRequest` or plain arrays of any type of data. Thus, if you choose to standardize your view controllers on `TLIndexPathController`, it is possible to have a common programming model across all of your table and collection views.
+Although it primarily exists for Core Data integration, `TLIndexPathController` works interchangeably with `NSFetchRequest` or plain arrays with any data type. Thus, if you choose to standardize your view controllers on `TLIndexPathController`, it is possible to have a common programming model across all of your table and collection views.
 
 `TLIndexPathController` also makes a few nice improvements relative to `NSFetchedResultsController`:
 
