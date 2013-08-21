@@ -157,7 +157,25 @@ extern NSString * const TLIndexPathControllerChangedNotification;
  */
 @property (strong, nonatomic) TLIndexPathDataModel *dataModel;
 
-#pragma mark - Fetchingd data
+#pragma mark - Batch updates
+
+/**
+ Allows for making multiple changes to the controller with only a single
+ controller:didUpdateDataModel: delegate callback. For example, change the
+ fetch request (and perform fetch), in-memory sort descriptors, and in-memory
+ predicate as a single update.
+ 
+ @param udpates  a block that makes changes to the controller
+ @param completion  a block to be executed after the batch updates are performed.
+        Note that controller:didUpdateDataModel: is called before this block.
+ 
+ This method is not to be confused with table or collection view batch udpates.
+ It is strickly for batch changes to this controller (which may result in batch
+ updates happening to the table or collection view through the delegate method).
+ */
+- (void)performBatchUpdates:(void (^)(void))updates completion:(void (^)(BOOL finished))completion;
+
+#pragma mark - Core Data Integration
 
 /**
  Calling this method executes the fetch request and causes a new data model to be
@@ -188,7 +206,11 @@ extern NSString * const TLIndexPathControllerChangedNotification;
  */
 @property (nonatomic) BOOL ignoreFetchedResultsChanges;
 
-#pragma mark - In-memory filtering and sorting
+/**
+ Returns the underlying core data fetched objects without the application of in-memory
+ filtering or sorting.
+ */
+@property (strong, nonatomic, readonly) NSArray *coreDataFetchedObjects;
 
 /**
  The in-memory predicate.
@@ -209,22 +231,5 @@ extern NSString * const TLIndexPathControllerChangedNotification;
  updates are processed immediately.
  */
 @property (strong, nonatomic) NSArray *inMemorySortDescriptors;
-
-/**
- Set the in-memory predicate and sort descriptor
- 
- @param inMemoryPredicate
- @param inMemorySortDescriptors
- 
- This method can be called to set both the in-memory predicate and sort descriptors
- as a single batch update.
- */
-- (void)setInMemoryPredicate:(NSPredicate *)inMemoryPredicate andInMemorySortDescriptors:(NSArray *)inMemorySortDescriptors;
-
-/**
- Returns the underlying core data fetched objects without the application of in-memory
- filtering or sorting.
- */
-@property (strong, nonatomic, readonly) NSArray *coreDataFetchedObjects;
 
 @end
