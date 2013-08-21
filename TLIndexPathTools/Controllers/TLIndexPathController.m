@@ -209,6 +209,10 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
         updates();
     }
     
+    if (self.pendingConvertFetchedObjectsToDataModel) {
+        self.dataModel = [self convertFetchedObjectsToDataModel];
+    }
+    
     [self dequeuePendingUpdates];
     
     self.performingBatchUpdate = NO;
