@@ -15,7 +15,7 @@ Table and collection view batch updates are great. Users love apps that animate 
 
 Most of the functionality of TLIndexPathTools can be accomplished with just `TLIndexPathDataModel` and `TLIndexPathUpdates`. However, there are a number of additional components that build on these classes to make life a little bit easier.
 
-* `TLIndexPathController` provides a common programming model for building view controllers that work interchangeably with Core Data `NSFetchRequest`s or plain arrays. One controller to rule them all.
+* `TLIndexPathController` provides a common programming model for building view controllers that work interchangeably with Core Data `NSFetchRequests` or plain arrays. One controller to rule them all.
 * `TLTableViewController` and `TLCollectionViewController` are base  table and collection view implementations that provide the essential data source and delegate methods to get you up and running quickly with a few bells and whistles, like data-driven table cell height calculation, thrown in for good measure.
 * `TLIndexPathItem` is a wrapper class for your data items, useful for things like heterogenous data or multiple cell prototypes. Take a look at the [Settings sample project][1], for example.
 * The `Extensions` folder contains a number of extensions for things like [collapsable sections][2] and [expandable tree views][3]. This is a good resource to see how `TLIndexPathDataModel` can be easily extended for special data structures.
