@@ -11,18 +11,26 @@ rich, dynamic table and collection views. Here are some of the awesome things th
 
 ##Overview
 
-Table and collection view batch updates are great. Users love apps that animate smoothly between states. But if you've done any non-trivial batch updates, you've probably found that they can be very cumbersome (and confusing) to calculate and manage. TLIndexPathTools makes all of this very easy by providing two simple classes `TLIndexPathDataModel` and `TLIndexPathUpdates`.
+Table and collection view batch updates are great. Users love apps that animate smoothly between states. But if you've done any non-trivial batch updates, you've probably found that they can make your view controller implementation very complex (and confusing). TLIndexPathTools makes all of this very easy by providing two simple classes `TLIndexPathDataModel` and `TLIndexPathUpdates`: `TLIndexPathDataModel` represents a single version of your data model, providing a rich API for organizing and accessing the data, and `TLIndexPathUpdates` takes two versions of your data model and performs the batch updates on your table or collection view.
+
+Most of the functionality of TLIndexPathTools can be accomplished with just `TLIndexPathDataModel` and `TLIndexPathUpdates`. However, there are a number of additional components that build on these classes to make life a little bit easier.
+
+* `TLIndexPathController` provides a common programming model for building view controllers that work interchangeably with Core Data `NSFetchRequest`s or plain arrays. One controller to rule them all.
+* `TLTableViewController` and `TLCollectionViewController` are base  table and collection view implementations that provide the essential data source and delegate methods to get you up and running quickly with a few bells and whistles, like data-driven table cell height calculation, thrown in for good measure.
+* `TLIndexPathItem` is a wrapper class for your data items, useful for things like heterogenous data or multiple cell prototypes. Take a look at the [Settings sample project][1], for example.
+* The `Extensions` folder contains a number of extensions for things like [collapsable sections][2] and [expandable tree views][3]. This is a good resource to see how `TLIndexPathDataModel` can be easily extended for special data structures.
+* And last, but not least, the `Examples` folder contains numerous sample projects demonstrating various use cases and features of the framework. [Shuffle][4] is a good starting point and be sure to try [Core Data][5].
 
 ###TLIndexPathDataModel
 
-`TLIndexPathDataModel` is an immutable object you use in your view controller to hold your data items instead of an array. There are several initializers, some of which can automatically organize your data into sections:
+`TLIndexPathDataModel` is an immutable object you use in your view controller to hold your data items instead of an array. There are three initializers, a basic one and two handling multiple sections:
 
 ```Objective-C
-// single section
+// single section initializer
 TLIndexPathDataModel dataModel1 = [TLIndexPathDataModel alloc] initWithItems:items];
 
 // multiple sections defined by item's key path
-TLIndexPathDataModel dataModel2 = [TLIndexPathDataModel alloc] initWithItems:items andSectionNameKeyPath:@"someKeyPath" andIdentifierKeyPath:nil];
+TLIndexPathDataModel dataModel2 = [TLIndexPathDataModel alloc] initWithItems:items sectionNameKeyPath:@"someKeyPath" identifierKeyPath:nil];
 
 // multiple explicitly defined sections (including an empty section)
 NSArray *section1Items = @[@"Item 1.1"];
@@ -37,11 +45,22 @@ TLIndexPathDataModel dataModel3 = [TLIndexPathDataModel alloc] initWithSectionIn
 And there are numerous APIs to simplify delegate and data source implementations:
 
 ```Objective-C
+// access all items across all sections as a flat array
 dataModel.items;
+
+// access items organized by sections
 dataModel.sections;
+
+// number of sections
 [dataModel numberOfSections];
+
+// number of rows in section
 [dataModel numberOfRowsInSection:section];
+
+// look up item at a given index path
 [dataModel itemAtIndexPath:indexPath];
+
+// look up index path for a given item
 [dataModel indexPathForItem:item];
 ```    
 
@@ -67,19 +86,13 @@ TLIndexPathUpdates *updates = [TLIndexPathUpdates alloc] initWithOldDataModel:ol
 [updates performBatchUpdatesOnCollectionView:self.collectionView];
 ```
 
-Thats all it takes! Most of the functionality of TLIndexPathTools can be accomplished with just `TLIndexPathDataModel` and `TLIndexPathUpdates` classes. However, there are a number of additional classes that build on these components to make life a little bit easier.
-
-* `TLIndexPathController` provides a common interface for building view controllers that work interchangeably with Core Data `NSFetchRequest`s or plain arrays. One controller to rule them all.
-* `TLTableViewController` and `TLCollectionViewController` are base  table and collection view implementations that provide the essential data source and delegate methods to get you up and running quickly with a few bells and whistles, like data-driven table cell height calculation, thrown in for good measure.
-* `TLIndexPathItem` is a wrapper class for your data items, useful for things like heterogenous data or multiple cell prototypes. Take a look at the [Settings sample project][1], for example.
-* The `Extensions` folder contains a number of extensions for things like [collapsable sections][2] and [expandable tree views][3]. This is a good resource to see how `TLIndexPathDataModel` can be easily extended for special data structures.
-* And last, but not least, the `Examples` folder contains numerous sample projects demonstrating various use cases and features of the framework. [Shuffle][4] is a good starting point and be sure to try [Core Data][5].
+Thats all it takes!
 
 ###TLIndexPathController
 
 `TLIndexPathController` is TLIndexPathTools' version of `NSFetchedResultsController`. It should not come as a surprise, then, that you must use this class if you want to integrate with Core Data.
 
-Although it primarily exists for Core Data integration, `TLIndexPathController` works interchangeably with `NSFetchRequest` or plain arrays containing any type of data. Thus, if you choose to standardize on using `TLIndexPathController` everywhere, it is possible to have a common programming model across all table and collection views.
+Although it primarily exists for Core Data integration, `TLIndexPathController` works interchangeably with `NSFetchRequest` or plain arrays of any type of data. Thus, if you choose to standardize your view controllers on `TLIndexPathController`, it is possible to have a common programming model across all of your table and collection views.
 
 `TLIndexPathController` also makes a few nice improvements relative to `NSFetchedResultsController`:
 
