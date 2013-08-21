@@ -34,7 +34,7 @@ TLIndexPathDataModel dataModel2 = [TLIndexPathDataModel alloc] initWithItems:ite
 
 // multiple explicitly defined sections (including an empty section)
 TLIndexPathSectionInfo section1 = [TLIndexPathSectionInfo alloc] initWithItems:@[@"Item 1.1"] name:@"Section 1"];
-TLIndexPathSectionInfo section2 = [TLIndexPathSectionInfo alloc] initWithItems:@[@"Item 2.1", @"Item 2.2"] name:name:@"Section 2"];
+TLIndexPathSectionInfo section2 = [TLIndexPathSectionInfo alloc] initWithItems:@[@"Item 2.1", @"Item 2.2"] name:@"Section 2"];
 TLIndexPathSectionInfo section3 = [TLIndexPathSectionInfo alloc] initWithItems:nil name:@"Section 3"];
 TLIndexPathDataModel dataModel3 = [TLIndexPathDataModel alloc] initWithSectionInfos:@[section1, section2, section3] identifierKeyPath:nil];
 ```
