@@ -9,6 +9,12 @@ rich, dynamic table and collection views. Here are some of the awesome things th
 * Simplify implementing data source and delegate methods via rich data model APIs.
 * Provide a simpler alternative to Core Data's `NSFetchedResultsController`
 
+##Installation
+
+1. Download the TLIndexPathTools project
+2. Add the TLIndexPathTools sub-folder (sibling of the Examples folder) to your Xcode project.
+3. Link to QuartzCore.framework and CoreData.framework (on the Build Phases tab of your project's target).
+
 ##Overview
 
 Table and collection view batch updates are great. Users love apps that animate smoothly between states. But if you've done any non-trivial batch updates, you've probably found that they can make your view controller implementation very complex (and confusing). TLIndexPathTools makes all of this very easy by providing two simple classes `TLIndexPathDataModel` and `TLIndexPathUpdates`: `TLIndexPathDataModel` represents a single version of your data model, providing a rich API for organizing and accessing the data, and `TLIndexPathUpdates` takes two versions of your data model and performs the batch updates on your table or collection view.
