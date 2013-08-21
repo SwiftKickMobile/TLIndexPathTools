@@ -73,12 +73,12 @@ As an immutable object, all of the properties and methods in `TLIndexPathDataMod
 self.dataModel = [TLIndexPathDataModel alloc] initWithItems:@[@"B", @"A", @"C"];
 [self.collectionView reloadData];
 
-// sort items and update data model (perhaps when a sort button it tapped)
+// ...
+
+// sort items, update data model & perform batch updates (perhaps when a sort button it tapped)
 TLIndexPathDataModel *oldDataModel = self.dataModel;
 NSArray *sortedItems = [self.dataModel.items sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 self.dataModel = [TLIndexPathDataModel alloc] initWithItems:sortedItems];
-
-// perform batch updates
 TLIndexPathUpdates *updates = [TLIndexPathUpdates alloc] initWithOldDataModel:oldDataModel updatedDataModel:self.dataModel];
 [updates performBatchUpdatesOnCollectionView:self.collectionView];
 ```
