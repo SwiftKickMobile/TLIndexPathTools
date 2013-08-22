@@ -17,6 +17,9 @@
          location = "group:Examples/Core Data/Core Data.xcodeproj">
       </FileRef>
       <FileRef
+         location = "group:Examples/No Results/No Results.xcodeproj">
+      </FileRef>
+      <FileRef
          location = "group:Examples/Collapse/Collapse.xcodeproj">
       </FileRef>
       <FileRef

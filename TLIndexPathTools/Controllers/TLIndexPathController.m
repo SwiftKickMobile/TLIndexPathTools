@@ -191,6 +191,13 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
 
 - (void)dequeuePendingUpdates
 {
+    if ([self.delegate respondsToSelector:@selector(controller:willUpdateDataModel:withDataModel:)]) {
+        TLIndexPathDataModel *dataModel = [self.delegate controller:self willUpdateDataModel:self.oldDataModel withDataModel:self.dataModel];
+        if (dataModel) {
+            //bypass the property setter here because we don't need any of that logic
+            _dataModel = dataModel;
+        }
+    }
     if ([self.delegate respondsToSelector:@selector(controller:didUpdateDataModel:)] && !self.ignoreDataModelChanges) {
         TLIndexPathUpdates *updates = [[TLIndexPathUpdates alloc] initWithOldDataModel:self.oldDataModel updatedDataModel:self.dataModel];
         [self.delegate controller:self didUpdateDataModel:updates];

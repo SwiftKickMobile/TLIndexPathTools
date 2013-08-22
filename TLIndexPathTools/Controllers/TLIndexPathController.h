@@ -43,6 +43,20 @@ extern NSString * const TLIndexPathControllerChangedNotification;
 @optional
 
 /**
+ Notifies the reciever that the data model is about to be updated. If the receiver
+ returns a data model, that model will be used instead. This is particularly useful
+ for modifying the internally generated models when the controller is
+ configured with an `NSFetchRequest`. For example, if the model contains zero items,
+ it can be replaced with a model containing a "no results" item.
+ 
+ @param controller  the index path controller that sent the message.
+ @param updates  the updates object that can be used to perform batch updates on a table or collection view.
+ @returns an alternative data model to use instead of `updatedDataModel` or `nil` to use `updatedDataModel`
+ 
+ */
+- (TLIndexPathDataModel *)controller:(TLIndexPathController *)controller willUpdateDataModel:(TLIndexPathDataModel *)oldDataModel withDataModel:(TLIndexPathDataModel *)updatedDataModel;
+
+/**
  Notifies the reciever of batch data model changes.
  
  @param controller  the index path controller that sent the message.
