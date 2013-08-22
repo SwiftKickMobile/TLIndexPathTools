@@ -27,6 +27,8 @@ Most of the functionality of TLIndexPathTools can be accomplished with just `TLI
 * The `Extensions` folder contains a number of extensions for things like [collapsable sections][2] and [expandable tree views][3]. This is a good resource to see how `TLIndexPathDataModel` can be easily extended for special data structures.
 * And last, but not least, the `Examples` folder contains numerous sample projects demonstrating various use cases and features of the framework. [Shuffle][4] is a good starting point and be sure to try [Core Data][5].
 
+This version of TLIndexPathTools is designed to handle up to a few thousand items. Larger data sets may not perform well.
+
 ###TLIndexPathDataModel
 
 `TLIndexPathDataModel` is an immutable object you use in your view controller to hold your data items instead of an array. There are three initializers, a basic one and two handling multiple sections:
@@ -101,7 +103,7 @@ Although it primarily exists for Core Data integration, `TLIndexPathController` 
 
 * Items do not need to be presorted by section. The data model handles organizing sections.
 * Changes to your fetch request are animated. So you can get animated sorting and filtering.
-* There is only one delegate method to implement (versus `NSFetchedResultsController`'s five).
+* There is only one delegate method to implement (versus five for `NSFetchedResultsController`).
 
 The basic template for using `TLIndexPathController` in a (table) view controller is as follows:
 
