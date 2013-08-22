@@ -15,6 +15,8 @@ rich, dynamic table and collection views. Here are some of the awesome things th
 2. Add the TLIndexPathTools sub-folder (sibling of the Examples folder) to your Xcode project.
 3. Link to QuartzCore.framework and CoreData.framework (on the Build Phases tab of your project's target).
 
+<!--CoreData is required for Core Data integration and because `TLIndexPathSectionInfo` implements the `NSFetchedResultsSectionInfo` protocol. QuartzCore is required because the Grid extension uses it.-->
+
 ##Overview
 
 Table and collection view batch updates are great. Users love apps that animate smoothly between states. But if you've done any non-trivial batch updates, you've probably found that they can make your view controller implementation very complex (and confusing). TLIndexPathTools makes all of this very easy by providing two simple classes `TLIndexPathDataModel` and `TLIndexPathUpdates`: `TLIndexPathDataModel` represents a single version of your data model, providing a rich API for organizing and accessing the data, and `TLIndexPathUpdates` takes two versions of your data model and performs the batch updates on your table or collection view.
@@ -97,7 +99,7 @@ Thats all it takes!
 
 `TLIndexPathController` is TLIndexPathTools' version of `NSFetchedResultsController`. It should not come as a surprise, then, that you must use this class if you want to integrate with Core Data.
 
-Although it primarily exists for Core Data integration, `TLIndexPathController` works interchangeably with `NSFetchRequest` or plain arrays with any data type. Thus, if you choose to standardize your view controllers on `TLIndexPathController`, it is possible to have a common programming model across all of your table and collection views.
+Although it primarily exists for Core Data integration, `TLIndexPathController` works interchangeably with `NSFetchRequest` or plain 'ol arrays of arbitrary data. Thus, if you choose to standardize your view controllers on `TLIndexPathController`, it is possible to have a common programming model across all of your table and collection views.
 
 `TLIndexPathController` also makes a few nice improvements relative to `NSFetchedResultsController`:
 
