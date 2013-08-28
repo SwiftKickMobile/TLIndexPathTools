@@ -19,9 +19,19 @@
 		8672390F17C685B100703339 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8672390D17C685B100703339 /* MainStoryboard.storyboard */; };
 		8672391917C6862C00703339 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8672391817C6862C00703339 /* CoreData.framework */; };
 		8672391B17C6863C00703339 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8672391A17C6863C00703339 /* QuartzCore.framework */; };
-		8672391D17C6864000703339 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8672391C17C6864000703339 /* libTLIndexPathTools.a */; };
 		8672392017C686A100703339 /* NoResultsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8672391F17C686A100703339 /* NoResultsTableViewController.m */; };
+		86BFEA3F17CD69B800262FE8 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86BFEA0B17CD690900262FE8 /* libTLIndexPathTools.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		86BFEA0A17CD690900262FE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86BFEA0517CD690900262FE8 /* TLIndexPathTools.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B145DAB9179EE94300CF270E;
+			remoteInfo = TLIndexPathTools;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		867238F217C685B100703339 /* No Results.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "No Results.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -40,9 +50,10 @@
 		8672390E17C685B100703339 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		8672391817C6862C00703339 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		8672391A17C6863C00703339 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		8672391C17C6864000703339 /* libTLIndexPathTools.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libTLIndexPathTools.a; path = "../../build/Release-iphoneos/libTLIndexPathTools.a"; sourceTree = "<group>"; };
+		8672391C17C6864000703339 /* libTLIndexPathTools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTLIndexPathTools.a; path = "../../build/Release-iphoneos/libTLIndexPathTools.a"; sourceTree = "<group>"; };
 		8672391E17C686A100703339 /* NoResultsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoResultsTableViewController.h; sourceTree = "<group>"; };
 		8672391F17C686A100703339 /* NoResultsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoResultsTableViewController.m; sourceTree = "<group>"; };
+		86BFEA0517CD690900262FE8 /* TLIndexPathTools.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TLIndexPathTools.xcodeproj; path = ../../TLIndexPathTools.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8672391D17C6864000703339 /* libTLIndexPathTools.a in Frameworks */,
+				86BFEA3F17CD69B800262FE8 /* libTLIndexPathTools.a in Frameworks */,
 				8672391B17C6863C00703339 /* QuartzCore.framework in Frameworks */,
 				8672391917C6862C00703339 /* CoreData.framework in Frameworks */,
 				867238F617C685B100703339 /* UIKit.framework in Frameworks */,
@@ -65,8 +76,7 @@
 		867238E917C685B100703339 = {
 			isa = PBXGroup;
 			children = (
-				8672391A17C6863C00703339 /* QuartzCore.framework */,
-				8672391817C6862C00703339 /* CoreData.framework */,
+				86BFEA0517CD690900262FE8 /* TLIndexPathTools.xcodeproj */,
 				867238FB17C685B100703339 /* No Results */,
 				867238F417C685B100703339 /* Frameworks */,
 				867238F317C685B100703339 /* Products */,
@@ -84,6 +94,8 @@
 		867238F417C685B100703339 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8672391A17C6863C00703339 /* QuartzCore.framework */,
+				8672391817C6862C00703339 /* CoreData.framework */,
 				8672391C17C6864000703339 /* libTLIndexPathTools.a */,
 				867238F517C685B100703339 /* UIKit.framework */,
 				867238F717C685B100703339 /* Foundation.framework */,
@@ -117,6 +129,14 @@
 				8672390B17C685B100703339 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		86BFEA0617CD690900262FE8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				86BFEA0B17CD690900262FE8 /* libTLIndexPathTools.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -158,12 +178,28 @@
 			mainGroup = 867238E917C685B100703339;
 			productRefGroup = 867238F317C685B100703339 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 86BFEA0617CD690900262FE8 /* Products */;
+					ProjectRef = 86BFEA0517CD690900262FE8 /* TLIndexPathTools.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				867238F117C685B100703339 /* No Results */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		86BFEA0B17CD690900262FE8 /* libTLIndexPathTools.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTLIndexPathTools.a;
+			remoteRef = 86BFEA0A17CD690900262FE8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		867238F017C685B100703339 /* Resources */ = {
@@ -277,7 +313,7 @@
 				GCC_PREFIX_HEADER = "No Results/No Results-Prefix.pch";
 				INFOPLIST_FILE = "No Results/No Results-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -290,7 +326,7 @@
 				GCC_PREFIX_HEADER = "No Results/No Results-Prefix.pch";
 				INFOPLIST_FILE = "No Results/No Results-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

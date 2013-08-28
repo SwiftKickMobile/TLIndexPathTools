@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86BFEA4417CD6A1B00262FE8 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86BFEA2E17CD691D00262FE8 /* libTLIndexPathTools.a */; };
 		86C926DB177897CB009E0324 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C926DA177897CB009E0324 /* UIKit.framework */; };
 		86C926DD177897CB009E0324 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C926DC177897CB009E0324 /* Foundation.framework */; };
 		86C926DF177897CB009E0324 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C926DE177897CB009E0324 /* CoreGraphics.framework */; };
@@ -20,10 +21,20 @@
 		86C926F7177897CB009E0324 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 86C926F6177897CB009E0324 /* ViewController.m */; };
 		86C926FE177897D8009E0324 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C926FD177897D8009E0324 /* CoreData.framework */; };
 		86C92700177897E1009E0324 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86C926FF177897E1009E0324 /* QuartzCore.framework */; };
-		B1AF921917A188DD009E0FE2 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AF921817A188DD009E0FE2 /* libTLIndexPathTools.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		86BFEA2D17CD691D00262FE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86BFEA2817CD691D00262FE8 /* TLIndexPathTools.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B145DAB9179EE94300CF270E;
+			remoteInfo = TLIndexPathTools;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		86BFEA2817CD691D00262FE8 /* TLIndexPathTools.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TLIndexPathTools.xcodeproj; path = ../../TLIndexPathTools.xcodeproj; sourceTree = "<group>"; };
 		86C926D7177897CB009E0324 /* Minimal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Minimal.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86C926DA177897CB009E0324 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		86C926DC177897CB009E0324 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -42,7 +53,7 @@
 		86C926F6177897CB009E0324 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		86C926FD177897D8009E0324 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		86C926FF177897E1009E0324 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		B1AF921817A188DD009E0FE2 /* libTLIndexPathTools.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libTLIndexPathTools.a; path = "../../build/Release-iphoneos/libTLIndexPathTools.a"; sourceTree = "<group>"; };
+		B1AF921817A188DD009E0FE2 /* libTLIndexPathTools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTLIndexPathTools.a; path = "../../build/Release-iphoneos/libTLIndexPathTools.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1AF921917A188DD009E0FE2 /* libTLIndexPathTools.a in Frameworks */,
+				86BFEA4417CD6A1B00262FE8 /* libTLIndexPathTools.a in Frameworks */,
 				86C92700177897E1009E0324 /* QuartzCore.framework in Frameworks */,
 				86C926FE177897D8009E0324 /* CoreData.framework in Frameworks */,
 				86C926DB177897CB009E0324 /* UIKit.framework in Frameworks */,
@@ -62,9 +73,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		86BFEA2917CD691D00262FE8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				86BFEA2E17CD691D00262FE8 /* libTLIndexPathTools.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		86C926CE177897CB009E0324 = {
 			isa = PBXGroup;
 			children = (
+				86BFEA2817CD691D00262FE8 /* TLIndexPathTools.xcodeproj */,
 				86C926E0177897CB009E0324 /* Minimal */,
 				86C926D9177897CB009E0324 /* Frameworks */,
 				86C926D8177897CB009E0324 /* Products */,
@@ -158,12 +178,28 @@
 			mainGroup = 86C926CE177897CB009E0324;
 			productRefGroup = 86C926D8177897CB009E0324 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 86BFEA2917CD691D00262FE8 /* Products */;
+					ProjectRef = 86BFEA2817CD691D00262FE8 /* TLIndexPathTools.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				86C926D6177897CB009E0324 /* Minimal */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		86BFEA2E17CD691D00262FE8 /* libTLIndexPathTools.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTLIndexPathTools.a;
+			remoteRef = 86BFEA2D17CD691D00262FE8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		86C926D5177897CB009E0324 /* Resources */ = {
@@ -277,7 +313,7 @@
 				GCC_PREFIX_HEADER = "Minimal/Minimal-Prefix.pch";
 				INFOPLIST_FILE = "Minimal/Minimal-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -290,7 +326,7 @@
 				GCC_PREFIX_HEADER = "Minimal/Minimal-Prefix.pch";
 				INFOPLIST_FILE = "Minimal/Minimal-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

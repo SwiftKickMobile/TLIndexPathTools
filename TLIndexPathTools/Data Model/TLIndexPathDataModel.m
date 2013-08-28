@@ -49,7 +49,7 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 @synthesize sectionNames = _sectionNames;
 @synthesize sections = _sections;
 
-#pragma mark - Initializing data models
+#pragma mark - Creating data models
 
 - (id)init
 {
@@ -166,7 +166,7 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
     return self;
 }
 
-#pragma mark - Data model attributes
+#pragma mark - Data model content
 
 - (NSArray *)indexPaths
 {

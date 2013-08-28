@@ -20,8 +20,18 @@
 		8682A4E21787C5130023C036 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8682A4E11787C5130023C036 /* CoreData.framework */; };
 		8682A4E41787C5250023C036 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8682A4E31787C5250023C036 /* QuartzCore.framework */; };
 		8682A53F1787C56A0023C036 /* SectionInfoTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8682A53E1787C56A0023C036 /* SectionInfoTableViewController.m */; };
-		B1AF921B17A188F9009E0FE2 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AF921A17A188F9009E0FE2 /* libTLIndexPathTools.a */; };
+		86BFEA4617CD6A3500262FE8 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86BFEA3C17CD692500262FE8 /* libTLIndexPathTools.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		86BFEA3B17CD692500262FE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86BFEA3617CD692500262FE8 /* TLIndexPathTools.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B145DAB9179EE94300CF270E;
+			remoteInfo = TLIndexPathTools;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		8682A4BB1787C4CD0023C036 /* Section Info.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Section Info.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -42,7 +52,8 @@
 		8682A4E31787C5250023C036 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		8682A53D1787C56A0023C036 /* SectionInfoTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SectionInfoTableViewController.h; sourceTree = "<group>"; };
 		8682A53E1787C56A0023C036 /* SectionInfoTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SectionInfoTableViewController.m; sourceTree = "<group>"; };
-		B1AF921A17A188F9009E0FE2 /* libTLIndexPathTools.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libTLIndexPathTools.a; path = "../../build/Release-iphoneos/libTLIndexPathTools.a"; sourceTree = "<group>"; };
+		86BFEA3617CD692500262FE8 /* TLIndexPathTools.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TLIndexPathTools.xcodeproj; path = ../../TLIndexPathTools.xcodeproj; sourceTree = "<group>"; };
+		B1AF921A17A188F9009E0FE2 /* libTLIndexPathTools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTLIndexPathTools.a; path = "../../build/Release-iphoneos/libTLIndexPathTools.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1AF921B17A188F9009E0FE2 /* libTLIndexPathTools.a in Frameworks */,
+				86BFEA4617CD6A3500262FE8 /* libTLIndexPathTools.a in Frameworks */,
 				8682A4E41787C5250023C036 /* QuartzCore.framework in Frameworks */,
 				8682A4E21787C5130023C036 /* CoreData.framework in Frameworks */,
 				8682A4BF1787C4CD0023C036 /* UIKit.framework in Frameworks */,
@@ -65,6 +76,7 @@
 		8682A4B21787C4CD0023C036 = {
 			isa = PBXGroup;
 			children = (
+				86BFEA3617CD692500262FE8 /* TLIndexPathTools.xcodeproj */,
 				8682A4C41787C4CD0023C036 /* Section Info */,
 				8682A4BD1787C4CD0023C036 /* Frameworks */,
 				8682A4BC1787C4CD0023C036 /* Products */,
@@ -119,6 +131,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		86BFEA3717CD692500262FE8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				86BFEA3C17CD692500262FE8 /* libTLIndexPathTools.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -158,12 +178,28 @@
 			mainGroup = 8682A4B21787C4CD0023C036;
 			productRefGroup = 8682A4BC1787C4CD0023C036 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 86BFEA3717CD692500262FE8 /* Products */;
+					ProjectRef = 86BFEA3617CD692500262FE8 /* TLIndexPathTools.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8682A4BA1787C4CD0023C036 /* Section Info */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		86BFEA3C17CD692500262FE8 /* libTLIndexPathTools.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTLIndexPathTools.a;
+			remoteRef = 86BFEA3B17CD692500262FE8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8682A4B91787C4CD0023C036 /* Resources */ = {
@@ -277,7 +313,7 @@
 				GCC_PREFIX_HEADER = "Section Info/Section Info-Prefix.pch";
 				INFOPLIST_FILE = "Section Info/Section Info-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -290,7 +326,7 @@
 				GCC_PREFIX_HEADER = "Section Info/Section Info-Prefix.pch";
 				INFOPLIST_FILE = "Section Info/Section Info-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

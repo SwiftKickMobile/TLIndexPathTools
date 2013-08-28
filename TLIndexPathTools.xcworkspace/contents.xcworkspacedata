@@ -29,13 +29,13 @@
          location = "group:Examples/Outline/Outline.xcodeproj">
       </FileRef>
       <FileRef
-         location = "group:Examples/Dynamic Height/Dynamic Height.xcodeproj">
-      </FileRef>
-      <FileRef
          location = "group:Examples/JSON/JSON.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:Examples/Minimal/Minimal.xcodeproj">
+      </FileRef>
+      <FileRef
+         location = "group:Examples/Dynamic Height/Dynamic Height.xcodeproj">
       </FileRef>
       <FileRef
          location = "group:Examples/Section Info/Section Info.xcodeproj">

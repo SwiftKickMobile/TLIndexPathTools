@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TLIndexPathController.h"
+#import <TLIndexPathTools/TLIndexPathController.h>
 
 @interface ViewController : UIViewController <TLIndexPathControllerDelegate, UITableViewDataSource>
 @property (strong, nonatomic) IBOutlet UITableView *tableView;

@@ -24,7 +24,11 @@
 #import <UIKit/UIKit.h>
 #import "TLIndexPathDataModel.h"
 
-// TODO Update modified items in performBatchUpdates
+/**
+ Takes two versions of a data model and computes the changes, i.e. the inserts,
+ moves, deletes and modifications. A variety of `performBatchUpdatesOn*` methods
+ are provided for performing batch updates on the table or collection view.
+ */
 
 @interface TLIndexPathUpdates : NSObject
 @property (strong, nonatomic, readonly) TLIndexPathDataModel *oldDataModel;

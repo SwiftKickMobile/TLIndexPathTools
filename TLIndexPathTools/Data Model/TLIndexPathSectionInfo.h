@@ -24,6 +24,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+/**
+ An implementation of the `NSFetchedResultsSectionInfo` protocol. `TLIndexPathDataModel`
+ uses this class to organize data into sections. You can also explicitly create these
+ objects (including empty ones) and use them to create a data model with the
+ [TLIndexPathDataModel initWithSectionInfos:identifierKeyPath:] initializer.
+ */
+
 @interface TLIndexPathSectionInfo : NSObject <NSFetchedResultsSectionInfo>
 @property (nonatomic, readonly) NSString *name;
 @property (nonatomic, readonly) NSString *indexTitle;

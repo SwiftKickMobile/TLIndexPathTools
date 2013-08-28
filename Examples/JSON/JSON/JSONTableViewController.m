@@ -7,7 +7,7 @@
 //
 
 #import "JSONTableViewController.h"
-#import "TLIndexPathDataModel.h"
+#import <TLIndexPathTools/TLIndexPathDataModel.h>
 
 @implementation JSONTableViewController
 

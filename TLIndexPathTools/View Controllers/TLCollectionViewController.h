@@ -23,6 +23,12 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ A subclass of `UICollectionViewController` that works with `TLIndexPathController`
+ and provide default impelementations of the essential data source and delegate
+ methods to get your collection views up-and-running as quickly as possible.
+ */
+
 #import "TLIndexPathController.h"
 
 @interface TLCollectionViewController : UICollectionViewController <TLIndexPathControllerDelegate>

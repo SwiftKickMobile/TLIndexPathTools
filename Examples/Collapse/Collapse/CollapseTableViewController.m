@@ -7,8 +7,8 @@
 //
 
 #import "CollapseTableViewController.h"
-#import "TLIndexPathSectionInfo.h"
-#import "TLCollapsibleDataModel.h"
+#import <TLIndexPathTools/TLIndexPathSectionInfo.h>
+#import <TLIndexPathTools/TLCollapsibleDataModel.h>
 
 #define SECTION1_NAME @"Section 1"
 #define SECTION2_NAME @"Section 2"

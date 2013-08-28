@@ -8,8 +8,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 
+#import <TLIndexPathTools/TLIndexPathDataModel.h>
 #import "ShuffleCollectionViewController.h"
-#import "TLIndexPathDataModel.h"
 #import "UIColor+Hex.h"
 
 #define IDX_TEXT 0

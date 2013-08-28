@@ -21,8 +21,18 @@
 		862FF84D1759329900381869 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862FF84C1759329900381869 /* QuartzCore.framework */; };
 		862FF850175932BA00381869 /* DynamicHeightTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 862FF84F175932BA00381869 /* DynamicHeightTableViewController.m */; };
 		86BBB1B51771156900CFA35C /* DynamicHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86BBB1B41771156900CFA35C /* DynamicHeightCell.m */; };
-		B1AF921517A18650009E0FE2 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AF921417A18650009E0FE2 /* libTLIndexPathTools.a */; };
+		86BFEA4517CD6A2A00262FE8 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86BFEA3517CD692100262FE8 /* libTLIndexPathTools.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		86BFEA3417CD692100262FE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86BFEA2F17CD692100262FE8 /* TLIndexPathTools.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B145DAB9179EE94300CF270E;
+			remoteInfo = TLIndexPathTools;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		862FF8241759328400381869 /* Dynamic Height.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dynamic Height.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,7 +55,8 @@
 		862FF84F175932BA00381869 /* DynamicHeightTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicHeightTableViewController.m; sourceTree = "<group>"; };
 		86BBB1B31771156900CFA35C /* DynamicHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicHeightCell.h; sourceTree = "<group>"; };
 		86BBB1B41771156900CFA35C /* DynamicHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicHeightCell.m; sourceTree = "<group>"; };
-		B1AF921417A18650009E0FE2 /* libTLIndexPathTools.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libTLIndexPathTools.a; path = "../../build/Release-iphoneos/libTLIndexPathTools.a"; sourceTree = "<group>"; };
+		86BFEA2F17CD692100262FE8 /* TLIndexPathTools.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TLIndexPathTools.xcodeproj; path = ../../TLIndexPathTools.xcodeproj; sourceTree = "<group>"; };
+		86ECFC2517CD53D4003D13C0 /* libTLIndexPathTools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTLIndexPathTools.a; path = "../../build/Release-iphoneos/libTLIndexPathTools.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +64,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1AF921517A18650009E0FE2 /* libTLIndexPathTools.a in Frameworks */,
+				86BFEA4517CD6A2A00262FE8 /* libTLIndexPathTools.a in Frameworks */,
 				862FF84D1759329900381869 /* QuartzCore.framework in Frameworks */,
 				862FF84B1759329200381869 /* CoreData.framework in Frameworks */,
 				862FF8281759328400381869 /* UIKit.framework in Frameworks */,
@@ -68,6 +79,7 @@
 		862FF81B1759328400381869 = {
 			isa = PBXGroup;
 			children = (
+				86BFEA2F17CD692100262FE8 /* TLIndexPathTools.xcodeproj */,
 				862FF82D1759328400381869 /* Dynamic Height */,
 				862FF8261759328400381869 /* Frameworks */,
 				862FF8251759328400381869 /* Products */,
@@ -85,7 +97,7 @@
 		862FF8261759328400381869 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B1AF921417A18650009E0FE2 /* libTLIndexPathTools.a */,
+				86ECFC2517CD53D4003D13C0 /* libTLIndexPathTools.a */,
 				862FF84C1759329900381869 /* QuartzCore.framework */,
 				862FF84A1759329200381869 /* CoreData.framework */,
 				862FF8271759328400381869 /* UIKit.framework */,
@@ -122,6 +134,14 @@
 				862FF83D1759328400381869 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		86BFEA3017CD692100262FE8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				86BFEA3517CD692100262FE8 /* libTLIndexPathTools.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -163,12 +183,28 @@
 			mainGroup = 862FF81B1759328400381869;
 			productRefGroup = 862FF8251759328400381869 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 86BFEA3017CD692100262FE8 /* Products */;
+					ProjectRef = 86BFEA2F17CD692100262FE8 /* TLIndexPathTools.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				862FF8231759328400381869 /* Dynamic Height */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		86BFEA3517CD692100262FE8 /* libTLIndexPathTools.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTLIndexPathTools.a;
+			remoteRef = 86BFEA3417CD692100262FE8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		862FF8221759328400381869 /* Resources */ = {
@@ -283,7 +319,7 @@
 				GCC_PREFIX_HEADER = "Dynamic Height/Dynamic Height-Prefix.pch";
 				INFOPLIST_FILE = "Dynamic Height/Dynamic Height-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -296,7 +332,7 @@
 				GCC_PREFIX_HEADER = "Dynamic Height/Dynamic Height-Prefix.pch";
 				INFOPLIST_FILE = "Dynamic Height/Dynamic Height-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

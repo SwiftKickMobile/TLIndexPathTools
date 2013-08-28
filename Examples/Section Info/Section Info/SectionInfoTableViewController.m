@@ -7,8 +7,8 @@
 //
 
 #import "SectionInfoTableViewController.h"
-#import "TLIndexPathDataModel.h"
-#import "TLIndexPathSectionInfo.h"
+#import <TLIndexPathTools/TLIndexPathDataModel.h>
+#import <TLIndexPathTools/TLIndexPathSectionInfo.h>
 
 /**
  Demonstrates how to explicitly define sections with instances of `TLIndexPathSectionInfo`.

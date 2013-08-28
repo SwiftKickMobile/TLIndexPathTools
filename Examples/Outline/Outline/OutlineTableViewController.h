@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Tractable Labs. All rights reserved.
 //
 
-#import "TLTreeTableViewController.h"
+#import <TLIndexPathTools/TLTreeTableViewController.h>
 
 @interface OutlineTableViewController : TLTreeTableViewController <TLTreeTableViewControllerDelegate>
 

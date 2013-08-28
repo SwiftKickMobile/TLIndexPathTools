@@ -25,6 +25,12 @@
 
 #import "TLIndexPathController.h"
 
+/**
+ A subclass of `UITableViewController` that works with `TLIndexPathController`
+ and provide default impelementations of the essential data source and delegate
+ methods to get your table views up-and-running as quickly as possible.
+ */
+
 @interface TLTableViewController : UITableViewController <TLIndexPathControllerDelegate>
 
 /**

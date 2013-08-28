@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Tractable Labs. All rights reserved.
 //
 
-#import "TLCollectionViewController.h"
+#import <TLIndexPathTools/TLCollectionViewController.h>
 
 @interface CoreDataCollectionViewController : TLCollectionViewController
 - (IBAction)sortAlphabetically:(id)sender;

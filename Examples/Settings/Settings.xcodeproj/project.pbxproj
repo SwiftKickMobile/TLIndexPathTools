@@ -24,8 +24,18 @@
 		8631AFEB174D83D900D1B383 /* gear_press@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8631AFE7174D83D900D1B383 /* gear_press@2x.png */; };
 		8631AFEC174D83D900D1B383 /* gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 8631AFE8174D83D900D1B383 /* gear.png */; };
 		8631AFED174D83D900D1B383 /* gear@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8631AFE9174D83D900D1B383 /* gear@2x.png */; };
-		B1AF920B17A18465009E0FE2 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AF920A17A18465009E0FE2 /* libTLIndexPathTools.a */; };
+		86BFEA3D17CD695100262FE8 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86BFE9FD17CD690300262FE8 /* libTLIndexPathTools.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		86BFE9FC17CD690300262FE8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86BFE9F717CD690300262FE8 /* TLIndexPathTools.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B145DAB9179EE94300CF270E;
+			remoteInfo = TLIndexPathTools;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		8631AF04174D31EE00D1B383 /* Settings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Settings.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -50,7 +60,7 @@
 		8631AFE7174D83D900D1B383 /* gear_press@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear_press@2x.png"; sourceTree = "<group>"; };
 		8631AFE8174D83D900D1B383 /* gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear.png; sourceTree = "<group>"; };
 		8631AFE9174D83D900D1B383 /* gear@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear@2x.png"; sourceTree = "<group>"; };
-		B1AF920A17A18465009E0FE2 /* libTLIndexPathTools.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libTLIndexPathTools.a; path = "../../build/Release-iphoneos/libTLIndexPathTools.a"; sourceTree = "<group>"; };
+		86BFE9F717CD690300262FE8 /* TLIndexPathTools.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TLIndexPathTools.xcodeproj; path = ../../TLIndexPathTools.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,7 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1AF920B17A18465009E0FE2 /* libTLIndexPathTools.a in Frameworks */,
+				86BFEA3D17CD695100262FE8 /* libTLIndexPathTools.a in Frameworks */,
 				8631AF69174D575E00D1B383 /* CoreData.framework in Frameworks */,
 				8631AF67174D575800D1B383 /* QuartzCore.framework in Frameworks */,
 				8631AF08174D31EE00D1B383 /* UIKit.framework in Frameworks */,
@@ -73,6 +83,7 @@
 		8631AEFB174D31EE00D1B383 = {
 			isa = PBXGroup;
 			children = (
+				86BFE9F717CD690300262FE8 /* TLIndexPathTools.xcodeproj */,
 				8631AF0D174D31EE00D1B383 /* Settings */,
 				8631AF06174D31EE00D1B383 /* Frameworks */,
 				8631AF05174D31EE00D1B383 /* Products */,
@@ -90,7 +101,6 @@
 		8631AF06174D31EE00D1B383 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B1AF920A17A18465009E0FE2 /* libTLIndexPathTools.a */,
 				8631AF68174D575E00D1B383 /* CoreData.framework */,
 				8631AF66174D575800D1B383 /* QuartzCore.framework */,
 				8631AF07174D31EE00D1B383 /* UIKit.framework */,
@@ -139,6 +149,14 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		86BFE9F817CD690300262FE8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				86BFE9FD17CD690300262FE8 /* libTLIndexPathTools.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -178,12 +196,28 @@
 			mainGroup = 8631AEFB174D31EE00D1B383;
 			productRefGroup = 8631AF05174D31EE00D1B383 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 86BFE9F817CD690300262FE8 /* Products */;
+					ProjectRef = 86BFE9F717CD690300262FE8 /* TLIndexPathTools.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				8631AF03174D31EE00D1B383 /* Settings */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		86BFE9FD17CD690300262FE8 /* libTLIndexPathTools.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTLIndexPathTools.a;
+			remoteRef = 86BFE9FC17CD690300262FE8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8631AF02174D31EE00D1B383 /* Resources */ = {
@@ -301,7 +335,7 @@
 				GCC_PREFIX_HEADER = "Settings/Settings-Prefix.pch";
 				INFOPLIST_FILE = "Settings/Settings-Info.plist";
 				PRODUCT_NAME = Settings;
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -314,7 +348,7 @@
 				GCC_PREFIX_HEADER = "Settings/Settings-Prefix.pch";
 				INFOPLIST_FILE = "Settings/Settings-Info.plist";
 				PRODUCT_NAME = Settings;
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

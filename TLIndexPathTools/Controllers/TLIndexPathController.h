@@ -23,10 +23,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import "TLIndexPathDataModel.h"
 #import "TLIndexPathUpdates.h"
 
-//sent whenever a TLIndexPathController changes it's content for any reason
+/**
+ Sent whenever a TLIndexPathController changes it's content for any reason
+ */
 extern NSString * const TLIndexPathControllerChangedNotification;
 
 @class TLIndexPathController;
@@ -66,9 +67,93 @@ extern NSString * const TLIndexPathControllerChangedNotification;
 
 @end
 
+/**
+ 
+ `TLIndexPathController` is TLIndexPathTools' version of `NSFetchedResultsController`.
+ It should not come as a surprise, then, that you must use this class if you want
+ to integrate with Core Data.
+ 
+ Although it primarily exists for Core Data integration, `TLIndexPathController` works
+ interchangeably with `NSFetchRequest` or plain 'ol arrays of arbitrary data. Thus,
+ if you choose to standardize your view controllers on `TLIndexPathController`,
+ it is possible to have a common programming model across all of your table and collection views.
+ 
+ `TLIndexPathController` also makes a few nice improvements relative to `NSFetchedResultsController`:
+ 
+ * Items do not need to be presorted by section. The data model handles organizing sections.
+ * Changes to your fetch request are animated. So you can get animated sorting and filtering.
+ * There is only one delegate method to implement (versus five for `NSFetchedResultsController`).
+ 
+ The basic template for using `TLIndexPathController` in a (table) view controller is as follows:
+ 
+    #import <UIKit/UIKit.h>
+    #import "TLIndexPathController.h"
+    @interface ViewController : UITableViewController <TLIndexPathControllerDelegate>
+    @end
+
+    #import "ViewController.h"
+    @interface ViewController ()
+    @property (strong, nonatomic) TLIndexPathController *indexPathController;
+    @end
+
+    @implementation ViewController
+
+    - (void)viewDidLoad
+    {
+        [super viewDidLoad];
+        self.indexPathController = [[TLIndexPathController alloc] init];
+    }
+
+    #pragma mark - UITableViewDataSource
+
+    - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+    {
+        return self.indexPathController.dataModel.numberOfSections;
+    }
+
+    - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+    {
+        return [self.indexPathController.dataModel numberOfRowsInSection:section];
+    }
+
+    - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+    {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+        id item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
+        //configure cell using data item
+        return cell;
+    }
+
+    #pragma mark - TLIndexPathControllerDelegate
+
+    - (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates
+    {
+        [updates performBatchUpdatesOnTableView:self.tableView withRowAnimation:UITableViewRowAnimationFade];
+    }
+
+    @end
+ 
+ This template works with plain arrays or `NSFetchRequests`. With plain arrays, you
+ simply set the `dataModel` property of the controller (or set the `items` property
+ and get a default data model). With `NSFetchRequests`, you set the `fetchRequest`
+ property and call `performFetch:`. From then on, the controller updates the data
+ model interinally every time the fetch results change (using an internal instance
+ of `NSFetchedResultsController` and responding to `controllerDidChangeContent` messages).
+ 
+ In either case, whether you explicitly set a data model or the controller converts
+ a fetch result into a data model, the controller creates the `TLIndexPathUpdates`
+ object for you and passes it to the delegate, giving you an opportunity to perform batch updates:
+ 
+    - (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates
+    {
+        [updates performBatchUpdatesOnTableView:self.tableView withRowAnimation:UITableViewRowAnimationFade];
+    }
+ */
+
 @interface TLIndexPathController : NSObject <NSFetchedResultsControllerDelegate>
 
-#pragma mark - Initialization
+#pragma mark - Creating controllers
+/** @name Creating controllers */
 
 /**
  Returns an index path controller initialized with the given items.
@@ -104,6 +189,7 @@ extern NSString * const TLIndexPathControllerChangedNotification;
 - (instancetype)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString *)sectionNameKeyPath identifierKeyPath:(NSString *)identifierKeyPath cacheName:(NSString *)name;
 
 #pragma mark - Configuration information
+/** @name Configuration information */
 
 /**
  The controller's delegate.
@@ -147,7 +233,8 @@ extern NSString * const TLIndexPathControllerChangedNotification;
  */
 @property (nonatomic) BOOL ignoreDataModelChanges;
 
-#pragma mark - Accessing data
+#pragma mark - Accessing and updating data
+/** @name Accessing and updating data */
 
 /**
  The items being tracked by the controller.
@@ -172,6 +259,7 @@ extern NSString * const TLIndexPathControllerChangedNotification;
 @property (strong, nonatomic) TLIndexPathDataModel *dataModel;
 
 #pragma mark - Batch updates
+/** @name Batch updates */
 
 /**
  Allows for making multiple changes to the controller with only a single
@@ -189,7 +277,8 @@ extern NSString * const TLIndexPathControllerChangedNotification;
  */
 - (void)performBatchUpdates:(void (^)(void))updates completion:(void (^)(BOOL finished))completion;
 
-#pragma mark - Core Data Integration
+#pragma mark - Core Data integration
+/** @name Core Data Integration */
 
 /**
  Calling this method executes the fetch request and causes a new data model to be

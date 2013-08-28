@@ -6,7 +6,9 @@
 //  Copyright (c) 2013 Tractable Labs. All rights reserved.
 //
 
-#import "TLCollapsibleTableViewController.h"
+//#import <TLIndexPathTools/TLCollapsibleTableViewController.h>
+
+#import <TLIndexPathTools/TLCollapsibleTableViewController.h>
 
 @interface CollapseTableViewController : TLCollapsibleTableViewController
 - (IBAction)toggleSingleSectionExpanded:(UISwitch *)sender;

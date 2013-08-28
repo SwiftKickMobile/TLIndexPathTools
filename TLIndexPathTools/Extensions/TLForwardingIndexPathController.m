@@ -132,9 +132,9 @@
     self.controller.inMemorySortDescriptors = inMemorySortDescriptors;
 }
 
-- (void)setInMemoryPredicate:(NSPredicate *)inMemoryPredicate andInMemorySortDescriptors:(NSArray *)inMemorySortDescriptors
+- (void)performBatchUpdates:(void (^)(void))updates completion:(void (^)(BOOL))completion
 {
-    [self.controller setInMemoryPredicate:inMemoryPredicate andInMemorySortDescriptors:inMemorySortDescriptors];
+    [self.controller performBatchUpdates:updates completion:completion];
 }
 
 - (NSArray *)coreDataFetchedObjects

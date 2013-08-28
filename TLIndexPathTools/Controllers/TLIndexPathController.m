@@ -42,7 +42,7 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
     self.backingController.delegate = nil;
 }
 
-#pragma mark - Initilization
+#pragma mark - Creating controllers
 
 - (instancetype)initWithItems:(NSArray *)items
 {
@@ -143,7 +143,7 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
     }
 }
 
-#pragma mark - Accessing data
+#pragma mark - Accessing and updating
 
 - (NSArray *)items
 {

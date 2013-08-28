@@ -21,6 +21,21 @@
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
 
+/**
+ A data item wrapper class that provides identifier and section name properties.
+ TLIndexPathTools knows about and will use these properties automatically as specified
+ in the `TLIndexPathDataModel` identifier and section name rules. This means the more
+ verbose `[TLIndexPathTools initWithItems:sectionNameKeyPath:identifierKeyPath]`
+ initializer is unneccessary. Use the [TLIndexPathTools initWithItems:] initializer.
+ 
+ This class also provides a `cellIdentifier` property. If this property is set,
+ `TLTableViewController` and `TLCollectionViewController` automatically use this
+ value as the reuse identifier when dequeing cells.
+ 
+ This class can be useful for settings-type views where there are multiple cell
+ prototypes, heterogeneous data and sections.
+ */
+
 #import <Foundation/Foundation.h>
 
 @interface TLIndexPathItem : NSObject

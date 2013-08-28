@@ -8,8 +8,8 @@
 
 #import "SettingsTableViewController.h"
 
-#import "TLIndexPathDataModel.h"
-#import "TLIndexPathItem.h"
+#import <TLIndexPathTools/TLIndexPathDataModel.h>
+#import <TLIndexPathTools/TLIndexPathItem.h>
 
 //item identifiers for the data model are also used as the display text for the labels.
 //For unique options (i.e. all options except difficulty level settings), item IDs

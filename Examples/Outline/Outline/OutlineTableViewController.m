@@ -7,7 +7,7 @@
 //
 
 #import "OutlineTableViewController.h"
-#import "TLIndexPathTreeItem.h"
+#import <TLIndexPathTools/TLIndexPathTreeItem.h>
 
 #define ITEM_1 @"Heading 1"
 #define ITEM_1_1 @"Heading 1.1"

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-#import "TLTableViewController.h"
+#import <TLIndexPathTools/TLTableViewController.h>
 
 @interface SettingsTableViewController : TLTableViewController
 @end

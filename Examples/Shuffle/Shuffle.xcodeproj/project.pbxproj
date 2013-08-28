@@ -21,8 +21,25 @@
 		86B4C859174D251B006E1A83 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86B4C858174D251B006E1A83 /* Default@2x.png */; };
 		86B4C85B174D251B006E1A83 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86B4C85A174D251B006E1A83 /* Default-568h@2x.png */; };
 		86B4C85E174D251B006E1A83 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B4C85C174D251B006E1A83 /* MainStoryboard.storyboard */; };
-		B1AF920917A182F2009E0FE2 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1AF920817A182F2009E0FE2 /* libTLIndexPathTools.a */; };
+		86BFE9F617CD66B900262FE8 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86ECFC4E17CD6575003D13C0 /* libTLIndexPathTools.a */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		86ECFC4D17CD6575003D13C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86ECFC4817CD6575003D13C0 /* TLIndexPathTools.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B145DAB9179EE94300CF270E;
+			remoteInfo = TLIndexPathTools;
+		};
+		86ECFC4F17CD6580003D13C0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86ECFC4817CD6575003D13C0 /* TLIndexPathTools.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B145DAB8179EE94300CF270E;
+			remoteInfo = TLIndexPathTools;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		862FF8181757E06100381869 /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
@@ -45,7 +62,8 @@
 		86B4C858174D251B006E1A83 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		86B4C85A174D251B006E1A83 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		86B4C85D174D251B006E1A83 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		B1AF920817A182F2009E0FE2 /* libTLIndexPathTools.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libTLIndexPathTools.a; path = "../../build/Release-iphoneos/libTLIndexPathTools.a"; sourceTree = "<group>"; };
+		86ECFC4317CD636A003D13C0 /* Shuffle copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Shuffle copy-Info.plist"; path = "/Users/wtmoose/Developer/TLIndexPathTools/Examples/Shuffle/Shuffle copy-Info.plist"; sourceTree = "<absolute>"; };
+		86ECFC4817CD6575003D13C0 /* TLIndexPathTools.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TLIndexPathTools.xcodeproj; path = ../../TLIndexPathTools.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B1AF920917A182F2009E0FE2 /* libTLIndexPathTools.a in Frameworks */,
+				86BFE9F617CD66B900262FE8 /* libTLIndexPathTools.a in Frameworks */,
 				8631AEFA174D2A0300D1B383 /* CoreGraphics.framework in Frameworks */,
 				8631AEF9174D29FB00D1B383 /* QuartzCore.framework in Frameworks */,
 				8631AEF7174D29D200D1B383 /* CoreData.framework in Frameworks */,
@@ -68,9 +86,11 @@
 		86B4C838174D251B006E1A83 = {
 			isa = PBXGroup;
 			children = (
+				86ECFC4817CD6575003D13C0 /* TLIndexPathTools.xcodeproj */,
 				86B4C84A174D251B006E1A83 /* Shuffle */,
 				86B4C843174D251B006E1A83 /* Frameworks */,
 				86B4C842174D251B006E1A83 /* Products */,
+				86ECFC4317CD636A003D13C0 /* Shuffle copy-Info.plist */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,7 +105,6 @@
 		86B4C843174D251B006E1A83 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B1AF920817A182F2009E0FE2 /* libTLIndexPathTools.a */,
 				8631AEF8174D29FB00D1B383 /* QuartzCore.framework */,
 				8631AEF6174D29D200D1B383 /* CoreData.framework */,
 				86B4C844174D251B006E1A83 /* UIKit.framework */,
@@ -124,6 +143,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		86ECFC4917CD6575003D13C0 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				86ECFC4E17CD6575003D13C0 /* libTLIndexPathTools.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -138,6 +165,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				86ECFC5017CD6580003D13C0 /* PBXTargetDependency */,
 			);
 			name = Shuffle;
 			productName = Shuffle;
@@ -163,12 +191,28 @@
 			mainGroup = 86B4C838174D251B006E1A83;
 			productRefGroup = 86B4C842174D251B006E1A83 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 86ECFC4917CD6575003D13C0 /* Products */;
+					ProjectRef = 86ECFC4817CD6575003D13C0 /* TLIndexPathTools.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				86B4C840174D251B006E1A83 /* Shuffle */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		86ECFC4E17CD6575003D13C0 /* libTLIndexPathTools.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libTLIndexPathTools.a;
+			remoteRef = 86ECFC4D17CD6575003D13C0 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		86B4C83F174D251B006E1A83 /* Resources */ = {
@@ -198,6 +242,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		86ECFC5017CD6580003D13C0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = TLIndexPathTools;
+			targetProxy = 86ECFC4F17CD6580003D13C0 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		86B4C84D174D251B006E1A83 /* InfoPlist.strings */ = {
@@ -283,7 +335,7 @@
 				GCC_PREFIX_HEADER = "Shuffle/Shuffle-Prefix.pch";
 				INFOPLIST_FILE = "Shuffle/Shuffle-Info.plist";
 				PRODUCT_NAME = Shuffle;
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -296,7 +348,7 @@
 				GCC_PREFIX_HEADER = "Shuffle/Shuffle-Prefix.pch";
 				INFOPLIST_FILE = "Shuffle/Shuffle-Info.plist";
 				PRODUCT_NAME = Shuffle;
-				USER_HEADER_SEARCH_PATHS = "$(BUILT_PRODUCTS_DIR)/**";
+				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
