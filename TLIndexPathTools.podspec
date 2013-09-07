@@ -6,14 +6,17 @@
 #
 Pod::Spec.new do |s|
   s.name         = "TLIndexPathTools"
-  s.version      = "0.0.1"
+  s.version      = "1.0.0"
   s.summary      = "TLIndexPathTools makes it easy to build rich, dynamic table and collection views on iOS."
-  # s.description  = <<-DESC
-  #                   An optional longer description of TLIndexPathTools
-  #
-  #                   * Markdown format.
-  #                   * Don't worry about the indent, we strip it!
-  #                  DESC
+  s.description  = <<-DESC
+					TLIndexPathTools is a set of components designed to greatly simplify building
+					rich, dynamic table and collection views. Here are some of the awesome things that TLIndexPathTools does:
+
+					* Automatically calculate and perform animated inserts, deletes and moves.
+					* Automatically organize the data model into sections.
+					* Simplify implementing data source and delegate methods via rich data model APIs.
+					* Provide a simpler alternative to Core Data's `NSFetchedResultsController`
+                    DESC
   s.homepage     = "tlindexpathtools.com"
   # s.screenshots  = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
 
@@ -25,7 +28,7 @@ Pod::Spec.new do |s|
   # Specify the authors of the library, with email addresses. You can often find
   # the email addresses of the authors by using the SCM log. E.g. $ git log
   #
-  s.author       = { "wtmoose" => "email@address.com" }
+  s.author       = { "wtmoose" => "wtm@tractablelabs.com" }
   # s.authors      = { "wtmoose" => "email@address.com", "other author" => "and email address" }
   #
   # If absolutely no email addresses are available, then you can use this form instead.
