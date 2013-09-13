@@ -147,7 +147,7 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
                     [identifiedItems addObject:item];
                     [_itemsByIdentifier setObject:item forKey:identifier];
                     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
-                    [_identifiersByIndexPath setObject:identifier forKey:indexPath];
+                    [_identifiersByIndexPath setObject:identifier forKey:[self keyForIndexPath:indexPath]];
                     [_indexPathsByIdentifier setObject:indexPath forKey:identifier];
                 };
                 
@@ -211,6 +211,7 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     id identifier = [self identifierAtIndexPath:indexPath];
     id item = [self.itemsByIdentifier objectForKey:identifier];
     return item;
@@ -218,7 +219,7 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 
 - (id)identifierAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.identifiersByIndexPath objectForKey:indexPath];
+    return [self.identifiersByIndexPath objectForKey:[self keyForIndexPath:indexPath]];
 }
 
 - (BOOL)containsItem:(id)item
@@ -302,6 +303,15 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
         sectionName = [TLIndexPathDataModelNilSectionName copy];
     }
     return sectionName;
+}
+
+/*
+ Must generate a key for index path because `[NSIndexPath isEqual] is not reliable
+ under iOS7 (I think because `UITableView` sometimes uses `NSIndexPath` and other times `UIMutableIndexPath`
+ */
+- (NSString *)keyForIndexPath:(NSIndexPath *)indexPath
+{
+    return [NSString stringWithFormat:@"%d.%d", [indexPath indexAtPosition:0], [indexPath indexAtPosition:1]];
 }
 
 @end

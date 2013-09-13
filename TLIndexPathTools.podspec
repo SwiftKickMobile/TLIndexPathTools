@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TLIndexPathTools"
-  s.version      = "0.1.0"
+  s.version      = "0.1.1"
   s.summary      = "TLIndexPathTools makes it easy to build rich, dynamic table and collection views on iOS."
   s.description  = <<-DESC
 					TLIndexPathTools is a set of components designed to greatly simplify building

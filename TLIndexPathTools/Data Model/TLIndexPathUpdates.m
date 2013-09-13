@@ -83,7 +83,8 @@
             NSString *sectionName = [oldDataModel sectionNameForSection:oldIndexPath.section];
             if ([updatedDataModel containsItem:item]) {
                 NSIndexPath *updatedIndexPath = [updatedDataModel indexPathForItem:item];
-                if (![oldIndexPath isEqual:updatedIndexPath]) {
+                //can't rely on isEqual, so must use compare
+                if ([oldIndexPath compare:updatedIndexPath] != NSOrderedSame) {
                     // Don't move items in moved sections
                     if (![movedSectionNames containsObject:sectionName]) {
                         // TODO Not sure if this is correct when moves are combined with inserts and/or deletes
