@@ -64,22 +64,29 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 
 - (id)initWithItems:(NSArray *)items sectionNameKeyPath:(NSString *)sectionNameKeyPath identifierKeyPath:(NSString *)identifierKeyPath
 {
-    NSString *(^sectionNameBlock)(id item) = ^NSString *(id item) {
-        @try {
-            return sectionNameKeyPath ? [item valueForKeyPath:sectionNameKeyPath] : nil;
-        }
-        @catch (NSException *exception) {
-        }
-        return nil;
-    };
-    id(^identifierBlock)(id item) = ^id(id item) {
-        @try {
-            return identifierKeyPath ? [item valueForKeyPath:identifierKeyPath] : nil;
-        }
-        @catch (NSException *exception) {
-        }
-        return nil;
-    };
+    
+    NSString *(^sectionNameBlock)(id item);
+    if (sectionNameKeyPath) {
+       sectionNameBlock = ^NSString *(id item) {
+            @try {
+                return sectionNameKeyPath ? [item valueForKeyPath:sectionNameKeyPath] : nil;
+            }
+            @catch (NSException *exception) {
+            }
+            return nil;
+        };
+    }
+    id(^identifierBlock)(id item);
+    if (identifierKeyPath) {
+        identifierBlock = ^id(id item) {
+            @try {
+                return identifierKeyPath ? [item valueForKeyPath:identifierKeyPath] : nil;
+            }
+            @catch (NSException *exception) {
+            }
+            return nil;
+        };
+    }
     
     if (self = [self initWithItems:items sectionNameBlock:sectionNameBlock identifierBlock:identifierBlock]) {
         _identifierKeyPath = identifierKeyPath;
@@ -117,22 +124,31 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
         [sectionInfos addObject:sectionInfo];
     }
     
-    if (self = [self initWithSectionInfos:sectionInfos]) {
-        _identifierBlock = identifierBlock;
-        _sectionNameBlock = sectionNameBlock;
+    if (self = [self initWithSectionInfos:sectionInfos sectionNameBlock:sectionNameBlock identifierBlock:identifierBlock]) {
+//        _itemsByIdentifier = itemsByIdentifier;//TODO
+//        _sectionNames = sectionNames;//TODO
     }
     return self;
 }
 
 - (id)initWithSectionInfos:(NSArray *)sectionInfos identifierKeyPath:(NSString *)identifierKeyPath
 {
-    if (self = [self initWithSectionInfos:sectionInfos]) {
+    id(^identifierBlock)(id item) = ^id(id item) {
+        @try {
+            return identifierKeyPath ? [item valueForKeyPath:identifierKeyPath] : nil;
+        }
+        @catch (NSException *exception) {
+        }
+        return nil;
+    };
+    
+    if (self = [self initWithSectionInfos:sectionInfos sectionNameBlock:nil identifierBlock:identifierBlock]) {
         _identifierKeyPath = identifierKeyPath;
     }
     return self;
 }
 
-- (id)initWithSectionInfos:(NSArray *)sectionInfos
+- (id)initWithSectionInfos:(NSArray *)sectionInfos sectionNameBlock:(NSString *(^)(id))sectionNameBlock identifierBlock:(id (^)(id))identifierBlock
 {
     //if there are no sections, insert an empty section to keep UICollectionView
     //happy. If we don't do this, UICollectionView will crash on the first
@@ -147,6 +163,9 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
     }
     
     if (self = [super init]) {
+        
+        _identifierBlock = identifierBlock;
+        _sectionNameBlock = sectionNameBlock;
         
         NSMutableArray *identifiedItems = [[NSMutableArray alloc] init];
         NSMutableArray *sectionNames = [[NSMutableArray alloc] init];
@@ -258,7 +277,13 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 - (NSIndexPath *)indexPathForItem:(id)item
 {
     id identifier = [self identifierForItem:item];
+    if (!identifier) {
+        NSLog(@"uh oh");
+    }
     NSIndexPath *indexPath = [self.indexPathsByIdentifier objectForKey:identifier];
+    if (!indexPath) {
+        NSLog(@"whoah!");
+    }
     return indexPath;
 }
 
