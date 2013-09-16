@@ -277,13 +277,7 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 - (NSIndexPath *)indexPathForItem:(id)item
 {
     id identifier = [self identifierForItem:item];
-    if (!identifier) {
-        NSLog(@"uh oh");
-    }
     NSIndexPath *indexPath = [self.indexPathsByIdentifier objectForKey:identifier];
-    if (!indexPath) {
-        NSLog(@"whoah!");
-    }
     return indexPath;
 }
 
