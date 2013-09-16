@@ -167,6 +167,20 @@ extern NSString * TLIndexPathDataModelNilSectionName;
 - (id)initWithItems:(NSArray *)items sectionNameKeyPath:(NSString *)sectionNameKeyPath identifierKeyPath:(NSString *)identifierKeyPath;
 
 /**
+ Use this initializer to organize sections and identify items using blocks. This
+ can be used, for example, to organize a list of strings into sections based on
+ the first letter of the string (similar to the Contacts app).
+ 
+ @param items  the itmes that make up the data model
+ @param sectionNameBlock  block that returns the section name for the given item
+ Note that items do not need to be pre-sorted. Specifying `nil` will result in a
+ single section named `TLIndexPathDataModelNilSectionName`.
+ @param identifierBlock  block that returns the identifier for the given item.
+ Specifying `nil` will result in the default object identification rules being used.
+ */
+- (id)initWithItems:(NSArray *)items sectionNameBlock:(NSString *(^)(id item))sectionNameBlock identifierBlock:(id(^)(id item))identifierBlock;
+
+/**
  Use this initializer to explicitly specify sections by providing an array of
  `TLIndexPathSectionInfo` objects. This initializer can be used to generate empty sections
  (by creating an empty `TLIndexPathSectionInfo` object).

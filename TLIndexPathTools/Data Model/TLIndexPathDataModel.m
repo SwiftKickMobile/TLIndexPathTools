@@ -29,7 +29,8 @@
 const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNilSectionName__";
 
 @interface TLIndexPathDataModel ()
-//@property (strong, nonatomic, readonly) NSString *cellIdentifierKeyPath;
+@property (strong, nonatomic) NSString *(^sectionNameBlock)(id item);
+@property (strong, nonatomic) id(^identifierBlock)(id item);
 @property (strong, nonatomic) NSMutableDictionary *itemsByIdentifier;
 @property (strong, nonatomic) NSMutableDictionary *sectionInfosBySectionName;
 @property (strong, nonatomic) NSMutableDictionary *identifiersByIndexPath;
@@ -63,15 +64,41 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 
 - (id)initWithItems:(NSArray *)items sectionNameKeyPath:(NSString *)sectionNameKeyPath identifierKeyPath:(NSString *)identifierKeyPath
 {
+    NSString *(^sectionNameBlock)(id item) = ^NSString *(id item) {
+        @try {
+            return sectionNameKeyPath ? [item valueForKeyPath:sectionNameKeyPath] : nil;
+        }
+        @catch (NSException *exception) {
+        }
+        return nil;
+    };
+    id(^identifierBlock)(id item) = ^id(id item) {
+        @try {
+            return identifierKeyPath ? [item valueForKeyPath:identifierKeyPath] : nil;
+        }
+        @catch (NSException *exception) {
+        }
+        return nil;
+    };
+    
+    if (self = [self initWithItems:items sectionNameBlock:sectionNameBlock identifierBlock:identifierBlock]) {
+        _identifierKeyPath = identifierKeyPath;
+        _sectionNameKeyPath = sectionNameKeyPath;
+    }
+    return self;
+}
+
+- (id)initWithItems:(NSArray *)items sectionNameBlock:(NSString *(^)(id))sectionNameBlock identifierBlock:(id (^)(id))identifierBlock
+{
     NSMutableDictionary *itemsByIdentifier = [[NSMutableDictionary alloc] init];
     NSMutableDictionary *itemsBySectionName = [[NSMutableDictionary alloc] init];
     NSMutableArray *sectionNames = [NSMutableArray array];
     
     //group items by section name and remove any duplicate identifiers
     for (id item in items) {
-        id identifier = [TLIndexPathDataModel identifierForItem:item andIdentifierKeyPath:identifierKeyPath];
+        id identifier = [TLIndexPathDataModel identifierForItem:item identifierBlock:identifierBlock];
         if (!identifier || [itemsByIdentifier objectForKey:identifier]) continue;
-        NSString *sectionName = [TLIndexPathDataModel sectionNameForItem:item andSectionNameKeyPath:sectionNameKeyPath];
+        NSString *sectionName = [TLIndexPathDataModel sectionNameForItem:item sectionNameBlock:sectionNameBlock];
         NSMutableArray *sectionItems = [itemsBySectionName objectForKey:sectionName];
         if (!sectionItems) {
             sectionItems = [NSMutableArray array];
@@ -90,20 +117,22 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
         [sectionInfos addObject:sectionInfo];
     }
     
-    if (self = [self initWithSectionInfos:sectionInfos identifierKeyPath:identifierKeyPath]) {
-        _sectionNameKeyPath = sectionNameKeyPath;
+    if (self = [self initWithSectionInfos:sectionInfos]) {
+        _identifierBlock = identifierBlock;
+        _sectionNameBlock = sectionNameBlock;
     }
     return self;
-    
-    return [self initWithSectionInfos:sectionInfos identifierKeyPath:identifierKeyPath];
-}
-
-- (id)initWithSectionInfos:(NSArray *)sectionInfos
-{
-    return [self initWithSectionInfos:sectionInfos identifierKeyPath:nil];
 }
 
 - (id)initWithSectionInfos:(NSArray *)sectionInfos identifierKeyPath:(NSString *)identifierKeyPath
+{
+    if (self = [self initWithSectionInfos:sectionInfos]) {
+        _identifierKeyPath = identifierKeyPath;
+    }
+    return self;
+}
+
+- (id)initWithSectionInfos:(NSArray *)sectionInfos
 {
     //if there are no sections, insert an empty section to keep UICollectionView
     //happy. If we don't do this, UICollectionView will crash on the first
@@ -122,7 +151,6 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
         NSMutableArray *identifiedItems = [[NSMutableArray alloc] init];
         NSMutableArray *sectionNames = [[NSMutableArray alloc] init];
         
-        _identifierKeyPath = identifierKeyPath;
         _itemsByIdentifier = [[NSMutableDictionary alloc] init];
         _identifiersByIndexPath = [[NSMutableDictionary alloc] init];
         _indexPathsByIdentifier = [[NSMutableDictionary alloc] init];
@@ -242,15 +270,15 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 
 - (id)identifierForItem:(id)item
 {
-    return [[self class] identifierForItem:item andIdentifierKeyPath:self.identifierKeyPath];
+    return [[self class] identifierForItem:item identifierBlock:self.identifierBlock];
 }
 
-+ (id)identifierForItem:(id)item andIdentifierKeyPath:(NSString *)identifierKeyPath
++ (id)identifierForItem:(id)item identifierBlock:(id (^)(id))identifierBlock
 {
     id identifier;
-    if (identifierKeyPath) {
+    if (identifierBlock) {
         @try {
-            identifier = [item valueForKeyPath:identifierKeyPath];
+            identifier = identifierBlock(item);
         }
         @catch (NSException *exception) {
         }
@@ -284,15 +312,15 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 
 - (NSString *)sectionNameForItem:(id)item
 {
-    return [[self class] sectionNameForItem:item andSectionNameKeyPath:self.sectionNameKeyPath];
+    return [[self class] sectionNameForItem:item sectionNameBlock:self.sectionNameBlock];
 }
 
-+ (NSString *)sectionNameForItem:(id)item andSectionNameKeyPath:(NSString *)sectionNameKeyPath
++ (NSString *)sectionNameForItem:(id)item sectionNameBlock:(NSString *(^)(id))sectionNameBlock
 {
     NSString *sectionName;
-    if (sectionNameKeyPath) {
+    if (sectionNameBlock) {
         @try {
-            sectionName = [item valueForKeyPath:sectionNameKeyPath];
+            sectionName = sectionNameBlock(item);
         } @catch(NSException *e) {
         }
     }
