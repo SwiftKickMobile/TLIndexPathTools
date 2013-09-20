@@ -135,24 +135,7 @@
         return;
     }
 
-    //it turns out that reloading modified rows in the main beginUpdates section
-    //when there are inserts, deletes, or moves being made results in an exception:
-    //
-    //  Terminating app due to uncaught exception 'NSInternalInconsistencyException',
-    //  reason: 'Attempt to create two animations for cell'
-    //
-    //this needs to be investigated in more detail. But for the time being, the modified
-    //rows will be reloaded here before the main beginUpdates section and we won't
-    //use any row animation (because row animation seems to affect the performance
-    //of the row animations in the main beginUpdate section).
-    if (self.modifiedItems.count) {
-        NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-        for (id item in self.modifiedItems) {
-            NSIndexPath *indexPath = [self.updatedDataModel indexPathForItem:item];
-            [indexPaths addObject:indexPath];
-        }
-        [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
-    }
+    [CATransaction begin];
 
     [tableView beginUpdates];
     
@@ -211,7 +194,27 @@
         }
     }
     
-    [tableView endUpdates];    
+    [CATransaction setCompletionBlock: ^{
+
+        //modified items have to be reloaded after all other batch updates
+        //because, otherwise, the table view will throw an exception about
+        //duplicate animations being applied to cells. This doesn't always look
+        //nice, but it is better than a crash.
+        
+        if (self.modifiedItems.count) {
+            NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+            for (id item in self.modifiedItems) {
+                NSIndexPath *indexPath = [self.updatedDataModel indexPathForItem:item];
+                [indexPaths addObject:indexPath];
+                [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+            }
+        }
+    
+    }];
+    
+    [tableView endUpdates];
+    
+    [CATransaction commit];
 }
 
 - (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView
