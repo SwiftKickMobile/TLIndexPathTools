@@ -40,5 +40,8 @@
       <FileRef
          location = "group:Examples/Section Info/Section Info.xcodeproj">
       </FileRef>
+      <FileRef
+         location = "group:Examples/Blocks/Blocks.xcodeproj">
+      </FileRef>
    </Group>
 </Workspace>
