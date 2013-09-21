@@ -356,9 +356,12 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
  Must generate a key for index path because `[NSIndexPath isEqual] is not reliable
  under iOS7 (I think because `UITableView` sometimes uses `NSIndexPath` and other times `UIMutableIndexPath`
  */
-- (NSString *)keyForIndexPath:(NSIndexPath *)indexPath
+- (NSIndexPath *)keyForIndexPath:(NSIndexPath *)indexPath
 {
-    return [NSString stringWithFormat:@"%d.%d", [indexPath indexAtPosition:0], [indexPath indexAtPosition:1]];
+    if ([indexPath class] == [NSIndexPath class]) {
+        return indexPath;
+    }
+    return [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
 }
 
 @end
