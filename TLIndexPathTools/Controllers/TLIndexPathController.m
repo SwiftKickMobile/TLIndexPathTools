@@ -64,7 +64,7 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
     if (self = [self initWithDataModel:dataModel]) {
         //initialize the backing controller with nil sectionNameKeyPath because we don't require
         //items to be sorted by section, but NSFetchedResultsController does.
-        _backingController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:nil cacheName:name];
+        _backingController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:context sectionNameKeyPath:sectionNameKeyPath cacheName:name];
         _backingController.delegate = self;
     }
     return self;
@@ -276,7 +276,7 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
     NSArray *filteredItems = self.inMemoryPredicate ? [self.coreDataFetchedObjects filteredArrayUsingPredicate:self.inMemoryPredicate] : self.coreDataFetchedObjects;
     NSArray *sortedFilteredItems = self.inMemorySortDescriptors ? [filteredItems sortedArrayUsingDescriptors:self.inMemorySortDescriptors] : filteredItems;
     return [[TLIndexPathDataModel alloc] initWithItems:sortedFilteredItems
-                                    sectionNameKeyPath:self.dataModel.sectionNameKeyPath
+                                    sectionNameKeyPath:self.backingController.sectionNameKeyPath
                                      identifierKeyPath:self.dataModel.identifierKeyPath];
 }
 
