@@ -23,6 +23,8 @@
 
 #import "TLIndexPathUpdates.h"
 
+#import <QuartzCore/QuartzCore.h>
+
 // TODO need to verify that this works with two data models having different
 // configuration properties
 
