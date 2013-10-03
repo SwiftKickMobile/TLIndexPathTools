@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TLIndexPathTools"
-  s.version      = "0.1.1"
+  s.version      = "0.2.0"
   s.summary      = "TLIndexPathTools makes it easy to build rich, dynamic table and collection views on iOS."
   s.description  = <<-DESC
 					TLIndexPathTools is a set of components designed to greatly simplify building
@@ -14,7 +14,7 @@ Pod::Spec.new do |s|
   s.homepage     = "tlindexpathtools.com"
   s.license      = { :type => "MIT" }
   s.author       = { "wtmoose" => "wtm@tractablelabs.com" }
-  s.source       = { :git => "https://github.com/wtmoose/TLIndexPathTools.git", :tag => '0.1.1' }
+  s.source       = { :git => "https://github.com/wtmoose/TLIndexPathTools.git", :tag => '0.2.0' }
   s.platform     = :ios, '6.0'
   s.ios.deployment_target = '6.0'
   s.source_files = 'TLIndexPathTools/**/*.{h,m}'
