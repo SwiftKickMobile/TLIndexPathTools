@@ -117,7 +117,7 @@
     if ([self.delegate respondsToSelector:@selector(controller:didChangeSection:collapsed:)]) {
         [self.delegate controller:self didChangeSection:section collapsed:collapsed];
     }
-    if (!collapsed) {
+    if (!collapsed && self.optimizeScrollOnExpand) {
         [self optimizeScrollPositionForSection:section headerView:headerView dataModel:self.dataModel animated:YES];
     }
     
