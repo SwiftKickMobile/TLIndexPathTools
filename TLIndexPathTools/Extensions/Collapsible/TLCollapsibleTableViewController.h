@@ -49,6 +49,12 @@
 @property (nonatomic) BOOL singleExpandedSection;
 
 /**
+ If YES, expanding a section scrolls the table view to display as many rows in the
+ section as possible. Defaults to YES.
+ */
+@property (nonatomic) BOOL optimizeScrollOnExpand;
+
+/**
  */
 - (void)configureHeaderView:(TLCollapsibleHeaderView *)headerView forSection:(NSInteger)section;
 

@@ -31,6 +31,34 @@
 
 @implementation TLCollapsibleTableViewController
 
+- (void)commonInit {
+    _optimizeScrollOnExpand = YES;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    if (self = [super initWithStyle:style]) {
+        [self commonInit];
+    }
+    return self;
+}
+
 - (TLCollapsibleDataModel *)dataModel {
     return (TLCollapsibleDataModel *)self.indexPathController.dataModel;
 }
