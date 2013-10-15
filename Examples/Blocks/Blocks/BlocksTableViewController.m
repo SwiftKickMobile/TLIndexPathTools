@@ -17,26 +17,27 @@
 
 @implementation BlocksTableViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	
-    NSArray *items = [@[
-           @"Fredricksburg",
-           @"Jelly Bean",
-           @"George Washington",
-           @"Grand Canyon",
-           @"Bibliography",
-           @"Keyboard Shortcut",
-           @"Metadata",
-           @"Fundamental",
-           @"Cellar Door"] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
+    - (void)viewDidLoad
+    {
+        [super viewDidLoad];
+        
+        NSArray *items = [@[
+               @"Fredricksburg",
+               @"Jelly Bean",
+               @"George Washington",
+               @"Grand Canyon",
+               @"Bibliography",
+               @"Keyboard Shortcut",
+               @"Metadata",
+               @"Fundamental",
+               @"Cellar Door"] sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
 
-    //generate section names by taking the first letter of each item
-    self.indexPathController.dataModel = [[TLIndexPathDataModel alloc] initWithItems:items sectionNameBlock:^NSString *(id item) {
-        return [((NSString *)item) substringToIndex:1];
-    } identifierBlock:nil];
-}
+        //generate section names by taking the first letter of each item
+        self.indexPathController.dataModel = [[TLIndexPathDataModel alloc] initWithItems:items
+                                                                        sectionNameBlock:^NSString *(id item) {
+            return [((NSString *)item) substringToIndex:1];
+        } identifierBlock:nil];
+    }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -48,6 +49,16 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return [self.indexPathController.dataModel sectionNameForSection:section];
+}
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView
+{
+    return [self.indexPathController.dataModel sectionNames];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index
+{
+    return [self.indexPathController.dataModel sectionForSectionName:title];
 }
 
 @end
