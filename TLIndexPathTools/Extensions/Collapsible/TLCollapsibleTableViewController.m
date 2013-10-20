@@ -31,6 +31,34 @@
 
 @implementation TLCollapsibleTableViewController
 
+- (void)commonInit {
+    _optimizeScrollOnExpand = YES;
+}
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder]) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        [self commonInit];
+    }
+    return self;
+}
+
+- (id)initWithStyle:(UITableViewStyle)style
+{
+    if (self = [super initWithStyle:style]) {
+        [self commonInit];
+    }
+    return self;
+}
+
 - (TLCollapsibleDataModel *)dataModel {
     return (TLCollapsibleDataModel *)self.indexPathController.dataModel;
 }
@@ -89,7 +117,7 @@
     if ([self.delegate respondsToSelector:@selector(controller:didChangeSection:collapsed:)]) {
         [self.delegate controller:self didChangeSection:section collapsed:collapsed];
     }
-    if (!collapsed) {
+    if (!collapsed && self.optimizeScrollOnExpand) {
         [self optimizeScrollPositionForSection:section headerView:headerView dataModel:self.dataModel animated:YES];
     }
     
