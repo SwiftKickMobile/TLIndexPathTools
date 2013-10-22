@@ -37,22 +37,22 @@ This version of TLIndexPathTools is designed to handle up to a few thousand item
 
 ```Objective-C
 // single section initializer
-TLIndexPathDataModel dataModel1 = [TLIndexPathDataModel alloc] initWithItems:items];
+TLIndexPathDataModel *dataModel1 = [[TLIndexPathDataModel alloc] initWithItems:items];
 
 // multiple sections defined by a key path property on your data items
-TLIndexPathDataModel dataModel2 = [TLIndexPathDataModel alloc] initWithItems:items sectionNameKeyPath:@"someKeyPath" identifierKeyPath:nil];
+TLIndexPathDataModel *dataModel2 = [[TLIndexPathDataModel alloc] initWithItems:items sectionNameKeyPath:@"someKeyPath" identifierKeyPath:nil];
 
 // multiple sections defined by an arbitrary code block
-TLIndexPathDataModel dataModel3 = [[TLIndexPathDataModel alloc] initWithItems:items sectionNameBlock:^NSString *(id item) {
+TLIndexPathDataModel *dataModel3 = [[TLIndexPathDataModel alloc] initWithItems:items sectionNameBlock:^NSString *(id item) {
     // organize items by first letter of description (like contacts app)
     return [item.description substringToIndex:1];
 } identifierBlock:nil];
 
 // multiple explicitly defined sections (including an empty section)
-TLIndexPathSectionInfo section1 = [TLIndexPathSectionInfo alloc] initWithItems:@[@"Item 1.1"] name:@"Section 1"];
-TLIndexPathSectionInfo section2 = [TLIndexPathSectionInfo alloc] initWithItems:@[@"Item 2.1", @"Item 2.2"] name:@"Section 2"];
-TLIndexPathSectionInfo section3 = [TLIndexPathSectionInfo alloc] initWithItems:nil name:@"Section 3"];
-TLIndexPathDataModel dataModel4 = [TLIndexPathDataModel alloc] initWithSectionInfos:@[section1, section2, section3] identifierKeyPath:nil];
+TLIndexPathSectionInfo *section1 = [[TLIndexPathSectionInfo alloc] initWithItems:@[@"Item 1.1"] name:@"Section 1"];
+TLIndexPathSectionInfo *section2 = [[TLIndexPathSectionInfo alloc] initWithItems:@[@"Item 2.1", @"Item 2.2"] name:@"Section 2"];
+TLIndexPathSectionInfo *section3 = [[TLIndexPathSectionInfo alloc] initWithItems:nil name:@"Section 3"];
+TLIndexPathDataModel *dataModel4 = [[TLIndexPathDataModel alloc] initWithSectionInfos:@[section1, section2, section3] identifierKeyPath:nil];
 ```
 
 And there are numerous APIs to simplify delegate and data source implementations:
@@ -86,7 +86,7 @@ As an immutable object, all of the properties and methods in `TLIndexPathDataMod
 ```Objective-C
 // initialize collection view with unordered items
 // (assuming view controller has a self.dataModel property)
-self.dataModel = [TLIndexPathDataModel alloc] initWithItems:@[@"B", @"A", @"C"];
+self.dataModel = [[TLIndexPathDataModel alloc] initWithItems:@[@"B", @"A", @"C"]];
 [self.collectionView reloadData];
 
 // ...
@@ -94,8 +94,8 @@ self.dataModel = [TLIndexPathDataModel alloc] initWithItems:@[@"B", @"A", @"C"];
 // sort items, update data model & perform batch updates (perhaps when a sort button it tapped)
 TLIndexPathDataModel *oldDataModel = self.dataModel;
 NSArray *sortedItems = [self.dataModel.items sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-self.dataModel = [TLIndexPathDataModel alloc] initWithItems:sortedItems];
-TLIndexPathUpdates *updates = [TLIndexPathUpdates alloc] initWithOldDataModel:oldDataModel updatedDataModel:self.dataModel];
+self.dataModel = [[TLIndexPathDataModel alloc] initWithItems:sortedItems];
+TLIndexPathUpdates *updates = [[TLIndexPathUpdates alloc] initWithOldDataModel:oldDataModel updatedDataModel:self.dataModel];
 [updates performBatchUpdatesOnCollectionView:self.collectionView];
 ```
 
