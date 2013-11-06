@@ -3,7 +3,7 @@ TLIndexPathTools
 
 TLIndexPathTools is a small set of classes that will greatly simplify your table and collection views. Here are some of the awesome things TLIndexPathTools does:
 
-* Organize data into sections with ease
+* Organize data into sections with ease (now with blocks!)
 * Calculate and perform animated batch updates (inserts, moves and deletions)
 * Simplify data source and delegate methods via rich data model APIs
 * Provide a simpler alternative to Core Data `NSFetchedResultsController`
@@ -14,7 +14,7 @@ TLIndexPathTools is as lightweight as you want it to be. Start small with `TLInd
 
 Add "TLIndexPathTools" to your podfile or, if you're not using CocoaPods:
 
-1. Download the TLIndexPathTools project (now with blocks!)
+1. Download the TLIndexPathTools project
 2. Add the TLIndexPathTools sub-folder (sibling of the Examples folder) to your Xcode project.
 3. Link to QuartzCore.framework and CoreData.framework (on the Build Phases tab of your project's target).
 
