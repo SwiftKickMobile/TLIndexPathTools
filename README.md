@@ -1,15 +1,18 @@
 TLIndexPathTools
 ================
 
-TLIndexPathTools is a set of components designed to greatly simplify building
-rich, dynamic table and collection views. Here are some of the awesome things that TLIndexPathTools does:
+TLIndexPathTools is a small set of classes that will greatly simplify your table and collection views. Here are some of the awesome things TLIndexPathTools does:
 
-* Automatically calculate and perform animated inserts, deletes and moves.
-* Automatically organize the data model into sections.
-* Simplify implementing data source and delegate methods via rich data model APIs.
-* Provide a simpler alternative to Core Data's `NSFetchedResultsController`
+* Organize data into sections with ease
+* Calculate and perform animated batch updates (inserts, moves and deletions)
+* Simplify data source and delegate code via the rich data model APIs
+* Provide a simpler alternative to Core Data `NSFetchedResultsController`
+
+TLIndexPathTools is as lightweight as you want it to be. Start small with `TLIndexPathDataModel` as your data model (instead of an array) and gain the ability to easily organize data into sections and simplify your view controller with APIs like `[dataModel numberOfRowsInSection:]` and `[dataModel itemAtIndexPath:]`. Or keep reading to learn about automatic batch updates, Core Data integration and more.
 
 ##Installation
+
+Add "TLIndexPathTools" to your podfile or, if you're not using CocoaPods:
 
 1. Download the TLIndexPathTools project
 2. Add the TLIndexPathTools sub-folder (sibling of the Examples folder) to your Xcode project.
