@@ -308,7 +308,7 @@
         if (self.modifiedItems.count) {
             NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
             for (id item in self.modifiedItems) {
-                NSIndexPath *indexPath = [self.oldDataModel indexPathForItem:item];
+                NSIndexPath *indexPath = [self.updatedDataModel indexPathForItem:item];
                 [indexPaths addObject:indexPath];
             }
             [collectionView reloadItemsAtIndexPaths:indexPaths];
