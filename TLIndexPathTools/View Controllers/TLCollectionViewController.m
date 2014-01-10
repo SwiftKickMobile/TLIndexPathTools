@@ -25,6 +25,7 @@
 #import "TLIndexPathItem.h"
 
 @interface TLCollectionViewController ()
+@property (strong, nonatomic) NSMutableDictionary *viewControllerByCellInstanceId;
 @end
 
 @implementation TLCollectionViewController
@@ -100,6 +101,45 @@
     return cellId;
 }
 
+#pragma mark - Backing cells with view controllers
+
+- (void)setViewController:(UIViewController *)controller forKey:(NSString *)key
+{
+    if (!self.viewControllerByCellInstanceId) {
+        self.viewControllerByCellInstanceId = [NSMutableDictionary dictionary];
+    }
+    UIViewController *currentViewController = [self.viewControllerByCellInstanceId objectForKey:key];
+    if (currentViewController) {
+        [currentViewController.view removeFromSuperview];
+        [currentViewController removeFromParentViewController];
+    }
+    [self.viewControllerByCellInstanceId setObject:controller forKey:key];
+}
+
+- (UIViewController *)collectionView:(UICollectionView *)collectionView viewControllerForCell:(UICollectionViewCell *)cell
+{
+    NSString *key = [self instanceId:cell];
+    UIViewController *controller = [self.viewControllerByCellInstanceId objectForKey:key];
+    if (!controller) {
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+        controller = [self collectionView:collectionView instantiateViewControllerForCell:cell atIndexPath:indexPath];
+        if (controller) {
+            [self setViewController:controller forKey:key];
+        }
+    }
+    return controller;
+}
+
+- (UIViewController *)collectionView:(UICollectionView *)collectionView instantiateViewControllerForCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
+
+- (NSString *)instanceId:(id)object
+{
+    return [NSString stringWithFormat:@"%p", object];
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -118,6 +158,10 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     if (!cell) {
         cell = [[UICollectionViewCell alloc] init];
+    }
+    UIViewController *controller = [self collectionView:collectionView viewControllerForCell:cell];
+    if (controller) {
+        [self addChildViewController:controller];
     }
     [self collectionView:collectionView configureCell:cell atIndexPath:indexPath];
     return cell;
@@ -145,6 +189,12 @@
 - (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates
 {
     [updates performBatchUpdatesOnCollectionView:self.collectionView];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIViewController *controller = [self collectionView:collectionView viewControllerForCell:cell];
+    [controller removeFromParentViewController];
 }
 
 @end

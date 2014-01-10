@@ -27,6 +27,7 @@
 
 @interface TLTableViewController ()
 @property (strong, nonatomic) NSMutableDictionary *prototypeCells;
+@property (strong, nonatomic) NSMutableDictionary *viewControllerByCellInstanceId;
 @end
 
 @implementation TLTableViewController
@@ -103,7 +104,7 @@
     }
 }
 
-#pragma mark - Prototypes
+#pragma mark - Prototype cells
 
 - (UITableViewCell *)tableView:(UITableView *)tableView prototypeForCellIdentifier:(NSString *)cellIdentifier
 {
@@ -115,6 +116,9 @@
                 self.prototypeCells = [[NSMutableDictionary alloc] init];
             }
             cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+            //this will cause a view controller to be configured for the prototype cell
+            //if there's supposed to be one
+            [self tableView:tableView viewControllerForCell:cell];
             //TODO this will fail if multiple tables are being used and they have
             //overlapping identifiers. The key needs to be unique to the table
             [self.prototypeCells setObject:cell forKey:cellIdentifier];
@@ -122,6 +126,45 @@
     }
     return cell;
 
+}
+
+#pragma mark - Backing cells with view controllers
+
+- (void)setViewController:(UIViewController *)controller forKey:(NSString *)key
+{
+    if (!self.viewControllerByCellInstanceId) {
+        self.viewControllerByCellInstanceId = [NSMutableDictionary dictionary];
+    }
+    UIViewController *currentViewController = [self.viewControllerByCellInstanceId objectForKey:key];
+    if (currentViewController) {
+        [currentViewController.view removeFromSuperview];
+        [currentViewController removeFromParentViewController];
+    }
+    [self.viewControllerByCellInstanceId setObject:controller forKey:key];
+}
+
+- (UIViewController *)tableView:(UITableView *)tableView viewControllerForCell:(UITableViewCell *)cell
+{
+    NSString *key = [self instanceId:cell];
+    UIViewController *controller = [self.viewControllerByCellInstanceId objectForKey:key];
+    if (!controller) {
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        controller = [self tableView:tableView instantiateViewControllerForCell:cell atIndexPath:indexPath];
+        if (controller) {
+            [self setViewController:controller forKey:key];
+        }
+    }
+    return controller;
+}
+
+- (UIViewController *)tableView:(UITableView *)tableView instantiateViewControllerForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
+
+- (NSString *)instanceId:(id)object
+{
+    return [NSString stringWithFormat:@"%p", object];
 }
 
 #pragma mark - UITableViewDataSource
@@ -142,6 +185,10 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+    }
+    UIViewController *controller = [self tableView:tableView viewControllerForCell:cell];
+    if (controller) {
+        [self addChildViewController:controller];
     }
     [self tableView:tableView configureCell:cell atIndexPath:indexPath];
     return cell;
@@ -189,6 +236,12 @@
     }
     
     return 44.0;
+}
+
+- (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIViewController *controller = [self tableView:tableView viewControllerForCell:cell];
+    [controller removeFromParentViewController];
 }
 
 #pragma mark - TLIndexPathControllerDelegate

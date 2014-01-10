@@ -67,4 +67,14 @@
 
 - (void)reconfigureVisibleCells;
 
+#pragma mark - Backing cells with view controllers
+
+/**
+ */
+- (UIViewController *)collectionView:(UICollectionView *)collectionView viewControllerForCell:(UICollectionViewCell *)cell;
+
+/**
+ */
+- (UIViewController *)collectionView:(UICollectionView *)collectionView instantiateViewControllerForCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
 @end

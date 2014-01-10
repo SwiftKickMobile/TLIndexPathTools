@@ -67,6 +67,8 @@
 
 - (void)reconfigureVisibleCells;
 
+#pragma mark - Prototype cells
+
 /**
  Returns a prototype instance of the specified cell. This can be useful for getting
  basic information about the table view's cells outside of the scope of any specific
@@ -74,5 +76,15 @@
  the cell's height in `tableView:heightForRowAtIndexPath:`.
  */
 - (UITableViewCell *)tableView:(UITableView *)tableView prototypeForCellIdentifier:(NSString *)cellIdentifier;
+
+#pragma mark - Backing cells with view controllers
+
+/**
+ */
+- (UIViewController *)tableView:(UITableView *)tableView viewControllerForCell:(UITableViewCell *)cell;
+
+/**
+ */
+- (UIViewController *)tableView:(UITableView *)tableView instantiateViewControllerForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end
