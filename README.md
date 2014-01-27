@@ -1,7 +1,7 @@
 TLIndexPathTools
 ================
 
-TLIndexPathTools is a small set of classes that will greatly simplify your table and collection views. Here are some of the awesome things TLIndexPathTools does:
+TLIndexPathTools is a small set of classes that can greatly simplify your table and collection views. Here are some of the awesome things TLIndexPathTools does:
 
 * Organize data into sections with ease (now with blocks!)
 * Calculate and perform animated batch updates (inserts, moves and deletions)
