@@ -120,6 +120,23 @@
 {
     NSString *key = [self instanceId:cell];
     UIViewController *controller = [self.viewControllerByCellInstanceId objectForKey:key];
+    
+    // There is a bug (or behavior) in iOS7.4 where cells are not reused. See
+    // http://stackoverflow.com/questions/19276509/uicollectionview-do-not-reuse-cells/20147799#20147799
+    // This causes a problem with our implementation because we're using the cell's
+    // memory address as a lookup key for the cell's backing view controller. When
+    // cells aren't re-used, they get deallocated and their memory address might get
+    // reused. When this happens, the new cell gets associated with the backing
+    // congroller of of the deallocated cell. And this new cell doesn't actually
+    // have the view controller's view installed in its view heirarchy. This workaround
+    // simply check if the view controller's view doesn't have a superview. If it
+    // does not, it is assumed that we've got the wrong view controller and it
+    // should be discarded.
+    if (controller && [controller.view superview] == nil) {
+        controller = nil;
+        [self.viewControllerByCellInstanceId removeObjectForKey:key];
+    }
+    
     if (!controller) {
         NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
         controller = [self collectionView:collectionView instantiateViewControllerForCell:cell atIndexPath:indexPath];
@@ -127,6 +144,7 @@
             [self setViewController:controller forKey:key];
         }
     }
+
     return controller;
 }
 

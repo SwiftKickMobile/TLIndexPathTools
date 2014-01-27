@@ -147,6 +147,14 @@
 {
     NSString *key = [self instanceId:cell];
     UIViewController *controller = [self.viewControllerByCellInstanceId objectForKey:key];
+    
+    // This bit of code solves an issue in `TLCollectionViewController` (see the comments
+    // there) and is included here for good measure.
+    if (controller && [controller.view superview] == nil) {
+        controller = nil;
+        [self.viewControllerByCellInstanceId removeObjectForKey:key];
+    }
+    
     if (!controller) {
         NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
         controller = [self tableView:tableView instantiateViewControllerForCell:cell atIndexPath:indexPath];
