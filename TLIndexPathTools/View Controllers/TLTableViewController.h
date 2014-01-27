@@ -29,6 +29,10 @@
  A subclass of `UITableViewController` that works with `TLIndexPathController`
  and provide default impelementations of the essential data source and delegate
  methods to get your table views up-and-running as quickly as possible.
+ 
+ This class also supports view controller-backed cells and automatically
+ calculates static or dynamic cell heights using prototype cells. For dynamic
+ height cells, the cell must implement the `DynamicSizeView` protocol.
  */
 
 @interface TLTableViewController : UITableViewController <TLIndexPathControllerDelegate>
@@ -80,11 +84,22 @@
 #pragma mark - Backing cells with view controllers
 
 /**
+ This method should be overridden to enable view controller-backed cells. The default
+ implementation returns `nil`. If this method returns a view controller for the given
+ cell and index path, the table view controller will automatically install the backing
+ controller as a child view controller in `cellForRowAtIndexPath` and uninstall it
+ in `tableView:didEndDisplayingCell:forRowAtIndexPath:`. This method is responsible
+ for installing the view controller's view into the cell's view heirarchy.
+ */
+- (UIViewController *)tableView:(UITableView *)tableView instantiateViewControllerForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
+/**
+ Returns the backing view controller for the given cell, if any. This method is used
+ internally and can also be called in custom code, for example when configuring the
+ cell in `cellForRowAtIndexPath`. To enable view controller-backed cells, override
+ the companion method `tableView:instantiateViewControllerForCell:atIndexPath:`.
  */
 - (UIViewController *)tableView:(UITableView *)tableView viewControllerForCell:(UITableViewCell *)cell;
 
-/**
- */
-- (UIViewController *)tableView:(UITableView *)tableView instantiateViewControllerForCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 @end
