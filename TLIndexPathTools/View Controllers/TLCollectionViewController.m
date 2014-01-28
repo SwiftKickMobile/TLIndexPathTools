@@ -25,6 +25,7 @@
 #import "TLIndexPathItem.h"
 
 @interface TLCollectionViewController ()
+@property (strong, nonatomic) NSMutableDictionary *viewControllerByCellInstanceId;
 @end
 
 @implementation TLCollectionViewController
@@ -100,6 +101,63 @@
     return cellId;
 }
 
+#pragma mark - Backing cells with view controllers
+
+- (void)setViewController:(UIViewController *)controller forKey:(NSString *)key
+{
+    if (!self.viewControllerByCellInstanceId) {
+        self.viewControllerByCellInstanceId = [NSMutableDictionary dictionary];
+    }
+    UIViewController *currentViewController = [self.viewControllerByCellInstanceId objectForKey:key];
+    if (currentViewController) {
+        [currentViewController.view removeFromSuperview];
+        [currentViewController removeFromParentViewController];
+    }
+    [self.viewControllerByCellInstanceId setObject:controller forKey:key];
+}
+
+- (UIViewController *)collectionView:(UICollectionView *)collectionView viewControllerForCell:(UICollectionViewCell *)cell
+{
+    NSString *key = [self instanceId:cell];
+    UIViewController *controller = [self.viewControllerByCellInstanceId objectForKey:key];
+    
+    // There is a bug (or behavior) in iOS7.4 where cells are not reused. See
+    // http://stackoverflow.com/questions/19276509/uicollectionview-do-not-reuse-cells/20147799#20147799
+    // This causes a problem with our implementation because we're using the cell's
+    // memory address as a lookup key for the cell's backing view controller. When
+    // cells aren't re-used, they get deallocated and their memory address might get
+    // reused. When this happens, the new cell gets associated with the backing
+    // congroller of of the deallocated cell. And this new cell doesn't actually
+    // have the view controller's view installed in its view heirarchy. This workaround
+    // simply check if the view controller's view doesn't have a superview. If it
+    // does not, it is assumed that we've got the wrong view controller and it
+    // should be discarded.
+    if (controller && [controller.view superview] == nil) {
+        controller = nil;
+        [self.viewControllerByCellInstanceId removeObjectForKey:key];
+    }
+    
+    if (!controller) {
+        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+        controller = [self collectionView:collectionView instantiateViewControllerForCell:cell atIndexPath:indexPath];
+        if (controller) {
+            [self setViewController:controller forKey:key];
+        }
+    }
+
+    return controller;
+}
+
+- (UIViewController *)collectionView:(UICollectionView *)collectionView instantiateViewControllerForCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
+{
+    return nil;
+}
+
+- (NSString *)instanceId:(id)object
+{
+    return [NSString stringWithFormat:@"%p", object];
+}
+
 #pragma mark - UICollectionViewDataSource
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
@@ -118,6 +176,10 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     if (!cell) {
         cell = [[UICollectionViewCell alloc] init];
+    }
+    UIViewController *controller = [self collectionView:collectionView viewControllerForCell:cell];
+    if (controller) {
+        [self addChildViewController:controller];
     }
     [self collectionView:collectionView configureCell:cell atIndexPath:indexPath];
     return cell;
@@ -145,6 +207,12 @@
 - (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates
 {
     [updates performBatchUpdatesOnCollectionView:self.collectionView];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    UIViewController *controller = [self collectionView:collectionView viewControllerForCell:cell];
+    [controller removeFromParentViewController];
 }
 
 @end

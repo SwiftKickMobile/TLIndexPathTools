@@ -152,7 +152,11 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
 
 - (void)setItems:(NSArray *)items
 {
-    if (![self.items isEqualToArray:items]) {
+    if (items ==  nil) {
+        self.dataModel = nil;
+    }
+    
+    else if (![self.items isEqualToArray:items]) {
         id last = [items lastObject];
         TLIndexPathDataModel *dataModel;
         if ([last isKindOfClass:[TLIndexPathItem class]]) {

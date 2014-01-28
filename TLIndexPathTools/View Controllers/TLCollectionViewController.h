@@ -27,6 +27,8 @@
  A subclass of `UICollectionViewController` that works with `TLIndexPathController`
  and provide default impelementations of the essential data source and delegate
  methods to get your collection views up-and-running as quickly as possible.
+ 
+ This class also supports view controller-backed cells.
  */
 
 #import "TLIndexPathController.h"
@@ -66,5 +68,25 @@
 - (void)collectionView:(UICollectionView *)collectionView configureCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 
 - (void)reconfigureVisibleCells;
+
+#pragma mark - Backing cells with view controllers
+
+/**
+ This method should be overridden to enable view controller-backed cells. The default
+ implementation returns `nil`. If this method returns a view controller for the given
+ cell and index path, the table view controller will automatically install the backing
+ controller as a child view controller in `cellForItemAtIndexPath` and uninstall it
+ in `collectionView:didEndDisplayingCell:forItemAtIndexPath:`. This method is responsible
+ for installing the view controller's view into the cell's view heirarchy.
+ */
+- (UIViewController *)collectionView:(UICollectionView *)collectionView instantiateViewControllerForCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
+
+/**
+ Returns the backing view controller for the given cell, if any. This method is used
+ internally and can also be called in custom code, for example when configuring the
+ cell in `cellForItemAtIndexPath`. To enable view controller-backed cells, override
+ the companion method `collectionView:instantiateViewControllerForCell:atIndexPath:`.
+ */
+- (UIViewController *)collectionView:(UICollectionView *)collectionView viewControllerForCell:(UICollectionViewCell *)cell;
 
 @end

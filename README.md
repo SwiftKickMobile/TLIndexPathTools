@@ -1,12 +1,13 @@
 TLIndexPathTools
 ================
 
-TLIndexPathTools is a small set of classes that will greatly simplify your table and collection views. Here are some of the awesome things TLIndexPathTools does:
+TLIndexPathTools is a small set of classes that can greatly simplify your table and collection views. Here are some of the awesome things TLIndexPathTools does:
 
 * Organize data into sections with ease (now with blocks!)
 * Calculate and perform animated batch updates (inserts, moves and deletions)
 * Simplify data source and delegate methods via rich data model APIs
 * Provide a simpler alternative to Core Data `NSFetchedResultsController`
+* Provide base table view and collection view classes with advanced features
 
 TLIndexPathTools is as lightweight as you want it to be. Start small with `TLIndexPathDataModel` as your data model (instead of an array) and gain the ability to easily organize data into sections and simplify your view controller with APIs like `[dataModel numberOfRowsInSection:]` and `[dataModel itemAtIndexPath:]`. Or keep reading to learn about automatic batch updates, Core Data integration and more.
 
@@ -27,7 +28,7 @@ Table and collection view batch updates (inserts, deletes and moves) are great b
 Most of the functionality in TLIndexPathTools can be accomplished with just `TLIndexPathDataModel` and `TLIndexPathUpdates`. However, there are a number of additional components that build on these classes to make life a little bit easier.
 
 * `TLIndexPathController` provides a common programming model for building view controllers that work interchangeably with Core Data `NSFetchRequests` or plain arrays. One controller to rule them all.
-* `TLTableViewController` and `TLCollectionViewController` are base  table and collection view implementations that provide the essential data source and delegate methods to get you up and running quickly. There are a few bells and whistles thrown in to boot, such as data-driven table cell height calculation.
+* `TLTableViewController` and `TLCollectionViewController` are base  table and collection view implementations that provide the essential data source and delegate methods to get you up and running quickly. There is also support for view controller-backed cells and automatic table cell height calculation.
 * `TLIndexPathItem` is a wrapper class for your data items. It can be for managing multiple cell prototypes or multiple data types. Take a look at the [Settings sample project][1], for example.
 * The `Extensions` folder contains a number of add-ons for things like [collapsable sections][2] and [expandable tree views][3]. This is a good resource to see how `TLIndexPathDataModel` can be easily extended for special data structures.
 * And last, but not least, the `Examples` folder contains numerous sample projects demonstrating various use cases and features of the framework. [Shuffle][4] is a good starting point and be sure to try [Core Data][5].
@@ -192,9 +193,11 @@ A really cool feature of `TLIndexPathController` is the `willUpdateDataModel` de
 
 ###TLTableViewController & TLCollectionViewController
 
-`TLTableViewController` and `TLCollectionViewController` are base table and collection view implementations, providing the essential data source and delegate methods to get you up and running quickly. Both classes look much like the code outlined above for integrating with `TLIndexPathController` with a few bells and whistles thrown in.
+`TLTableViewController` and `TLCollectionViewController` are base table and collection view implementations, providing the essential data source and delegate methods to get you up and running quickly. Both classes look much like the code outlined above for integrating with `TLIndexPathController`.
 
-Most notably, `TLTableViewController` includes a default implementation of `heightForRowAtIndexPath` that calculates static or data-driven cell heights using prototype cell instances. For example, if you're using storyboards, the cell heights specified in the storyboard are automatically used. And if your cell implements the `TLDynamicSizeView` protocol, the height will be determined by calling the `sizeWithData:` method on the prototype cell. This is a great way to handle data-driven height because the `sizeWithData:` method can use the actual layout logic of the cell itself, rather than duplicating the layout logic in the view controller.
+Both classes support view controller-backed cells. Enabling this feature is as easy as overriding the `instantiateViewControllerForCell:` method.
+
+`TLTableViewController` also includes a default implementation of `heightForRowAtIndexPath` that calculates static or data-driven cell heights using prototype cell instances. For example, if you're using storyboards, the cell heights specified in the storyboard are automatically used. And if your cell implements the `TLDynamicSizeView` protocol, the height will be determined by calling the `sizeWithData:` method on the prototype cell. This is a great way to handle data-driven height because the `sizeWithData:` method can use the actual layout logic of the cell itself, rather than duplicating the layout logic in the view controller.
 
 Most of the sample projects are based on `TLTableViewController` or `TLCollectionViewController`, so a brief perusal will give you a good idea what can be accomplished with a few lines of code.
 
