@@ -43,5 +43,8 @@
       <FileRef
          location = "group:Examples/Blocks/Blocks.xcodeproj">
       </FileRef>
+      <FileRef
+         location = "group:Examples/View Controller Backed/View Controller Backed.xcodeproj">
+      </FileRef>
    </Group>
 </Workspace>
