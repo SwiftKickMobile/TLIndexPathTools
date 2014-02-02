@@ -22,21 +22,22 @@
 //  THE SOFTWARE.
 
 /**
- Data model representing the current state of a tree of `TLIndexPathTreeItems`
- based on the given set of collapsed node identifiers. This class must be initialized
- using one of the two initializers defined here providing an array of top level
- `TLIndexPathTreeItems` (or an array of `TLIndexPathSectionInfos` containing top
- level items) and the current set of collapsed node identifiers. These initializers
- generate the flat array of items (or sections of items) to be displayed in the table.
- This flattened data is passed up to the `TLIndexPathDataModel` initializer and, thus,
- the data model APIs reflect only the data that is currently displayed in the table.
- The full tree item data is retained in the `treeItems` and `treeItemSections`
- properties.
+ A data model representing a heirarchy of `TLIndexPathTreeItem` nodes in a given
+ collapsed stated. This class must be initialized by using one of the two initializers
+ defined here, providing either an array of top level `TLIndexPathTreeItem` nodes
+ or an array of `TLIndexPathSectionInfos` containing top level nodes (particularly
+ if empty sections are needed) and the current set of collapsed node identifiers.
+ 
+ These initializers flatten the heirarchy into the array of items to be displayed
+ in the table. This flattened data is passed up to the `TLIndexPathDataModel`
+ initializer and, thus, the basic data model APIs reflect only the flattened data
+ to be displayed. The full data heirarchy is retained in the `treeItems`
+ and `treeItemSections` properties.
  
  This data model can be plugged into a `TLTableViewController`, but
- the `TLTreeTableViewController` contains the additional logic to manage the set
- of collapsed nodes and udpate the data model as nodes are expanded and collapsed.
- It also provides a mechanism to lazy load nodes.
+ one should normally use `TLTreeTableViewController` because it contains the
+ additional logic to automatically update the data model as rows are expanded
+ and collapsed. It also provides a mechanism to lazy load nodes.
  */
 
 #import "TLIndexPathDataModel.h"
