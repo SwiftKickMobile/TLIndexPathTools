@@ -251,6 +251,8 @@
         return;
     }
 
+	__block BOOL firstBatchCompletedSuccessfully;
+
     [collectionView performBatchUpdates:^{
 
         if (self.insertedSectionNames.count) {
@@ -304,21 +306,26 @@
                 [collectionView moveItemAtIndexPath:oldIndexPath toIndexPath:updatedIndexPath];
             }
         }
-
-        if (self.modifiedItems.count) {
-            NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-            for (id item in self.modifiedItems) {
-                NSIndexPath *indexPath = [self.updatedDataModel indexPathForItem:item];
-                [indexPaths addObject:indexPath];
-            }
-            [collectionView reloadItemsAtIndexPaths:indexPaths];
-        }
-
     } completion:^(BOOL finished) {
-        if (completion) {
-            completion(finished);
-        }
-    }];    
+		firstBatchCompletedSuccessfully = finished;
+    }];
+
+	// Update modified items separately transaction or you will crash
+	[collectionView performBatchUpdates:^{
+		if (self.modifiedItems.count) {
+			NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+			for (id item in self.modifiedItems) {
+				NSIndexPath *indexPath = [self.updatedDataModel indexPathForItem:item];
+				[indexPaths addObject:indexPath];
+			}
+			[collectionView reloadItemsAtIndexPaths:indexPaths];
+		}
+	} completion:^(BOOL finished) {
+		if (completion) {
+			// One of the animation transactions was interrupted
+			completion(firstBatchCompletedSuccessfully && finished);
+		}
+	}];
 }
 
 @end
