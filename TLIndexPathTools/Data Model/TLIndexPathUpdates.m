@@ -34,10 +34,10 @@
 - (id)initWithOldDataModel:(TLIndexPathDataModel *)oldDataModel updatedDataModel:(TLIndexPathDataModel *)updatedDataModel
 {
     if (self = [super init]) {
-
+        
         _oldDataModel = oldDataModel;
         _updatedDataModel = updatedDataModel;
-
+        
         NSMutableArray *insertedSectionNames = [[NSMutableArray alloc] init];
         NSMutableArray *deletedSectionNames = [[NSMutableArray alloc] init];
         NSMutableArray *movedSectionNames = [[NSMutableArray alloc] init];
@@ -53,10 +53,10 @@
         _deletedItems = deletedItems;
         _movedItems = movedItems;
         _modifiedItems = modifiedItems;
-
+        
         NSOrderedSet *oldSectionNames = [NSOrderedSet orderedSetWithArray:oldDataModel.sectionNames];
         NSOrderedSet *updatedSectionNames = [NSOrderedSet orderedSetWithArray:updatedDataModel.sectionNames];
-
+        
         // Deleted and moved sections        
         for (NSString *sectionName in oldSectionNames) {
             if ([updatedSectionNames containsObject:sectionName]) {
@@ -70,14 +70,14 @@
                 [deletedSectionNames addObject:sectionName];
             }
         }
-
+        
         // Inserted sections
         for (NSString *sectionName in updatedSectionNames) {
             if (![oldSectionNames containsObject:sectionName]) {
                 [insertedSectionNames addObject:sectionName];
             }
         }
-
+        
         // Deleted and moved items
         NSOrderedSet *oldItems = [NSOrderedSet orderedSetWithArray:[oldDataModel items]];        
         for (id item in oldItems) {
@@ -107,7 +107,7 @@
                 }
             }
         }
-
+        
         // Inserted and modified items
         NSOrderedSet *updatedItems = [NSOrderedSet orderedSetWithArray:[updatedDataModel items]];
         for (id item in updatedItems) {
@@ -126,7 +126,7 @@
             }
         }
     }
-
+    
     return self;
 }
 
@@ -140,7 +140,7 @@
     [CATransaction begin];
 
     [tableView beginUpdates];
-
+    
     if (self.insertedSectionNames.count) {
         NSMutableIndexSet *indexSet = [[NSMutableIndexSet alloc] init];
         for (NSString *sectionName in self.insertedSectionNames) {
@@ -149,7 +149,7 @@
         }
         [tableView insertSections:indexSet withRowAnimation:animation];
     }
-
+    
     if (self.deletedSectionNames.count) {
         NSMutableIndexSet *indexSet = [[NSMutableIndexSet alloc] init];
         for (NSString *sectionName in self.deletedSectionNames) {
@@ -158,7 +158,7 @@
         }
         [tableView deleteSections:indexSet withRowAnimation:animation];
     }
-
+    
     // TODO Disable reordering sections because it may cause duplicate animations
     // when a item is inserted, deleted, or moved in that section. Need to figure
     // out how to avoid the duplicate animation.
@@ -169,7 +169,7 @@
     //            [tableView moveSection:oldSection toSection:updatedSection];
     //        }
     //    }
-
+    
     if (self.insertedItems.count) {
         NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
         for (id item in self.insertedItems) {
@@ -178,7 +178,7 @@
         }
         [tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:animation];
     }
-
+    
     if (self.deletedItems.count) {
         NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
         for (id item in self.deletedItems) {
@@ -187,7 +187,7 @@
         }
         [tableView deleteRowsAtIndexPaths:indexPaths withRowAnimation:animation];
     }
-
+    
     if (self.movedItems.count) {
         for (id item in self.movedItems) {
             NSIndexPath *oldIndexPath = [self.oldDataModel indexPathForItem:item];
@@ -195,14 +195,14 @@
             [tableView moveRowAtIndexPath:oldIndexPath toIndexPath:updatedIndexPath];
         }
     }
-
+    
     [CATransaction setCompletionBlock: ^{
 
         //modified items have to be reloaded after all other batch updates
         //because, otherwise, the table view will throw an exception about
         //duplicate animations being applied to cells. This doesn't always look
         //nice, but it is better than a crash.
-
+        
         if (self.modifiedItems.count) {
             NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
             for (id item in self.modifiedItems) {
@@ -211,11 +211,11 @@
                 [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
             }
         }
-
+    
     }];
-
+    
     [tableView endUpdates];
-
+    
     [CATransaction commit];
 }
 
@@ -229,7 +229,7 @@
     if (self.oldDataModel.items.count == 0 && self.updatedDataModel.items.count == 0) {
         return;
     }
-
+    
     //TODO this entire block of code seems to be unnecessary as of iOS 6.1.3 (it is
     //here to work around a crash on the first batch update when the collection view is
     //starting with zero items). Need to do more testing before removing.
@@ -272,7 +272,7 @@
             }
             [collectionView deleteSections:indexSet];
         }
-
+        
         if (self.movedSectionNames.count) {
             for (NSString *sectionName in self.movedSectionNames) {
                 NSInteger oldSection = [self.oldDataModel sectionForSectionName:sectionName];
@@ -280,7 +280,7 @@
                 [collectionView moveSection:oldSection toSection:updatedSection];
             }
         }
-
+        
         if (self.insertedItems.count) {
             NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
             for (id item in self.insertedItems) {
@@ -289,7 +289,7 @@
             }
             [collectionView insertItemsAtIndexPaths:indexPaths];
         }
-
+        
         if (self.deletedItems.count) {
             NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
             for (id item in self.deletedItems) {
@@ -298,7 +298,7 @@
             }
             [collectionView deleteItemsAtIndexPaths:indexPaths];
         }
-
+        
         if (self.movedItems.count) {
             for (id item in self.movedItems) {
                 NSIndexPath *oldIndexPath = [self.oldDataModel indexPathForItem:item];
