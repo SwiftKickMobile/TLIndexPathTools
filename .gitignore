@@ -21,3 +21,4 @@ xcuserdata
 #AppCode excludes
 .idea
 
+*.xccheckout

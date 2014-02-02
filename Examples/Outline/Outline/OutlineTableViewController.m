@@ -10,13 +10,13 @@
 #import <TLIndexPathTools/TLIndexPathTreeItem.h>
 
 #define ITEM_1 @"Heading 1"
-#define ITEM_1_1 @"Heading 1.1"
+#define ITEM_1_1 @"Heading 1.1 (sync lazy load)"
 #define ITEM_1_1_1 @"Heading 1.1.1"
 #define ITEM_1_1_2 @"Heading 1.1.2"
 #define ITEM_1_2 @"Heading 1.2"
 #define ITEM_1_2_1 @"Heading 1.2.1"
 #define ITEM_2 @"Heading 2"
-#define ITEM_2_1 @"Heading 2.1"
+#define ITEM_2_1 @"Heading 2.1 (async lazy load)"
 #define ITEM_2_1_1 @"Heading 2.1.1"
 #define ITEM_2_1_2 @"Heading 2.1.2"
 

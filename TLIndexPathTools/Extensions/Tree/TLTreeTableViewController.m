@@ -23,6 +23,7 @@
 
 #import "TLTreeTableViewController.h"
 #import "UITableViewController+ScrollOptimizer.h"
+#import "TLIndexPathSectionInfo.h"
 
 @interface TLTreeTableViewController ()
 @property (nonatomic) BOOL changingNode;
@@ -43,8 +44,24 @@
 
 - (void)setNewVersionOfItem:(TLIndexPathTreeItem *)item collapsedChildNodeIdentifiers:(NSArray *)collapsedChildNodeIdentifiers
 {
-    if ([self.dataModel itemForIdentifier:item.identifier]) {
-        NSArray *treeItems = [self rebuildTreeItems:self.dataModel.treeItems withNewVersionOfItem:item];
+    NSIndexPath *indexPath = [self.dataModel indexPathForIdentifier:item.identifier];
+    if (indexPath) {
+        
+        NSArray *treeItemSections = self.dataModel.treeItemSections;
+        NSMutableArray *newTreeItemSections = [NSMutableArray arrayWithCapacity:[treeItemSections count]];
+        for (int section = 0; section < [treeItemSections count]; section++) {
+            id<NSFetchedResultsSectionInfo> treeItemSection = treeItemSections[section];
+            if (indexPath.section == section) {
+                NSArray *newTreeItems = [self rebuildTreeItems:[treeItemSection objects] withNewVersionOfItem:item];
+                TLIndexPathSectionInfo *newTreeItemSection = [[TLIndexPathSectionInfo alloc] initWithItems:newTreeItems
+                                                                                                      name:treeItemSection.name
+                                                                                                indexTitle:treeItemSection.indexTitle];
+                [newTreeItemSections addObject:newTreeItemSection];
+            } else {
+                [newTreeItemSections addObject:treeItemSection];
+            }
+        }
+        
         BOOL currentignoreDataModelChanges = self.indexPathController.ignoreDataModelChanges;
         if (self.changingNode) {
             self.indexPathController.ignoreDataModelChanges = YES;
@@ -54,8 +71,7 @@
         //the simple case of lazy loading children.
         NSMutableArray *mergedCollapsed = [[NSMutableArray alloc] initWithArray:self.dataModel.collapsedNodeIdentifiers];
         [mergedCollapsed addObjectsFromArray:collapsedChildNodeIdentifiers];
-        self.dataModel = [[TLTreeDataModel alloc] initWithTreeItems:treeItems
-                                           collapsedNodeIdentifiers:mergedCollapsed];
+        self.dataModel = [[TLTreeDataModel alloc] initWithTreeItemSections:newTreeItemSections collapsedNodeIdentifiers:mergedCollapsed];
         self.indexPathController.ignoreDataModelChanges = currentignoreDataModelChanges;
     }
 }
@@ -103,8 +119,6 @@
         collapsedNodeIdentifiers = [NSMutableArray arrayWithArray:self.dataModel.collapsedNodeIdentifiers];
         collapsed = ![collapsedNodeIdentifiers containsObject:item.identifier];
         
-        NSArray *treeItems = self.dataModel.treeItems;
-        
         if (collapsed == NO) {
             [collapsedNodeIdentifiers removeObject:item.identifier];
             for (TLIndexPathTreeItem *child in item.childItems) {
@@ -119,8 +133,9 @@
             [collapsedNodeIdentifiers addObject:item.identifier];
         }
         
-        self.dataModel = [[TLTreeDataModel alloc] initWithTreeItems:treeItems
-                                           collapsedNodeIdentifiers:collapsedNodeIdentifiers];
+        NSArray *treeItemSections = self.dataModel.treeItemSections;
+        self.dataModel = [[TLTreeDataModel alloc] initWithTreeItemSections:treeItemSections
+                                                  collapsedNodeIdentifiers:collapsedNodeIdentifiers];
         
         if ([self.delegate respondsToSelector:@selector(controller:didChangeNode:collapsed:)]) {
             [self.delegate controller:self didChangeNode:item collapsed:collapsed];

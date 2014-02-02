@@ -23,18 +23,37 @@
 
 #import "TLTreeDataModel.h"
 #import "TLIndexPathTreeItem.h"
+#import "TLIndexPathSectionInfo.h"
 
 @implementation TLTreeDataModel
 
 - (instancetype)initWithTreeItems:(NSArray *)treeItems collapsedNodeIdentifiers:(NSArray *)collapsedNodeIdentifiers
 {
-    NSMutableArray *items = [NSMutableArray array];
-    for (TLIndexPathTreeItem *item in treeItems) {
-        [self flattenTreeItem:item intoArray:items withCollapsedNodeIdentifiers:collapsedNodeIdentifiers];
+    // let `TLIndexPathDataModel` organize the tree items into sections and then
+    // use the section-based inititializer
+    TLIndexPathDataModel *tempDataModel = [[TLIndexPathDataModel alloc] initWithItems:treeItems];
+    return [self initWithTreeItemSections:tempDataModel.sections collapsedNodeIdentifiers:collapsedNodeIdentifiers];
+}
+
+- (instancetype)initWithTreeItemSections:(NSArray *)treeItemSections collapsedNodeIdentifiers:(NSArray *)collapsedNodeIdentifiers
+{
+    NSMutableArray *treeItems = [NSMutableArray array];
+    NSMutableArray *sections = [NSMutableArray arrayWithCapacity:[treeItemSections count]];
+    for (id<NSFetchedResultsSectionInfo>treeItemSection in treeItemSections) {
+        [treeItems addObjectsFromArray:[treeItemSection objects]];
+        NSMutableArray *items = [NSMutableArray array];
+        for (TLIndexPathTreeItem *item in [treeItemSection objects]) {
+            [self flattenTreeItem:item intoArray:items withCollapsedNodeIdentifiers:collapsedNodeIdentifiers];
+        }
+        TLIndexPathSectionInfo *section = [[TLIndexPathSectionInfo alloc] initWithItems:items
+                                                                                   name:treeItemSection.name
+                                                                             indexTitle:treeItemSection.indexTitle];
+        [sections addObject:section];
     }
-    if (self = [super initWithItems:items]) {
-        _collapsedNodeIdentifiers = collapsedNodeIdentifiers;
+    if (self = [super initWithSectionInfos:sections identifierKeyPath:nil]) {
         _treeItems = treeItems;
+        _treeItemSections = treeItemSections;
+        _collapsedNodeIdentifiers = collapsedNodeIdentifiers;
     }
     return self;
 }
