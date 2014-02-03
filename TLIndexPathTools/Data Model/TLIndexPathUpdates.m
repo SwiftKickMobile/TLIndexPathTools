@@ -251,6 +251,8 @@
         return;
     }
 
+    __block BOOL firstBatchCompletedSuccessfully;
+
     [collectionView performBatchUpdates:^{
 
         if (self.insertedSectionNames.count) {
@@ -261,7 +263,7 @@
             }
             [collectionView insertSections:indexSet];
         }
-        
+
         if (self.deletedSectionNames.count) {
             NSMutableIndexSet *indexSet = [[NSMutableIndexSet alloc] init];
             for (NSString *sectionName in self.deletedSectionNames) {
@@ -304,7 +306,12 @@
                 [collectionView moveItemAtIndexPath:oldIndexPath toIndexPath:updatedIndexPath];
             }
         }
+    } completion:^(BOOL finished) {
+        firstBatchCompletedSuccessfully = finished;
+    }];
 
+    // Update modified items separately transaction or you will crash
+    [collectionView performBatchUpdates:^{
         if (self.modifiedItems.count) {
             NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
             for (id item in self.modifiedItems) {
@@ -313,12 +320,12 @@
             }
             [collectionView reloadItemsAtIndexPaths:indexPaths];
         }
-
     } completion:^(BOOL finished) {
         if (completion) {
-            completion(finished);
+            // One of the animation transactions was interrupted
+            completion(firstBatchCompletedSuccessfully && finished);
         }
-    }];    
+    }];
 }
 
 @end
