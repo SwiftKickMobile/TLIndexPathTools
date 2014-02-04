@@ -26,6 +26,8 @@
 #import "TLIndexPathUpdates.h"
 
 NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControllerChangedNotification";
+NSString * kTLIndexPathControllerChangedNotification = @"kTLIndexPathControllerChangedNotification";
+NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
 
 @interface TLIndexPathController ()
 @property (strong, nonatomic) NSFetchedResultsController *backingController;
@@ -202,11 +204,12 @@ NSString * const TLIndexPathControllerChangedNotification = @"TLIndexPathControl
             _dataModel = dataModel;
         }
     }
+    TLIndexPathUpdates *updates = [[TLIndexPathUpdates alloc] initWithOldDataModel:self.oldDataModel updatedDataModel:self.dataModel];
     if ([self.delegate respondsToSelector:@selector(controller:didUpdateDataModel:)] && !self.ignoreDataModelChanges) {
-        TLIndexPathUpdates *updates = [[TLIndexPathUpdates alloc] initWithOldDataModel:self.oldDataModel updatedDataModel:self.dataModel];
         [self.delegate controller:self didUpdateDataModel:updates];
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:TLIndexPathControllerChangedNotification object:self];
+    NSDictionary *info = @{kTLIndexPathUpdatesKey : updates};
+    [[NSNotificationCenter defaultCenter] postNotificationName:kTLIndexPathControllerChangedNotification object:self userInfo:info];
     self.oldDataModel = nil;
 }
 

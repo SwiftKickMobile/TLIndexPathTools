@@ -26,9 +26,17 @@
 #import "TLIndexPathUpdates.h"
 
 /**
- Sent whenever a TLIndexPathController changes it's content for any reason
+ Sent to the default notification center whenever a TLIndexPathController changes
+ it's content for any reason. `Sender` is `self` and `userInfo` contains the
+ `TLIndexPathUpdates` object under the `kTLIndexPathUpdatesKey` key.
  */
-extern NSString * const TLIndexPathControllerChangedNotification;
+extern NSString *kTLIndexPathControllerChangedNotification;
+
+/**
+ Key to the `TLindexPathUpdates` object in the `kTLIndexPathControllerChangedNotification`
+ notification.
+ */
+extern NSString * kTLIndexPathUpdatesKey;
 
 @class TLIndexPathController;
 
