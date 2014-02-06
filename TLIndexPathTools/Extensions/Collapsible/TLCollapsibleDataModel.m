@@ -30,6 +30,18 @@
 
 - (id)initWithBackingDataModel:(TLIndexPathDataModel *)backingDataModel collapsedSectionNames:(NSSet *)collapsedSectionNames
 {
+    NSSet *expandedSectionNames = [TLCollapsibleDataModel sectionNamesForDataModel:backingDataModel notInSet:collapsedSectionNames];
+    return [self initWithBackingDataModel:backingDataModel expandedSectionNames:expandedSectionNames collapsedSectionNames:collapsedSectionNames];
+}
+
+- (id)initWithBackingDataModel:(TLIndexPathDataModel *)backingDataModel expandedSectionNames:(NSSet *)expandedSectionNames
+{
+    NSSet *collapsedSectionNames = [TLCollapsibleDataModel sectionNamesForDataModel:backingDataModel notInSet:expandedSectionNames];
+    return [self initWithBackingDataModel:backingDataModel expandedSectionNames:expandedSectionNames collapsedSectionNames:collapsedSectionNames];
+}
+
+- (id)initWithBackingDataModel:(TLIndexPathDataModel *)backingDataModel expandedSectionNames:(NSSet *)expandedSectionNames collapsedSectionNames:(NSSet *)collapsedSectionNames
+{
     NSMutableArray *sectionInfos = [NSMutableArray arrayWithCapacity:backingDataModel.numberOfSections];
     for (id<NSFetchedResultsSectionInfo>backingSectionInfo in backingDataModel.sections) {
         if ([collapsedSectionNames containsObject:backingSectionInfo.name]) {
@@ -42,13 +54,25 @@
     
     if (self = [super initWithSectionInfos:sectionInfos identifierKeyPath:backingDataModel.identifierKeyPath]) {
         _collapsedSectionNames = collapsedSectionNames;
+        _expandedSectionNames = expandedSectionNames;
         _backingDataModel = backingDataModel;
     }
     
     return self;
 }
 
-#pragma mark - Collapse state information
++ (NSSet *)sectionNamesForDataModel:(TLIndexPathDataModel *)dataModel notInSet:(NSSet *)sectionNames
+{
+    NSMutableSet *otherSectionNames = [NSMutableSet set];
+    for (NSString *sectionName in dataModel.sectionNames) {
+        if (![sectionNames containsObject:sectionName]) {
+            [otherSectionNames addObject:sectionName];
+        }
+    }
+    return otherSectionNames;
+}
+
+#pragma mark - Collapsed state information
 
 - (BOOL)isSectionCollapsed:(NSInteger)section
 {

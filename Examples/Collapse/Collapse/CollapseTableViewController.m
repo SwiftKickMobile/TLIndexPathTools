@@ -64,7 +64,7 @@
 - (void)collapseAll
 {
     self.dataModel = [[TLCollapsibleDataModel alloc] initWithBackingDataModel:self.backingDataModel
-                                                        collapsedSectionNames:[NSSet setWithArray:self.backingDataModel.sectionNames]];
+                                                        expandedSectionNames:nil];
 }
 
 @end

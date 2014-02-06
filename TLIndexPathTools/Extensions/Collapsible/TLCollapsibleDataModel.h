@@ -25,7 +25,9 @@
 
 @interface TLCollapsibleDataModel : TLIndexPathDataModel
 @property (copy, nonatomic, readonly) NSSet *collapsedSectionNames;
+@property (copy, nonatomic, readonly) NSSet *expandedSectionNames;
 @property (strong, nonatomic, readonly) TLIndexPathDataModel *backingDataModel;
 - (BOOL)isSectionCollapsed:(NSInteger)section;
 - (id)initWithBackingDataModel:(TLIndexPathDataModel *)backingDataModel collapsedSectionNames:(NSSet *)collapsedSectionNames;
+- (id)initWithBackingDataModel:(TLIndexPathDataModel *)backingDataModel expandedSectionNames:(NSSet *)expandedSectionNames;
 @end
