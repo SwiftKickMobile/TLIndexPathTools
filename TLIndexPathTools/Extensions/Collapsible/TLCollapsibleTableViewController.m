@@ -124,4 +124,28 @@
     [self configureHeaderView:headerView forSection:section];
 }
 
+#pragma mark - TLIndexPathControllerDelegate
+
+- (TLIndexPathDataModel *)controller:(TLIndexPathController *)controller willUpdateDataModel:(TLIndexPathDataModel *)oldDataModel withDataModel:(TLIndexPathDataModel *)updatedDataModel
+{
+    // If `updatedDataModel` is already a `TLCollapsibleDataModel`, we don't need to do anything.
+    if ([updatedDataModel isKindOfClass:[TLCollapsibleDataModel class]]) {
+        return nil;
+    }
+    // Otherwise, we assume `updatedDataModel` is the backing model - maybe it came from a
+    // Core Data fetch request or maybe it was provided by custom code - and we need to
+    // constructe the `TLCollapsibleDataModel`.
+    NSMutableSet *expandedSectionNames = nil;
+    // If `oldDataModel` is a `TLCollapsibleDataModel`, we need to preserve the
+    // expanded state of known sections.
+    if ([oldDataModel isKindOfClass:[TLCollapsibleDataModel class]]) {
+        expandedSectionNames = [NSMutableSet setWithSet:((TLCollapsibleDataModel *)oldDataModel).expandedSectionNames];
+        // Now filter out any section names that are no longer present in `updatedDataModel`
+        [expandedSectionNames intersectSet:[NSSet setWithArray:updatedDataModel.sectionNames]];
+    }
+    // Construct and return the `TLCollapsibleDataModel`
+    TLCollapsibleDataModel *dataModel = [[TLCollapsibleDataModel alloc] initWithBackingDataModel:updatedDataModel expandedSectionNames:expandedSectionNames];
+    return dataModel;
+}
+
 @end
