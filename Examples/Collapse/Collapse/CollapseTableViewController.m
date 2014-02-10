@@ -13,10 +13,6 @@
 #define SECTION1_NAME @"Section 1"
 #define SECTION2_NAME @"Section 2"
 
-@interface CollapseTableViewController ()
-@property (strong, nonatomic) TLIndexPathDataModel *backingDataModel;
-@end
-
 @implementation CollapseTableViewController
 
 - (void)viewDidLoad
@@ -42,10 +38,9 @@
     TLIndexPathSectionInfo *section2 = [[TLIndexPathSectionInfo alloc] initWithItems:section2Items name:SECTION2_NAME];
     
     //create the backing model, which contains all sections and items
-    self.backingDataModel = [[TLIndexPathDataModel alloc] initWithSectionInfos:@[section1, section2]
+    TLIndexPathDataModel *backingDataModel = [[TLIndexPathDataModel alloc] initWithSectionInfos:@[section1, section2]
                                                           identifierKeyPath:nil];
-    
-    [self collapseAll];
+    [self collapseAll:backingDataModel];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -63,8 +58,13 @@
 
 - (void)collapseAll
 {
-    self.dataModel = [[TLCollapsibleDataModel alloc] initWithBackingDataModel:self.backingDataModel
-                                                        expandedSectionNames:nil];
+    [self collapseAll:self.dataModel.backingDataModel];
+}
+
+- (void)collapseAll:(TLIndexPathDataModel *)backingDataModel
+{
+    self.dataModel = [[TLCollapsibleDataModel alloc] initWithBackingDataModel:backingDataModel
+                                                         expandedSectionNames:nil];
 }
 
 @end
