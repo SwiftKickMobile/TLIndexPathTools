@@ -62,6 +62,7 @@
 {
     _indexPathController = [[TLIndexPathController alloc] init];
     _indexPathController.delegate = self;
+    _rowAnimationStyle = UITableViewRowAnimationAutomatic;
 }
 
 #pragma mark - Index path controller
@@ -256,7 +257,12 @@
 
 - (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates
 {
-    [updates performBatchUpdatesOnTableView:self.tableView withRowAnimation:UITableViewRowAnimationFade];
+    //only perform batch udpates if view is visible
+    if (self.isViewLoaded && self.view.window) {
+        [updates performBatchUpdatesOnTableView:self.tableView withRowAnimation:self.rowAnimationStyle];
+    } else {
+        [self.tableView reloadData];
+    }
 }
 
 @end

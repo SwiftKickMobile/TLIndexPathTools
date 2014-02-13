@@ -49,6 +49,12 @@
 @property (strong, nonatomic) TLIndexPathController *indexPathController;
 
 /**
+ Set this property to specify the row animation style.
+ Defaults to UITableViewRowAnimationAutomatic.
+ */
+@property (nonatomic) UITableViewRowAnimation rowAnimationStyle;
+
+/**
  The implementation of `tableView:cellForRowAtIndexPath:` calls this method
  to ask for the cell's identifier before attempting to dequeue a cell. The default
  implementation of this method first asks the data model for an identifier and,

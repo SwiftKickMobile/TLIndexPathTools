@@ -202,17 +202,22 @@
     return view;
 }
 
-#pragma mark - TLIndexPathControllerDelegate
-
-- (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates
-{
-    [updates performBatchUpdatesOnCollectionView:self.collectionView];
-}
-
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UIViewController *controller = [self collectionView:collectionView viewControllerForCell:cell];
     [controller removeFromParentViewController];
+}
+
+#pragma mark - TLIndexPathControllerDelegate
+
+- (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates
+{
+    //only perform batch udpates if view is visible
+    if (self.isViewLoaded && self.view.window) {
+        [updates performBatchUpdatesOnCollectionView:self.collectionView];
+    } else {
+        [self.collectionView reloadData];
+    }
 }
 
 @end
