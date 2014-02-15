@@ -7,7 +7,7 @@
 //
 
 #import "DynamicHeightTableViewController.h"
-#import "DynamicHeightCell.h"
+#import <TLIndexPathTools/TLDynamicHeightLabelCell.h>
 
 @implementation DynamicHeightTableViewController
 
@@ -31,7 +31,7 @@
 {
     UITableViewCell *cell = [super tableView:tableView cellForRowAtIndexPath:indexPath];
     NSString *item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
-    DynamicHeightCell *dynamicCell = (DynamicHeightCell *)cell;
+    TLDynamicHeightLabelCell *dynamicCell = (TLDynamicHeightLabelCell *)cell;
     [dynamicCell configureWithText:item];
     return cell;
 }

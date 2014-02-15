@@ -1,19 +1,19 @@
 //
-//  DynamicHeightCell.m
-//  Dynamic Height
+//  TLDynamicHeightLabelCell.m
+//  Dynamic Height Label Cell
 //
 //  Created by Tim Moose on 5/31/13.
 //  Copyright (c) 2013 Tractable Labs. All rights reserved.
 //
 
-#import "DynamicHeightCell.h"
+#import "TLDynamicHeightLabelCell.h"
 
-@interface DynamicHeightCell ()
+@interface TLDynamicHeightLabelCell ()
 @property (nonatomic) CGSize originalSize;
 @property (nonatomic) CGSize originalLabelSize;
 @end
 
-@implementation DynamicHeightCell
+@implementation TLDynamicHeightLabelCell
 
 - (void)awakeFromNib
 {
