@@ -227,6 +227,9 @@
 - (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView completion:(void(^)(BOOL finished))completion
 {
     if (self.oldDataModel.items.count == 0 && self.updatedDataModel.items.count == 0) {
+        if (completion) {
+            completion(YES);
+        }
         return;
     }
     
