@@ -49,6 +49,7 @@
     self.volumeLevel = 50;
     self.autosaveEnabled = NO;
     self.difficultyLevel = ITEM_ID_DIFFICULTY_NORMAL;
+    self.rowAnimationStyle = UITableViewRowAnimationFade;
     self.indexPathController.dataModel = [self newDataModel];
 }
 
