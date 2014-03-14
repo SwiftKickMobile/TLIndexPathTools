@@ -45,4 +45,7 @@
 - (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView;
 - (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView completion:(void(^)(BOOL finished))completion;
 - (id)initWithOldDataModel:(TLIndexPathDataModel *)oldDataModel updatedDataModel:(TLIndexPathDataModel *)updatedDataModel;
+
+- (void) addModifiedItems:(NSArray *)items;
+
 @end
