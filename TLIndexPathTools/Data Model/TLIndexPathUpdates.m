@@ -45,7 +45,7 @@
         NSMutableArray *deletedItems = [[NSMutableArray alloc] init];
         NSMutableArray *movedItems = [[NSMutableArray alloc] init];
         NSMutableArray *modifiedItems = [[NSMutableArray alloc] init];
-
+        
         _insertedSectionNames = insertedSectionNames;
         _deletedSectionNames = deletedSectionNames;
         _movedSectionNames = movedSectionNames;
@@ -57,7 +57,7 @@
         NSOrderedSet *oldSectionNames = [NSOrderedSet orderedSetWithArray:oldDataModel.sectionNames];
         NSOrderedSet *updatedSectionNames = [NSOrderedSet orderedSetWithArray:updatedDataModel.sectionNames];
         
-        // Deleted and moved sections        
+        // Deleted and moved sections
         for (NSString *sectionName in oldSectionNames) {
             if ([updatedSectionNames containsObject:sectionName]) {
                 NSInteger oldSection = [oldDataModel sectionForSectionName:sectionName];
@@ -79,14 +79,15 @@
         }
         
         // Deleted and moved items
-        NSOrderedSet *oldItems = [NSOrderedSet orderedSetWithArray:[oldDataModel items]];        
+        NSOrderedSet *oldItems = [NSOrderedSet orderedSetWithArray:[oldDataModel items]];
         for (id item in oldItems) {
             NSIndexPath *oldIndexPath = [oldDataModel indexPathForItem:item];
             NSString *sectionName = [oldDataModel sectionNameForSection:oldIndexPath.section];
             if ([updatedDataModel containsItem:item]) {
                 NSIndexPath *updatedIndexPath = [updatedDataModel indexPathForItem:item];
-                //can't rely on isEqual, so must use compare
-                if ([oldIndexPath compare:updatedIndexPath] != NSOrderedSame) {
+				NSString *updatedSectionName = [updatedDataModel sectionNameForSection:updatedIndexPath.section];
+				//can't rely on isEqual, so must use compare
+                if ([oldIndexPath compare:updatedIndexPath] != NSOrderedSame || ![updatedSectionName isEqualToString:sectionName]) {
                     // Don't move items in moved sections
                     if (![movedSectionNames containsObject:sectionName]) {
                         // TODO Not sure if this is correct when moves are combined with inserts and/or deletes
@@ -94,11 +95,19 @@
                         // has moved
                         if (oldIndexPath.row == updatedIndexPath.row) {
                             NSString *oldSectionName = [oldDataModel sectionNameForSection:oldIndexPath.section];
-                            NSString *updatedSectionName = [updatedDataModel sectionNameForSection:updatedIndexPath.section];
                             if ([oldSectionName isEqualToString:updatedSectionName]) continue;
                         }
-                        [movedItems addObject:item];
-                    }
+                        
+						if (![deletedSectionNames containsObject:sectionName])
+							[movedItems addObject:item];
+						else
+						{
+							[deletedItems addObject:item];
+                            
+							if (![insertedSectionNames containsObject:updatedSectionName])
+								[insertedItems addObject:item];
+						}
+					}
                 }
             } else {
                 // Don't delete items in deleted sections
@@ -130,6 +139,21 @@
     return self;
 }
 
+- (void) addModifiedItems:(NSArray *)items
+{
+	NSMutableArray *updatedItems = [NSMutableArray array];
+	[updatedItems addObjectsFromArray:_modifiedItems];
+    
+	for (id item in items)
+	{
+		if (![_modifiedItems containsObject:item] && ![_insertedItems containsObject:item] && ![_movedItems containsObject:item])
+			[updatedItems addObject:item];
+	}
+    
+	_modifiedItems = updatedItems;
+}
+
+
 - (void)performBatchUpdatesOnTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation
 {
     [self performBatchUpdatesOnTableView:tableView withRowAnimation:animation completion:nil];
@@ -141,9 +165,9 @@
         [tableView reloadData];
         return;
     }
-
+    
     [CATransaction begin];
-
+    
     [CATransaction setCompletionBlock: ^{
         
         //modified items have to be reloaded after all other batch updates
@@ -156,16 +180,18 @@
             for (id item in self.modifiedItems) {
                 NSIndexPath *indexPath = [self.updatedDataModel indexPathForItem:item];
                 [indexPaths addObject:indexPath];
-                [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
             }
-        }
+            
+			[tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+            
+		}
         
         if (completion) {
             completion(YES);
         }
         
     }];
-
+    
     [tableView beginUpdates];
     
     if (self.insertedSectionNames.count) {
@@ -262,9 +288,9 @@
         }
         return;
     }
-
+    
     [collectionView performBatchUpdates:^{
-
+        
         if (self.insertedSectionNames.count) {
             NSMutableIndexSet *indexSet = [[NSMutableIndexSet alloc] init];
             for (NSString *sectionName in self.insertedSectionNames) {
@@ -318,7 +344,7 @@
         }
         
         // TODO update modified items
-    
+        
     } completion:^(BOOL finished) {
         if (completion) {
             completion(finished);
