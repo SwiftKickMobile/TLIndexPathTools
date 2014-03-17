@@ -85,8 +85,9 @@
             NSString *sectionName = [oldDataModel sectionNameForSection:oldIndexPath.section];
             if ([updatedDataModel containsItem:item]) {
                 NSIndexPath *updatedIndexPath = [updatedDataModel indexPathForItem:item];
-                //can't rely on isEqual, so must use compare
-                if ([oldIndexPath compare:updatedIndexPath] != NSOrderedSame) {
+				NSString *updatedSectionName = [updatedDataModel sectionNameForSection:updatedIndexPath.section];
+				//can't rely on isEqual, so must use compare
+                if ([oldIndexPath compare:updatedIndexPath] != NSOrderedSame || ![updatedSectionName isEqualToString:sectionName]) {
                     // Don't move items in moved sections
                     if (![movedSectionNames containsObject:sectionName]) {
                         // TODO Not sure if this is correct when moves are combined with inserts and/or deletes
@@ -94,11 +95,19 @@
                         // has moved
                         if (oldIndexPath.row == updatedIndexPath.row) {
                             NSString *oldSectionName = [oldDataModel sectionNameForSection:oldIndexPath.section];
-                            NSString *updatedSectionName = [updatedDataModel sectionNameForSection:updatedIndexPath.section];
                             if ([oldSectionName isEqualToString:updatedSectionName]) continue;
                         }
-                        [movedItems addObject:item];
-                    }
+                        
+						if (![deletedSectionNames containsObject:sectionName])
+							[movedItems addObject:item];
+						else
+						{
+							[deletedItems addObject:item];
+                            
+							if (![insertedSectionNames containsObject:updatedSectionName])
+								[insertedItems addObject:item];
+						}
+					}
                 }
             } else {
                 // Don't delete items in deleted sections
