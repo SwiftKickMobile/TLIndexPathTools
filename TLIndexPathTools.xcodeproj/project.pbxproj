@@ -40,6 +40,8 @@
 		8601E74417CD19E500DEE315 /* TLTreeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8601E72117CD19E500DEE315 /* TLTreeDataModel.m */; };
 		8601E74617CD19E500DEE315 /* TLTreeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8601E72317CD19E500DEE315 /* TLTreeTableViewController.m */; };
 		8601E74817CD19E500DEE315 /* UITableViewController+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8601E72517CD19E500DEE315 /* UITableViewController+ScrollOptimizer.m */; };
+		86686855190038FE00FCB027 /* UITableView+ScrollOptimizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 86686853190038FE00FCB027 /* UITableView+ScrollOptimizer.h */; };
+		86686856190038FE00FCB027 /* UITableView+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 86686854190038FE00FCB027 /* UITableView+ScrollOptimizer.m */; };
 		86CB5A9518AF38FE003039CC /* TLDynamicHeightLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CB5A9318AF38FE003039CC /* TLDynamicHeightLabelCell.m */; };
 		86CB5A9618AF393E003039CC /* TLDynamicHeightLabelCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 86CB5A9218AF38FE003039CC /* TLDynamicHeightLabelCell.h */; };
 		86ECFC0517CD4C1E003D13C0 /* TLCollapsibleDataModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8601E6FE17CD19E400DEE315 /* TLCollapsibleDataModel.h */; };
@@ -117,6 +119,8 @@
 		8601E72317CD19E500DEE315 /* TLTreeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTreeTableViewController.m; sourceTree = "<group>"; };
 		8601E72417CD19E500DEE315 /* UITableViewController+ScrollOptimizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+ScrollOptimizer.h"; sourceTree = "<group>"; };
 		8601E72517CD19E500DEE315 /* UITableViewController+ScrollOptimizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+ScrollOptimizer.m"; sourceTree = "<group>"; };
+		86686853190038FE00FCB027 /* UITableView+ScrollOptimizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UITableView+ScrollOptimizer.h"; path = "../UITableView+ScrollOptimizer.h"; sourceTree = "<group>"; };
+		86686854190038FE00FCB027 /* UITableView+ScrollOptimizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UITableView+ScrollOptimizer.m"; path = "../UITableView+ScrollOptimizer.m"; sourceTree = "<group>"; };
 		86B0084E17CD15BE00B86B04 /* readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.markdown; sourceTree = "<group>"; };
 		86CB5A9218AF38FE003039CC /* TLDynamicHeightLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDynamicHeightLabelCell.h; sourceTree = "<group>"; };
 		86CB5A9318AF38FE003039CC /* TLDynamicHeightLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDynamicHeightLabelCell.m; sourceTree = "<group>"; };
@@ -161,11 +165,13 @@
 		8601E6FC17CD19E400DEE315 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				86CB5A9218AF38FE003039CC /* TLDynamicHeightLabelCell.h */,
-				86CB5A9318AF38FE003039CC /* TLDynamicHeightLabelCell.m */,
 				8601E6FD17CD19E400DEE315 /* Collapsible */,
 				8601E71517CD19E500DEE315 /* No Results */,
+				86CB5A9218AF38FE003039CC /* TLDynamicHeightLabelCell.h */,
+				86CB5A9318AF38FE003039CC /* TLDynamicHeightLabelCell.m */,
 				8601E71D17CD19E500DEE315 /* Tree */,
+				86686853190038FE00FCB027 /* UITableView+ScrollOptimizer.h */,
+				86686854190038FE00FCB027 /* UITableView+ScrollOptimizer.m */,
 				8601E72417CD19E500DEE315 /* UITableViewController+ScrollOptimizer.h */,
 				8601E72517CD19E500DEE315 /* UITableViewController+ScrollOptimizer.m */,
 			);
@@ -299,6 +305,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86686855190038FE00FCB027 /* UITableView+ScrollOptimizer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +397,7 @@
 				B145DB85179EEB3900CF270E /* TLIndexPathItem.m in Sources */,
 				B145DB87179EEB3900CF270E /* TLIndexPathSectionInfo.m in Sources */,
 				B145DB89179EEB3900CF270E /* TLIndexPathUpdates.m in Sources */,
+				86686856190038FE00FCB027 /* UITableView+ScrollOptimizer.m in Sources */,
 				B145DBB0179EEB3900CF270E /* TLCollectionViewController.m in Sources */,
 				B145DBB2179EEB3900CF270E /* TLTableViewController.m in Sources */,
 				8601E72717CD19E500DEE315 /* TLCollapsibleDataModel.m in Sources */,
