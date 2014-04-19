@@ -30,7 +30,14 @@
                                @"Keyboard Shortcut",
                                @"Metadata",
                                @"Fundamental",
-                               @"Cellar Door"];
+                               @"Cellar Door",
+                               @"Asteroid",
+                               @"Avalanche",
+                               @"Goatee",
+                               @"Tapestry",
+                               @"Monolithic",
+                               @"Northwest",
+                               ];
 
     //We're using plain string items, so we don't have a sectionNameKeyPath property
     //to use, so instead we explicitly create section info objects

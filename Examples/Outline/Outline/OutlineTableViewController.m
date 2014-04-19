@@ -19,6 +19,11 @@
 #define ITEM_2_1 @"Heading 2.1 (async lazy load)"
 #define ITEM_2_1_1 @"Heading 2.1.1"
 #define ITEM_2_1_2 @"Heading 2.1.2"
+#define ITEM_2_1_3 @"Heading 2.1.3"
+#define ITEM_2_1_4 @"Heading 2.1.4"
+#define ITEM_2_1_5 @"Heading 2.1.5"
+#define ITEM_2_1_6 @"Heading 2.1.6"
+#define ITEM_2_1_7 @"Heading 2.1.7"
 
 @interface OutlineTableViewController ()
 @property (strong, nonatomic) NSArray *treeItems;
@@ -68,6 +73,14 @@
     return cell;
 }
 
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [super tableView:tableView didSelectRowAtIndexPath:indexPath];
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 #pragma mark - TLTreeTableViewControllerDelegate
 
 - (void)controller:(TLTreeTableViewController *)controller willChangeNode:(TLIndexPathTreeItem *)treeItem collapsed:(BOOL)collapsed
@@ -81,7 +94,7 @@
             TLIndexPathTreeItem *item111 = [self itemWithId:ITEM_1_1_1 level:2 children:nil];
             TLIndexPathTreeItem *item112 = [self itemWithId:ITEM_1_1_2 level:2 children:nil];
             TLIndexPathTreeItem *item11 = [treeItem copyWithChildren:@[item111, item112]];
-            [self setNewVersionOfItem:item11 collapsedChildNodeIdentifiers:[TLIndexPathItem identifiersForIndexPathItems:item11.childItems]];
+            [self setNewVersionOfItem:item11 collapsedChildNodeIdentifiers:[TLIndexPathItem identifiersForIndexPathItems:item11.childItems] optimizeScroll:YES];
         }
         
         //example of inserting children asynchronously
@@ -96,8 +109,13 @@
             dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
                 TLIndexPathTreeItem *item211 = [self itemWithId:ITEM_2_1_1 level:2 children:nil];
                 TLIndexPathTreeItem *item212 = [self itemWithId:ITEM_2_1_2 level:2 children:nil];
-                TLIndexPathTreeItem *item21 = [treeItem copyWithChildren:@[item211, item212]];
-                [self setNewVersionOfItem:item21 collapsedChildNodeIdentifiers:[TLIndexPathItem identifiersForIndexPathItems:item21.childItems]];
+                TLIndexPathTreeItem *item213 = [self itemWithId:ITEM_2_1_3 level:2 children:nil];
+                TLIndexPathTreeItem *item214 = [self itemWithId:ITEM_2_1_4 level:2 children:nil];
+                TLIndexPathTreeItem *item215 = [self itemWithId:ITEM_2_1_5 level:2 children:nil];
+                TLIndexPathTreeItem *item216 = [self itemWithId:ITEM_2_1_6 level:2 children:nil];
+                TLIndexPathTreeItem *item217 = [self itemWithId:ITEM_2_1_7 level:2 children:nil];
+                TLIndexPathTreeItem *item21 = [treeItem copyWithChildren:@[item211, item212, item213, item214, item215, item216, item217]];
+                [self setNewVersionOfItem:item21 collapsedChildNodeIdentifiers:[TLIndexPathItem identifiersForIndexPathItems:item21.childItems] optimizeScroll:YES];
             });            
         }
     }
