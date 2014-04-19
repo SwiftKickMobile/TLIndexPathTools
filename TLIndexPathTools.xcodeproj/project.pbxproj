@@ -120,6 +120,7 @@
 		86B0084E17CD15BE00B86B04 /* readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.markdown; sourceTree = "<group>"; };
 		86CB5A9218AF38FE003039CC /* TLDynamicHeightLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDynamicHeightLabelCell.h; sourceTree = "<group>"; };
 		86CB5A9318AF38FE003039CC /* TLDynamicHeightLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDynamicHeightLabelCell.m; sourceTree = "<group>"; };
+		86E8EEF51902249200AD6A51 /* TLIndexPathTools.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TLIndexPathTools.podspec; sourceTree = "<group>"; };
 		86ECFBFF17CD2948003D13C0 /* TLDynamicSizeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDynamicSizeView.h; sourceTree = "<group>"; };
 		B145DAB9179EE94300CF270E /* libTLIndexPathTools.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libTLIndexPathTools.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		B145DABC179EE94300CF270E /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -210,6 +211,7 @@
 		B145DAB0179EE94300CF270E = {
 			isa = PBXGroup;
 			children = (
+				86E8EEF51902249200AD6A51 /* TLIndexPathTools.podspec */,
 				86B0084E17CD15BE00B86B04 /* readme.markdown */,
 				B145DABE179EE94300CF270E /* TLIndexPathTools */,
 				B145DABB179EE94300CF270E /* Frameworks */,
