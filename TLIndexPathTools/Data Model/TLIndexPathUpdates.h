@@ -31,6 +31,29 @@
  */
 
 @interface TLIndexPathUpdates : NSObject
+
+#pragma mark - Creating updates
+
+- (id)initWithOldDataModel:(TLIndexPathDataModel *)oldDataModel updatedDataModel:(TLIndexPathDataModel *)updatedDataModel;
+
+#pragma mark - Performing batch updates
+
+- (void)performBatchUpdatesOnTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation;
+- (void)performBatchUpdatesOnTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation completion:(void(^)(BOOL finished))completion;
+- (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView;
+- (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView completion:(void(^)(BOOL finished))completion;
+
+#pragma mark - Customizing batch update behavior
+
+/*
+ If `NO`, modified items will be ignored in the `performBatchUpdates*` methods.
+ This can be useful for updating modified items with custom animation.
+ Default value is `YES`.
+ */
+@property (nonatomic) BOOL updateModifiedItems;
+
+#pragma mark - Comparing data models
+
 @property (strong, nonatomic, readonly) TLIndexPathDataModel *oldDataModel;
 @property (strong, nonatomic, readonly) TLIndexPathDataModel *updatedDataModel;
 @property (strong, nonatomic, readonly) NSArray *insertedSectionNames;
@@ -40,9 +63,5 @@
 @property (strong, nonatomic, readonly) NSArray *deletedItems;
 @property (strong, nonatomic, readonly) NSArray *movedItems;
 @property (strong, nonatomic, readonly) NSArray *modifiedItems;
-- (void)performBatchUpdatesOnTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation;
-- (void)performBatchUpdatesOnTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation completion:(void(^)(BOOL finished))completion;
-- (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView;
-- (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView completion:(void(^)(BOOL finished))completion;
-- (id)initWithOldDataModel:(TLIndexPathDataModel *)oldDataModel updatedDataModel:(TLIndexPathDataModel *)updatedDataModel;
+
 @end
