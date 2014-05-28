@@ -224,7 +224,30 @@
         for (id item in self.movedItems) {
             NSIndexPath *oldIndexPath = [self.oldDataModel indexPathForItem:item];
             NSIndexPath *updatedIndexPath = [self.updatedDataModel indexPathForItem:item];
-            [tableView moveRowAtIndexPath:oldIndexPath toIndexPath:updatedIndexPath];
+            
+            NSString *oldSectionName = [self.oldDataModel sectionNameForSection:oldIndexPath.section];
+            NSString *updatedSectionName = [self.updatedDataModel sectionNameForSection:updatedIndexPath.section];
+            BOOL oldSectionDeleted = [self.deletedSectionNames containsObject:oldSectionName];
+            BOOL updatedSectionInserted = [self.insertedSectionNames containsObject:updatedSectionName];
+            // `UITableView` doesn't support moving an item out of a deleted section
+            // or moving an item into an inserted section. So we use inserts and/or deletes
+            // as a workaround. A better workaround can be employed in client code by
+            // by using empty sections to ensure all sections exist at all times, which
+            // generally results in a better looking animation. When using `TLIndexPathControlelr`,
+            // a good place to implement this workaround is in the `willUpdateDataModel`
+            // delegate method by taking the incoming data model and inserting missing sections
+            // with empty instances of `TLIndexPathSectionInfo`.
+            if (oldSectionDeleted && updatedSectionInserted) {
+                // don't need to do anything
+            } else if (oldSectionDeleted) {
+                [tableView insertRowsAtIndexPaths:@[updatedIndexPath] withRowAnimation:animation];
+            } else if (updatedSectionInserted) {
+                [tableView deleteRowsAtIndexPaths:@[oldIndexPath] withRowAnimation:animation];
+                [tableView insertRowsAtIndexPaths:@[updatedIndexPath] withRowAnimation:animation];
+            } else {
+                [tableView moveRowAtIndexPath:oldIndexPath toIndexPath:updatedIndexPath];
+            }
+
         }
     }
     
