@@ -60,26 +60,33 @@
         
         NSOrderedSet *oldSectionNames = [NSOrderedSet orderedSetWithArray:oldDataModel.sectionNames];
         NSOrderedSet *updatedSectionNames = [NSOrderedSet orderedSetWithArray:updatedDataModel.sectionNames];
-        
-        // Deleted and moved sections        
+        NSMutableOrderedSet *workingSectionNames = [NSMutableOrderedSet orderedSetWithOrderedSet:oldSectionNames];
+
+        // Deleted sections
         for (NSString *sectionName in oldSectionNames) {
-            if ([updatedSectionNames containsObject:sectionName]) {
-                NSInteger oldSection = [oldDataModel sectionForSectionName:sectionName];
-                NSInteger updatedSection = [updatedDataModel sectionForSectionName:sectionName];
-                // TODO Not sure if this is correct when moves are combined with inserts and/or deletes
-                if (oldSection != updatedSection) {
-                    [movedSectionNames addObject:sectionName];
-                }
-            } else {
+            if (![updatedSectionNames containsObject:sectionName]) {
                 [deletedSectionNames addObject:sectionName];
+                [workingSectionNames removeObject:sectionName];
             }
         }
-        
+
         // Inserted sections
+        NSInteger index = 0;
         for (NSString *sectionName in updatedSectionNames) {
-            if (![oldSectionNames containsObject:sectionName]) {
+            if ([oldSectionNames containsObject:sectionName]) {
+                NSInteger expectedIndex = [workingSectionNames indexOfObject:sectionName];
+                if (index != expectedIndex) {
+                    // only need to explicitly move sections that are misplaced
+                    // in the working set.
+                    [movedSectionNames addObject:sectionName];
+                    [workingSectionNames removeObject:sectionName];
+                    [workingSectionNames insertObject:sectionName atIndex:index];
+                }
+            } else {
                 [insertedSectionNames addObject:sectionName];
+                [workingSectionNames insertObject:sectionName atIndex:index];
             }
+            index++;
         }
         
         // Deleted and moved items
@@ -90,7 +97,7 @@
             if ([updatedDataModel containsItem:item]) {
                 NSIndexPath *updatedIndexPath = [updatedDataModel indexPathForItem:item];
                 NSString *updatedSectionName = [updatedDataModel sectionNameForSection:updatedIndexPath.section];
-                //can't rely on isEqual, so must use compare
+                // can't rely on isEqual, so must use compare
                 if ([oldIndexPath compare:updatedIndexPath] != NSOrderedSame || ![updatedSectionName isEqualToString:sectionName]) {
                     // Don't move items in moved sections
                     if (![movedSectionNames containsObject:sectionName]) {
@@ -191,16 +198,16 @@
         [tableView deleteSections:indexSet withRowAnimation:animation];
     }
     
-    // TODO Disable reordering sections because it may cause duplicate animations
-    // when a item is inserted, deleted, or moved in that section. Need to figure
-    // out how to avoid the duplicate animation.
-    //    if (self.movedSectionNames.count) {
-    //        for (NSString *sectionName in self.movedSectionNames) {
-    //            NSInteger oldSection = [self.oldDataModel sectionForSectionName:sectionName];
-    //            NSInteger updatedSection = [self.updatedDataModel sectionForSectionName:sectionName];
-    //            [tableView moveSection:oldSection toSection:updatedSection];
-    //        }
-    //    }
+//    // TODO Disable reordering sections because it may cause duplicate animations
+//    // when a item is inserted, deleted, or moved in that section. Need to figure
+//    // out how to avoid the duplicate animation.
+//    if (self.movedSectionNames.count) {
+//        for (NSString *sectionName in self.movedSectionNames) {
+//            NSInteger oldSection = [self.oldDataModel sectionForSectionName:sectionName];
+//            NSInteger updatedSection = [self.updatedDataModel sectionForSectionName:sectionName];
+//            [tableView moveSection:oldSection toSection:updatedSection];
+//        }
+//    }
     
     if (self.insertedItems.count) {
         NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
