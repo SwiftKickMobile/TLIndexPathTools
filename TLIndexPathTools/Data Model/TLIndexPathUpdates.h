@@ -54,14 +54,14 @@
 
 #pragma mark - Comparing data models
 
-@property (strong, nonatomic, readonly) TLIndexPathDataModel *oldDataModel;
-@property (strong, nonatomic, readonly) TLIndexPathDataModel *updatedDataModel;
-@property (strong, nonatomic, readonly) NSArray *insertedSectionNames;
-@property (strong, nonatomic, readonly) NSArray *deletedSectionNames;
-@property (strong, nonatomic, readonly) NSArray *movedSectionNames;
-@property (strong, nonatomic, readonly) NSArray *insertedItems;
-@property (strong, nonatomic, readonly) NSArray *deletedItems;
-@property (strong, nonatomic, readonly) NSArray *movedItems;
-@property (strong, nonatomic, readonly) NSArray *modifiedItems;
+@property (strong, readonly, nonatomic) TLIndexPathDataModel *oldDataModel;
+@property (strong, readonly, nonatomic) TLIndexPathDataModel *updatedDataModel;
+@property (copy, readonly, nonatomic) NSArray *insertedSectionNames;
+@property (copy, readonly, nonatomic) NSArray *deletedSectionNames;
+@property (copy, readonly, nonatomic) NSArray *movedSectionNames;
+@property (copy, readonly, nonatomic) NSArray *insertedItems;
+@property (copy, readonly, nonatomic) NSArray *deletedItems;
+@property (copy, readonly, nonatomic) NSArray *movedItems;
+@property (copy, readonly, nonatomic) NSArray *modifiedItems;
 
 @end
