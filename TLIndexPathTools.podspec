@@ -11,21 +11,21 @@ Pod::Spec.new do |s|
 					* Provide a simpler alternative to Core Data NSFetchedResultsController
 					* Provide base table view and collection view classes with advanced features
 					
-					0.3.0
-					* Enhancements to the Collapse extension
-                        * `CollapsibleTableViewController` integrates with Core Data out-of-the-box.
-                      One only needs to replace the default `TLIndexPathController with an
-                      instance initialized with an `NSFetchRequest`.
-                        * Add `TLCollapsibleDataModel` initialize that takes a collection
-                          of expanded section names (instead of collapsed section names)
-                    * Add completion handler to `performBatchUpdatesOnTableView`
-                    * Add `TLDynamicHeightLabelCell` extension, a simple table view cell
-                      implementation supporting a single dynamic height label
-                    * Modified items are now reloaded in `performBatchUpdatesOnCollectionView`
-                    * Add ability to pause and unpause fetch results updates by setting the
-                      `ignoreFetchedResultsChanges` property on `TLIndexPathController`
-                    * The notification `TLIndexPathControllerChangedNotification` has been
-                      renamed to `kTLIndexPathControllerChangedNotification`
+0.3.0
+* Enhancements to the Collapse extension
+    * `CollapsibleTableViewController` integrates with Core Data out-of-the-box.
+  One only needs to replace the default `TLIndexPathController with an
+  instance initialized with an `NSFetchRequest`.
+    * Add `TLCollapsibleDataModel` initialize that takes a collection
+      of expanded section names (instead of collapsed section names)
+* Add completion handler to `performBatchUpdatesOnTableView`
+* Add `TLDynamicHeightLabelCell` extension, a simple table view cell
+  implementation supporting a single dynamic height label
+* Modified items are now reloaded in `performBatchUpdatesOnCollectionView`
+* Add ability to pause and unpause fetch results updates by setting the
+  `ignoreFetchedResultsChanges` property on `TLIndexPathController`
+* The notification `TLIndexPathControllerChangedNotification` has been
+  renamed to `kTLIndexPathControllerChangedNotification`
                     DESC
   s.homepage     = "http://tlindexpathtools.com"
   s.license      = { :type => "MIT" }

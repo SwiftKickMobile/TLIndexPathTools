@@ -28,8 +28,11 @@
 // TODO need to verify that this works with two data models having different
 // configuration properties
 
-@implementation TLIndexPathUpdates
+@interface TLIndexPathUpdates ()
+@property (copy, readwrite, nonatomic) NSArray *modifiedItems;
+@end
 
+@implementation TLIndexPathUpdates
 
 - (id)initWithOldDataModel:(TLIndexPathDataModel *)oldDataModel updatedDataModel:(TLIndexPathDataModel *)updatedDataModel
 {
@@ -335,6 +338,11 @@
             completion(finished);
         }
     }];    
+}
+
+- (void)setModifiedItems:(NSArray *)modifiedItems
+{
+    _modifiedItems = [modifiedItems copy];
 }
 
 @end
