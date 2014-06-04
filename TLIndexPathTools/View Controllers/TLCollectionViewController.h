@@ -87,7 +87,7 @@
  cell in `cellForItemAtIndexPath`. To enable view controller-backed cells, override
  the companion method `collectionView:instantiateViewControllerForCell:atIndexPath:`.
  */
-- (UIViewController *)collectionView:(UICollectionView *)collectionView viewControllerForCell:(UICollectionViewCell *)cell;
+- (UIViewController *)collectionView:(UICollectionView *)collectionView viewControllerForCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath*)indexPath;
 
 /**
  If set to NO, the view controller will not establish a containment relationship

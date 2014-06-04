@@ -116,7 +116,7 @@
     [self.viewControllerByCellInstanceId setObject:controller forKey:key];
 }
 
-- (UIViewController *)collectionView:(UICollectionView *)collectionView viewControllerForCell:(UICollectionViewCell *)cell
+- (UIViewController *)collectionView:(UICollectionView *)collectionView viewControllerForCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath*)indexPath
 {
     NSString *key = [self instanceId:cell];
     UIViewController *controller = [self.viewControllerByCellInstanceId objectForKey:key];
@@ -138,7 +138,6 @@
     }
     
     if (!controller) {
-        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
         controller = [self collectionView:collectionView instantiateViewControllerForCell:cell atIndexPath:indexPath];
         if (controller) {
             [self setViewController:controller forKey:key];
@@ -177,7 +176,7 @@
     if (!cell) {
         cell = [[UICollectionViewCell alloc] init];
     }
-    UIViewController *controller = [self collectionView:collectionView viewControllerForCell:cell];
+    UIViewController *controller = [self collectionView:collectionView viewControllerForCell:cell atIndexPath:indexPath];
     if (controller && self.establishContainmentRelationshipWithViewControllerForCell) {
         [self addChildViewController:controller];
     }
@@ -204,7 +203,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIViewController *controller = [self collectionView:collectionView viewControllerForCell:cell];
+    UIViewController *controller = [self collectionView:collectionView viewControllerForCell:cell atIndexPath:indexPath];
     [controller removeFromParentViewController];
 }
 
