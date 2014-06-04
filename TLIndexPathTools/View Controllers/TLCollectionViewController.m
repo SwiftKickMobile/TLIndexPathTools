@@ -26,6 +26,7 @@
 
 @interface TLCollectionViewController ()
 @property (strong, nonatomic) NSMutableDictionary *viewControllerByCellInstanceId;
+@property (weak, nonatomic) NSIndexPath *currentCellForItemAtIndexPath;
 @end
 
 @implementation TLCollectionViewController
@@ -138,7 +139,10 @@
     }
     
     if (!controller) {
-        NSIndexPath *indexPath = [self.collectionView indexPathForCell:cell];
+        NSIndexPath *indexPath = self.currentCellForItemAtIndexPath;
+        if (indexPath == nil) {
+            indexPath = [self.collectionView indexPathForCell:cell];
+        }
         controller = [self collectionView:collectionView instantiateViewControllerForCell:cell atIndexPath:indexPath];
         if (controller) {
             [self setViewController:controller forKey:key];
@@ -172,6 +176,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.currentCellForItemAtIndexPath = indexPath;
     NSString *identifier = [self collectionView:collectionView cellIdentifierAtIndexPath:indexPath];
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     if (!cell) {
@@ -182,6 +187,7 @@
         [self addChildViewController:controller];
     }
     [self collectionView:collectionView configureCell:cell atIndexPath:indexPath];
+    self.currentCellForItemAtIndexPath = nil;
     return cell;
 }
 

@@ -28,6 +28,7 @@
 @interface TLTableViewController ()
 @property (strong, nonatomic) NSMutableDictionary *prototypeCells;
 @property (strong, nonatomic) NSMutableDictionary *viewControllerByCellInstanceId;
+@property (weak, nonatomic) NSIndexPath *currentCellForRowAtIndexPath;
 @end
 
 @implementation TLTableViewController
@@ -157,7 +158,10 @@
     }
     
     if (!controller) {
-        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        NSIndexPath *indexPath = self.currentCellForRowAtIndexPath;
+        if (indexPath == nil) {
+            indexPath = [self.tableView indexPathForCell:cell];
+        }
         controller = [self tableView:tableView instantiateViewControllerForCell:cell atIndexPath:indexPath];
         if (controller) {
             [self setViewController:controller forKey:key];
@@ -190,6 +194,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    self.currentCellForRowAtIndexPath = indexPath;
     NSString *cellId = [self tableView:tableView cellIdentifierAtIndexPath:indexPath];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (!cell) {
@@ -200,6 +205,7 @@
         [self addChildViewController:controller];
     }
     [self tableView:tableView configureCell:cell atIndexPath:indexPath];
+    self.currentCellForRowAtIndexPath = nil;
     return cell;
 }
 

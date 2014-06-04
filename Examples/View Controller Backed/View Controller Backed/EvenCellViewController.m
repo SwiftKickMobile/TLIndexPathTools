@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Tractable Labs. All rights reserved.
 //
 
-#import "CellViewController.h"
+#import "EvenCellViewController.h"
 
-@interface CellViewController ()
+@interface EvenCellViewController ()
 
 @end
 
-@implementation CellViewController
+@implementation EvenCellViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
