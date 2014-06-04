@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="R1h-F9-VM6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="R1h-F9-VM6">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--Collection View Controller-->
@@ -38,10 +38,10 @@
             </objects>
             <point key="canvasLocation" x="729" y="301"/>
         </scene>
-        <!--Cell View Controller-->
+        <!--Even Cell View Controller-->
         <scene sceneID="j4o-t4-Xlr">
             <objects>
-                <viewController storyboardIdentifier="CellController" id="7UO-6Z-NM4" customClass="CellViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EvenCellController" id="7UO-6Z-NM4" customClass="EvenCellViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="80k-VN-pTo"/>
                         <viewControllerLayoutGuide type="bottom" id="7sz-ZZ-Bh6"/>
@@ -66,6 +66,7 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="200"/>
                     <connections>
                         <outlet property="label" destination="GH8-si-dNr" id="IR2-P0-CD9"/>
                     </connections>
@@ -73,6 +74,43 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QtZ-95-irq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1214" y="485"/>
+        </scene>
+        <!--Odd Cell View Controller-->
+        <scene sceneID="Zli-Gs-cnR">
+            <objects>
+                <viewController storyboardIdentifier="OddCellController" id="afg-zX-d8H" customClass="OddCellViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="VfA-9W-NR0"/>
+                        <viewControllerLayoutGuide type="bottom" id="N6q-Vz-5Sm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="L9x-bI-uaO">
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eRq-wc-21S">
+                                <rect key="frame" x="79" y="90" width="42" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.73178033759124084" green="0.92941182851791382" blue="0.92941182851791382" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="eRq-wc-21S" secondAttribute="centerX" id="RWN-rP-CPq"/>
+                            <constraint firstAttribute="centerY" secondItem="eRq-wc-21S" secondAttribute="centerY" id="yqB-fb-z7G"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="200" height="200"/>
+                    <connections>
+                        <outlet property="label" destination="eRq-wc-21S" id="Vjz-zr-xjY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rfQ-4Y-f8S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1214" y="179"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

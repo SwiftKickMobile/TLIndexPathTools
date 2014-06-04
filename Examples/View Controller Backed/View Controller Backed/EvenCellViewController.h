@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CellViewController : UIViewController
+@interface EvenCellViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UILabel *label;
 @end

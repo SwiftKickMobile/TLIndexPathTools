@@ -17,8 +17,9 @@
 		863A1D2B189EB75B00796395 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 863A1D2A189EB75B00796395 /* Images.xcassets */; };
 		863A1D48189EB83700796395 /* TLIndexPathTools.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 863A1D47189EB83700796395 /* TLIndexPathTools.xcodeproj */; };
 		863A1D4B189EB88800796395 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 863A1D4A189EB88800796395 /* CollectionViewController.m */; };
-		863A1D4E189EB89700796395 /* CellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 863A1D4D189EB89700796395 /* CellViewController.m */; };
+		863A1D4E189EB89700796395 /* EvenCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 863A1D4D189EB89700796395 /* EvenCellViewController.m */; };
 		863A1D50189EB94900796395 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 863A1D4F189EB94900796395 /* libTLIndexPathTools.a */; };
+		FD333EBC193F29C200D6E08D /* OddCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD333EBB193F29C200D6E08D /* OddCellViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,9 +49,11 @@
 		863A1D47189EB83700796395 /* TLIndexPathTools.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TLIndexPathTools.xcodeproj; path = ../../TLIndexPathTools.xcodeproj; sourceTree = "<group>"; };
 		863A1D49189EB88800796395 /* CollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionViewController.h; sourceTree = "<group>"; };
 		863A1D4A189EB88800796395 /* CollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionViewController.m; sourceTree = "<group>"; };
-		863A1D4C189EB89700796395 /* CellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellViewController.h; sourceTree = "<group>"; };
-		863A1D4D189EB89700796395 /* CellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellViewController.m; sourceTree = "<group>"; };
+		863A1D4C189EB89700796395 /* EvenCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EvenCellViewController.h; sourceTree = "<group>"; };
+		863A1D4D189EB89700796395 /* EvenCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EvenCellViewController.m; sourceTree = "<group>"; };
 		863A1D4F189EB94900796395 /* libTLIndexPathTools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTLIndexPathTools.a; path = "../../build/Debug-iphoneos/libTLIndexPathTools.a"; sourceTree = "<group>"; };
+		FD333EBA193F29C100D6E08D /* OddCellViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OddCellViewController.h; sourceTree = "<group>"; };
+		FD333EBB193F29C200D6E08D /* OddCellViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OddCellViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,8 +111,10 @@
 				863A1D19189EB75B00796395 /* Supporting Files */,
 				863A1D49189EB88800796395 /* CollectionViewController.h */,
 				863A1D4A189EB88800796395 /* CollectionViewController.m */,
-				863A1D4C189EB89700796395 /* CellViewController.h */,
-				863A1D4D189EB89700796395 /* CellViewController.m */,
+				863A1D4C189EB89700796395 /* EvenCellViewController.h */,
+				863A1D4D189EB89700796395 /* EvenCellViewController.m */,
+				FD333EBA193F29C100D6E08D /* OddCellViewController.h */,
+				FD333EBB193F29C200D6E08D /* OddCellViewController.m */,
 			);
 			path = "View Controller Backed";
 			sourceTree = "<group>";
@@ -217,8 +222,9 @@
 			files = (
 				863A1D23189EB75B00796395 /* AppDelegate.m in Sources */,
 				863A1D1F189EB75B00796395 /* main.m in Sources */,
-				863A1D4E189EB89700796395 /* CellViewController.m in Sources */,
+				863A1D4E189EB89700796395 /* EvenCellViewController.m in Sources */,
 				863A1D4B189EB88800796395 /* CollectionViewController.m in Sources */,
+				FD333EBC193F29C200D6E08D /* OddCellViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

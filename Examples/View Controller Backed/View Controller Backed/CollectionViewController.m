@@ -7,7 +7,8 @@
 //
 
 #import "CollectionViewController.h"
-#import "CellViewController.h"
+#import "EvenCellViewController.h"
+#import "OddCellViewController.h"
 
 /**
  Demonstrates view controller-backed cells, which are enabled by overriding
@@ -32,7 +33,13 @@
 
 - (UIViewController *)collectionView:(UICollectionView *)collectionView instantiateViewControllerForCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    CellViewController *controller = (CellViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"CellController"];
+    UIViewController* controller;
+
+    if (indexPath.row % 2 == 0) {
+        controller = [self.storyboard instantiateViewControllerWithIdentifier:@"EvenCellController"];
+    } else {
+        controller = [self.storyboard instantiateViewControllerWithIdentifier:@"OddCellController"];
+    }
     controller.view.frame = cell.bounds;
     // add controller's view to the cell. Don't do this in `cellForItemAtIndexpath` because it only
     // needs to be done once for a given cell.
@@ -45,9 +52,15 @@
     UICollectionViewCell *cell = [super collectionView:collectionView cellForItemAtIndexPath:indexPath];
     // retrieve the view controller for the given cell. Note that `TLCollectionViewController` keeps
     // track of this internally, so custom code does not need to do this bookkeeping.
-    CellViewController *controller = (CellViewController *)[self collectionView:collectionView viewControllerForCell:cell];
+    UIViewController *controller = [self collectionView:collectionView viewControllerForCell:cell atIndexPath:indexPath];
     NSString *item = [self.indexPathController.dataModel itemAtIndexPath:indexPath];
-    controller.label.text = item;
+
+    if (indexPath.row % 2 == 0) {
+        ((EvenCellViewController*)controller).label.text = item;
+    } else {
+        ((OddCellViewController*)controller).label.text = item;
+    }
+
     return cell;
 }
 
