@@ -11,6 +11,16 @@ Pod::Spec.new do |s|
 					* Provide a simpler alternative to Core Data NSFetchedResultsController
 					* Provide base table view and collection view classes with advanced features
 					
-0.3.2
-* Fix typo in TLIndexPathSectionInfo that resulted in indexTitle being ignored.
+                    0.3.2
+                    * Fix typo in TLIndexPathSectionInfo that resulted in indexTitle being ignored.
+                    DESC
+  s.homepage     = "http://tlindexpathtools.com"
+  s.license      = { :type => "MIT" }
+  s.author       = { "wtmoose" => "wtm@tractablelabs.com" }
+  s.source       = { :git => "https://github.com/wtmoose/TLIndexPathTools.git", :tag => '0.3.2' }
+  s.platform     = :ios, '6.0'
+  s.ios.deployment_target = '6.0'
+  s.source_files = 'TLIndexPathTools/**/*.{h,m}'
+  s.frameworks = 'UIKit', 'QuartzCore', 'CoreData', 'Foundation'
+  s.requires_arc = true
 end
