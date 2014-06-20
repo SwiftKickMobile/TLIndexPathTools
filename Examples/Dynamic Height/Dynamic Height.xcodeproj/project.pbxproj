@@ -20,6 +20,7 @@
 		862FF84B1759329200381869 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862FF84A1759329200381869 /* CoreData.framework */; };
 		862FF84D1759329900381869 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 862FF84C1759329900381869 /* QuartzCore.framework */; };
 		862FF850175932BA00381869 /* DynamicHeightTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 862FF84F175932BA00381869 /* DynamicHeightTableViewController.m */; };
+		864C6209195498170047900D /* DynamicHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 864C6208195498170047900D /* DynamicHeightCell.m */; };
 		86BFEA4517CD6A2A00262FE8 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86BFEA3517CD692100262FE8 /* libTLIndexPathTools.a */; };
 /* End PBXBuildFile section */
 
@@ -52,6 +53,8 @@
 		862FF84C1759329900381869 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		862FF84E175932BA00381869 /* DynamicHeightTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicHeightTableViewController.h; sourceTree = "<group>"; };
 		862FF84F175932BA00381869 /* DynamicHeightTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicHeightTableViewController.m; sourceTree = "<group>"; };
+		864C6207195498170047900D /* DynamicHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicHeightCell.h; sourceTree = "<group>"; };
+		864C6208195498170047900D /* DynamicHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicHeightCell.m; sourceTree = "<group>"; };
 		86BFEA2F17CD692100262FE8 /* TLIndexPathTools.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TLIndexPathTools.xcodeproj; path = ../../TLIndexPathTools.xcodeproj; sourceTree = "<group>"; };
 		86ECFC2517CD53D4003D13C0 /* libTLIndexPathTools.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTLIndexPathTools.a; path = "../../build/Release-iphoneos/libTLIndexPathTools.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,6 +116,8 @@
 				862FF82E1759328400381869 /* Supporting Files */,
 				862FF84E175932BA00381869 /* DynamicHeightTableViewController.h */,
 				862FF84F175932BA00381869 /* DynamicHeightTableViewController.m */,
+				864C6207195498170047900D /* DynamicHeightCell.h */,
+				864C6208195498170047900D /* DynamicHeightCell.m */,
 			);
 			path = "Dynamic Height";
 			sourceTree = "<group>";
@@ -221,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				864C6209195498170047900D /* DynamicHeightCell.m in Sources */,
 				862FF8341759328400381869 /* main.m in Sources */,
 				862FF8381759328400381869 /* AppDelegate.m in Sources */,
 				862FF850175932BA00381869 /* DynamicHeightTableViewController.m in Sources */,

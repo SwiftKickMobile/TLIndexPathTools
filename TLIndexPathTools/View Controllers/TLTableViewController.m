@@ -236,15 +236,27 @@
         UITableViewCell *cell = [self tableView:tableView prototypeForCellIdentifier:cellId];
         if ([cell conformsToProtocol:@protocol(TLDynamicSizeView)]) {
             id<TLDynamicSizeView> v = (id<TLDynamicSizeView>)cell;
-            id data;
-            if ([item isKindOfClass:[TLIndexPathItem class]]) {
-                TLIndexPathItem *i = (TLIndexPathItem *)item;
-                data = i.data;
+            if ([v respondsToSelector:@selector(sizeWithData:)]) {
+                // cell knows how to calculate its size
+                id data;
+                if ([item isKindOfClass:[TLIndexPathItem class]]) {
+                    TLIndexPathItem *i = (TLIndexPathItem *)item;
+                    data = i.data;
+                } else {
+                    data = item;
+                }
+                CGSize computedSize = [v sizeWithData:data];
+                return computedSize.height;
             } else {
-                data = item;
+                id tmp = self.currentCellForRowAtIndexPath;
+                self.currentCellForRowAtIndexPath = indexPath;
+                // automatically calculate size
+                [self tableView:tableView configureCell:cell atIndexPath:indexPath];
+                CGSize systemSize = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize];
+                self.currentCellForRowAtIndexPath = tmp;
+                CGFloat separatorHeight = tableView.separatorStyle == UITableViewCellSeparatorStyleNone ? 0 : 1 / [UIScreen mainScreen].scale;
+                return systemSize.height + separatorHeight;
             }
-            CGSize computedSize = [v sizeWithData:data];
-            return computedSize.height;
         } else {
             return cell.bounds.size.height;
         }
