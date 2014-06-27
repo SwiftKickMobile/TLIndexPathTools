@@ -39,7 +39,7 @@
     if (self = [super init]) {
         
         _oldDataModel = oldDataModel;
-        _updatedDataModel = updatedDataModel;performBatchUpdates
+        _updatedDataModel = updatedDataModel;
         _updateModifiedItems = YES;
         
         NSMutableArray *insertedSectionNames = [[NSMutableArray alloc] init];
