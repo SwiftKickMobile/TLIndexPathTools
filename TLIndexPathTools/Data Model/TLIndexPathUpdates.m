@@ -39,7 +39,7 @@
     if (self = [super init]) {
         
         _oldDataModel = oldDataModel;
-        _updatedDataModel = updatedDataModel;
+        _updatedDataModel = updatedDataModel;performBatchUpdates
         _updateModifiedItems = YES;
         
         NSMutableArray *insertedSectionNames = [[NSMutableArray alloc] init];
@@ -168,8 +168,8 @@
             for (id item in self.modifiedItems) {
                 NSIndexPath *indexPath = [self.updatedDataModel indexPathForItem:item];
                 [indexPaths addObject:indexPath];
-                [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
             }
+            [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
         }
         
         if (completion) {
