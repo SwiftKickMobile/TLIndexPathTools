@@ -168,8 +168,8 @@
             for (id item in self.modifiedItems) {
                 NSIndexPath *indexPath = [self.updatedDataModel indexPathForItem:item];
                 [indexPaths addObject:indexPath];
-                [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
             }
+            [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
         }
         
         if (completion) {
