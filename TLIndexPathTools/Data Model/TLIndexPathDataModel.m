@@ -369,6 +369,9 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
     if ([indexPath class] == [NSIndexPath class]) {
         return indexPath;
     }
+    if (indexPath == nil) {
+        return nil;
+    }
     return [NSIndexPath indexPathForRow:indexPath.row inSection:indexPath.section];
 }
 
