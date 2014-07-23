@@ -13,6 +13,9 @@ Pod::Spec.new do |s|
 					
                     0.3.6
                     * Fixed an issue where `TLIndexPathDataModel` APIs would return the wrong result when passed a `nil` index path.
+                    * Added `topInset` argument to `optimizeScrollPositionForSection` and `optimizeScrollPositionForIndexPaths`
+                      to prevnt the section or index paths from being pushed behind objects obscuring the top of the table,
+                      like the navigation bar.
                     DESC
   s.homepage     = "http://tlindexpathtools.com"
   s.license      = { :type => "MIT" }
