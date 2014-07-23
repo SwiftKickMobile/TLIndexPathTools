@@ -29,7 +29,11 @@ typedef NS_ENUM(NSInteger, TLTableViewScrollOptions) {
  */
 - (void)optimizeScrollPositionForSection:(NSInteger)section
                                  options:(TLTableViewScrollOptions)options
+                                topInset:(CGFloat)topInset
                                 animated:(BOOL)animated;
+- (void)optimizeScrollPositionForSection:(NSInteger)section
+                                 options:(TLTableViewScrollOptions)options
+                                animated:(BOOL)animated __attribute__ ((deprecated("added a topInset option")));
 
 /**
  Optimize the scroll postion to ensure as many rows of the given index
@@ -37,6 +41,10 @@ typedef NS_ENUM(NSInteger, TLTableViewScrollOptions) {
  */
 - (void)optimizeScrollPositionForIndexPaths:(NSArray *)indexPaths
                                     options:(TLTableViewScrollOptions)options
+                                   topInset:(CGFloat)topInset
                                    animated:(BOOL)animated;
+- (void)optimizeScrollPositionForIndexPaths:(NSArray *)indexPaths
+                                    options:(TLTableViewScrollOptions)options
+                                   animated:(BOOL)animated __attribute__ ((deprecated("added a topInset option")));
 
 @end

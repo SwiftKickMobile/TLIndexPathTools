@@ -12,12 +12,22 @@
 
 - (void)optimizeScrollPositionForSection:(NSInteger)section options:(TLTableViewScrollOptions)options animated:(BOOL)animated
 {
+    [self optimizeScrollPositionForSection:section options:options topInset:0 animated:animated];
+}
+
+- (void)optimizeScrollPositionForSection:(NSInteger)section options:(TLTableViewScrollOptions)options topInset:(CGFloat)topInset animated:(BOOL)animated
+{
     NSIndexPath *firstIndexPath = [NSIndexPath indexPathForRow:0 inSection:section];
     NSIndexPath *lastIndexPath = [NSIndexPath indexPathForRow:[self.dataSource tableView:self numberOfRowsInSection:section] - 1 inSection:section];
-    [self optimizeScrollPositionForIndexPaths:@[firstIndexPath, lastIndexPath] options:options animated:animated];
+    [self optimizeScrollPositionForIndexPaths:@[firstIndexPath, lastIndexPath] options:options topInset:topInset animated:animated];
 }
 
 - (void)optimizeScrollPositionForIndexPaths:(NSArray *)indexPaths options:(TLTableViewScrollOptions)options animated:(BOOL)animated
+{
+    [self optimizeScrollPositionForIndexPaths:indexPaths options:options topInset:0 animated:animated];
+}
+
+- (void)optimizeScrollPositionForIndexPaths:(NSArray *)indexPaths options:(TLTableViewScrollOptions)options topInset:(CGFloat)topInset animated:(BOOL)animated
 {
     [self layoutIfNeeded];
     CGRect rect = CGRectNull;
@@ -48,6 +58,7 @@
         contentSize.height = maxY;
         self.contentSize = contentSize;
     }
+    rect.size.height -= topInset;
     // truncate the height of the positioning rect if it's greater than the
     // table view's height because we want to ensure the top cells are visible.
     rect.size.height = MIN(self.bounds.size.height, rect.size.height);
