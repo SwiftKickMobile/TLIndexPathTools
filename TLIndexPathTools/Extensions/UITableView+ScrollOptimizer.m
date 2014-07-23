@@ -58,10 +58,9 @@
         contentSize.height = maxY;
         self.contentSize = contentSize;
     }
-    rect.size.height -= topInset;
     // truncate the height of the positioning rect if it's greater than the
     // table view's height because we want to ensure the top cells are visible.
-    rect.size.height = MIN(self.bounds.size.height, rect.size.height);
+    rect.size.height = MIN(self.bounds.size.height - topInset, rect.size.height);
     [self scrollRectToVisible:rect animated:animated];
 }
 
