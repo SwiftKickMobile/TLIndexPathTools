@@ -16,7 +16,7 @@ Artifacts
 *.perspective
 *.perspectivev3
 *.pbxuser
-xcuserdata
+*.xcuserdata
 
 #AppCode excludes
 .idea
