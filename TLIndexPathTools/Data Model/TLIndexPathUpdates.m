@@ -151,6 +151,9 @@
 {
     if (!self.oldDataModel) {
         [tableView reloadData];
+        if (completion) {
+            completion(YES);
+        }
         return;
     }
 
