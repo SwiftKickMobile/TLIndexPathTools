@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TLIndexPathTools"
-  s.version      = "0.3.6"
+  s.version      = "0.3.7"
   s.summary      = "TLIndexPathTools is a small set of classes that can greatly simplify your table and collection views."
   s.description  = <<-DESC
 					TLIndexPathTools is a small set of classes that can greatly simplify your table and collection views. Here are some of the awesome things TLIndexPathTools does:
@@ -11,16 +11,13 @@ Pod::Spec.new do |s|
 					* Provide a simpler alternative to Core Data NSFetchedResultsController
 					* Provide base table view and collection view classes with advanced features
 					
-                    0.3.6
-                    * Fixed an issue where `TLIndexPathDataModel` APIs would return the wrong result when passed a `nil` index path.
-                    * Added `topInset` argument to `optimizeScrollPositionForSection` and `optimizeScrollPositionForIndexPaths`
-                      to prevnt the section or index paths from being pushed behind objects obscuring the top of the table,
-                      like the navigation bar.
+                    0.3.7
+                    * Invoke completion block on `UITableView` when updating from nil dataModel
                     DESC
   s.homepage     = "http://tlindexpathtools.com"
   s.license      = { :type => "MIT" }
   s.author       = { "wtmoose" => "wtm@tractablelabs.com" }
-  s.source       = { :git => "https://github.com/wtmoose/TLIndexPathTools.git", :tag => '0.3.6' }
+  s.source       = { :git => "https://github.com/wtmoose/TLIndexPathTools.git", :tag => '0.3.7' }
   s.platform     = :ios, '6.0'
   s.ios.deployment_target = '6.0'
   s.source_files = 'TLIndexPathTools/**/*.{h,m}'
