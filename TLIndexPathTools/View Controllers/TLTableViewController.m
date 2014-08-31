@@ -275,6 +275,7 @@
 
 - (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates
 {
+    if (!updates.hasChanges) { return; }
     //only perform batch udpates if view is visible
     if (self.isViewLoaded && self.view.window) {
         [updates performBatchUpdatesOnTableView:self.tableView withRowAnimation:self.rowAnimationStyle];

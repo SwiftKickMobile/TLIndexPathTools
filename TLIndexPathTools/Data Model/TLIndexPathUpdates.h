@@ -56,6 +56,7 @@
 
 @property (strong, readonly, nonatomic) TLIndexPathDataModel *oldDataModel;
 @property (strong, readonly, nonatomic) TLIndexPathDataModel *updatedDataModel;
+@property (readonly, nonatomic) BOOL hasChanges;
 @property (copy, readonly, nonatomic) NSArray *insertedSectionNames;
 @property (copy, readonly, nonatomic) NSArray *deletedSectionNames;
 @property (copy, readonly, nonatomic) NSArray *movedSectionNames;
@@ -63,5 +64,4 @@
 @property (copy, readonly, nonatomic) NSArray *deletedItems;
 @property (copy, readonly, nonatomic) NSArray *movedItems;
 @property (copy, readonly, nonatomic) NSArray *modifiedItems;
-
 @end

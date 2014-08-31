@@ -38,6 +38,8 @@
 {
     if (self = [super init]) {
         
+        _hasChanges = NO;
+        
         _oldDataModel = oldDataModel;
         _updatedDataModel = updatedDataModel;
         _updateModifiedItems = YES;
@@ -139,6 +141,11 @@
         }
     }
     
+    if (_movedSectionNames.count + _insertedSectionNames.count + _deletedSectionNames.count
+        + _movedItems.count + _insertedItems.count + _deletedItems.count + _modifiedItems.count > 0) {
+        _hasChanges = YES;
+    }
+    
     return self;
 }
 
@@ -158,6 +165,8 @@
     }
 
     [CATransaction begin];
+
+    NSLog(@"performBatchUpdatesOnTableView");
 
     [CATransaction setCompletionBlock: ^{
         
