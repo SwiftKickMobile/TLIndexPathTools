@@ -166,8 +166,6 @@
 
     [CATransaction begin];
 
-    NSLog(@"performBatchUpdatesOnTableView");
-
     [CATransaction setCompletionBlock: ^{
         
         //modified items have to be reloaded after all other batch updates
