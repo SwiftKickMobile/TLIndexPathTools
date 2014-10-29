@@ -61,6 +61,7 @@
 {
     _indexPathController = [[TLIndexPathController alloc] init];
     _indexPathController.delegate = self;
+    _establishContainmentRelationshipWithViewControllerForCell = YES;
 }
 
 #pragma mark - Index path controller
