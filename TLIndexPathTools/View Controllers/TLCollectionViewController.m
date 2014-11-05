@@ -153,6 +153,12 @@
     return controller;
 }
 
+- (UIViewController *)collectionView:(UICollectionView *)collectionView existingViewControllerForCell:(UICollectionViewCell *)cell {
+    NSString *key = [self instanceId:cell];
+    UIViewController *controller = [self.viewControllerByCellInstanceId objectForKey:key];
+    return controller;
+}
+
 - (UIViewController *)collectionView:(UICollectionView *)collectionView instantiateViewControllerForCell:(UICollectionViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     return nil;
@@ -211,7 +217,10 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIViewController *controller = [self collectionView:collectionView viewControllerForCell:cell];
+    // Check for existing view controller instead of calling `viewControllerForCell` because sometimes this
+    // method can be called with an old index path after a `reloadData` and the wrong view controller
+    // can get returned.
+    UIViewController *controller = [self collectionView:collectionView existingViewControllerForCell:cell];
     [controller removeFromParentViewController];
 }
 
