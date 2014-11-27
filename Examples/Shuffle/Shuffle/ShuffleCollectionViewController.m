@@ -30,7 +30,12 @@
            @[@"E", [UIColor colorWithHexRGB:0xF4E353]],
            @[@"F", [UIColor colorWithHexRGB:0x537B28]],
            ];
-    self.indexPathController.items = items;
+    // arrays don't make good item identifiers because they make very slow dictionary keys,
+    // so we'll provide an explicit string identifier using the block-based data model initializer
+    self.indexPathController.dataModel = [[TLIndexPathDataModel alloc] initWithItems:items sectionNameBlock:nil identifierBlock:^id(id item) {
+        return item[0];
+    }];
+//    self.indexPathController.items = items;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -54,7 +59,11 @@
     for (int i = 0; i < count; i++) {
         [shuffledItems exchangeObjectAtIndex:i withObjectAtIndex:arc4random() % count];
     }
-    self.indexPathController.items = shuffledItems;
+    // arrays don't make good item identifiers because they make very slow dictionary keys,
+    // so we'll provide an explicit string identifier using the block-based data model initializer
+    self.indexPathController.dataModel = [[TLIndexPathDataModel alloc] initWithItems:shuffledItems sectionNameBlock:nil identifierBlock:^id(id item) {
+        return item[0];
+    }];
 }
 
 @end

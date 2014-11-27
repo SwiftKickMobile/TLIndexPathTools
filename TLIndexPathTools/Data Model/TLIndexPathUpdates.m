@@ -92,8 +92,7 @@
         }
         
         // Deleted and moved items
-        NSOrderedSet *oldItems = [NSOrderedSet orderedSetWithArray:[oldDataModel items]];        
-        for (id item in oldItems) {
+        for (id item in oldDataModel.items) {
             NSIndexPath *oldIndexPath = [oldDataModel indexPathForItem:item];
             NSString *sectionName = [oldDataModel sectionNameForSection:oldIndexPath.section];
             if ([updatedDataModel containsItem:item]) {
@@ -123,8 +122,7 @@
         }
         
         // Inserted and modified items
-        NSOrderedSet *updatedItems = [NSOrderedSet orderedSetWithArray:[updatedDataModel items]];
-        for (id item in updatedItems) {
+        for (id item in updatedDataModel.items) {
             id oldItem = [oldDataModel currentVersionOfItem:item];
             if (oldItem) {
                 if (![oldItem isEqual:item]) {
