@@ -61,7 +61,7 @@
 {
     return [[TLIndexPathTreeItem alloc] initWithIdentifier:identifier
                                                sectionName:nil
-                                            cellIdentifier:[NSString stringWithFormat:@"Level%d", level]
+                                            cellIdentifier:[NSString stringWithFormat:@"Level%d", (int)level]
                                                       data:nil andChildItems:children];
 }
 

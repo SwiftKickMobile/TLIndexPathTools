@@ -342,7 +342,7 @@
 		B145DAB1179EE94300CF270E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Tractable Labs";
 			};
 			buildConfigurationList = B145DAB4179EE94300CF270E /* Build configuration list for PBXProject "TLIndexPathTools" */;
@@ -505,7 +505,6 @@
 		B145DAC8179EE94300CF270E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				DSTROOT = /tmp/TLIndexPathTools.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TLIndexPathTools/TLIndexPathTools-Prefix.pch";
@@ -520,7 +519,6 @@
 		B145DAC9179EE94300CF270E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				DSTROOT = /tmp/TLIndexPathTools.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TLIndexPathTools/TLIndexPathTools-Prefix.pch";
