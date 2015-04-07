@@ -137,11 +137,11 @@
                 }
             }
         }
-    }
-    
-    if (_movedSectionNames.count + _insertedSectionNames.count + _deletedSectionNames.count
-        + _movedItems.count + _insertedItems.count + _deletedItems.count + _modifiedItems.count > 0) {
-        _hasChanges = YES;
+
+        if (_movedSectionNames.count + _insertedSectionNames.count + _deletedSectionNames.count
+            + _movedItems.count + _insertedItems.count + _deletedItems.count + _modifiedItems.count > 0) {
+            _hasChanges = YES;
+        }
     }
     
     return self;
