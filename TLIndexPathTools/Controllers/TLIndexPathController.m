@@ -208,7 +208,9 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
         if (updates.modifiedItems) {
             [self.updatedItems addObjectsFromArray:updates.modifiedItems];
         }
+        #pragma clang diagnostic ignored "-Wundeclared-selector"
         [updates performSelector:@selector(setModifiedItems:) withObject:self.updatedItems];
+        #pragma clang diagnostic pop
         [self.updatedItems removeAllObjects];
     }
     if ([self.delegate respondsToSelector:@selector(controller:didUpdateDataModel:)] && !self.ignoreDataModelChanges) {
