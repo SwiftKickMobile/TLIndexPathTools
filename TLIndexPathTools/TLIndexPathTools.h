@@ -25,6 +25,7 @@
 
 #pragma mark - Extensions
 
+#import "TLDynamicHeightCell.h"
 #import "TLDynamicHeightLabelCell.h"
 #import "UITableView+ScrollOptimizer.h"
 #import "TLIndexPathTreeItem.h"

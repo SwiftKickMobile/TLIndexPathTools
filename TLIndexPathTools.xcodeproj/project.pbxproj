@@ -40,10 +40,12 @@
 		8601E74417CD19E500DEE315 /* TLTreeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8601E72117CD19E500DEE315 /* TLTreeDataModel.m */; };
 		8601E74617CD19E500DEE315 /* TLTreeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8601E72317CD19E500DEE315 /* TLTreeTableViewController.m */; };
 		8601E74817CD19E500DEE315 /* UITableViewController+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8601E72517CD19E500DEE315 /* UITableViewController+ScrollOptimizer.m */; };
+		862462E91AD5A6300030AC10 /* TLDynamicHeightCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 862462E71AD5A6300030AC10 /* TLDynamicHeightCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		862462EA1AD5A6300030AC10 /* TLDynamicHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 862462E81AD5A6300030AC10 /* TLDynamicHeightCell.m */; };
+		8673278E1AD59A360048BF31 /* UITableView+ScrollOptimizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 86CBF3FC190B06350091EBE8 /* UITableView+ScrollOptimizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		867327901AD5A0C80048BF31 /* TLIndexPathTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 8673278F1AD5A0C80048BF31 /* TLIndexPathTools.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		86CB5A9518AF38FE003039CC /* TLDynamicHeightLabelCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CB5A9318AF38FE003039CC /* TLDynamicHeightLabelCell.m */; };
 		86CB5A9618AF393E003039CC /* TLDynamicHeightLabelCell.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 86CB5A9218AF38FE003039CC /* TLDynamicHeightLabelCell.h */; };
-		86CBF3ED190B04D50091EBE8 /* TLIndexPathTools.h in Headers */ = {isa = PBXBuildFile; fileRef = 86CBF3EB190B04D50091EBE8 /* TLIndexPathTools.h */; };
-		86CBF3FE190B06350091EBE8 /* UITableView+ScrollOptimizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 86CBF3FC190B06350091EBE8 /* UITableView+ScrollOptimizer.h */; };
 		86CBF3FF190B06350091EBE8 /* UITableView+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 86CBF3FD190B06350091EBE8 /* UITableView+ScrollOptimizer.m */; };
 		86ECFC0517CD4C1E003D13C0 /* TLCollapsibleDataModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8601E6FE17CD19E400DEE315 /* TLCollapsibleDataModel.h */; };
 		86ECFC0617CD4C1E003D13C0 /* TLCollapsibleHeaderView.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8601E70017CD19E400DEE315 /* TLCollapsibleHeaderView.h */; };
@@ -120,10 +122,12 @@
 		8601E72317CD19E500DEE315 /* TLTreeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTreeTableViewController.m; sourceTree = "<group>"; };
 		8601E72417CD19E500DEE315 /* UITableViewController+ScrollOptimizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+ScrollOptimizer.h"; sourceTree = "<group>"; };
 		8601E72517CD19E500DEE315 /* UITableViewController+ScrollOptimizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+ScrollOptimizer.m"; sourceTree = "<group>"; };
+		862462E71AD5A6300030AC10 /* TLDynamicHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDynamicHeightCell.h; sourceTree = "<group>"; };
+		862462E81AD5A6300030AC10 /* TLDynamicHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDynamicHeightCell.m; sourceTree = "<group>"; };
+		8673278F1AD5A0C80048BF31 /* TLIndexPathTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathTools.h; sourceTree = "<group>"; };
 		86B0084E17CD15BE00B86B04 /* readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.markdown; sourceTree = "<group>"; };
 		86CB5A9218AF38FE003039CC /* TLDynamicHeightLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDynamicHeightLabelCell.h; sourceTree = "<group>"; };
 		86CB5A9318AF38FE003039CC /* TLDynamicHeightLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDynamicHeightLabelCell.m; sourceTree = "<group>"; };
-		86CBF3EB190B04D50091EBE8 /* TLIndexPathTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathTools.h; sourceTree = "<group>"; };
 		86CBF3FC190B06350091EBE8 /* UITableView+ScrollOptimizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+ScrollOptimizer.h"; sourceTree = "<group>"; };
 		86CBF3FD190B06350091EBE8 /* UITableView+ScrollOptimizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+ScrollOptimizer.m"; sourceTree = "<group>"; };
 		86E8EEF51902249200AD6A51 /* TLIndexPathTools.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TLIndexPathTools.podspec; sourceTree = "<group>"; };
@@ -168,13 +172,15 @@
 		8601E6FC17CD19E400DEE315 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				86CBF3FC190B06350091EBE8 /* UITableView+ScrollOptimizer.h */,
-				86CBF3FD190B06350091EBE8 /* UITableView+ScrollOptimizer.m */,
+				862462E71AD5A6300030AC10 /* TLDynamicHeightCell.h */,
+				862462E81AD5A6300030AC10 /* TLDynamicHeightCell.m */,
 				8601E6FD17CD19E400DEE315 /* Collapsible */,
 				8601E71517CD19E500DEE315 /* No Results */,
 				86CB5A9218AF38FE003039CC /* TLDynamicHeightLabelCell.h */,
 				86CB5A9318AF38FE003039CC /* TLDynamicHeightLabelCell.m */,
 				8601E71D17CD19E500DEE315 /* Tree */,
+				86CBF3FC190B06350091EBE8 /* UITableView+ScrollOptimizer.h */,
+				86CBF3FD190B06350091EBE8 /* UITableView+ScrollOptimizer.m */,
 				8601E72417CD19E500DEE315 /* UITableViewController+ScrollOptimizer.h */,
 				8601E72517CD19E500DEE315 /* UITableViewController+ScrollOptimizer.m */,
 			);
@@ -253,8 +259,8 @@
 				B145DB45179EEB3900CF270E /* Data Model */,
 				8601E6FC17CD19E400DEE315 /* Extensions */,
 				B145DABF179EE94300CF270E /* Supporting Files */,
+				8673278F1AD5A0C80048BF31 /* TLIndexPathTools.h */,
 				B145DB76179EEB3900CF270E /* View Controllers */,
-				86CBF3EB190B04D50091EBE8 /* TLIndexPathTools.h */,
 			);
 			path = TLIndexPathTools;
 			sourceTree = "<group>";
@@ -310,8 +316,9 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86CBF3ED190B04D50091EBE8 /* TLIndexPathTools.h in Headers */,
-				86CBF3FE190B06350091EBE8 /* UITableView+ScrollOptimizer.h in Headers */,
+				862462E91AD5A6300030AC10 /* TLDynamicHeightCell.h in Headers */,
+				867327901AD5A0C80048BF31 /* TLIndexPathTools.h in Headers */,
+				8673278E1AD59A360048BF31 /* UITableView+ScrollOptimizer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				862462EA1AD5A6300030AC10 /* TLDynamicHeightCell.m in Sources */,
 				B145DB81179EEB3900CF270E /* TLIndexPathController.m in Sources */,
 				B145DB83179EEB3900CF270E /* TLIndexPathDataModel.m in Sources */,
 				B145DB85179EEB3900CF270E /* TLIndexPathItem.m in Sources */,
@@ -475,6 +483,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -497,6 +506,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

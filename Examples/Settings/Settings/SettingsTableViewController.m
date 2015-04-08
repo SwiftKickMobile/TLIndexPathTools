@@ -6,10 +6,28 @@
 //  Copyright (c) 2013 Tractable Labs. All rights reserved.
 //
 
+/**
+ Demonstrates the fix for issue #36.
+ 
+ In previous versions of TLTableViewController, the logic for heightForRowAtIndexPath
+ would in certain scenarios dequeue a cell from the storyboard and return that cell's
+ height. This case is problematic with new storyboards that use size classes because
+ the dequeued cells have zero height. The new version of heightForRowAtIndexPath
+ detects this case and returns UITableViewAutomaticDimension instead of zero, which
+ falls back (or perhaps forward) to the new auto sizing cell behavior.
+ 
+ Note that UITableViewAutomaticDimension appears to have some animation issues. In
+ particular, the cells below the "volume" cell visibly jump when the "volume" cell
+ appears. I assume this is related to the cell being taller than the other cells
+ and the UITableViewAutomaticDimension behavior setting up the animations with
+ starting values based on the default cell height. The workaround for this issue
+ was to make the "volume" cell and instance of TLDynamicHeightCell, which causes
+ TLTableViewController's classic cell height calculation to kick in.
+ */
+
 #import "SettingsTableViewController.h"
 
-#import <TLIndexPathTools/TLIndexPathDataModel.h>
-#import <TLIndexPathTools/TLIndexPathItem.h>
+#import <TLIndexPathTools/TLIndexPathTools.h>
 
 //item identifiers for the data model are also used as the display text for the labels.
 //For unique options (i.e. all options except difficulty level settings), item IDs
@@ -94,7 +112,7 @@
         }
         
     }
-    
+
     else {
         
         //otherwise, show expandable difficulty level row
@@ -127,7 +145,7 @@
 
     else if ([ITEM_ID_VOLUME_LEVEL isEqualToString:item.identifier]) {
         UILabel *label = (UILabel *)[cell viewWithTag:1];
-        label.text = [NSString stringWithFormat:@"Volume %d", self.volumeLevel];
+        label.text = [NSString stringWithFormat:@"Volume %ld", (long)self.volumeLevel];
         UISlider *slider = (UISlider *)[cell viewWithTag:2];
         slider.value = self.volumeLevel;
         slider.maximumValue = 100;
