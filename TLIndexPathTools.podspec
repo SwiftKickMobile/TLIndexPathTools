@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TLIndexPathTools"
-  s.version      = "0.3.10"
+  s.version      = "0.3.11"
   s.summary      = "TLIndexPathTools is a small set of classes that can greatly simplify your table and collection views."
   s.description  = <<-DESC
 					TLIndexPathTools is a small set of classes that can greatly simplify your table and collection views. Here are some of the awesome things TLIndexPathTools does:
@@ -10,14 +10,11 @@ Pod::Spec.new do |s|
 					* Simplify data source and delegate methods via rich data model APIs
 					* Provide a simpler alternative to Core Data NSFetchedResultsController
 					* Provide base table view and collection view classes with advanced features
-					
-                    0.3.10
-                    * Add workaround for issue #36 - TLTableViewController doesn't configure cells correctly under iOS 8
                     DESC
   s.homepage     = "http://tlindexpathtools.com"
   s.license      = { :type => "MIT" }
   s.author       = { "wtmoose" => "wtm@tractablelabs.com" }
-  s.source       = { :git => "https://github.com/wtmoose/TLIndexPathTools.git", :tag => '0.3.10' }
+  s.source       = { :git => "https://github.com/wtmoose/TLIndexPathTools.git", :tag => '0.3.11' }
   s.platform     = :ios, '6.0'
   s.ios.deployment_target = '6.0'
   s.source_files = 'TLIndexPathTools/**/*.{h,m}'
