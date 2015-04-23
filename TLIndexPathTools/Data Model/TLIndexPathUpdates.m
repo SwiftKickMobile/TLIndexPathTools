@@ -403,7 +403,7 @@
 - (void)setModifiedItems:(NSArray *)modifiedItems
 {
     _modifiedItems = [modifiedItems copy];
-    _hasChanges = _modifiedItems.count != 0;
+    _hasChanges = self.hasChanges || _modifiedItems.count != 0;
 }
 
 @end
