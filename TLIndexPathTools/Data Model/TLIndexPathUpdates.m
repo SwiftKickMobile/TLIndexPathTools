@@ -30,6 +30,7 @@
 
 @interface TLIndexPathUpdates ()
 @property (copy, readwrite, nonatomic) NSArray *modifiedItems;
+@property (readwrite, nonatomic) BOOL hasChanges;
 @end
 
 @implementation TLIndexPathUpdates
@@ -403,7 +404,7 @@
 - (void)setModifiedItems:(NSArray *)modifiedItems
 {
     _modifiedItems = [modifiedItems copy];
-    _hasChanges = self.hasChanges || _modifiedItems.count != 0;
+    self.hasChanges = self.hasChanges || _modifiedItems.count != 0;
 }
 
 @end
