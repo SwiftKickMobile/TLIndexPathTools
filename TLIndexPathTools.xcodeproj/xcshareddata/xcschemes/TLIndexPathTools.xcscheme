@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0610"
+   LastUpgradeVersion = "0630"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,23 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B145DAB8179EE94300CF270E"
-               BuildableName = "libTLIndexPathTools.a"
+               BlueprintIdentifier = "86029DF21AEEAC2E00ED36D7"
+               BuildableName = "TLIndexPathTools.framework"
                BlueprintName = "TLIndexPathTools"
+               ReferencedContainer = "container:TLIndexPathTools.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "86029DFC1AEEAC2E00ED36D7"
+               BuildableName = "TLIndexPathToolsTests.xctest"
+               BlueprintName = "TLIndexPathToolsTests"
                ReferencedContainer = "container:TLIndexPathTools.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -28,7 +42,26 @@
       shouldUseLaunchSchemeArgsEnv = "YES"
       buildConfiguration = "Debug">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "86029DFC1AEEAC2E00ED36D7"
+               BuildableName = "TLIndexPathToolsTests.xctest"
+               BlueprintName = "TLIndexPathToolsTests"
+               ReferencedContainer = "container:TLIndexPathTools.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "86029DF21AEEAC2E00ED36D7"
+            BuildableName = "TLIndexPathTools.framework"
+            BlueprintName = "TLIndexPathTools"
+            ReferencedContainer = "container:TLIndexPathTools.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </TestAction>
    <LaunchAction
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
@@ -42,8 +75,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B145DAB8179EE94300CF270E"
-            BuildableName = "libTLIndexPathTools.a"
+            BlueprintIdentifier = "86029DF21AEEAC2E00ED36D7"
+            BuildableName = "TLIndexPathTools.framework"
             BlueprintName = "TLIndexPathTools"
             ReferencedContainer = "container:TLIndexPathTools.xcodeproj">
          </BuildableReference>
@@ -57,6 +90,15 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "86029DF21AEEAC2E00ED36D7"
+            BuildableName = "TLIndexPathTools.framework"
+            BlueprintName = "TLIndexPathTools"
+            ReferencedContainer = "container:TLIndexPathTools.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

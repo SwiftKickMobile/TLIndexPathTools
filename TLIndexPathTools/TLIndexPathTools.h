@@ -2,9 +2,17 @@
 //  TLIndexPathTools.h
 //  TLIndexPathTools
 //
-//  Created by Tim Moose on 4/25/14.
-//  Copyright (c) 2014 Tractable Labs. All rights reserved.
+//  Created by Tim Moose on 4/27/15.
+//  Copyright (c) 2015 Tractable Labs. All rights reserved.
 //
+
+#import <UIKit/UIKit.h>
+
+//! Project version number for TLIndexPathTools.
+FOUNDATION_EXPORT double TLIndexPathToolsVersionNumber;
+
+//! Project version string for TLIndexPathTools.
+FOUNDATION_EXPORT const unsigned char TLIndexPathToolsVersionString[];
 
 #pragma mark - Core data mode components
 
@@ -28,6 +36,7 @@
 #import "TLDynamicHeightCell.h"
 #import "TLDynamicHeightLabelCell.h"
 #import "UITableView+ScrollOptimizer.h"
+#import "UITableViewController+ScrollOptimizer.h"
 #import "TLIndexPathTreeItem.h"
 #import "TLTreeDataModel.h"
 #import "TLTreeTableViewController.h"
@@ -35,3 +44,5 @@
 #import "TLCollapsibleDataModel.h"
 #import "TLCollapsibleHeaderView.h"
 #import "TLCollapsibleTableViewController.h"
+
+

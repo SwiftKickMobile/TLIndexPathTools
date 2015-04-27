@@ -13,8 +13,6 @@
 
 #import "BlocksTableViewController.h"
 
-#import <TLIndexPathTools/TLIndexPathDataModel.h>
-
 @implementation BlocksTableViewController
 
     - (void)viewDidLoad

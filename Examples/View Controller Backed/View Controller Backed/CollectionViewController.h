@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Tractable Labs. All rights reserved.
 //
 
-#import <TLIndexPathTools/TLCollectionViewController.h>
+#import <TLIndexPathTools/TLIndexPathTools.h>
 
 @interface CollectionViewController : TLCollectionViewController
 

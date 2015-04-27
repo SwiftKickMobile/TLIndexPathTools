@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86029E471AEEB82400ED36D7 /* TLIndexPathTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860B7B0017EA02CB00C984B4 /* TLIndexPathTools.framework */; };
 		860B7AB017E9F89900C984B4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860B7AAF17E9F89900C984B4 /* Foundation.framework */; };
 		860B7AB217E9F89900C984B4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860B7AB117E9F89900C984B4 /* CoreGraphics.framework */; };
 		860B7AB417E9F89900C984B4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860B7AB317E9F89900C984B4 /* UIKit.framework */; };
@@ -15,7 +16,6 @@
 		860B7AC017E9F89900C984B4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 860B7ABF17E9F89900C984B4 /* AppDelegate.m */; };
 		860B7AC317E9F89900C984B4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 860B7AC117E9F89900C984B4 /* Main.storyboard */; };
 		860B7AC817E9F89900C984B4 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 860B7AC717E9F89900C984B4 /* Images.xcassets */; };
-		860B7AE517E9FE6C00C984B4 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 860B7AE417E9FE6C00C984B4 /* libTLIndexPathTools.a */; };
 		860B7AE817E9FF4000C984B4 /* BlocksTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 860B7AE717E9FF4000C984B4 /* BlocksTableViewController.m */; };
 		860B7AEA17E9FFC500C984B4 /* TLIndexPathTools.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 860B7AE917E9FFC500C984B4 /* TLIndexPathTools.xcodeproj */; };
 		860B7AEC17EA024500C984B4 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 860B7AEB17EA024500C984B4 /* CoreData.framework */; };
@@ -23,6 +23,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		86029E451AEEB7C400ED36D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 860B7AE917E9FFC500C984B4 /* TLIndexPathTools.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 86029DFD1AEEAC2E00ED36D7;
+			remoteInfo = TLIndexPathToolsTests;
+		};
 		860B7AFF17EA02CB00C984B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 860B7AE917E9FFC500C984B4 /* TLIndexPathTools.xcodeproj */;
@@ -59,9 +66,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86029E471AEEB82400ED36D7 /* TLIndexPathTools.framework in Frameworks */,
 				860B7AEE17EA024E00C984B4 /* QuartzCore.framework in Frameworks */,
 				860B7AEC17EA024500C984B4 /* CoreData.framework in Frameworks */,
-				860B7AE517E9FE6C00C984B4 /* libTLIndexPathTools.a in Frameworks */,
 				860B7AB217E9F89900C984B4 /* CoreGraphics.framework in Frameworks */,
 				860B7AB417E9F89900C984B4 /* UIKit.framework in Frameworks */,
 				860B7AB017E9F89900C984B4 /* Foundation.framework in Frameworks */,
@@ -131,7 +138,8 @@
 		860B7AFA17EA02CB00C984B4 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				860B7B0017EA02CB00C984B4 /* libTLIndexPathTools.a */,
+				860B7B0017EA02CB00C984B4 /* TLIndexPathTools.framework */,
+				86029E461AEEB7C400ED36D7 /* TLIndexPathToolsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -190,10 +198,17 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		860B7B0017EA02CB00C984B4 /* libTLIndexPathTools.a */ = {
+		86029E461AEEB7C400ED36D7 /* TLIndexPathToolsTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libTLIndexPathTools.a;
+			fileType = wrapper.cfbundle;
+			path = TLIndexPathToolsTests.xctest;
+			remoteRef = 86029E451AEEB7C400ED36D7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		860B7B0017EA02CB00C984B4 /* TLIndexPathTools.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TLIndexPathTools.framework;
 			remoteRef = 860B7AFF17EA02CB00C984B4 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

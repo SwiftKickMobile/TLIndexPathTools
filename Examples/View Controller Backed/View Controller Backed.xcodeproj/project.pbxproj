@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		86029E4E1AEEB8B400ED36D7 /* TLIndexPathTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863A1D8418A077BD00796395 /* TLIndexPathTools.framework */; };
 		863A1D13189EB75B00796395 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863A1D12189EB75B00796395 /* Foundation.framework */; };
 		863A1D15189EB75B00796395 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863A1D14189EB75B00796395 /* CoreGraphics.framework */; };
 		863A1D17189EB75B00796395 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 863A1D16189EB75B00796395 /* UIKit.framework */; };
@@ -18,11 +19,17 @@
 		863A1D48189EB83700796395 /* TLIndexPathTools.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 863A1D47189EB83700796395 /* TLIndexPathTools.xcodeproj */; };
 		863A1D4B189EB88800796395 /* CollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 863A1D4A189EB88800796395 /* CollectionViewController.m */; };
 		863A1D4E189EB89700796395 /* EvenCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 863A1D4D189EB89700796395 /* EvenCellViewController.m */; };
-		863A1D50189EB94900796395 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 863A1D4F189EB94900796395 /* libTLIndexPathTools.a */; };
 		FD333EBC193F29C200D6E08D /* OddCellViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FD333EBB193F29C200D6E08D /* OddCellViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		86029E4C1AEEB8AB00ED36D7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 863A1D47189EB83700796395 /* TLIndexPathTools.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 86029DFD1AEEAC2E00ED36D7;
+			remoteInfo = TLIndexPathToolsTests;
+		};
 		863A1D8318A077BD00796395 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 863A1D47189EB83700796395 /* TLIndexPathTools.xcodeproj */;
@@ -61,7 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				863A1D50189EB94900796395 /* libTLIndexPathTools.a in Frameworks */,
+				86029E4E1AEEB8B400ED36D7 /* TLIndexPathTools.framework in Frameworks */,
 				863A1D15189EB75B00796395 /* CoreGraphics.framework in Frameworks */,
 				863A1D17189EB75B00796395 /* UIKit.framework in Frameworks */,
 				863A1D13189EB75B00796395 /* Foundation.framework in Frameworks */,
@@ -133,7 +140,8 @@
 		863A1D7D18A077BD00796395 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				863A1D8418A077BD00796395 /* libTLIndexPathTools.a */,
+				863A1D8418A077BD00796395 /* TLIndexPathTools.framework */,
+				86029E4D1AEEB8AB00ED36D7 /* TLIndexPathToolsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -192,10 +200,17 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		863A1D8418A077BD00796395 /* libTLIndexPathTools.a */ = {
+		86029E4D1AEEB8AB00ED36D7 /* TLIndexPathToolsTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libTLIndexPathTools.a;
+			fileType = wrapper.cfbundle;
+			path = TLIndexPathToolsTests.xctest;
+			remoteRef = 86029E4C1AEEB8AB00ED36D7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		863A1D8418A077BD00796395 /* TLIndexPathTools.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TLIndexPathTools.framework;
 			remoteRef = 863A1D8318A077BD00796395 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};

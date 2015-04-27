@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Tractable Labs. All rights reserved.
 //
 
-#import <TLIndexPathTools/TLTableViewController.h>
+#import <TLIndexPathTools/TLIndexPathTools.h>
 
 @interface BlocksTableViewController : TLTableViewController
 

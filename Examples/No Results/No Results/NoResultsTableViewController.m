@@ -7,8 +7,6 @@
 //
 
 #import "NoResultsTableViewController.h"
-#import <TLIndexPathTools/TLNoResultsTableDataModel.h>
-#import <TLIndexPathTools/TLIndexPathItem.h>
 
 /**
  Demonstrates use of the `TLNoResultsDataModel` extension to display a "no results" message

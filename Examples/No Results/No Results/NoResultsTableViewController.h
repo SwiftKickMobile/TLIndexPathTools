@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 wtm@tractablelabs.com. All rights reserved.
 //
 
-#import <TLIndexPathTools/TLTableViewController.h>
+#import <TLIndexPathTools/TLIndexPathTools.h>
 
 @interface NoResultsTableViewController : TLTableViewController
 @property (strong, nonatomic) IBOutlet UIButton *hideRowsButton;
