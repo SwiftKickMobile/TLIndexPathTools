@@ -40,6 +40,7 @@
 		8601E74417CD19E500DEE315 /* TLTreeDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8601E72117CD19E500DEE315 /* TLTreeDataModel.m */; };
 		8601E74617CD19E500DEE315 /* TLTreeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8601E72317CD19E500DEE315 /* TLTreeTableViewController.m */; };
 		8601E74817CD19E500DEE315 /* UITableViewController+ScrollOptimizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 8601E72517CD19E500DEE315 /* UITableViewController+ScrollOptimizer.m */; };
+		86029DCF1AEEA1E100ED36D7 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 86029DCD1AEEA1E100ED36D7 /* README.md */; };
 		862462E91AD5A6300030AC10 /* TLDynamicHeightCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 862462E71AD5A6300030AC10 /* TLDynamicHeightCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		862462EA1AD5A6300030AC10 /* TLDynamicHeightCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 862462E81AD5A6300030AC10 /* TLDynamicHeightCell.m */; };
 		8673278E1AD59A360048BF31 /* UITableView+ScrollOptimizer.h in Headers */ = {isa = PBXBuildFile; fileRef = 86CBF3FC190B06350091EBE8 /* UITableView+ScrollOptimizer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -122,10 +123,11 @@
 		8601E72317CD19E500DEE315 /* TLTreeTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLTreeTableViewController.m; sourceTree = "<group>"; };
 		8601E72417CD19E500DEE315 /* UITableViewController+ScrollOptimizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+ScrollOptimizer.h"; sourceTree = "<group>"; };
 		8601E72517CD19E500DEE315 /* UITableViewController+ScrollOptimizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+ScrollOptimizer.m"; sourceTree = "<group>"; };
+		86029DCD1AEEA1E100ED36D7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		86029DCE1AEEA1E100ED36D7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		862462E71AD5A6300030AC10 /* TLDynamicHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDynamicHeightCell.h; sourceTree = "<group>"; };
 		862462E81AD5A6300030AC10 /* TLDynamicHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDynamicHeightCell.m; sourceTree = "<group>"; };
 		8673278F1AD5A0C80048BF31 /* TLIndexPathTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathTools.h; sourceTree = "<group>"; };
-		86B0084E17CD15BE00B86B04 /* readme.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = readme.markdown; sourceTree = "<group>"; };
 		86CB5A9218AF38FE003039CC /* TLDynamicHeightLabelCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDynamicHeightLabelCell.h; sourceTree = "<group>"; };
 		86CB5A9318AF38FE003039CC /* TLDynamicHeightLabelCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDynamicHeightLabelCell.m; sourceTree = "<group>"; };
 		86CBF3FC190B06350091EBE8 /* UITableView+ScrollOptimizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+ScrollOptimizer.h"; sourceTree = "<group>"; };
@@ -225,11 +227,12 @@
 		B145DAB0179EE94300CF270E = {
 			isa = PBXGroup;
 			children = (
-				86E8EEF51902249200AD6A51 /* TLIndexPathTools.podspec */,
-				86B0084E17CD15BE00B86B04 /* readme.markdown */,
-				B145DABE179EE94300CF270E /* TLIndexPathTools */,
 				B145DABB179EE94300CF270E /* Frameworks */,
 				B145DABA179EE94300CF270E /* Products */,
+				B145DABE179EE94300CF270E /* TLIndexPathTools */,
+				86029DCE1AEEA1E100ED36D7 /* LICENSE */,
+				86029DCD1AEEA1E100ED36D7 /* README.md */,
+				86E8EEF51902249200AD6A51 /* TLIndexPathTools.podspec */,
 			);
 			sourceTree = "<group>";
 		};
@@ -418,6 +421,7 @@
 				8601E72917CD19E500DEE315 /* TLCollapsibleHeaderView.m in Sources */,
 				8601E72B17CD19E500DEE315 /* TLCollapsibleTableViewController.m in Sources */,
 				8601E73B17CD19E500DEE315 /* TLNoResultsTableDataModel.m in Sources */,
+				86029DCF1AEEA1E100ED36D7 /* README.md in Sources */,
 				8601E74217CD19E500DEE315 /* TLIndexPathTreeItem.m in Sources */,
 				8601E74417CD19E500DEE315 /* TLTreeDataModel.m in Sources */,
 				8601E74617CD19E500DEE315 /* TLTreeTableViewController.m in Sources */,
