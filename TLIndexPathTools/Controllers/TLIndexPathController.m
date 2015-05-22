@@ -156,7 +156,7 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
         self.dataModel = nil;
     }
     
-    else if (![self.items isEqualToArray:items]) {
+    else {
         id last = [items lastObject];
         TLIndexPathDataModel *dataModel;
         if ([last isKindOfClass:[TLIndexPathItem class]]) {
@@ -172,24 +172,21 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
 
 - (void)setDataModel:(TLIndexPathDataModel *)dataModel
 {
-    if (![_dataModel isEqual:dataModel]) {
-        
-        //any explicitly set data model overrides pending conversion of fetched objects
-        self.pendingConvertFetchedObjectsToDataModel = NO;
-        
-        //data model may get set multiple times during batch udpates,
-        //so make sure we remember the initial old data model (which will
-        //get cleared in `performUpdates` when the batch updates complete).
-        if (!self.oldDataModel) {
-            self.oldDataModel = _dataModel;
-        }
-        
-        _dataModel = dataModel;
-        
-        //perform udpates immediately unless we're in batch update mode
-        if (!self.performingBatchUpdate) {
-            [self dequeuePendingUpdates];
-        }
+    //any explicitly set data model overrides pending conversion of fetched objects
+    self.pendingConvertFetchedObjectsToDataModel = NO;
+    
+    //data model may get set multiple times during batch udpates,
+    //so make sure we remember the initial old data model (which will
+    //get cleared in `performUpdates` when the batch updates complete).
+    if (!self.oldDataModel) {
+        self.oldDataModel = _dataModel;
+    }
+    
+    _dataModel = dataModel;
+    
+    //perform udpates immediately unless we're in batch update mode
+    if (!self.performingBatchUpdate) {
+        [self dequeuePendingUpdates];
     }
 }
 
