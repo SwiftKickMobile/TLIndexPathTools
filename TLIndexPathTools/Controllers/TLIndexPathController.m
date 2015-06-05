@@ -63,7 +63,7 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
 
 - (id)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString *)sectionNameKeyPath identifierKeyPath:(NSString *)identifierKeyPath cacheName:(NSString *)name
 {
-    TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:nil sectionNameKeyPath:sectionNameKeyPath identifierKeyPath:identifierKeyPath];
+    TLIndexPathDataModel *dataModel = [[TLIndexPathDataModel alloc] initWithItems:@[] sectionNameKeyPath:sectionNameKeyPath identifierKeyPath:identifierKeyPath];
     if (self = [self initWithDataModel:dataModel]) {
         //initialize the backing controller with nil sectionNameKeyPath because we don't require
         //items to be sorted by section, but NSFetchedResultsController does.
