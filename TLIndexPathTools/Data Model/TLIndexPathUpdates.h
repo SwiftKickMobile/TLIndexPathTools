@@ -24,6 +24,8 @@
 #import <UIKit/UIKit.h>
 #import "TLIndexPathDataModel.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  Takes two versions of a data model and computes the changes, i.e. the inserts,
  moves, deletes and modifications. A variety of `performBatchUpdatesOn*` methods
@@ -34,14 +36,14 @@
 
 #pragma mark - Creating updates
 
-- (id)initWithOldDataModel:(TLIndexPathDataModel *)oldDataModel updatedDataModel:(TLIndexPathDataModel *)updatedDataModel;
+- (id)initWithOldDataModel:(TLIndexPathDataModel * __nullable)oldDataModel updatedDataModel:(TLIndexPathDataModel * __nullable)updatedDataModel;
 
 #pragma mark - Performing batch updates
 
 - (void)performBatchUpdatesOnTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation;
-- (void)performBatchUpdatesOnTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation completion:(void(^)(BOOL finished))completion;
+- (void)performBatchUpdatesOnTableView:(UITableView *)tableView withRowAnimation:(UITableViewRowAnimation)animation completion:(void(^  __nullable)(BOOL finished))completion;
 - (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView;
-- (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView completion:(void(^)(BOOL finished))completion;
+- (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView completion:(void(^ __nullable)(BOOL finished))completion;
 
 #pragma mark - Customizing batch update behavior
 
@@ -54,8 +56,8 @@
 
 #pragma mark - Comparing data models
 
-@property (strong, readonly, nonatomic) TLIndexPathDataModel *oldDataModel;
-@property (strong, readonly, nonatomic) TLIndexPathDataModel *updatedDataModel;
+@property (strong, readonly, nonatomic, nullable) TLIndexPathDataModel *oldDataModel;
+@property (strong, readonly, nonatomic, nullable) TLIndexPathDataModel *updatedDataModel;
 @property (readonly, nonatomic) BOOL hasChanges;
 @property (copy, readonly, nonatomic) NSArray *insertedSectionNames;
 @property (copy, readonly, nonatomic) NSArray *deletedSectionNames;
@@ -65,3 +67,5 @@
 @property (copy, readonly, nonatomic) NSArray *movedItems;
 @property (copy, readonly, nonatomic) NSArray *modifiedItems;
 @end
+
+NS_ASSUME_NONNULL_END
