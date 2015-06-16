@@ -37,6 +37,7 @@ NS_ASSUME_NONNULL_BEGIN
 #pragma mark - Creating updates
 
 - (id)initWithOldDataModel:(TLIndexPathDataModel * __nullable)oldDataModel updatedDataModel:(TLIndexPathDataModel * __nullable)updatedDataModel;
+- (id)initWithOldDataModel:(TLIndexPathDataModel * __nullable)oldDataModel updatedDataModel:(TLIndexPathDataModel * __nullable)updatedDataModel modificationComparatorBlock:(BOOL(^ __nullable)(id item1, id item2))modificationComparatorBlock;
 
 #pragma mark - Performing batch updates
 
