@@ -64,7 +64,7 @@ extern NSString * kTLIndexPathUpdatesKey;
  @returns an alternative data model to use instead of `updatedDataModel` or `nil` to use `updatedDataModel`
  
  */
-- (TLIndexPathDataModel *)controller:(TLIndexPathController *)controller willUpdateDataModel:(TLIndexPathDataModel * __nullable)oldDataModel withDataModel:(TLIndexPathDataModel * __nullable)updatedDataModel;
+- (TLIndexPathDataModel * __nullable)controller:(TLIndexPathController *)controller willUpdateDataModel:(TLIndexPathDataModel * __nullable)oldDataModel withDataModel:(TLIndexPathDataModel * __nullable)updatedDataModel;
 
 /**
  Notifies the reciever of batch data model changes.
