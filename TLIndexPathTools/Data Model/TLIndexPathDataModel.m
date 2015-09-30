@@ -151,7 +151,7 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
     return self;
 }
 
-- (id)initWithSectionInfos:(NSArray *)sectionInfos sectionNameBlock:(NSString *(^)(id))sectionNameBlock identifierBlock:(id (^)(id))identifierBlock
+- (id)initWithSectionInfos:(NSArray<TLIndexPathSectionInfo *> *)sectionInfos sectionNameBlock:(NSString *(^)(id))sectionNameBlock identifierBlock:(id (^)(id))identifierBlock
 {
     //if there are no sections, insert an empty section to keep UICollectionView
     //happy. If we don't do this, UICollectionView will crash on the first
@@ -242,7 +242,7 @@ const NSString *TLIndexPathDataModelNilSectionName = @"__TLIndexPathDataModelNil
 
 - (NSInteger)sectionForSectionName:(NSString *)sectionName
 {
-    id<NSFetchedResultsSectionInfo>sectionInfo = [self.sectionInfosBySectionName objectForKey:sectionName];
+    TLIndexPathSectionInfo *sectionInfo = [self.sectionInfosBySectionName objectForKey:sectionName];
     return sectionInfo ? [self.sections indexOfObject:sectionInfo] : NSNotFound;
 }
 

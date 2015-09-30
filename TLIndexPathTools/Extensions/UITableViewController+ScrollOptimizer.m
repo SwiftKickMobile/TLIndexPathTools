@@ -7,6 +7,7 @@
 //
 
 #import "UITableViewController+ScrollOptimizer.h"
+#import "TLIndexPathSectionInfo.h"
 
 @implementation UITableViewController (ScrollOptimizer)
 
@@ -41,7 +42,7 @@
         }
         
         // Iterate over rows to find out how many can be made visible
-        id<NSFetchedResultsSectionInfo>sectionInfo = dataModel.sections[section];
+        TLIndexPathSectionInfo *sectionInfo = dataModel.sections[section];
         for (id item in sectionInfo.objects) {
             NSIndexPath *indexPath = [dataModel indexPathForItem:item];
             offsetBelowTopToMakeVisible += [self tableView:self.tableView heightForRowAtIndexPath:indexPath];

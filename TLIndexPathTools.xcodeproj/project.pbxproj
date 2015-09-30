@@ -391,6 +391,7 @@
 		B145DAB1179EE94300CF270E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Tractable Labs";
 				TargetAttributes = {

@@ -136,6 +136,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 extern NSString * TLIndexPathDataModelNilSectionName;
+@class TLIndexPathSectionInfo;
 
 @interface TLIndexPathDataModel : NSObject
 
@@ -191,7 +192,7 @@ extern NSString * TLIndexPathDataModelNilSectionName;
  @param identifierKeyPath  the item key path to use for identification. Specifying `nil`
  will result in the default object identification rules being used.
 */
-- (id)initWithSectionInfos:(NSArray *)sectionInfos identifierKeyPath:(NSString * __nullable)identifierKeyPath;
+- (id)initWithSectionInfos:(NSArray<TLIndexPathSectionInfo *> *)sectionInfos identifierKeyPath:(NSString * __nullable)identifierKeyPath;
 
 #pragma mark - Data model configuration
 /** @name Data model configuration */
@@ -236,13 +237,13 @@ extern NSString * TLIndexPathDataModelNilSectionName;
  any explicit sections, this array will contain the single name `TLIndexPathDataModelNilSectionName`.
  Note that section names are unique. See Section Names.
  */
-@property (strong, nonatomic, readonly) NSArray *sectionNames;
+@property (strong, nonatomic, readonly) NSArray<NSString *> *sectionNames;
 
 /**
  The array of `TLIndexPathSectionInfo` objects organizing the data into sections.
  `TLIndexPathSectionInfo` is an implementation of the `NSFetchedResultsSectionInfo` protocol.
  */
-@property (strong, nonatomic, readonly) NSArray *sections;
+@property (strong, nonatomic, readonly) NSArray<TLIndexPathSectionInfo *> *sections;
 
 /**
  An array containing all items.
@@ -252,7 +253,7 @@ extern NSString * TLIndexPathDataModelNilSectionName;
 /**
  An array containing all index paths.
  */
-@property (strong, nonatomic, readonly) NSArray *indexPaths;
+@property (strong, nonatomic, readonly) NSArray<NSIndexPath *> *indexPaths;
 
 /**
  The number of rows in the specified section. Returns `NSNotFound` for an invalid section.
