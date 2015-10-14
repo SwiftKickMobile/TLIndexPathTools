@@ -37,6 +37,7 @@
  If Auto Layout is not being used, the `sizeWithData` method should be implemented.
  */
 
+#import <Foundation/Foundation.h>
 #import <CoreGraphics/CoreGraphics.h>
 
 @protocol TLDynamicSizeView <NSObject>
