@@ -181,7 +181,7 @@ extern NSString * TLIndexPathDataModelNilSectionName;
  @param identifierBlock  block that returns the identifier for the given item.
  Specifying `nil` will result in the default object identification rules being used.
  */
-- (id)initWithItems:(NSArray *)items sectionNameBlock:(NSString *(^ __nullable)(id item))sectionNameBlock identifierBlock:(id(^ __nullable)(id item))identifierBlock;
+- (id)initWithItems:(NSArray *)items sectionNameBlock:(NSString * __nullable (^ __nullable)(id item))sectionNameBlock identifierBlock:(id __nullable (^ __nullable)(id item))identifierBlock;
 
 /**
  Use this initializer to explicitly specify sections by providing an array of
