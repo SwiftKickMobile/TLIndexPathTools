@@ -105,17 +105,15 @@
                 NSIndexPath *updatedIndexPath = [updatedDataModel indexPathForItem:item];
                 NSString *updatedSectionName = [updatedDataModel sectionNameForSection:updatedIndexPath.section];
                 // can't rely on isEqual, so must use compare
-                if ([oldIndexPath compare:updatedIndexPath] != NSOrderedSame || ![updatedSectionName isEqualToString:sectionName]) {
+                BOOL differentIndexPath = [oldIndexPath compare:updatedIndexPath] != NSOrderedSame;
+                if (differentIndexPath || ![updatedSectionName isEqualToString:sectionName]) {
                     // Don't move items in moved sections
-                    if (![movedSectionNames containsObject:sectionName]) {
-                        // TODO Not sure if this is correct when moves are combined with inserts and/or deletes
-                        // Don't report as moved if the only change is the section
-                        // has moved
-                        if (oldIndexPath.row == updatedIndexPath.row) {
-                            NSString *oldSectionName = [oldDataModel sectionNameForSection:oldIndexPath.section];
-                            NSString *updatedSectionName = [updatedDataModel sectionNameForSection:updatedIndexPath.section];
-                            if ([oldSectionName isEqualToString:updatedSectionName]) continue;
-                        }
+                    if (![movedSectionNames containsObject:sectionName] && differentIndexPath) {
+                        //                        // TODO Not sure if this is correct when moves are combined with inserts and/or deletes
+                        //                        // Don't report as moved if the only change is the section has moved
+                        //                        if (oldIndexPath.row == updatedIndexPath.row) {
+                        //                            if ([sectionName isEqualToString:updatedSectionName]) continue;
+                        //                        }
                         [movedItems addObject:item];
                     }
                 }
