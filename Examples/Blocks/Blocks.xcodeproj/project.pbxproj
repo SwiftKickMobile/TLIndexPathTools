@@ -344,7 +344,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Blocks/Blocks-Prefix.pch";
 				INFOPLIST_FILE = "Blocks/Blocks-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TLIndexPathTools-cdwpczkvzhcayycfczwsnuukurgs/Build/Products/Debug-iphoneos",
@@ -366,7 +366,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Blocks/Blocks-Prefix.pch";
 				INFOPLIST_FILE = "Blocks/Blocks-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TLIndexPathTools-cdwpczkvzhcayycfczwsnuukurgs/Build/Products/Debug-iphoneos",

@@ -21,10 +21,17 @@
 		86B4C859174D251B006E1A83 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86B4C858174D251B006E1A83 /* Default@2x.png */; };
 		86B4C85B174D251B006E1A83 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 86B4C85A174D251B006E1A83 /* Default-568h@2x.png */; };
 		86B4C85E174D251B006E1A83 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 86B4C85C174D251B006E1A83 /* MainStoryboard.storyboard */; };
-		86BFE9F617CD66B900262FE8 /* libTLIndexPathTools.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86ECFC4E17CD6575003D13C0 /* libTLIndexPathTools.a */; };
+		86BFE9F617CD66B900262FE8 /* TLIndexPathTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86ECFC4E17CD6575003D13C0 /* TLIndexPathTools.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		86A9BA0B1C206E3200DB127C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 86ECFC4817CD6575003D13C0 /* TLIndexPathTools.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 86029DFD1AEEAC2E00ED36D7;
+			remoteInfo = TLIndexPathToolsTests;
+		};
 		86ECFC4D17CD6575003D13C0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 86ECFC4817CD6575003D13C0 /* TLIndexPathTools.xcodeproj */;
@@ -36,7 +43,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 86ECFC4817CD6575003D13C0 /* TLIndexPathTools.xcodeproj */;
 			proxyType = 1;
-			remoteGlobalIDString = B145DAB8179EE94300CF270E;
+			remoteGlobalIDString = 86029DF21AEEAC2E00ED36D7;
 			remoteInfo = TLIndexPathTools;
 		};
 /* End PBXContainerItemProxy section */
@@ -71,7 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86BFE9F617CD66B900262FE8 /* libTLIndexPathTools.a in Frameworks */,
+				86BFE9F617CD66B900262FE8 /* TLIndexPathTools.framework in Frameworks */,
 				8631AEFA174D2A0300D1B383 /* CoreGraphics.framework in Frameworks */,
 				8631AEF9174D29FB00D1B383 /* QuartzCore.framework in Frameworks */,
 				8631AEF7174D29D200D1B383 /* CoreData.framework in Frameworks */,
@@ -146,7 +153,8 @@
 		86ECFC4917CD6575003D13C0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				86ECFC4E17CD6575003D13C0 /* libTLIndexPathTools.a */,
+				86ECFC4E17CD6575003D13C0 /* TLIndexPathTools.framework */,
+				86A9BA0C1C206E3200DB127C /* TLIndexPathToolsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -205,10 +213,17 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		86ECFC4E17CD6575003D13C0 /* libTLIndexPathTools.a */ = {
+		86A9BA0C1C206E3200DB127C /* TLIndexPathToolsTests.xctest */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libTLIndexPathTools.a;
+			fileType = wrapper.cfbundle;
+			path = TLIndexPathToolsTests.xctest;
+			remoteRef = 86A9BA0B1C206E3200DB127C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		86ECFC4E17CD6575003D13C0 /* TLIndexPathTools.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = TLIndexPathTools.framework;
 			remoteRef = 86ECFC4D17CD6575003D13C0 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -334,6 +349,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Shuffle/Shuffle-Prefix.pch";
 				INFOPLIST_FILE = "Shuffle/Shuffle-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				PRODUCT_NAME = Shuffle;
 				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
 				WRAPPER_EXTENSION = app;
@@ -347,6 +363,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Shuffle/Shuffle-Prefix.pch";
 				INFOPLIST_FILE = "Shuffle/Shuffle-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				PRODUCT_NAME = Shuffle;
 				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
 				WRAPPER_EXTENSION = app;
