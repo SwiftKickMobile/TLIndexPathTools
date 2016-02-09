@@ -267,6 +267,13 @@ extern NSString * kTLIndexPathUpdatesKey;
  */
 @property (strong, nonatomic, nullable) TLIndexPathDataModel *dataModel;
 
+/**
+ A block which is used to determine if an old data model object has been modified. This is passed two objects and should return `NO` if the objects are to be considered the same, or `YES` if modifications have occurred. This block can be `nil`.
+ 
+ If non-nil this is passed to the TLIndexPathUpdates initializer.
+ */
+@property (copy, nonatomic, nullable) BOOL (^ modificationComparatorBlock)(id item1, id item2);
+
 #pragma mark - Batch updates
 /** @name Batch updates */
 

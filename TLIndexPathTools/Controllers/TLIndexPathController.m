@@ -199,7 +199,7 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
             _dataModel = dataModel;
         }
     }
-    TLIndexPathUpdates *updates = [[TLIndexPathUpdates alloc] initWithOldDataModel:self.oldDataModel updatedDataModel:self.dataModel];
+    TLIndexPathUpdates *updates = [[TLIndexPathUpdates alloc] initWithOldDataModel:self.oldDataModel updatedDataModel:self.dataModel modificationComparatorBlock:self.modificationComparatorBlock];
     if ([self.updatedItems count]) {
         // TODO this should probably check for duplicates
         if (updates.modifiedItems) {
