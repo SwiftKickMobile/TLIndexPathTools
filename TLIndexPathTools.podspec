@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "TLIndexPathTools"
-  s.version      = "0.4.2"
+  s.version      = "0.4.3"
   s.summary      = "TLIndexPathTools is a small set of classes that can greatly simplify your table and collection views."
   s.description  = <<-DESC
 					TLIndexPathTools is a small set of classes that can greatly simplify your table and collection views. Here are some of the awesome things TLIndexPathTools does:
@@ -11,19 +11,14 @@ Pod::Spec.new do |s|
 					* Provide a simpler alternative to Core Data NSFetchedResultsController
 					* Provide base table view and collection view classes with advanced features
 
-					0.4.2
-					* Add lightweight generics to the core classes:
-					  TLIndexPathDataModel
-					  TLIndexPathUpdates
-                    * #62 Crash when reordering items
-					* #56 Add optional modification comparitor block to TLIndexPathUpdates
-					* Update minimum deployment target to 8.0
+					0.4.3
+					* #63 added modificationComparatorBlock functionality in tlindexpathcontroller
 
                     DESC
   s.homepage     = "http://tlindexpathtools.com"
   s.license      = { :type => "MIT" }
   s.author       = { "wtmoose" => "wtm@tractablelabs.com" }
-  s.source       = { :git => "https://github.com/wtmoose/TLIndexPathTools.git", :tag => '0.4.2' }
+  s.source       = { :git => "https://github.com/wtmoose/TLIndexPathTools.git", :tag => '0.4.3' }
   s.platform     = :ios, '8.0'
   s.ios.deployment_target = '8.0'
   s.source_files = 'TLIndexPathTools/**/*.{h,m}'
