@@ -181,16 +181,19 @@
         //because, otherwise, the table view will throw an exception about
         //duplicate animations being applied to cells. This doesn't always look
         //nice, but it is better than a crash.
-        
+
         if (self.modifiedItems.count && self.updateModifiedItems) {
+
             NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
             for (id item in self.modifiedItems) {
                 NSIndexPath *indexPath = [self.updatedDataModel indexPathForItem:item];
                 [indexPaths addObject:indexPath];
             }
-            [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+
+            NSArray *visibleModifiedIndexPaths = [self intersectArray:tableView.indexPathsForVisibleRows withArray:indexPaths];
+            [tableView reloadRowsAtIndexPaths:visibleModifiedIndexPaths withRowAnimation:animation];
         }
-        
+
         if (completion) {
             completion(YES);
         }
@@ -415,6 +418,14 @@
 {
     _modifiedItems = [modifiedItems copy];
     self.hasChanges = self.hasChanges || _modifiedItems.count != 0;
+}
+
+- (NSArray *)intersectArray:(NSArray *)firstArray withArray:(NSArray *)secondArray
+{
+    NSMutableSet *set1 = [NSMutableSet setWithArray: firstArray];
+    NSSet *set2 = [NSSet setWithArray: secondArray];
+    [set1 intersectSet: set2];
+    return [set1 allObjects];
 }
 
 @end
