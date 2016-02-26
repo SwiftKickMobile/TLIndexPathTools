@@ -183,7 +183,15 @@
         //nice, but it is better than a crash.
 
         if (self.modifiedItems.count && self.updateModifiedItems) {
-            [tableView reloadRowsAtIndexPaths:tableView.indexPathsForVisibleRows withRowAnimation:animation];
+
+            NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
+            for (id item in self.modifiedItems) {
+                NSIndexPath *indexPath = [self.updatedDataModel indexPathForItem:item];
+                [indexPaths addObject:indexPath];
+            }
+
+            NSArray *visibleModifiedIndexPaths = [self intersectArray:tableView.indexPathsForVisibleRows withArray:indexPaths];
+            [tableView reloadRowsAtIndexPaths:visibleModifiedIndexPaths withRowAnimation:animation];
         }
 
         if (completion) {
@@ -410,6 +418,14 @@
 {
     _modifiedItems = [modifiedItems copy];
     self.hasChanges = self.hasChanges || _modifiedItems.count != 0;
+}
+
+- (NSArray *)intersectArray:(NSArray *)firstArray withArray:(NSArray *)secondArray
+{
+    NSMutableSet *set1 = [NSMutableSet setWithArray: firstArray];
+    NSSet *set2 = [NSSet setWithArray: secondArray];
+    [set1 intersectSet: set2];
+    return [set1 allObjects];
 }
 
 @end
