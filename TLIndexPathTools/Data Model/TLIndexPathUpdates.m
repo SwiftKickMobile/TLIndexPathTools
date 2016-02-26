@@ -181,16 +181,11 @@
         //because, otherwise, the table view will throw an exception about
         //duplicate animations being applied to cells. This doesn't always look
         //nice, but it is better than a crash.
-        
+
         if (self.modifiedItems.count && self.updateModifiedItems) {
-            NSMutableArray *indexPaths = [[NSMutableArray alloc] init];
-            for (id item in self.modifiedItems) {
-                NSIndexPath *indexPath = [self.updatedDataModel indexPathForItem:item];
-                [indexPaths addObject:indexPath];
-            }
-            [tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:animation];
+            [tableView reloadRowsAtIndexPaths:tableView.indexPathsForVisibleRows withRowAnimation:animation];
         }
-        
+
         if (completion) {
             completion(YES);
         }
