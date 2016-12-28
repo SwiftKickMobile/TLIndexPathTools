@@ -272,6 +272,8 @@
             // which dequeue cells with empty bounds. If we see empty bounds, then fall back
             // (or perhaps forward) to self-sizing cells
             return UITableViewAutomaticDimension;
+        } else if (tableView.rowHeight == UITableViewAutomaticDimension) {
+            return UITableViewAutomaticDimension;
         } else {
             return cell.bounds.size.height;
         }
