@@ -60,7 +60,8 @@ extern NSString * kTLIndexPathUpdatesKey;
  it can be replaced with a model containing a "no results" item.
  
  @param controller  the index path controller that sent the message.
- @param updates  the updates object that can be used to perform batch updates on a table or collection view.
+ @param oldDataModel the old data model used before the update.
+ @param updatedDataModel the new data model returned after the update.
  @returns an alternative data model to use instead of `updatedDataModel` or `nil` to use `updatedDataModel`
  
  */
@@ -167,7 +168,7 @@ extern NSString * kTLIndexPathUpdatesKey;
 /**
  Returns an index path controller initialized with the given items.
  
- @param items  the aray of items
+ @param items  the array of items
  @return the index path controller with a default data model representation of the given items
  
  A default data model is initialized with items where the properties `identifierKeyPath`,
@@ -187,15 +188,15 @@ extern NSString * kTLIndexPathUpdatesKey;
  Returns an index path controller initialized with the given fetch request and
  configuration parameters.
  
- @param fetchRequest
- @param context
- @param sectionNameKeyPath
- @param identifierKeyPath
- @param cacheName
+ @param fetchRequest the fetch request used to do the fetching
+ @param context the managed object context used to fetch objects
+ @param sectionNameKeyPath the key path on the fetched objects used to determine the section they belong to
+ @param identifierKeyPath how the identifier should be generated
+ @param cacheName the name of the file used to cache section information
  @return the index path controller with a default data model representation of the given fetch request
  
  */
-- (instancetype)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString * __nullable)sectionNameKeyPath identifierKeyPath:(NSString * __nullable)identifierKeyPath cacheName:(NSString * __nullable)name;
+- (instancetype)initWithFetchRequest:(NSFetchRequest *)fetchRequest managedObjectContext:(NSManagedObjectContext *)context sectionNameKeyPath:(NSString * __nullable)sectionNameKeyPath identifierKeyPath:(NSString * __nullable)identifierKeyPath cacheName:(NSString * __nullable)cacheName;
 
 #pragma mark - Configuration information
 /** @name Configuration information */
