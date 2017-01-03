@@ -283,7 +283,7 @@ extern NSString * kTLIndexPathUpdatesKey;
  fetch request (and perform fetch), in-memory sort descriptors, and in-memory
  predicate as a single update.
  
- @param udpates  a block that makes changes to the controller
+ @param updates  a block that makes changes to the controller
  @param completion  a block to be executed after the batch updates are performed.
         Note that controller:didUpdateDataModel: is called before this block.
  
