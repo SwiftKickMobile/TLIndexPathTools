@@ -33,5 +33,5 @@
 @property (strong, nonatomic, readonly) NSString *blankCellIdentifier;
 @property (strong, nonatomic, readonly) NSString *noResultsCellIdentifier;
 @property (strong, nonatomic, readonly) NSString *noResultsText;
-- initWithRows:(NSInteger)rows blankCellId:(NSString *)blankCellId noResultsCellId:(NSString *)noResultsCellId noResultsText:(NSString *)noResultsText;
+- (instancetype)initWithRows:(NSInteger)rows blankCellId:(NSString *)blankCellId noResultsCellId:(NSString *)noResultsCellId noResultsText:(NSString *)noResultsText;
 @end
