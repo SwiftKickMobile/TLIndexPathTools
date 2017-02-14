@@ -26,7 +26,7 @@
 
 @implementation TLNoResultsTableDataModel
 
-- (id)initWithRows:(NSInteger)rows blankCellId:(NSString *)blankCellId noResultsCellId:(NSString *)noResultsCellId noResultsText:(NSString *)noResultsText
+- (instancetype)initWithRows:(NSInteger)rows blankCellId:(NSString *)blankCellId noResultsCellId:(NSString *)noResultsCellId noResultsText:(NSString *)noResultsText
 {
     rows = MAX(rows, 1);
     NSMutableArray *items = [[NSMutableArray alloc] initWithCapacity:rows];
