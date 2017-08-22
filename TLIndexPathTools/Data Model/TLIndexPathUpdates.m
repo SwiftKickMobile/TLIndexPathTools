@@ -173,6 +173,9 @@
         return;
     }
 
+    if (animation == UITableViewRowAnimationNone) {
+        [UIView setAnimationsEnabled:NO];
+    }
     [CATransaction begin];
 
     [CATransaction setCompletionBlock: ^{
@@ -283,6 +286,9 @@
     [tableView endUpdates];
     
     [CATransaction commit];
+    if (animation == UITableViewRowAnimationNone) {
+        [UIView setAnimationsEnabled:YES];
+    }
 }
 
 - (void)performBatchUpdatesOnCollectionView:(UICollectionView *)collectionView
