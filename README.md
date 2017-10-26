@@ -1,4 +1,4 @@
-TLIndexPathTools
+TLIndexPathTools [![Build Status](https://travis-ci.org/3a4oT/TLIndexPathTools.svg?branch=TravisIntegration)](https://travis-ci.org/3a4oT/TLIndexPathTools) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 ================
 
 TLIndexPathTools is a small set of classes that can greatly simplify your table and collection views. Here are some of the awesome things TLIndexPathTools does:
@@ -24,11 +24,12 @@ Add "TLIndexPathTools" to your podfile or, if you're not using CocoaPods:
 ## Overview
 
 `NSArray` is the standard construct for simple table and collection view data models. However, if multiple sections are involved, the typical setup is an `NSArray` containing section names and an `NSDictionary` of `NSArrays` containing data items, keyed by section name. Since table and collection views work with `NSIndexPaths`, the following pattern is used repeatedly in data source and delegate methods:
-
+```Objective-C
     NSString *sectionName = self.sectionNameArray[indexPath.section];
     NSArray *sectionArray = self.sectionArraysBySectionName[sectionName];    
     id data = sectionArray[indexPath.row];
-    
+```
+
 `TLIndexPathDataModel` encapsulates this pattern into a single class and provides numerous APIs for easy data access. Furthermore, the `TLIndexPathDataModel` initializers offer multiple ways to organize raw data into sections (including empty sections). `TLIndexPathDataModel` is perfectly suitable for single-section views where an `NSArray` would suffice and has the benefit of being "refactor proof" if additional sections are added later.
 
 `TLIndexPathUpdates` is a very powerful companion class to `TLIndexPathDataModel`. One of the great things about table and collection views are their ability to perform batch updates (inserts, deletes and moves) that animate cells smoothly between states. However, calculating batch updates can be a complex (and confusing) task when multiple updates are involved. `TLIndexPathUpdates` solves this by taking two versions of your data model, calculating the changes for you and automatically performing the batch updates.

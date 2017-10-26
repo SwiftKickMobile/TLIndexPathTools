@@ -32,8 +32,6 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		86029DFE1AEEAC2E00ED36D7 /* TLIndexPathTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86029DF31AEEAC2E00ED36D7 /* TLIndexPathTools.framework */; };
-		86029E051AEEAC2E00ED36D7 /* TLIndexPathToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86029E041AEEAC2E00ED36D7 /* TLIndexPathToolsTests.swift */; };
 		86029E0D1AEEAC8800ED36D7 /* TLIndexPathController.m in Sources */ = {isa = PBXBuildFile; fileRef = B145DB44179EEB3900CF270E /* TLIndexPathController.m */; };
 		86029E0E1AEEAC9000ED36D7 /* TLIndexPathDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B145DB47179EEB3900CF270E /* TLIndexPathDataModel.m */; };
 		86029E0F1AEEAC9000ED36D7 /* TLIndexPathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B145DB49179EEB3900CF270E /* TLIndexPathItem.m */; };
@@ -72,10 +70,13 @@
 		86029E3E1AEEB09A00ED36D7 /* TLDynamicSizeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 86ECFBFF17CD2948003D13C0 /* TLDynamicSizeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		86029E3F1AEEB09A00ED36D7 /* TLCollectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B145DB7C179EEB3900CF270E /* TLCollectionViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		86029E401AEEB09A00ED36D7 /* TLTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B145DB7E179EEB3900CF270E /* TLTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		FBE562381FA244CA002B4751 /* build.sh in Resources */ = {isa = PBXBuildFile; fileRef = FBE562371FA244CA002B4751 /* build.sh */; };
+		FBE5624F1FA7275D002B4751 /* TLIndexPathToolsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE5624E1FA7275D002B4751 /* TLIndexPathToolsTests.m */; };
+		FBE562511FA7275D002B4751 /* TLIndexPathTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86029DF31AEEAC2E00ED36D7 /* TLIndexPathTools.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		86029DFF1AEEAC2E00ED36D7 /* PBXContainerItemProxy */ = {
+		FBE562521FA7275D002B4751 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B145DAB1179EE94300CF270E /* Project object */;
 			proxyType = 1;
@@ -104,9 +105,6 @@
 		86029DCD1AEEA1E100ED36D7 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		86029DCE1AEEA1E100ED36D7 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		86029DF31AEEAC2E00ED36D7 /* TLIndexPathTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TLIndexPathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		86029DFD1AEEAC2E00ED36D7 /* TLIndexPathToolsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TLIndexPathToolsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		86029E031AEEAC2E00ED36D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		86029E041AEEAC2E00ED36D7 /* TLIndexPathToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLIndexPathToolsTests.swift; sourceTree = "<group>"; };
 		86029E2D1AEEB00500ED36D7 /* TLIndexPathController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathController.h; sourceTree = "<group>"; };
 		862462E71AD5A6300030AC10 /* TLDynamicHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDynamicHeightCell.h; sourceTree = "<group>"; };
 		862462E81AD5A6300030AC10 /* TLDynamicHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDynamicHeightCell.m; sourceTree = "<group>"; };
@@ -135,6 +133,10 @@
 		B145DBB3179EEC5000CF270E /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		B145DBB5179EEC5F00CF270E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B145DBB7179EED9200CF270E /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FBE562371FA244CA002B4751 /* build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
+		FBE5624C1FA7275C002B4751 /* TLIndexPathToolsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TLIndexPathToolsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FBE5624E1FA7275D002B4751 /* TLIndexPathToolsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TLIndexPathToolsTests.m; sourceTree = "<group>"; };
+		FBE562501FA7275D002B4751 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,11 +147,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		86029DFA1AEEAC2E00ED36D7 /* Frameworks */ = {
+		FBE562491FA7275C002B4751 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86029DFE1AEEAC2E00ED36D7 /* TLIndexPathTools.framework in Frameworks */,
+				FBE562511FA7275D002B4751 /* TLIndexPathTools.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,27 +211,11 @@
 			path = Tree;
 			sourceTree = "<group>";
 		};
-		86029E011AEEAC2E00ED36D7 /* TLIndexPathToolsTests */ = {
-			isa = PBXGroup;
-			children = (
-				86029E041AEEAC2E00ED36D7 /* TLIndexPathToolsTests.swift */,
-				86029E021AEEAC2E00ED36D7 /* Supporting Files */,
-			);
-			path = TLIndexPathToolsTests;
-			sourceTree = "<group>";
-		};
-		86029E021AEEAC2E00ED36D7 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				86029E031AEEAC2E00ED36D7 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		B145DAB0179EE94300CF270E = {
 			isa = PBXGroup;
 			children = (
-				86029E011AEEAC2E00ED36D7 /* TLIndexPathToolsTests */,
+				FBE562371FA244CA002B4751 /* build.sh */,
+				FBE5624D1FA7275D002B4751 /* TLIndexPathToolsTests */,
 				B145DABB179EE94300CF270E /* Frameworks */,
 				B145DABA179EE94300CF270E /* Products */,
 				B145DABE179EE94300CF270E /* TLIndexPathTools */,
@@ -243,7 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				86029DF31AEEAC2E00ED36D7 /* TLIndexPathTools.framework */,
-				86029DFD1AEEAC2E00ED36D7 /* TLIndexPathToolsTests.xctest */,
+				FBE5624C1FA7275C002B4751 /* TLIndexPathToolsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -316,6 +302,15 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
+		FBE5624D1FA7275D002B4751 /* TLIndexPathToolsTests */ = {
+			isa = PBXGroup;
+			children = (
+				FBE5624E1FA7275D002B4751 /* TLIndexPathToolsTests.m */,
+				FBE562501FA7275D002B4751 /* Info.plist */,
+			);
+			path = TLIndexPathToolsTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -367,22 +362,22 @@
 			productReference = 86029DF31AEEAC2E00ED36D7 /* TLIndexPathTools.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		86029DFC1AEEAC2E00ED36D7 /* TLIndexPathToolsTests */ = {
+		FBE5624B1FA7275C002B4751 /* TLIndexPathToolsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 86029E091AEEAC2E00ED36D7 /* Build configuration list for PBXNativeTarget "TLIndexPathToolsTests" */;
+			buildConfigurationList = FBE562541FA7275D002B4751 /* Build configuration list for PBXNativeTarget "TLIndexPathToolsTests" */;
 			buildPhases = (
-				86029DF91AEEAC2E00ED36D7 /* Sources */,
-				86029DFA1AEEAC2E00ED36D7 /* Frameworks */,
-				86029DFB1AEEAC2E00ED36D7 /* Resources */,
+				FBE562481FA7275C002B4751 /* Sources */,
+				FBE562491FA7275C002B4751 /* Frameworks */,
+				FBE5624A1FA7275C002B4751 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				86029E001AEEAC2E00ED36D7 /* PBXTargetDependency */,
+				FBE562531FA7275D002B4751 /* PBXTargetDependency */,
 			);
 			name = TLIndexPathToolsTests;
 			productName = TLIndexPathToolsTests;
-			productReference = 86029DFD1AEEAC2E00ED36D7 /* TLIndexPathToolsTests.xctest */;
+			productReference = FBE5624C1FA7275C002B4751 /* TLIndexPathToolsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -399,8 +394,14 @@
 						CreatedOnToolsVersion = 6.3.1;
 						ProvisioningStyle = Manual;
 					};
-					86029DFC1AEEAC2E00ED36D7 = {
-						CreatedOnToolsVersion = 6.3.1;
+					86B0084917CD145800B86B04 = {
+						ProvisioningStyle = Manual;
+					};
+					86BFEA4717CD9EC000262FE8 = {
+						ProvisioningStyle = Manual;
+					};
+					FBE5624B1FA7275C002B4751 = {
+						CreatedOnToolsVersion = 9.0.1;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -420,7 +421,7 @@
 				86B0084917CD145800B86B04 /* Docset */,
 				86BFEA4717CD9EC000262FE8 /* HTML Documentation */,
 				86029DF21AEEAC2E00ED36D7 /* TLIndexPathTools */,
-				86029DFC1AEEAC2E00ED36D7 /* TLIndexPathToolsTests */,
+				FBE5624B1FA7275C002B4751 /* TLIndexPathToolsTests */,
 			);
 		};
 /* End PBXProject section */
@@ -430,10 +431,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FBE562381FA244CA002B4751 /* build.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		86029DFB1AEEAC2E00ED36D7 /* Resources */ = {
+		FBE5624A1FA7275C002B4751 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -497,21 +499,21 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		86029DF91AEEAC2E00ED36D7 /* Sources */ = {
+		FBE562481FA7275C002B4751 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86029E051AEEAC2E00ED36D7 /* TLIndexPathToolsTests.swift in Sources */,
+				FBE5624F1FA7275D002B4751 /* TLIndexPathToolsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		86029E001AEEAC2E00ED36D7 /* PBXTargetDependency */ = {
+		FBE562531FA7275D002B4751 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 86029DF21AEEAC2E00ED36D7 /* TLIndexPathTools */;
-			targetProxy = 86029DFF1AEEAC2E00ED36D7 /* PBXContainerItemProxy */;
+			targetProxy = FBE562521FA7275D002B4751 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -523,6 +525,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -542,10 +545,15 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				INFOPLIST_FILE = TLIndexPathTools/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -570,6 +578,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = NO;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -587,10 +596,15 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
+				GCC_WARN_UNUSED_PARAMETER = NO;
 				INFOPLIST_FILE = TLIndexPathTools/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -604,80 +618,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		86029E0A1AEEAC2E00ED36D7 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CODE_SIGN_STYLE = Manual;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = TLIndexPathToolsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tractablelabs.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
-			};
-			name = Debug;
-		};
-		86029E0B1AEEAC2E00ED36D7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				CODE_SIGN_STYLE = Manual;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				INFOPLIST_FILE = TLIndexPathToolsTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.tractablelabs.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -731,6 +671,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -778,6 +719,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -796,6 +738,62 @@
 			};
 			name = Release;
 		};
+		FBE562551FA7275D002B4751 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = TLIndexPathToolsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = rovenskyi.TLIndexPathToolsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		FBE562561FA7275D002B4751 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Manual;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				INFOPLIST_FILE = TLIndexPathToolsTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = rovenskyi.TLIndexPathToolsTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -804,15 +802,6 @@
 			buildConfigurations = (
 				86029E071AEEAC2E00ED36D7 /* Debug */,
 				86029E081AEEAC2E00ED36D7 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		86029E091AEEAC2E00ED36D7 /* Build configuration list for PBXNativeTarget "TLIndexPathToolsTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				86029E0A1AEEAC2E00ED36D7 /* Debug */,
-				86029E0B1AEEAC2E00ED36D7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -840,6 +829,15 @@
 			buildConfigurations = (
 				B145DAC5179EE94300CF270E /* Debug */,
 				B145DAC6179EE94300CF270E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FBE562541FA7275D002B4751 /* Build configuration list for PBXNativeTarget "TLIndexPathToolsTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FBE562551FA7275D002B4751 /* Debug */,
+				FBE562561FA7275D002B4751 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
