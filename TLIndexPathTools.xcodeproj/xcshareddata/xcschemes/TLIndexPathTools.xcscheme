@@ -22,13 +22,13 @@
          </BuildActionEntry>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "NO"
+            buildForRunning = "YES"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "86029DFC1AEEAC2E00ED36D7"
+               BlueprintIdentifier = "FBE5624B1FA7275C002B4751"
                BuildableName = "TLIndexPathToolsTests.xctest"
                BlueprintName = "TLIndexPathToolsTests"
                ReferencedContainer = "container:TLIndexPathTools.xcodeproj">
@@ -43,16 +43,6 @@
       language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "86029DFC1AEEAC2E00ED36D7"
-               BuildableName = "TLIndexPathToolsTests.xctest"
-               BlueprintName = "TLIndexPathToolsTests"
-               ReferencedContainer = "container:TLIndexPathTools.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
