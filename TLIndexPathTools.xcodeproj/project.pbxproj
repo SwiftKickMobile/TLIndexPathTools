@@ -70,7 +70,6 @@
 		86029E3E1AEEB09A00ED36D7 /* TLDynamicSizeView.h in Headers */ = {isa = PBXBuildFile; fileRef = 86ECFBFF17CD2948003D13C0 /* TLDynamicSizeView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		86029E3F1AEEB09A00ED36D7 /* TLCollectionViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B145DB7C179EEB3900CF270E /* TLCollectionViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		86029E401AEEB09A00ED36D7 /* TLTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B145DB7E179EEB3900CF270E /* TLTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FBE562381FA244CA002B4751 /* build.sh in Resources */ = {isa = PBXBuildFile; fileRef = FBE562371FA244CA002B4751 /* build.sh */; };
 		FBE5624F1FA7275D002B4751 /* TLIndexPathToolsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FBE5624E1FA7275D002B4751 /* TLIndexPathToolsTests.m */; };
 		FBE562511FA7275D002B4751 /* TLIndexPathTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86029DF31AEEAC2E00ED36D7 /* TLIndexPathTools.framework */; };
 /* End PBXBuildFile section */
@@ -431,7 +430,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBE562381FA244CA002B4751 /* build.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
