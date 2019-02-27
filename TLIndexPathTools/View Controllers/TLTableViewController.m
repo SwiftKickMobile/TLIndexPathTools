@@ -295,7 +295,13 @@
     if (!updates.hasChanges) { return; }
     //only perform batch udpates if view is visible
     if (self.isViewLoaded && self.view.window) {
-        [updates performBatchUpdatesOnTableView:self.tableView withRowAnimation:self.rowAnimationStyle];
+        if (self.pauseDuringBatchUpdates) {
+            self.indexPathController.isPaused = YES;
+        }
+        __weak typeof(self) weakSelf = self;
+        [updates performBatchUpdatesOnTableView:self.tableView withRowAnimation:self.rowAnimationStyle completion:^(BOOL finished) {
+            weakSelf.indexPathController.isPaused = NO;
+        }];
     } else {
         [self.tableView reloadData];
     }

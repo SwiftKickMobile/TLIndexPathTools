@@ -32,6 +32,7 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
 @interface TLIndexPathController ()
 @property (strong, nonatomic) NSFetchedResultsController *backingController;
 @property (strong, nonatomic) TLIndexPathDataModel *oldDataModel;
+@property (nonatomic) BOOL needsUpdate;
 @property (nonatomic) BOOL performingBatchUpdate;
 @property (nonatomic) BOOL pendingConvertFetchedObjectsToDataModel;
 @property (strong, nonatomic) NSMutableArray *updatedItems;
@@ -143,6 +144,11 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
     }
 }
 
+- (void)setIsPaused:(BOOL)isPaused {
+    _isPaused = isPaused;
+    [self dequeuePendingUpdates];
+}
+
 #pragma mark - Accessing and updating
 
 - (NSArray *)items
@@ -183,15 +189,17 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
     }
     
     _dataModel = dataModel;
-    
-    //perform udpates immediately unless we're in batch update mode
-    if (!self.performingBatchUpdate) {
-        [self dequeuePendingUpdates];
-    }
+
+    self.needsUpdate = true;
+
+    [self dequeuePendingUpdates];
 }
 
 - (void)dequeuePendingUpdates
 {
+    //perform udpates immediately unless we're in batch update mode
+    if (self.performingBatchUpdate || self.isPaused) { return; }
+    if (!self.needsUpdate) { return; }
     if ([self.delegate respondsToSelector:@selector(controller:willUpdateDataModel:withDataModel:)]) {
         TLIndexPathDataModel *dataModel = [self.delegate controller:self willUpdateDataModel:self.oldDataModel withDataModel:self.dataModel];
         if (dataModel) {
@@ -210,6 +218,7 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
         #pragma clang diagnostic pop
         [self.updatedItems removeAllObjects];
     }
+    self.needsUpdate = NO;
     if ([self.delegate respondsToSelector:@selector(controller:didUpdateDataModel:)] && !self.ignoreDataModelChanges) {
         [self.delegate controller:self didUpdateDataModel:updates];
     }

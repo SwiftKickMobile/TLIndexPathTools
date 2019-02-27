@@ -307,6 +307,16 @@ extern NSString * kTLIndexPathUpdatesKey;
 - (BOOL)performFetch:(NSError *__autoreleasing *)error;
 
 /**
+ Prevents controller:didUpdateDataModel: from being called.
+
+ Pausing prevents the controller from sending updates to the delegate. If any data model
+ updates are made while paused, then controller:didUpdateDataModel: will be called as soon
+ as the controller is unpaused. Use this to avoid performing batch updates while another batch
+ updates is in progress.
+ */
+@property (nonatomic) BOOL isPaused;
+
+/**
  Returns YES if `performFetch:` has ever been called.
  
  This property does not indicate whether the fetched results are fresh or stale.

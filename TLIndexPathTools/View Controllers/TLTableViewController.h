@@ -77,6 +77,13 @@
 
 - (void)reconfigureVisibleCells;
 
+/*
+ If YES, then the controller will pause during batch updates and resume as soon
+ as the batch update complets. This can be used to protect against rapid overlapping batch
+ updates causing unexpected failure conditions in UITableView. Defaults to NO.
+ */
+@property (nonatomic) BOOL pauseDuringBatchUpdates;
+
 #pragma mark - Prototype cells
 
 /**

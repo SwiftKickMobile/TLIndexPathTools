@@ -33,7 +33,6 @@
 
 /* Begin PBXBuildFile section */
 		86029DFE1AEEAC2E00ED36D7 /* TLIndexPathTools.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86029DF31AEEAC2E00ED36D7 /* TLIndexPathTools.framework */; };
-		86029E051AEEAC2E00ED36D7 /* TLIndexPathToolsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86029E041AEEAC2E00ED36D7 /* TLIndexPathToolsTests.swift */; };
 		86029E0D1AEEAC8800ED36D7 /* TLIndexPathController.m in Sources */ = {isa = PBXBuildFile; fileRef = B145DB44179EEB3900CF270E /* TLIndexPathController.m */; };
 		86029E0E1AEEAC9000ED36D7 /* TLIndexPathDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B145DB47179EEB3900CF270E /* TLIndexPathDataModel.m */; };
 		86029E0F1AEEAC9000ED36D7 /* TLIndexPathItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B145DB49179EEB3900CF270E /* TLIndexPathItem.m */; };
@@ -106,7 +105,6 @@
 		86029DF31AEEAC2E00ED36D7 /* TLIndexPathTools.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TLIndexPathTools.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		86029DFD1AEEAC2E00ED36D7 /* TLIndexPathToolsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TLIndexPathToolsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		86029E031AEEAC2E00ED36D7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		86029E041AEEAC2E00ED36D7 /* TLIndexPathToolsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TLIndexPathToolsTests.swift; sourceTree = "<group>"; };
 		86029E2D1AEEB00500ED36D7 /* TLIndexPathController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLIndexPathController.h; sourceTree = "<group>"; };
 		862462E71AD5A6300030AC10 /* TLDynamicHeightCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TLDynamicHeightCell.h; sourceTree = "<group>"; };
 		862462E81AD5A6300030AC10 /* TLDynamicHeightCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLDynamicHeightCell.m; sourceTree = "<group>"; };
@@ -212,7 +210,6 @@
 		86029E011AEEAC2E00ED36D7 /* TLIndexPathToolsTests */ = {
 			isa = PBXGroup;
 			children = (
-				86029E041AEEAC2E00ED36D7 /* TLIndexPathToolsTests.swift */,
 				86029E021AEEAC2E00ED36D7 /* Supporting Files */,
 			);
 			path = TLIndexPathToolsTests;
@@ -229,10 +226,10 @@
 		B145DAB0179EE94300CF270E = {
 			isa = PBXGroup;
 			children = (
+				B145DABE179EE94300CF270E /* TLIndexPathTools */,
 				86029E011AEEAC2E00ED36D7 /* TLIndexPathToolsTests */,
 				B145DABB179EE94300CF270E /* Frameworks */,
 				B145DABA179EE94300CF270E /* Products */,
-				B145DABE179EE94300CF270E /* TLIndexPathTools */,
 				86029DCE1AEEA1E100ED36D7 /* LICENSE */,
 				86029DCD1AEEA1E100ED36D7 /* README.md */,
 				86E8EEF51902249200AD6A51 /* TLIndexPathTools.podspec */,
@@ -465,7 +462,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Tractable Labs\" \\\n--company-id \"com.tractablelabs\" \\\n--output \"~/tmp/${PROJECT_NAME}\" \\\n--templates \"${PROJECT_DIR}/appledoc\" \\\n--create-html \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--ignore \"*.m\" \\\n--ignore \"Extensions\" \\\n--include \"${PROJECT_DIR}/${PROJECT_NAME}/Documentation/Images\" \\\n--ignore \"LoadableCategory.h\" \\\n--index-desc \"${PROJECT_DIR}/readme.markdown\" \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
+			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Tractable Labs\" \\\n--company-id \"com.tractablelabs\" \\\n--output \"~/tmp/${PROJECT_NAME}\" \\\n--templates \"${PROJECT_DIR}/appledoc\" \\\n--create-html \\\n--logformat xcode \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--ignore \"*.m\" \\\n--ignore \"Extensions\" \\\n--include \"${PROJECT_DIR}/${PROJECT_NAME}/Documentation/Images\" \\\n--ignore \"LoadableCategory.h\" \\\n--index-desc \"${PROJECT_DIR}/readme.markdown\" \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -499,7 +496,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86029E051AEEAC2E00ED36D7 /* TLIndexPathToolsTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

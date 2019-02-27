@@ -231,7 +231,13 @@
     if (!updates.hasChanges) { return; }
     //only perform batch udpates if view is visible
     if (self.isViewLoaded && self.view.window) {
-        [updates performBatchUpdatesOnCollectionView:self.collectionView];
+        if (self.pauseDuringBatchUpdates) {
+            self.indexPathController.isPaused = YES;
+        }
+        __weak typeof(self) weakSelf = self;
+        [updates performBatchUpdatesOnCollectionView:self.collectionView completion:^(BOOL finished) {
+            weakSelf.indexPathController.isPaused = NO;
+        }];
     } else {
         [self.collectionView reloadData];
     }
