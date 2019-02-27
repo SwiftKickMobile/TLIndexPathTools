@@ -49,7 +49,7 @@
 
 - (NSUInteger)hash
 {
-    NSInteger hash = 0;
+    NSUInteger hash = 0;
     hash += 31 * hash + [self.identifier hash];
     hash += 31 * hash + [self.sectionName hash];
     hash += 31 * hash + [self.cellIdentifier hash];
