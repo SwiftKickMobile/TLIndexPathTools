@@ -285,6 +285,7 @@
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UIViewController *controller = [self tableView:tableView viewControllerForCell:cell];
+    [controller.view removeFromSuperview];
     [controller removeFromParentViewController];
 }
 
