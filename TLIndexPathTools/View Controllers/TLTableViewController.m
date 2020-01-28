@@ -213,6 +213,7 @@
     UIViewController *controller = [self tableView:tableView viewControllerForCell:cell];
     if (controller) {
         [self addChildViewController:controller];
+        [controller didMoveToParentViewController: self];
     }
     [self tableView:tableView configureCell:cell atIndexPath:indexPath];
     self.currentCellForRowAtIndexPath = nil;
@@ -286,6 +287,7 @@
 {
     UIViewController *controller = [self tableView:tableView viewControllerForCell:cell];
     [controller.view removeFromSuperview];
+    [controller willMoveToParentViewController: nil];
     [controller removeFromParentViewController];
 }
 
