@@ -32,7 +32,7 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
 @interface TLIndexPathController ()
 @property (strong, nonatomic) NSFetchedResultsController *backingController;
 @property (strong, nonatomic) TLIndexPathDataModel *oldDataModel;
-@property (nonatomic) BOOL needsUpdate;
+@property (nonatomic) BOOL pendingNeedsUpdate;
 @property (nonatomic) BOOL performingBatchUpdate;
 @property (nonatomic) BOOL pendingConvertFetchedObjectsToDataModel;
 @property (strong, nonatomic) NSMutableArray *updatedItems;
@@ -190,7 +190,7 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
     
     _dataModel = dataModel;
 
-    self.needsUpdate = true;
+    self.pendingNeedsUpdate = true;
 
     [self dequeuePendingUpdates];
 }
@@ -199,7 +199,7 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
 {
     //perform udpates immediately unless we're in batch update mode
     if (self.performingBatchUpdate || self.isPaused) { return; }
-    if (!self.needsUpdate) { return; }
+    if (!self.pendingNeedsUpdate) { return; }
     if ([self.delegate respondsToSelector:@selector(controller:willUpdateDataModel:withDataModel:)]) {
         TLIndexPathDataModel *dataModel = [self.delegate controller:self willUpdateDataModel:self.oldDataModel withDataModel:self.dataModel];
         if (dataModel) {
@@ -218,7 +218,7 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
         #pragma clang diagnostic pop
         [self.updatedItems removeAllObjects];
     }
-    self.needsUpdate = NO;
+    self.pendingNeedsUpdate = NO;
     if ([self.delegate respondsToSelector:@selector(controller:didUpdateDataModel:)] && !self.ignoreDataModelChanges) {
         [self.delegate controller:self didUpdateDataModel:updates];
     }
@@ -227,7 +227,13 @@ NSString * kTLIndexPathUpdatesKey = @"kTLIndexPathUpdatesKey";
     self.oldDataModel = nil;
 }
 
-#pragma mark - Batch updates
+#pragma mark - Updating
+
+- (void)update
+{
+    self.pendingNeedsUpdate = YES;
+    [self dequeuePendingUpdates];
+}
 
 - (void)performBatchUpdates:(void (^)(void))updates completion:(void (^)(BOOL))completion
 {

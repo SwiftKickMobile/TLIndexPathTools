@@ -275,8 +275,14 @@ extern NSString * kTLIndexPathUpdatesKey;
  */
 @property (copy, nonatomic, nullable) BOOL (^ modificationComparatorBlock)(id item1, id item2);
 
-#pragma mark - Batch updates
-/** @name Batch updates */
+#pragma mark - Updating
+/** @name Updating */
+
+
+/**
+ Forces the controller to reload with the current data model.
+ */
+- (void)update;
 
 /**
  Allows for making multiple changes to the controller with only a single
