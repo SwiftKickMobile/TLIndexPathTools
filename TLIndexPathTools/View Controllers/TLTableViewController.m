@@ -172,6 +172,9 @@
         if (indexPath == nil) {
             indexPath = [self.tableView indexPathForCell:cell];
         }
+        if (indexPath == nil) {
+            return nil;
+        }
         controller = [self tableView:tableView instantiateViewControllerForCell:cell atIndexPath:indexPath];
         if (controller) {
             [self setViewController:controller forKey:key];
