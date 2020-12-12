@@ -1,0 +1,65 @@
+name: "TLIndexPath CI"
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  Build:
+    name: Build
+    runs-on: macOS-latest
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_12.2.app/Contents/Developer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build framework for iOS
+        run: xcodebuild -project "TLIndexPathTools.xcodeproj" -scheme "TLIndexPathTools" -sdk "iphonesimulator" -destination "name=iPhone 12 Pro" -configuration Release ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
+  Cocoapods:
+    name: Verify Cocoapods lint
+    runs-on: macOS-latest
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_12.2.app/Contents/Developer
+    steps:
+      - uses: actions/checkout@v2
+      - name: Cocoapods lint
+        run: pod lib lint TLIndexPathTools.podspec --allow-warnings
+  Carthage:
+    name: Verify Carthage build
+    runs-on: macOS-latest
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_12.2.app/Contents/Developer
+    steps:
+      - uses: actions/checkout@v2
+      - name: carthage
+        run: ./scripts/carthage.sh build --no-skip-current
+  SPM:
+    name: Verify SPM build
+    runs-on: macOS-latest
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_12.2.app/Contents/Developer
+    strategy:
+      matrix:
+        destination:
+          [
+            "platform=iOS Simulator,name=iPhone 12 Pro",
+            "platform=macOS,variant=Mac Catalyst",
+          ]
+        scheme: ["TLIndexPathTools"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Check that current SPM passed
+        run: xcodebuild clean build -scheme "${{ matrix.scheme }}" -destination "${{ matrix.destination }}" -configuration Release
+
+      - name: Regenerate SPM layout and verify that script works as expected
+        run: ./scripts/generate_spm_layout.sh
+
+      - name: spm's xcodebuild - ${{ matrix.destination }}
+        run: xcodebuild clean build -scheme "${{ matrix.scheme }}" -destination "${{ matrix.destination }}" -configuration Release

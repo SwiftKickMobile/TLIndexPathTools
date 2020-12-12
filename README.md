@@ -1,13 +1,12 @@
-TLIndexPathTools [![Build Status](https://travis-ci.org/3a4oT/TLIndexPathTools.svg?branch=TravisIntegration)](https://travis-ci.org/3a4oT/TLIndexPathTools) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-================
+# ![TLIndexPath CI](https://github.com/3a4oT/TLIndexPathTools/workflows/TLIndexPath%20CI/badge.svg) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![swift-package-manager](https://img.shields.io/badge/package%20manager-compatible-brightgreen.svg?logo=data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNjJweCIgaGVpZ2h0PSI0OXB4IiB2aWV3Qm94PSIwIDAgNjIgNDkiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8IS0tIEdlbmVyYXRvcjogU2tldGNoIDYzLjEgKDkyNDUyKSAtIGh0dHBzOi8vc2tldGNoLmNvbSAtLT4KICAgIDx0aXRsZT5Hcm91cDwvdGl0bGU+CiAgICA8ZGVzYz5DcmVhdGVkIHdpdGggU2tldGNoLjwvZGVzYz4KICAgIDxnIGlkPSJQYWdlLTEiIHN0cm9rZT0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIxIiBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPgogICAgICAgIDxnIGlkPSJHcm91cCIgZmlsbC1ydWxlPSJub256ZXJvIj4KICAgICAgICAgICAgPHBvbHlnb24gaWQ9IlBhdGgiIGZpbGw9IiNEQkI1NTEiIHBvaW50cz0iNTEuMzEwMzQ0OCAwIDEwLjY4OTY1NTIgMCAwIDEzLjUxNzI0MTQgMCA0OSA2MiA0OSA2MiAxMy41MTcyNDE0Ij48L3BvbHlnb24+CiAgICAgICAgICAgIDxwb2x5Z29uIGlkPSJQYXRoIiBmaWxsPSIjRjdFM0FGIiBwb2ludHM9IjI3IDI1IDMxIDI1IDM1IDI1IDM3IDI1IDM3IDE0IDI1IDE0IDI1IDI1Ij48L3BvbHlnb24+CiAgICAgICAgICAgIDxwb2x5Z29uIGlkPSJQYXRoIiBmaWxsPSIjRUZDNzVFIiBwb2ludHM9IjEwLjY4OTY1NTIgMCAwIDE0IDYyIDE0IDUxLjMxMDM0NDggMCI+PC9wb2x5Z29uPgogICAgICAgICAgICA8cG9seWdvbiBpZD0iUmVjdGFuZ2xlIiBmaWxsPSIjRjdFM0FGIiBwb2ludHM9IjI3IDAgMzUgMCAzNyAxNCAyNSAxNCI+PC9wb2x5Z29uPgogICAgICAgIDwvZz4KICAgIDwvZz4KPC9zdmc+)](https://github.com/apple/swift-package-manager)
 
 TLIndexPathTools is a small set of classes that can greatly simplify your table and collection views. Here are some of the awesome things TLIndexPathTools does:
 
-* Organize data into sections with ease (now with blocks!)
-* Calculate and perform animated batch updates (inserts, moves and deletions)
-* Simplify data source and delegate methods via rich data model APIs
-* Provide a simpler alternative to Core Data `NSFetchedResultsController`
-* Provide base table view and collection view classes with advanced features
+- Organize data into sections with ease (now with blocks!)
+- Calculate and perform animated batch updates (inserts, moves and deletions)
+- Simplify data source and delegate methods via rich data model APIs
+- Provide a simpler alternative to Core Data `NSFetchedResultsController`
+- Provide base table view and collection view classes with advanced features
 
 TLIndexPathTools is as lightweight as you want it to be. Start small by using `TLIndexPathDataModel` as your data model (instead of an array) and gain the ability to easily organize data into sections and simplify your view controller with APIs like `[dataModel numberOfRowsInSection:]`, `[dataModel itemAtIndexPath:]`, and `[dataModel indexPathForItem:]`. Or keep reading to learn about automatic batch updates, easier Core Data integration and more.
 
@@ -24,9 +23,10 @@ Add "TLIndexPathTools" to your podfile or, if you're not using CocoaPods:
 ## Overview
 
 `NSArray` is the standard construct for simple table and collection view data models. However, if multiple sections are involved, the typical setup is an `NSArray` containing section names and an `NSDictionary` of `NSArrays` containing data items, keyed by section name. Since table and collection views work with `NSIndexPaths`, the following pattern is used repeatedly in data source and delegate methods:
+
 ```Objective-C
     NSString *sectionName = self.sectionNameArray[indexPath.section];
-    NSArray *sectionArray = self.sectionArraysBySectionName[sectionName];    
+    NSArray *sectionArray = self.sectionArraysBySectionName[sectionName];
     id data = sectionArray[indexPath.row];
 ```
 
@@ -36,11 +36,11 @@ Add "TLIndexPathTools" to your podfile or, if you're not using CocoaPods:
 
 Most of the functionality in TLIndexPathTools can be accomplished with just `TLIndexPathDataModel` and `TLIndexPathUpdates`. However, there are a few of additional components that provide some great features:
 
-* `TLIndexPathController` provides a common programming model for building view controllers that work interchangeably with Core Data `NSFetchRequests` or plain arrays of any data type. One controller to rule them all.
-* `TLTableViewController` and `TLCollectionViewController` are table and collection view base classes that use `TLIndexPathController` and implement the essential data source and delegate methods to get you up and running quickly. They also support view controller-backed cells (see the [View Controller Backed][8] sample project) and automatic cell height calculation for table views (see the [Dynamic Height][9] sample project).
-* `TLIndexPathItem` is a wrapper class for data items that can simplify working with multiple data types or cell types. For example, take a look at the [Settings sample project][1].
-* The `Extensions` folder contains a number of add-ons for things like [collapsable sections][2] and [expandable tree views][3]. This is a good resource to see how `TLIndexPathDataModel` can be easily extended for special data structures.
-* And last, but not least, the `Examples` folder contains numerous sample projects demonstrating various use cases and features of the framework. [Shuffle][4] is a good starting point and be sure to try [Core Data][5].
+- `TLIndexPathController` provides a common programming model for building view controllers that work interchangeably with Core Data `NSFetchRequests` or plain arrays of any data type. One controller to rule them all.
+- `TLTableViewController` and `TLCollectionViewController` are table and collection view base classes that use `TLIndexPathController` and implement the essential data source and delegate methods to get you up and running quickly. They also support view controller-backed cells (see the [View Controller Backed][8] sample project) and automatic cell height calculation for table views (see the [Dynamic Height][9] sample project).
+- `TLIndexPathItem` is a wrapper class for data items that can simplify working with multiple data types or cell types. For example, take a look at the [Settings sample project][1].
+- The `Extensions` folder contains a number of add-ons for things like [collapsable sections][2] and [expandable tree views][3]. This is a good resource to see how `TLIndexPathDataModel` can be easily extended for special data structures.
+- And last, but not least, the `Examples` folder contains numerous sample projects demonstrating various use cases and features of the framework. [Shuffle][4] is a good starting point and be sure to try [Core Data][5].
 
 This version of TLIndexPathTools is designed to handle up to a few thousand items. Larger data sets may have performance issues.
 
@@ -88,7 +88,7 @@ dataModel.sections;
 
 // look up index path for a given item
 [dataModel indexPathForItem:item];
-```    
+```
 
 As an immutable object, all of the properties and methods in `TLIndexPathDataModel` are read-only. So using the data model is very straightforward once you've selected the appropriate initializer.
 
@@ -122,9 +122,9 @@ Although it primarily exists for Core Data integration, `TLIndexPathController` 
 
 `TLIndexPathController` also makes a few nice improvements relative to `NSFetchedResultsController`:
 
-* Items do not need to be presorted by section. The data model handles organizing sections.
-* Changes to your fetch request are animated. So you can get animated sorting and filtering.
-* Only one delegate method needs to be implemented (versus five for `NSFetchedResultsController`).
+- Items do not need to be presorted by section. The data model handles organizing sections.
+- Changes to your fetch request are animated. So you can get animated sorting and filtering.
+- Only one delegate method needs to be implemented (versus five for `NSFetchedResultsController`).
 
 The basic template for using `TLIndexPathController` in a (table) view controller is as follows:
 
@@ -171,7 +171,7 @@ The basic template for using `TLIndexPathController` in a (table) view controlle
 
 - (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates
 {
-    [updates performBatchUpdatesOnTableView:self.tableView withRowAnimation:UITableViewRowAnimationFade];    
+    [updates performBatchUpdatesOnTableView:self.tableView withRowAnimation:UITableViewRowAnimationFade];
 }
 
 @end
@@ -184,7 +184,7 @@ In either case, whether you explicitly set a data model or the controller conver
 ```Objective-C
 - (void)controller:(TLIndexPathController *)controller didUpdateDataModel:(TLIndexPathUpdates *)updates
 {
-    [updates performBatchUpdatesOnTableView:self.tableView withRowAnimation:UITableViewRowAnimationFade];    
+    [updates performBatchUpdatesOnTableView:self.tableView withRowAnimation:UITableViewRowAnimationFade];
 }
 ```
 
@@ -217,14 +217,15 @@ The Xcode docset can be generated by running the Docset project. The build confi
 The API documentation is also [available online][7].
 
 ## About SwiftKick Mobile
+
 We build high quality apps! [Get in touch](http://www.swiftkickmobile.com) if you need help with a project.
 
-[1]:https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Settings/Settings/SettingsTableViewController.m
-[2]:https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Collapse/Collapse/CollapseTableViewController.m
-[3]:https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Outline/Outline/OutlineTableViewController.m
-[4]:https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Outline/Outline/OutlineTableViewController.m
-[5]:https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Core%20Data/Core%20Data/CoreDataCollectionViewController.m
-[6]:https://github.com/tomaz/appledoc
-[7]:http://tlindexpathtools.com/api/index.html
-[8]:https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/View%20Controller%20Backed/View%20Controller%20Backed/CollectionViewController.m
-[9]:https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Dynamic%20Height/Dynamic%20Height/DynamicHeightTableViewController.m
+[1]: https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Settings/Settings/SettingsTableViewController.m
+[2]: https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Collapse/Collapse/CollapseTableViewController.m
+[3]: https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Outline/Outline/OutlineTableViewController.m
+[4]: https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Outline/Outline/OutlineTableViewController.m
+[5]: https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Core%20Data/Core%20Data/CoreDataCollectionViewController.m
+[6]: https://github.com/tomaz/appledoc
+[7]: http://tlindexpathtools.com/api/index.html
+[8]: https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/View%20Controller%20Backed/View%20Controller%20Backed/CollectionViewController.m
+[9]: https://github.com/wtmoose/TLIndexPathTools/blob/master/Examples/Dynamic%20Height/Dynamic%20Height/DynamicHeightTableViewController.m
