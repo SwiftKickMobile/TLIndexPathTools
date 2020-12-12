@@ -1,0 +1,46 @@
+name: "TLIndexPath CI"
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - "*"
+
+jobs:
+  Build:
+    name: Build
+    runs-on: macOS-latest
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_12.2.app/Contents/Developer
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Build framework for iOS
+        run: xcodebuild -project "TLIndexPathTools.xcodeproj" -scheme "TLIndexPathTools" -sdk "iphonesimulator" -destination "name=iPhone 12 Pro" -configuration Release ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
+
+  SPM:
+    name: Verify SPM build
+    runs-on: macOS-latest
+    env:
+      DEVELOPER_DIR: /Applications/Xcode_12.2.app/Contents/Developer
+    strategy:
+      matrix:
+        destination:
+          [
+            "platform=iOS Simulator,name=iPhone 12 Pro",
+            "platform=macOS,variant=Mac Catalyst",
+            "platform=tvOS Simulator,name=Apple TV 4k",
+          ]
+        scheme: ["TLIndexPathTools"]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Generate SPM layout
+        run: ./scripts/generate_spm_layout.sh
+
+      - name: spm's xcodebuild - ${{ matrix.destination }}
+        run: xcodebuild clean build -scheme "${{ matrix.scheme }}" -destination "${{ matrix.destination }}" -configuration Release
