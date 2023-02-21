@@ -16,3 +16,4 @@ Artifacts
 .idea
 *.xccheckout
 xcuserdata
+.swiftpm
