@@ -24,13 +24,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		86A9BA2F1C206E4B00DB127C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 86BFEA1A17CD691600262FE8 /* TLIndexPathTools.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 86029DFD1AEEAC2E00ED36D7;
-			remoteInfo = TLIndexPathToolsTests;
-		};
 		86BFEA1F17CD691600262FE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 86BFEA1A17CD691600262FE8 /* TLIndexPathTools.xcodeproj */;
@@ -142,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				86BFEA2017CD691600262FE8 /* TLIndexPathTools.framework */,
-				86A9BA301C206E4B00DB127C /* TLIndexPathToolsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,6 +173,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 865448EA17546DF80062880B;
@@ -200,13 +193,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		86A9BA301C206E4B00DB127C /* TLIndexPathToolsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = TLIndexPathToolsTests.xctest;
-			remoteRef = 86A9BA2F1C206E4B00DB127C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		86BFEA2017CD691600262FE8 /* TLIndexPathTools.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -327,7 +313,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Outline/Outline-Prefix.pch";
 				INFOPLIST_FILE = "Outline/Outline-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
@@ -342,7 +328,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Outline/Outline-Prefix.pch";
 				INFOPLIST_FILE = "Outline/Outline-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";

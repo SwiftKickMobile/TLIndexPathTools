@@ -24,13 +24,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		86A9BA1D1C206E4000DB127C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 86BFEA0517CD690900262FE8 /* TLIndexPathTools.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 86029DFD1AEEAC2E00ED36D7;
-			remoteInfo = TLIndexPathToolsTests;
-		};
 		86BFEA0A17CD690900262FE8 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 86BFEA0517CD690900262FE8 /* TLIndexPathTools.xcodeproj */;
@@ -142,7 +135,6 @@
 			isa = PBXGroup;
 			children = (
 				86BFEA0B17CD690900262FE8 /* TLIndexPathTools.framework */,
-				86A9BA1E1C206E4000DB127C /* TLIndexPathToolsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -181,6 +173,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 867238E917C685B100703339;
@@ -200,13 +193,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		86A9BA1E1C206E4000DB127C /* TLIndexPathToolsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = TLIndexPathToolsTests.xctest;
-			remoteRef = 86A9BA1D1C206E4000DB127C /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		86BFEA0B17CD690900262FE8 /* TLIndexPathTools.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -327,7 +313,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "No Results/No Results-Prefix.pch";
 				INFOPLIST_FILE = "No Results/No Results-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
 				WRAPPER_EXTENSION = app;
@@ -341,7 +327,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "No Results/No Results-Prefix.pch";
 				INFOPLIST_FILE = "No Results/No Results-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				USER_HEADER_SEARCH_PATHS = "\"$(TARGET_BUILD_DIR)/include/\"";
 				WRAPPER_EXTENSION = app;

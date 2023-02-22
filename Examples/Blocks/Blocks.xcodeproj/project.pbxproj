@@ -23,13 +23,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		86029E451AEEB7C400ED36D7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 860B7AE917E9FFC500C984B4 /* TLIndexPathTools.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 86029DFD1AEEAC2E00ED36D7;
-			remoteInfo = TLIndexPathToolsTests;
-		};
 		860B7AFF17EA02CB00C984B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 860B7AE917E9FFC500C984B4 /* TLIndexPathTools.xcodeproj */;
@@ -139,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				860B7B0017EA02CB00C984B4 /* TLIndexPathTools.framework */,
-				86029E461AEEB7C400ED36D7 /* TLIndexPathToolsTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -178,6 +170,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -198,13 +191,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		86029E461AEEB7C400ED36D7 /* TLIndexPathToolsTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = TLIndexPathToolsTests.xctest;
-			remoteRef = 86029E451AEEB7C400ED36D7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		860B7B0017EA02CB00C984B4 /* TLIndexPathTools.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -344,7 +330,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Blocks/Blocks-Prefix.pch";
 				INFOPLIST_FILE = "Blocks/Blocks-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TLIndexPathTools-cdwpczkvzhcayycfczwsnuukurgs/Build/Products/Debug-iphoneos",
@@ -366,7 +352,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Blocks/Blocks-Prefix.pch";
 				INFOPLIST_FILE = "Blocks/Blocks-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(USER_LIBRARY_DIR)/Developer/Xcode/DerivedData/TLIndexPathTools-cdwpczkvzhcayycfczwsnuukurgs/Build/Products/Debug-iphoneos",

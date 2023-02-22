@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "TLIndexPathTools",
     platforms: [
-        .iOS("8.0")
+        .iOS("11.0")
     ],
     products: [
         .library(name: "TLIndexPathTools", targets: ["TLIndexPathTools"])
@@ -16,7 +16,7 @@ let package = Package(
             exclude: [
                 "Info.plist",
             ],
-            publicHeadersPath: "TLIndexPathTools"
+            publicHeadersPath: "Public"
         )
     ]
 )

@@ -1,6 +1,8 @@
 TLIndexPathTools
 ================
 
+🔥 TLIndexPathTools is no longer actively maintained because Apple has finally introduced diffable data sources. 🔥
+
 TLIndexPathTools is a small set of classes that can greatly simplify your table and collection views. Here are some of the awesome things TLIndexPathTools does:
 
 * Organize data into sections with ease (now with blocks!)
@@ -13,13 +15,7 @@ TLIndexPathTools is as lightweight as you want it to be. Start small by using `T
 
 ## Installation
 
-Add "TLIndexPathTools" to your podfile or, if you're not using CocoaPods:
-
-1. Download the TLIndexPathTools project
-2. Add the TLIndexPathTools sub-folder (sibling of the Examples folder) to your Xcode project.
-3. Link to QuartzCore.framework and CoreData.framework (on the Build Phases tab of your project's target).
-
-<!--CoreData is required for Core Data integration and because `TLIndexPathSectionInfo` implements the `NSFetchedResultsSectionInfo` protocol. QuartzCore is required because the Grid extension uses it.-->
+Use Swift Package Manager
 
 ## Overview
 
